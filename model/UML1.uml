@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TZJEEL_6Eee6Uf0aglbQ7A" name="RootElement">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TZJEEL_6Eee6Uf0aglbQ7A" name="RootElement">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_TkBeYL_6Eee6Uf0aglbQ7A">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_afDdMMACEeemDPcuaa2bPw" name="Physician">
+    <generalization xmi:type="uml:Generalization" xmi:id="_LBLVoMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_zKxJAMACEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -27,8 +28,10 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GdzqgMAEEeemDPcuaa2bPw" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_PmsXEMADEeemDPcuaa2bPw" name="messageBox"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_cGaYQMQCEeeGKuJ9g2aAeg" name="create"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_S4qBoMAEEeemDPcuaa2bPw" name="Nurse">
+    <generalization xmi:type="uml:Generalization" xmi:id="_LZ0fIMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_S4qBocAEEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -53,8 +56,10 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_kIMPwMAEEeemDPcuaa2bPw" name="patientToTransport" visibility="private"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ojvOAMAEEeemDPcuaa2bPw" name="patientTransported" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_dFJ4cMQCEeeGKuJ9g2aAeg" name="create"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_fq_rsMAEEeemDPcuaa2bPw" name="Transporter">
+    <generalization xmi:type="uml:Generalization" xmi:id="_L2lToMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_fq_rscAEEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -72,8 +77,10 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ty3lUMAEEeemDPcuaa2bPw" name="patientToTransport" visibility="private"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_v_yI0MAEEeemDPcuaa2bPw" name="patientTransported" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_eKdToMQCEeeGKuJ9g2aAeg" name="create"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_7QHNkMAEEeemDPcuaa2bPw" name="Patient">
+    <generalization xmi:type="uml:Generalization" xmi:id="_MW7AkMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_7QHNkcAEEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -101,8 +108,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_czfdoMAFEeemDPcuaa2bPw" name="charges" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_e6d0QMQCEeeGKuJ9g2aAeg" name="create"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_343IcMAFEeemDPcuaa2bPw" name="BoxRooms">
+  <packagedElement xmi:type="uml:Class" xmi:id="_343IcMAFEeemDPcuaa2bPw" name="BoxRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_-PlScMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_343IccAFEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -114,8 +123,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_M67NAMAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ac1LUMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_Uft0IMAGEeemDPcuaa2bPw" name="ShockRooms">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Uft0IMAGEeemDPcuaa2bPw" name="ShockRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_9p39UMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Uft0IcAGEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -127,8 +138,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Uft0JcAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ZYTMMMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_dz8YkMAGEeemDPcuaa2bPw" name="WaitingRooms">
+  <packagedElement xmi:type="uml:Class" xmi:id="_dz8YkMAGEeemDPcuaa2bPw" name="WaitingRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_4SGAUMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_dz8YkcAGEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -140,8 +153,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_dz8YlcAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_XuYBAMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_gYFwUMAGEeemDPcuaa2bPw" name="RadioRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_wHv1EMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_gYFwUcAGEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -153,8 +168,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_gYFwVcAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_QzvKIMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_xYlc4MAGEeemDPcuaa2bPw" name="MRIRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_xFvuYMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_xYlc4cAGEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -166,8 +183,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_xYlc5cAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_U_ZSQMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_zknPkMAGEeemDPcuaa2bPw" name="BloodRoom">
+    <generalization xmi:type="uml:Generalization" xmi:id="_yVZ_cMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_zknPkcAGEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -179,8 +198,9 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_zknPlcAGEeemDPcuaa2bPw" name="cost" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_WlMycMQCEeeGKuJ9g2aAeg" name="construct"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_juEYMMAHEeemDPcuaa2bPw" name="ConsultationRooms">
+  <packagedElement xmi:type="uml:Class" xmi:id="_juEYMMAHEeemDPcuaa2bPw" name="TestRoom">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_juEYMcAHEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -193,7 +213,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_nF9hEMAHEeemDPcuaa2bPw" name="CopyOf_ShockRooms_1">
+  <packagedElement xmi:type="uml:Class" xmi:id="_nF9hEMAHEeemDPcuaa2bPw" name="NormalRoom">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_nF9hEcAHEeemDPcuaa2bPw" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
@@ -206,5 +226,59 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_8BccgMAHEeemDPcuaa2bPw" name="ED"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8BccgMAHEeemDPcuaa2bPw" name="ED">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_49xTMMQEEeeGKuJ9g2aAeg" name="id">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_A8_MgMQFEeeGKuJ9g2aAeg" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_FT9z0MQFEeeGKuJ9g2aAeg" name="Attribute1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iqposMP_EeeGKuJ9g2aAeg" name="Class1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_w8syAMP_EeeGKuJ9g2aAeg" name="SimErgyCore">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Ia0Fc8QEEeeGKuJ9g2aAeg" name="factorycreator" type="_DWQmcMQEEeeGKuJ9g2aAeg" association="_Ia0FcMQEEeeGKuJ9g2aAeg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_b5BucMQAEeeGKuJ9g2aAeg" name="Room">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_JjtHgMQBEeeGKuJ9g2aAeg" name="construct" concurrency="guarded"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_grOcsMQBEeeGKuJ9g2aAeg" name="People">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_jGuOwMQBEeeGKuJ9g2aAeg" name="create"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uLkm0MQCEeeGKuJ9g2aAeg" name="AbstractFactory" isAbstract="true">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1dfVQMQCEeeGKuJ9g2aAeg" name="getPeople"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_3WL8QMQCEeeGKuJ9g2aAeg" name="getRoom"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CK4N4MQDEeeGKuJ9g2aAeg" name="RoomFactory">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_MM7hoMQDEeeGKuJ9g2aAeg" name="getRoom"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_N0R58MQDEeeGKuJ9g2aAeg" name="getPeople"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EMVvUMQDEeeGKuJ9g2aAeg" name="PeopleFactory">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_QzqcMMQDEeeGKuJ9g2aAeg" name="getRoom"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_SLmfgMQDEeeGKuJ9g2aAeg" name="getPeople"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_7L07oMQDEeeGKuJ9g2aAeg" client="_CK4N4MQDEeeGKuJ9g2aAeg" supplier="_uLkm0MQCEeeGKuJ9g2aAeg"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_AERRQMQEEeeGKuJ9g2aAeg" client="_EMVvUMQDEeeGKuJ9g2aAeg" supplier="_uLkm0MQCEeeGKuJ9g2aAeg"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DWQmcMQEEeeGKuJ9g2aAeg" name="FactoryCreator">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_NVOxA8QEEeeGKuJ9g2aAeg" name="abstractfactory" type="_uLkm0MQCEeeGKuJ9g2aAeg" association="_NVOxAMQEEeeGKuJ9g2aAeg"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_FspPAMQEEeeGKuJ9g2aAeg" name="getFactory"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Ia0FcMQEEeeGKuJ9g2aAeg" memberEnd="_Ia0Fc8QEEeeGKuJ9g2aAeg _Ia9PYMQEEeeGKuJ9g2aAeg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ia0FccQEEeeGKuJ9g2aAeg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ia0FcsQEEeeGKuJ9g2aAeg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Ia9PYMQEEeeGKuJ9g2aAeg" name="simergycore" type="_w8syAMP_EeeGKuJ9g2aAeg" association="_Ia0FcMQEEeeGKuJ9g2aAeg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_NVOxAMQEEeeGKuJ9g2aAeg" memberEnd="_NVOxA8QEEeeGKuJ9g2aAeg _NVOxBMQEEeeGKuJ9g2aAeg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NVOxAcQEEeeGKuJ9g2aAeg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NVOxAsQEEeeGKuJ9g2aAeg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_NVOxBMQEEeeGKuJ9g2aAeg" name="factorycreator" type="_DWQmcMQEEeeGKuJ9g2aAeg" association="_NVOxAMQEEeeGKuJ9g2aAeg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_pD2NIMQEEeeGKuJ9g2aAeg" client="_gYFwUMAGEeemDPcuaa2bPw" supplier="_juEYMMAHEeemDPcuaa2bPw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_p3t6EMQEEeeGKuJ9g2aAeg" client="_xYlc4MAGEeemDPcuaa2bPw" supplier="_juEYMMAHEeemDPcuaa2bPw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_qgWAUMQEEeeGKuJ9g2aAeg" client="_zknPkMAGEeemDPcuaa2bPw" supplier="_juEYMMAHEeemDPcuaa2bPw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_rL3CgMQEEeeGKuJ9g2aAeg" client="_343IcMAFEeemDPcuaa2bPw" supplier="_nF9hEMAHEeemDPcuaa2bPw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_sNdCYMQEEeeGKuJ9g2aAeg" client="_Uft0IMAGEeemDPcuaa2bPw" supplier="_nF9hEMAHEeemDPcuaa2bPw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_syV4IMQEEeeGKuJ9g2aAeg" client="_dz8YkMAGEeemDPcuaa2bPw" supplier="_nF9hEMAHEeemDPcuaa2bPw"/>
 </uml:Model>
