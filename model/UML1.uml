@@ -25,11 +25,15 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ojvOAMAEEeemDPcuaa2bPw" name="patientTransported" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_dFJ4cMQCEeeGKuJ9g2aAeg" name="create"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_uHO9AMX9Eee70fhPxcVGUg" name="register"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_2khSYMX9Eee70fhPxcVGUg" name="findRoom"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_4PQV4MX9Eee70fhPxcVGUg" name="transport"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_fq_rsMAEEeemDPcuaa2bPw" name="Transporter">
     <generalization xmi:type="uml:Generalization" xmi:id="_L2lToMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_v_yI0MAEEeemDPcuaa2bPw" name="patientTransported" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_eKdToMQCEeeGKuJ9g2aAeg" name="create"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_oTjuMMX9Eee70fhPxcVGUg" name="transport"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_7QHNkMAEEeemDPcuaa2bPw" name="Patient">
     <generalization xmi:type="uml:Generalization" xmi:id="_MW7AkMQCEeeGKuJ9g2aAeg" general="_grOcsMQBEeeGKuJ9g2aAeg"/>
@@ -46,6 +50,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_e6d0QMQCEeeGKuJ9g2aAeg" name="create"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_XU2U4MX-Eee70fhPxcVGUg" name="writeHistory"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_343IcMAFEeemDPcuaa2bPw" name="BoxRoom">
     <generalization xmi:type="uml:Generalization" xmi:id="_-PlScMQBEeeGKuJ9g2aAeg" general="_b5BucMQAEeeGKuJ9g2aAeg"/>
@@ -158,35 +163,77 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_BxinMMQLEeeGKuJ9g2aAeg" name="Stretcher">
     <generalization xmi:type="uml:Generalization" xmi:id="_YjfqIMQNEeeGKuJ9g2aAeg" general="_KrG-AMQNEeeGKuJ9g2aAeg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ehOcAMX-Eee70fhPxcVGUg" name="state" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Vf7ygMQNEeeGKuJ9g2aAeg" name="produce"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_JvTH8MQLEeeGKuJ9g2aAeg" name="KPI" isAbstract="true"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_LOm-kMQLEeeGKuJ9g2aAeg" name="EventManager" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LOm-kMQLEeeGKuJ9g2aAeg" name="EventManager" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Yj4eYMX_Eee70fhPxcVGUg" name="waitingQueue" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_F2PTgMX_Eee70fhPxcVGUg" name="enQueue"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_UpAkQMX_Eee70fhPxcVGUg" name="deQueue"/>
+  </packagedElement>
   <packagedElement xmi:type="uml:Interface" xmi:id="_az-J4MQLEeeGKuJ9g2aAeg" name="SampleGeneration">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_HqCPIMQMEeeGKuJ9g2aAeg" name="Sample"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_f2QYAMQLEeeGKuJ9g2aAeg" name="Exp">
     <generalization xmi:type="uml:Generalization" xmi:id="_SdCesMQMEeeGKuJ9g2aAeg" general="_az-J4MQLEeeGKuJ9g2aAeg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ZpPEQMX8Eee70fhPxcVGUg" name="lambda" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_IryAAMQMEeeGKuJ9g2aAeg" name="Sample"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_jsb_YMQLEeeGKuJ9g2aAeg" name="Uniform">
     <generalization xmi:type="uml:Generalization" xmi:id="_SzZJMMQMEeeGKuJ9g2aAeg" general="_az-J4MQLEeeGKuJ9g2aAeg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_jIaUcMX8Eee70fhPxcVGUg" name="l" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_k9tpMMX8Eee70fhPxcVGUg" name="h" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_KJO1cMQMEeeGKuJ9g2aAeg" name="Sample"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_6MUs0MQLEeeGKuJ9g2aAeg" name="Gamma">
     <generalization xmi:type="uml:Generalization" xmi:id="_TH9rAMQMEeeGKuJ9g2aAeg" general="_az-J4MQLEeeGKuJ9g2aAeg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2FfCcMX8Eee70fhPxcVGUg" name="k" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2h1nQMX8Eee70fhPxcVGUg" name="theta" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_K_fIAMQMEeeGKuJ9g2aAeg" name="Sample"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_A8GXgMQMEeeGKuJ9g2aAeg" name="LogNorm">
     <generalization xmi:type="uml:Generalization" xmi:id="_TaRjAMQMEeeGKuJ9g2aAeg" general="_az-J4MQLEeeGKuJ9g2aAeg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_AuYTwMX9Eee70fhPxcVGUg" name="mu" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EHchUMX9Eee70fhPxcVGUg" name="squareSigma" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_LyAxIMQMEeeGKuJ9g2aAeg" name="Sample"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_ZNnaoMQMEeeGKuJ9g2aAeg" name="Time"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_crgd0MQMEeeGKuJ9g2aAeg" name="LOS"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_ilrWMMQMEeeGKuJ9g2aAeg" name="DTDT"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_tjgVsMQMEeeGKuJ9g2aAeg" name="AvgWaitingTime"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_v_G1cMQMEeeGKuJ9g2aAeg" name="NbOfPatientPerDay"/>
-  <packagedElement xmi:type="uml:Realization" xmi:id="_2tKo4MQMEeeGKuJ9g2aAeg" client="_crgd0MQMEeeGKuJ9g2aAeg" supplier="_JvTH8MQLEeeGKuJ9g2aAeg"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZNnaoMQMEeeGKuJ9g2aAeg" name="Time">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7_IrgMX-Eee70fhPxcVGUg" name="minutes" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_4pciEMX-Eee70fhPxcVGUg" name="getTime"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_6F55AMX-Eee70fhPxcVGUg" name="addMinute"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_crgd0MQMEeeGKuJ9g2aAeg" name="LOS">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1fgVoMX-Eee70fhPxcVGUg" name="calculate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ilrWMMQMEeeGKuJ9g2aAeg" name="DTDT">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_0d5usMX-Eee70fhPxcVGUg" name="calculate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_tjgVsMQMEeeGKuJ9g2aAeg" name="AvgWaitingTime">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_zZr4oMX-Eee70fhPxcVGUg" name="calculate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_v_G1cMQMEeeGKuJ9g2aAeg" name="NbOfPatientPerDay">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_xhox4MX-Eee70fhPxcVGUg" name="calculate"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_2tKo4MQMEeeGKuJ9g2aAeg" client="_crgd0MQMEeeGKuJ9g2aAeg" supplier="_TZJEEL_6Eee6Uf0aglbQ7A"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_3OP8sMQMEeeGKuJ9g2aAeg" client="_ilrWMMQMEeeGKuJ9g2aAeg" supplier="_JvTH8MQLEeeGKuJ9g2aAeg"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_3wE3YMQMEeeGKuJ9g2aAeg" client="_tjgVsMQMEeeGKuJ9g2aAeg" supplier="_JvTH8MQLEeeGKuJ9g2aAeg"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_4YCPQMQMEeeGKuJ9g2aAeg" client="_v_G1cMQMEeeGKuJ9g2aAeg" supplier="_JvTH8MQLEeeGKuJ9g2aAeg"/>
