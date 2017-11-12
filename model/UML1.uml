@@ -10,7 +10,7 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GdzqgMAEEeemDPcuaa2bPw" value="*"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_cGaYQMQCEeeGKuJ9g2aAeg" name="create"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_NU_GIMQUEeeGKuJ9g2aAeg" name="handle"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_NU_GIMQUEeeGKuJ9g2aAeg" name="handleMsg"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_RIqMEMQUEeeGKuJ9g2aAeg" name="emitVerdict"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_To4GEMQUEeeGKuJ9g2aAeg" name="prescribe"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_ZfJ88MQUEeeGKuJ9g2aAeg" name="update"/>
@@ -144,7 +144,12 @@
   <packagedElement xmi:type="uml:Realization" xmi:id="_syV4IMQEEeeGKuJ9g2aAeg" client="_dz8YkMAGEeemDPcuaa2bPw" supplier="_nF9hEMAHEeemDPcuaa2bPw"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_zKWUUMQKEeeGKuJ9g2aAeg" name="MsgBox">
     <generalization xmi:type="uml:Generalization" xmi:id="_O77rQMQTEeeGKuJ9g2aAeg" general="_xHYdYMQSEeeGKuJ9g2aAeg"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="__k4BsMQSEeeGKuJ9g2aAeg" name="AFAIRE"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_We_C8Me2EeerYLRqPkUyNA" name="id"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_rfmWAMe2EeerYLRqPkUyNA" name="status"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_-NNEoMe2EeerYLRqPkUyNA" name="storedMsgs"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_B-8Q4Me3EeerYLRqPkUyNA" name="unreadMsgs"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_HSAF8Me3EeerYLRqPkUyNA" name="removedMsgs"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_yaiH0Me2EeerYLRqPkUyNA" name="msgPopUp"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_BxinMMQLEeeGKuJ9g2aAeg" name="Stretcher">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Vf7ygMQNEeeGKuJ9g2aAeg" name="produce"/>
