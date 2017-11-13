@@ -7,7 +7,7 @@ public abstract class Room {
 	private String edName;
 	private int id;
 	private String name;
-	private Distribution dist;
+	private String dist;
 	private float cost;
 	private int capacity;
 	
@@ -30,10 +30,10 @@ public abstract class Room {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Distribution getDist() {
+	public String getDist() {
 		return dist;
 	}
-	public void setDist(Distribution dist) {
+	public void setDist(String dist) {
 		this.dist = dist;
 	}
 	public float getCost() {
@@ -41,12 +41,6 @@ public abstract class Room {
 	}
 	public void setCost(float cost) {
 		this.cost = cost;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
 	}
 	public int getCapacity() {
 		return capacity;
