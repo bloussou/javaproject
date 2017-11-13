@@ -2,6 +2,8 @@ package Factory;
 
 public abstract class Room {
 
+		private static int compteurRoomId;
+		private String edName;
 		private int id;
 		private String name;
 		private Distribution dist;

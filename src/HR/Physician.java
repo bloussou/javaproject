@@ -1,18 +1,47 @@
 package HR;
 import java.util.*;
+import Factory.Human;
 
 
 public class Physician extends Factory.Human implements Observer{
 	
-	private ArrayList<Patient> patientVisited;
+	private static int compteurPhysicianId;
+	private ArrayList<Patient> patientOverseeing;	
+	private ArrayList<Patient> patientAlreadyTreated;
 	
-	@Override
-	public void create(){
+	
+	public Physician(String edName, String name, String surname, String state){
+		super();
 		
+		Physician.compteurPhysicianId += 1;
+		this.setId(Physician.compteurPhysicianId);
+		
+		this.setEdName(edName);
+		this.setName(name);
+		this.setSurname(surname);
+		this.setState(state);
+		
+		this.patientOverseeing = new ArrayList<Patient>();
+		this.patientAlreadyTreated = new ArrayList<Patient>();
+	}
+	public Physician(String edName){
+		super();
+		
+		Physician.compteurPhysicianId += 1;
+		this.setId(Physician.compteurPhysicianId);
+		
+		this.setEdName(edName);
+		this.setName("Phisician" + Integer.toString(this.getId()));
+		this.setSurname("Physician" + Integer.toString(this.getId()));
+		this.setState("Free");
+		
+		this.patientOverseeing = new ArrayList<Patient>();
+		this.patientAlreadyTreated = new ArrayList<Patient>();
 	}
 	
-	public void handle(Patient patient){
-		
+	
+	public void handleNewPatient(Patient patient){
+
 	}
 	
 	public void emitVerdict(){
@@ -23,17 +52,16 @@ public class Physician extends Factory.Human implements Observer{
 		
 	}
 	
-	
-	public void display(){
+		
+	@Override
+	public void displayMsgBox() {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	public static void main(String[] args) {
-	
-	}
 
 	@Override
-	public void updateMsgBox() {
+	public void create() {
 		// TODO Auto-generated method stub
 		
 	}
