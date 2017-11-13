@@ -57,7 +57,6 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_gaAZwMQVEeeGKuJ9g2aAeg" name="updatePatientCharge"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_dz8YkMAGEeemDPcuaa2bPw" name="WaitingRoom">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_ai61IMQWEeeGKuJ9g2aAeg" name="nbOfOccupant"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_XuYBAMQCEeeGKuJ9g2aAeg" name="construct"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_f4UpAMQVEeeGKuJ9g2aAeg" name="updatePatientCharge"/>
   </packagedElement>
@@ -91,6 +90,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_N90V0MQWEeeGKuJ9g2aAeg" name="state" visibility="private"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0dp-QMhHEee66vWr_WV4Qw" name="occupants" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_0Kd4cMbGEeeCvLFh77jMEQ" name="construct"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_1a8o4MbGEeeCvLFh77jMEQ" name="updatePatientCharge"/>
   </packagedElement>

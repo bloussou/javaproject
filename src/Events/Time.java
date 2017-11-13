@@ -29,24 +29,18 @@ public class Time {
 	}
 
 	
-	
-	public int getDay() {
-		return day;
+	public String getTime(){
+		return (Integer.toString(this.day)+Integer.toString(this.hour)+Integer.toString(this.min));
 	}
+
 	public void setDay(int day) {
 		this.day = day;
 	}
 
-	public int getHour() {
-		return hour;
-	}
 	public void setHour(int hour) {
 		this.hour = hour;
 	}
 
-	public int getMin() {
-		return min;
-	}
 	public void setMin(int min) {
 		this.min = min;
 	}

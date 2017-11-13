@@ -2,8 +2,6 @@ package Factory;
 
 public abstract class Human {
 
-	
-	private static int compteurHumanId;
 	private String edName;
 	private int id;
 	private String name;
@@ -11,14 +9,6 @@ public abstract class Human {
 	private String state;
 	
 	
-	
-	public static int getCompteurHumanId() {
-		return compteurHumanId;
-	}
-	public static void setCompteurHumanId(int compteurHumanId) {
-		Human.compteurHumanId = compteurHumanId;
-	}
-
 	public int getId() {
 		return id;
 	}
