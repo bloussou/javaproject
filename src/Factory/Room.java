@@ -11,6 +11,7 @@ public abstract class Room {
 	private float cost;
 	private float[] distParam = {0,0};
 	private int capacity;
+	private float[] distParam = {0,0};
 	
 	
 
@@ -50,6 +51,13 @@ public abstract class Room {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
+	public float[] getDistParam() {
+		return distParam;
+	}
+	public void setDistParam(float[] distParam) {
+		this.distParam = distParam;
+	}
+	
 	
 	abstract public void addOccupant(Patient patient);
 	abstract public void removeOccupant(Patient patient);
