@@ -1,6 +1,8 @@
 package Factory;
 
 import Events.Time;
+import Facilities.Facility;
+import HR.Human;
 import Rooms.*;
 
 public class RoomFactory extends AbstractFactory{

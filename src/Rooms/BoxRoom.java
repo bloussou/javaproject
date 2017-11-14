@@ -1,6 +1,5 @@
 package Rooms;
 
-import Factory.Room;
 import HR.Patient;
 import HR.Physician;
 

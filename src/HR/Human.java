@@ -1,4 +1,4 @@
-package Factory;
+package HR;
 
 public abstract class Human {
 

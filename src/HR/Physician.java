@@ -1,9 +1,8 @@
 package HR;
 import java.util.*;
-import Factory.Human;
 
 
-public class Physician extends Factory.Human implements Observer{
+public class Physician extends Human implements Observer{
 	
 	private static int compteurPhysicianId;
 	private ArrayList<Patient> patientOverseeing;	

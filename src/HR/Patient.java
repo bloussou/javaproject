@@ -1,9 +1,8 @@
 package HR;
 
-import Factory.Human;
 import Events.Time;
 
-public class Patient extends Factory.Human{
+public class Patient extends Human{
 
 	private static int compteurPatientId;
 	private String healthInsurance;

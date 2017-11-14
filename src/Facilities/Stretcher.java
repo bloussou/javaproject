@@ -1,7 +1,5 @@
 package Facilities;
 
-import Factory.Facility;
-
 public class Stretcher extends Facility{
 
 	private static int compteurStretcherId;

@@ -1,43 +1,46 @@
 package Factory;
 
 import Events.Time;
+import Facilities.Facility;
+import HR.*;
+import Rooms.Room;
 
 public class PeopleFactory extends AbstractFactory{
 	
 	@Override
 	public Human getStaff(String staffType, String edName) {
 		if(staffType.equalsIgnoreCase("NURSE")){
-			return new HR.Nurse(edName);
+			return new Nurse(edName);
 		}
 		else if(staffType.equalsIgnoreCase("PHYSICIAN")){
-			return new HR.Physician(edName);
+			return new Physician(edName);
 		}
 		else if(staffType.equalsIgnoreCase("TRANSPORTER")){
-			return new HR.Transporter(edName);
+			return new Transporter(edName);
 		}
 		return null;
 	}
 	@Override
 	public Human getStaff(String staffType, String edName, String name, String surname, String state) {
 		if(staffType.equalsIgnoreCase("NURSE")){
-			return new HR.Nurse(edName, name, surname, state);
+			return new Nurse(edName, name, surname, state);
 		}
 		else if(staffType.equalsIgnoreCase("PHYSICIAN")){
-			return new HR.Physician(edName, name, surname, state);
+			return new Physician(edName, name, surname, state);
 		}
 		else if(staffType.equalsIgnoreCase("TRANSPORTER")){
-			return new HR.Transporter(edName, name, surname, state);
+			return new Transporter(edName, name, surname, state);
 		}
 		return null;
 	}
 
 	@Override
 	public Human getPatient(String edName, String severityLevel, Time arrivalTime) {
-		return new HR.Patient(edName, severityLevel, arrivalTime);
+		return new Patient(edName, severityLevel, arrivalTime);
 	}
 	@Override
 	public Human getPatient(String edName, String name, String surname, String state, String healthInsurance, String severityLevel, Time arrivalTime) {
-		return new HR.Patient(edName, name, surname, state, healthInsurance, severityLevel, arrivalTime);
+		return new Patient(edName, name, surname, state, healthInsurance, severityLevel, arrivalTime);
 	}
 	
 	

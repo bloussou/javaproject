@@ -1,4 +1,4 @@
-package Factory;
+package Facilities;
 
 public abstract class Facility {
 

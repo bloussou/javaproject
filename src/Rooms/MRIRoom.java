@@ -1,6 +1,5 @@
 package Rooms;
 
-import Factory.Room;
 import HR.Patient;
 
 public class MRIRoom extends Room {

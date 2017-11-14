@@ -1,10 +1,8 @@
 package HR;
 import java.util.*;
 
-import Factory.Human;
 
-
-public class Transporter extends Factory.Human{
+public class Transporter extends Human{
 	
 	private static int compteurTransporterId;
 	private ArrayList<Patient> patientTransported;

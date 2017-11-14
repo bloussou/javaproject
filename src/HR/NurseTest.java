@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Factory.Human;
-
 public class NurseTest {
 
 	@Test

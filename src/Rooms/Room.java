@@ -1,4 +1,4 @@
-package Factory;
+package Rooms;
 
 import HR.Patient;
 
