@@ -1,5 +1,8 @@
 package HR;
 import java.util.*;
+import Proba.Uniform; from Events;
+
+
 
 
 public class Physician extends Human implements Observer{
@@ -7,6 +10,9 @@ public class Physician extends Human implements Observer{
 	private static int compteurPhysicianId;
 	private ArrayList<Patient> patientOverseeing;	
 	private ArrayList<Patient> patientAlreadyTreated;
+	private int startTime;
+	private int endTime;
+	private double duration;
 	
 	
 	public Physician(String edName, String name, String surname, String state){
@@ -39,8 +45,33 @@ public class Physician extends Human implements Observer{
 	}
 	
 	
+	
+	
+	public ArrayList<Patient> getPatientOverseeing() {
+		return patientOverseeing;
+	}
+	public ArrayList<Patient> getPatientAlreadyTreated() {
+		return patientAlreadyTreated;
+	}
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	public double getDuration() {
+		return duration;
+	}
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+	
+	
+	
 	public void handleNewPatient(Patient patient){
-
+		startTime = Time.getTime();
+		this.setDuration(new Uniform().randSample(10,20));
+		private int duree = (int)(this.getDuration());
 	}
 	
 	public void emitVerdict(){

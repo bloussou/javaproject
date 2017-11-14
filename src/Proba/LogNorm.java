@@ -6,6 +6,8 @@ import org.apache.commons.math3.distribution.LogNormalDistribution;
 
 public class LogNorm {
 	
+	public LogNorm(){}
+	
 	/*
 	 * f is the inner function in the integral
 	 */
@@ -59,7 +61,7 @@ public class LogNorm {
 	}
 
 	
-	public static double RandSample(double mu, double sigma) {
+	public double RandSample(double mu, double sigma) {
 		double u = Math.random();
 		double x = 0.5;
 		int n = 0;

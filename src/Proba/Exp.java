@@ -2,6 +2,8 @@ package Proba;
 import java.lang.Math;
 
 public class Exp {
+	
+	public Exp(){}
 	/**
 	 * 
 	 * @author brieuc

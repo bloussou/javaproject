@@ -5,15 +5,13 @@ import org.apache.commons.math3.distribution.GammaDistribution;
 
 
 public class Gamma  {
+	
+	public Gamma(){}
 
 	
-	public static double randSample(double k, double theta) {
+	public double randSample(double k, double theta) {
 		return new GammaDistribution(k, theta).sample();
 	}
-	public static void main(String[] args) {
-		System.out.println(Gamma.randSample(9, 0.5));
-		System.out.println("Brieuc pue");
-		System.out.println("Ludo aussi");
-	}
+	
 	
 }

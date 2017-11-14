@@ -11,13 +11,15 @@ import java.lang.Math;
 
 public class Uniform {
 	
+	public Uniform(){}
+	
 
 	
 	/*
 	 * The sample method of uniform gives a random number between l and h
 	 * Uniform.sample(l,h)
 	 */
-	public double RandSample(double l , double h) {
+	public double randSample(double l , double h) {
 		double x = Math.random();
 		
 		return (x*(h-l)+l);
