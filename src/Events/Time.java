@@ -2,15 +2,25 @@ package Events;
 
 public class Time {
 	
+	private static Time instance = null;
 	int day;
 	int hour;
 	int min;
-	
+		
 	public Time(){
 		this.day = 0;
 		this.hour = 0;
 		this.min = 0;
 	}
+	
+	public static Time getInstanceTime(){
+		if (instance == null){
+			instance = new Time();
+		}
+		return instance;
+	}
+	
+	
 	
 	public void timeGoes(int minutesMore){
 		if(this.min<60-minutesMore){
@@ -28,27 +38,21 @@ public class Time {
 		}
 	}
 
-	
 	public String getTime(){
 		return (Integer.toString(this.day)+Integer.toString(this.hour)+Integer.toString(this.min));
 	}
 
-	public void setDay(int day) {
-		this.day = day;
-	}
 
-	public void setHour(int hour) {
-		this.hour = hour;
-	}
-
-	public void setMin(int min) {
-		this.min = min;
-	}
-
-	
 	@Override
 	public String toString() {
 		return "Time [D" + day + ", H" + hour + ", Min" + min + "]";
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		
+		
 	}
 
 	
