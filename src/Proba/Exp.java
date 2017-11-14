@@ -10,7 +10,7 @@ public class Exp {
 	 * 
 	 */
 	
-	public double sample(double lambda) {
+	public double RandSample(double lambda) {
 		/*
 		 * The sample method of Exp gives random numbers exponentially distributed if you put it in a for loop
 		 * Warning ! lambda must be >0

@@ -2,6 +2,8 @@ package Proba;
 import java.lang.Math;
 
 
+import org.apache.commons.math3.distribution.LogNormalDistribution; 
+
 public class LogNorm {
 	
 	/*
@@ -57,17 +59,25 @@ public class LogNorm {
 	}
 
 	
-	public static double sample(double mu, double sigma) {
+	public static double RandSample(double mu, double sigma) {
 		double u = Math.random();
 		double x = 0.5;
 		int n = 0;
 		int p = 10;
 		
+	
+		
 		while (Math.abs((LogNorm.logNormRepar(x, mu, sigma)-u)/LogNorm.logNormReparDerivate(x, mu, sigma))>=Math.pow(10, -p) && n<=10){
 			x = x - (LogNorm.logNormRepar(x, mu, sigma)-u)/LogNorm.logNormReparDerivate(x, mu, sigma);
 			n = n + 1;
 		}
+		
 		return x;	
 	}
+	
+//	public static double Rand2sample(double mu, double sigma){
+//		return new LogNormalDistribution(mu, sigma).sample();
+//	}
+	
 
 }
