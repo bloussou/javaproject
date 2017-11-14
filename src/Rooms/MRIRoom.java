@@ -6,9 +6,9 @@ import HR.Patient;
 public class MRIRoom extends Room {
 
 	private static int compteurMRIRoomId;
-	Patient patient;
+	private Patient patient;
 	
-	public MRIRoom(String edName, String name, int capacity){
+	public MRIRoom(String edName, String name){
 		super();
 		
 		MRIRoom.compteurMRIRoomId += 1;
@@ -20,7 +20,7 @@ public class MRIRoom extends Room {
 		this.setDist("Unif");
 		
 	}
-	public MRIRoom(String edName, int capacity){
+	public MRIRoom(String edName){
 		super();
 		
 		MRIRoom.compteurMRIRoomId += 1;
@@ -28,8 +28,10 @@ public class MRIRoom extends Room {
 		
 		this.setEdName(edName);
 		this.setName("MRIRoom" + Integer.toString(this.getId()));
-		this.setCapacity(capacity);
+		this.setCapacity(1);
 	}
+	
+	
 	
 	
 	public static int getCompteurMRIRoomId() {
@@ -38,9 +40,16 @@ public class MRIRoom extends Room {
 	public static void setCompteurMRIRoomId(int compteurMRIRoomId) {
 		MRIRoom.compteurMRIRoomId = compteurMRIRoomId;
 	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 	
 	
-
+	
+	
 	@Override
 	public void addOccupant(Patient patient){
 		

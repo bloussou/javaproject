@@ -11,7 +11,7 @@ public class BoxRoom extends Room{
 	private Physician physician;
 	
 
-	public BoxRoom(String edName, String name, int capacity){
+	public BoxRoom(String edName, String name){
 		super();
 		this.setCapacity(1);  // the default value of capacity is one
 		BoxRoom.compteurBoxRoomId += 1;
@@ -23,7 +23,7 @@ public class BoxRoom extends Room{
 		
 	}
 	
-	public BoxRoom(String edName, int capacity){
+	public BoxRoom(String edName){
 		super();
 		
 		BoxRoom.compteurBoxRoomId += 1;
@@ -31,7 +31,7 @@ public class BoxRoom extends Room{
 		
 		this.setEdName(edName);
 		this.setName("BoxRoom" + Integer.toString(this.getId()));
-		this.setCapacity(capacity);
+		this.setCapacity(1);
 	}
 	
 	
