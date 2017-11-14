@@ -13,6 +13,7 @@ public class Gamma  {
 	public static void main(String[] args) {
 		System.out.println(Gamma.randSample(9, 0.5));
 		System.out.println("Brieuc pue");
+		System.out.println("Ludo aussi");
 	}
 	
 }
