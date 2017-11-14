@@ -17,7 +17,6 @@ public class WaitingRoom extends Room{
 		this.setEdName(edName);
 		this.setName(name);
 		this.setCapacity(capacity);
-		
 	}
 	public WaitingRoom(String edName, int capacity){
 		super();
@@ -37,7 +36,7 @@ public class WaitingRoom extends Room{
 	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
 		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
 	}
-
+	
 	@Override
 	public void addOccupant(Patient patient){
 		

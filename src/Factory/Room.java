@@ -9,9 +9,11 @@ public abstract class Room {
 	private String name;
 	private String dist;
 	private float cost;
+	private float[] distParam = {0,0};
 	private int capacity;
 	
 	
+
 	public String getEdName() {
 		return edName;
 	}
