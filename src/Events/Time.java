@@ -3,13 +3,9 @@ package Events;
 public class Time {
 	
 	private static Time instance = null;
-	int day;
-	int hour;
 	int min;
 		
-	public Time(){
-		this.day = 0;
-		this.hour = 0;
+	private Time(){
 		this.min = 0;
 	}
 	
@@ -19,34 +15,29 @@ public class Time {
 		}
 		return instance;
 	}
-	
-	
-	
+
 	public void timeGoes(int minutesMore){
-		if(this.min<60-minutesMore){
-			this.min = this.min + minutesMore;
-		}
-		else{
-			this.min = this.min + minutesMore - 60;
-			if(this.hour< 23){
-				this.hour = this.hour + 1;	
-			}
-			else{
-				this.hour = 0;
-				this.day = this.day + 1;
-			}
-		}
+		this.min = this.min + minutesMore;
 	}
 
 	public int getTime(){
-		return (this.day*10000+this.hour*100 +this.min);
+		return (this.min);
 	}
 
 	@Override
 	public String toString() {
-		return "Time [D" + day + ", H" + hour + ", Min" + min + "]";
+		
+		return "day:" + Integer.toString(this.min/1440) + "  hour:" + Integer.toString((this.min%1440)/60) + "  min:" + Integer.toString((this.min%1440)%60);
 	}
 
-
+	public static void main(String[] args) {
+		
+		Time t = Time.getInstanceTime();
+		for (int i = 0; i < 5426; i++) {
+			t.timeGoes(2);
+		}
+		System.out.println("Time : " + t.getTime() + " minutes");
+		System.out.println("Time : " + t.toString());
+	}
 	
 }

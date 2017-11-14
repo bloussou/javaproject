@@ -12,6 +12,7 @@ public class Patient extends Human{
 	private String location;
 	private String history;
 	private float charges;
+	private Physician physician;
 	
 	public Patient(String edName, String name, String surname, String state, String healthInsurance, String severityLevel, Time arrivalTime){
 		super();
@@ -23,6 +24,7 @@ public class Patient extends Human{
 		this.setName(name);
 		this.setSurname(surname);
 		this.setState(state);
+		
 		this.healthInsurance = healthInsurance;
 		this.severityLevel = severityLevel;
 		this.arrivalTime = arrivalTime;
