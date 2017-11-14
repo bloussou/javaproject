@@ -11,7 +11,6 @@ public abstract class Room {
 	private float cost;
 	private float[] distParam = {0,0};
 	private int capacity;
-	private float[] distParam = {0,0};
 	
 	
 
