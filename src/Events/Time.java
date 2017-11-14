@@ -38,25 +38,15 @@ public class Time {
 		}
 	}
 
-	public String getTime(){
-		return (Integer.toString(this.day)+Integer.toString(this.hour)+Integer.toString(this.min));
+	public int getTime(){
+		return (this.day*10000+this.hour*100 +this.min);
 	}
-
 
 	@Override
 	public String toString() {
 		return "Time [D" + day + ", H" + hour + ", Min" + min + "]";
 	}
-	
-	public static void main(String[] args) {
-		
-		
-		
-		
-	}
 
-	
-	
-	
+
 	
 }
