@@ -45,6 +45,9 @@ public class BloodRoom extends Room{
 	public Patient getPatient() {
 		return patient;
 	}
+	public void setPatient(Patient patient){
+		
+	}
 	
 	@Override
 	public void addOccupant(Patient patient) {

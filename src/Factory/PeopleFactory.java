@@ -5,7 +5,7 @@ import Events.Time;
 public class PeopleFactory extends AbstractFactory{
 	
 	@Override
-	public Human getStaff(String edName, String staffType) {
+	public Human getStaff(String staffType, String edName) {
 		if(staffType.equalsIgnoreCase("NURSE")){
 			return new HR.Nurse(edName);
 		}
@@ -18,7 +18,7 @@ public class PeopleFactory extends AbstractFactory{
 		return null;
 	}
 	@Override
-	public Human getStaff(String edName, String staffType, String name, String surname, String state) {
+	public Human getStaff(String staffType, String edName, String name, String surname, String state) {
 		if(staffType.equalsIgnoreCase("NURSE")){
 			return new HR.Nurse(edName, name, surname, state);
 		}
@@ -31,7 +31,6 @@ public class PeopleFactory extends AbstractFactory{
 		return null;
 	}
 
-
 	@Override
 	public Human getPatient(String edName, String severityLevel, Time arrivalTime) {
 		return new HR.Patient(edName, severityLevel, arrivalTime);
@@ -43,15 +42,24 @@ public class PeopleFactory extends AbstractFactory{
 	
 	
 	@Override
-	public Room getRoom(String edName, String roomType) {
+	public Room getRoom(String roomType, String edName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public Facility getFacility(String edName, String facilityType) {
+	public Room getRoom(String roomType, String edName, String name){
+		return null;
+	}
+	
+	@Override
+	public Facility getFacility(String facilityType, String edName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Override
+	public Facility getFacility(String facilityType, String edName, String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

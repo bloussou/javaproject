@@ -40,6 +40,9 @@ public class ShockRoom extends Room{
 	public Patient getPatient() {
 		return patient;
 	}
+	public void setPatient(Patient patient){
+		
+	}
 	public Physician getPhysician() {
 		return physician;
 	}

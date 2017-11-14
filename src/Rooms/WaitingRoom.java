@@ -8,7 +8,7 @@ public class WaitingRoom extends Room{
 	private static int compteurWaitingRoomId;
 	Patient[] occupants;
 	
-	public WaitingRoom(String edName, String name, int capacity){
+	public WaitingRoom(String edName, String name){
 		super();
 		
 		WaitingRoom.compteurWaitingRoomId += 1;
@@ -16,9 +16,9 @@ public class WaitingRoom extends Room{
 		
 		this.setEdName(edName);
 		this.setName(name);
-		this.setCapacity(capacity);
+		this.setCapacity(20);
 	}
-	public WaitingRoom(String edName, int capacity){
+	public WaitingRoom(String edName){
 		super();
 		
 		WaitingRoom.compteurWaitingRoomId += 1;
@@ -26,7 +26,7 @@ public class WaitingRoom extends Room{
 		
 		this.setEdName(edName);
 		this.setName("WaintingRoom" + Integer.toString(this.getId()));
-		this.setCapacity(capacity);
+		this.setCapacity(20);
 	}
 	
 	
@@ -37,6 +37,9 @@ public class WaitingRoom extends Room{
 		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
 	}
 	
+	public void getOccupant(){
+		
+	}
 	@Override
 	public void addOccupant(Patient patient){
 		
