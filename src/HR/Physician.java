@@ -1,6 +1,7 @@
 package HR;
 import java.util.*;
-import Proba.Uniform; from Events;
+import Proba.Uniform;
+import Events.Time;
 
 
 
@@ -69,9 +70,10 @@ public class Physician extends Human implements Observer{
 	
 	
 	public void handleNewPatient(Patient patient){
-		startTime = Time.getTime();
+		Time t = Time.getInstanceTime();
+		startTime = t.getTime();
 		this.setDuration(new Uniform().randSample(10,20));
-		private int duree = (int)(this.getDuration());
+		int duree = (int)(this.getDuration());
 	}
 	
 	public void emitVerdict(){
