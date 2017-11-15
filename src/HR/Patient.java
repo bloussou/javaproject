@@ -1,20 +1,20 @@
 package HR;
 
-import Events.Time;
+import Events.*;
 
 public class Patient extends Human{
 
 	private static int compteurPatientId;
 	private String healthInsurance;
 	private String severityLevel;
-	private Time arrivalTime;
-	private Time departureTime;
+	private TimeStamp arrivalTime;
+	private TimeStamp departureTime;
 	private String location;
 	private String history;
 	private float charges;
 	private Physician physician;
 	
-	public Patient(String edName, String name, String surname, String state, String healthInsurance, String severityLevel, Time arrivalTime){
+	public Patient(String edName, String name, String surname, String state, String healthInsurance, String severityLevel, TimeStamp arrivalTime){
 		super();
 		
 		Patient.compteurPatientId += 1;
@@ -32,7 +32,7 @@ public class Patient extends Human{
 		this.history = "";
 		this.charges = 0;
 	}
-	public Patient(String edName, String severityLevel, Time arrivalTime){
+	public Patient(String edName, String severityLevel, TimeStamp arrivalTime){
 		super();
 		
 		Patient.compteurPatientId += 1;
@@ -65,10 +65,10 @@ public class Patient extends Human{
 		this.severityLevel = severityLevel;
 	}
 
-	public Time getArrivalTime() {
-		return arrivalTime;
+	public TimeStamp getArrivalTime() {
+		return this.arrivalTime;
 	}
-	public void setArrivalTime(Time arrivalTime) {
+	public void setArrivalTime(TimeStamp arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 

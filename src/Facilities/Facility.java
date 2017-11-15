@@ -45,5 +45,13 @@ public abstract class Facility {
 		this.location = location;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "Facility [edName=" + edName + ", id=" + id + ", name=" + name + ", state=" + state + ", location="
+				+ location + "]";
+	}
+	
+	
 	abstract public void produce();
 }

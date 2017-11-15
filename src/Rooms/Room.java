@@ -1,5 +1,7 @@
 package Rooms;
 
+import java.util.Arrays;
+
 import HR.Patient;
 
 public abstract class Room {
@@ -55,6 +57,12 @@ public abstract class Room {
 	}
 	public void setDistParam(float[] distParam) {
 		this.distParam = distParam;
+	}
+	
+	@Override
+	public String toString() {
+		return "Room [edName=" + edName + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
+				+ ", distParam=" + Arrays.toString(distParam) + ", capacity=" + capacity + "]";
 	}
 	
 	

@@ -1,6 +1,6 @@
 package Factory;
 
-import Events.Time;
+import Events.*;
 import Facilities.Facility;
 import HR.Human;
 import Rooms.*;
@@ -16,20 +16,20 @@ public class RoomFactory extends AbstractFactory{
 		return null;
 	}
 	@Override
-	public Human getPatient(String edName, String severityLevel, Time arrivalTime) {
+	public Human getPatient(String edName, String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Human getPatient(String edName, String name, String surname, String state, String healthInsurance,
-			String severityLevel, Time arrivalTime) {
+			String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Room getRoom(String roomType, String edName) {
-		if(roomType.equalsIgnoreCase("WAINTINGROOM")){
+		if(roomType.equalsIgnoreCase("WAITINGROOM")){
 			return new WaitingRoom(edName);
 		}
 		else if(roomType.equalsIgnoreCase("BOXROOM")){
@@ -54,7 +54,7 @@ public class RoomFactory extends AbstractFactory{
 	}
 	@Override
 	public Room getRoom(String roomType, String edName, String name) {
-		if(roomType.equalsIgnoreCase("WAINTINGROOM")){
+		if(roomType.equalsIgnoreCase("WAITINGROOM")){
 			return new WaitingRoom(edName, name);
 		}
 		else if(roomType.equalsIgnoreCase("BOXROOM")){

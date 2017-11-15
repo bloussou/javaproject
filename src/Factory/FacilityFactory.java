@@ -1,6 +1,6 @@
 package Factory;
 
-import Events.Time;
+import Events.*;
 import Facilities.*;
 import HR.Human;
 import Rooms.Room;
@@ -18,13 +18,13 @@ public class FacilityFactory extends AbstractFactory {
 		return null;
 	}
 	@Override
-	public Human getPatient(String edName, String severityLevel, Time arrivalTime) {
+	public Human getPatient(String edName, String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Human getPatient(String edName, String name, String surname, String state, String healthInsurance,
-			String severityLevel, Time arrivalTime) {
+			String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -9,12 +9,16 @@ public class TimeStamp {
 		this.min = t.min;		
 	}
 	
-	public String getStringStamp(){
-		return "D" + Integer.toString(this.day) + "H" + Integer.toString(this.hour) + "Min" + Integer.toString(this.min);
+	public int getTimeStamp(){
+		return (this.min);
+	}
+
+	@Override
+	public String toString() {
+		
+		return "day:" + Integer.toString(this.min/1440) + "  hour:" + Integer.toString((this.min%1440)/60) + "  min:" + Integer.toString((this.min%1440)%60);
 	}
 	
-	public int getIntStamp(){
-		return (this.day*10000+this.hour*100 +this.min);
-	}
+
 	
 }
