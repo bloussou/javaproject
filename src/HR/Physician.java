@@ -1,7 +1,7 @@
 package HR;
 import java.util.*;
 import Proba.Uniform;
-import Events.Time;
+import Events.TimeStamp;
 
 
 
@@ -11,8 +11,8 @@ public class Physician extends Human implements Observer{
 	private static int compteurPhysicianId;
 	private ArrayList<Patient> patientOverseeing;	
 	private ArrayList<Patient> patientAlreadyTreated;
-	private int startTime;
-	private int endTime;
+	private TimeStamp startTime;
+	private TimeStamp endTime;
 	private double duration;
 	
 	
@@ -70,18 +70,78 @@ public class Physician extends Human implements Observer{
 	
 	
 	public void handleNewPatient(Patient patient){
-		Time t = Time.getInstanceTime();
-		startTime = t.getTime();
+		//set the state of the physician
+		this.setState("visiting");
+		
+		//add the patient to the list patientOverseeing
+				this.patientOverseeing.add(patient);
+		
+		//set the state of the patient
+		patient.setState("inConsultation");
+		
+		//set the start and the end of the consultation
+		startTime = new TimeStamp() ;
 		this.setDuration(new Uniform().randSample(10,20));
 		int duree = (int)(this.getDuration());
-	}
-	
-	public void emitVerdict(){
+		endTime = new TimeStamp(duree);
+		
+		//set the physician of the patient
+		patient.setPhysician(this);
+		
+		//set the history of the patient
+		patient.setHistory("(visited, "+ this.startTime.toString() + "), ");
+		
+		
+		
 		
 	}
 	
-	public void prescribe(){
+	public void emitVerdict(Patient patient){
+		TimeStamp releasedTime = new TimeStamp();
+		patient.setState("released");
+		patient.setHistory("(released, "+ releasedTime.toString() + "), ");
 		
+		//remove the patient of the list patient
+		this.patientOverseeing.remove(patient);
+		
+		
+		//add the patient to the array patientTreated
+		this.patientAlreadyTreated.add(patient);
+	}
+	
+	
+	public void prescribe(Patient patient){
+		
+		//building the prescription
+		String prescription = "" ;
+		double num = new Uniform().randSample(0, 100);
+		if (num<=35){
+			prescription = "released";
+			this.emitVerdict(patient);
+		}
+		else if(num <= 55){
+			prescription = "waitingForRadio";
+			//set history with the prescription
+			TimeStamp time = new TimeStamp();
+			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+		}
+		else if(num<=95){
+			prescription = "waitingForBloodTest";
+			//set history with the prescription
+			TimeStamp time = new TimeStamp();
+			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+		}
+		else {
+			prescription = "waitingForRMI";
+			//set history with the prescription
+			TimeStamp time = new TimeStamp();
+			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+		}
+		
+		
+		
+		//set the state of the physician
+		this.setState("idle");
 	}
 	
 		
@@ -97,4 +157,5 @@ public class Physician extends Human implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

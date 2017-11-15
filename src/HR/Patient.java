@@ -82,8 +82,8 @@ public class Patient extends Human{
 	public String getHistory() {
 		return history;
 	}
-	public void setHistory(String history) {
-		this.history = history;
+	public void setHistory(String historyUpdates) {
+		this.history = this.history + historyUpdates;
 	}
 
 	public float getCharges() {
@@ -92,7 +92,13 @@ public class Patient extends Human{
 	public void setCharges(float charges) {
 		this.charges = charges;
 	}
-
+	public Physician getPhysician() {
+		return physician;
+	}
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
+	
 	
 	@Override
 	public void create(){
