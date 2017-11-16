@@ -2,12 +2,20 @@ package HR;
 
 import java.util.*;
 
+import Events.TimeStamp;
+import Rooms.Room;
+
 public class Nurse extends Human{
 	
 	private static int compteurNurseId;
 	private ArrayList<Patient> patientRegistered;
 	private ArrayList<Patient> patientTransported;
+	private TimeStamp startTime;
+	private TimeStamp endTime;
+	final int duration = 2;
+	private Room targetRoom;
 	
+
 	public Nurse(String edName, String name, String surname, String state){
 		super();
 		
@@ -44,15 +52,55 @@ public class Nurse extends Human{
 	}
 	
 	public void register(Patient patient){
-		
+		patient.setState("Registered");
 	}
 	
-	public void findRoom(){
-		
-	}
-	
-	public void transport(Patient patient){
+	public void transport(Patient patient, Room targetRoom){
 		
 	}
 
+	public void dropPatient(Patient patient){
+		
+	}
+	
+	
+	
+	public static int getCompteurNurseId() {
+		return compteurNurseId;
+	}
+	public static void setCompteurNurseId(int compteurNurseId) {
+		Nurse.compteurNurseId = compteurNurseId;
+	}
+	public ArrayList<Patient> getPatientRegistered() {
+		return patientRegistered;
+	}
+	public void setPatientRegistered(ArrayList<Patient> patientRegistered) {
+		this.patientRegistered = patientRegistered;
+	}
+	public ArrayList<Patient> getPatientTransported() {
+		return patientTransported;
+	}
+	public void setPatientTransported(ArrayList<Patient> patientTransported) {
+		this.patientTransported = patientTransported;
+	}
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(TimeStamp startTime) {
+		this.startTime = startTime;
+	}
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(TimeStamp endTime) {
+		this.endTime = endTime;
+	}
+	public Room getTargetRoom() {
+		return targetRoom;
+	}
+	public void setTargetRoom(Room targetRoom) {
+		this.targetRoom = targetRoom;
+	}
+
+	
 }

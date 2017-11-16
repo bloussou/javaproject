@@ -1,11 +1,14 @@
 package Emergency;
 
+import java.util.ArrayList;
+import HR.Patient;
 
 public class ED {
 	private static int compteurEDId;
 	private String name;
 	private String country;
 	private int id;
+	private ArrayList<Patient> edRegister;
 	
 	public ED(String name, String country){
 		
@@ -38,6 +41,16 @@ public class ED {
 	public int getId() {
 		return id;
 	}
+
+	public ArrayList<Patient> getEdRegister() {
+		return edRegister;
+	}
+
+	public void setEdRegister(ArrayList<Patient> edRegister) {
+		this.edRegister = edRegister;
+	}
+	
+	
 	
 	
 	

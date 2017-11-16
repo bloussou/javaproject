@@ -8,7 +8,7 @@ Pysician :
 
 Patient :
 *arrived
-*registred
+*registered
 *transporting
 *waitingForConsultation
 *inConsultation
