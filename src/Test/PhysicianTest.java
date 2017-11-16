@@ -54,9 +54,6 @@ public class PhysicianTest {
 	
 	assertTrue(physician.getPatientOverseeing().indexOf(patient) == -1);
 	assertTrue(physician.getPatientAlreadyTreated().indexOf(patient) != -1);
-	
-
-		
 	}
 
 	@Test
@@ -69,7 +66,8 @@ public class PhysicianTest {
 	physician.prescribe(patient);
 	
 	assertTrue(physician.getState().equals("idle"));
-	assertFalse(patient.getState().equals("visiting"));
+	assertTrue(patient.getState().equalsIgnoreCase("WaitingForBloodTest") || patient.getState().equalsIgnoreCase("WaitingForMRI") 
+			|| patient.getState().equalsIgnoreCase("WaitingForRadio") || patient.getState().equalsIgnoreCase("Released"));
 	
 	
 	}
