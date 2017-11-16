@@ -1,5 +1,6 @@
 package Factory;
 
+import Emergency.ED;
 import Events.*;
 import Facilities.Facility;
 import HR.Human;
@@ -8,84 +9,84 @@ import Rooms.*;
 public class RoomFactory extends AbstractFactory{
 
 	@Override
-	public Human getStaff(String staffType, String edName) {
+	public Human getStaff(String staffType, ED ed) {
 		return null;
 	}
 	@Override
-	public Human getStaff(String staffType, String edName, String name, String surname, String state) {
+	public Human getStaff(String staffType, ED ed, String name, String surname, String state) {
 		return null;
 	}
 	@Override
-	public Human getPatient(String edName, String severityLevel, TimeStamp arrivalTime) {
+	public Human getPatient(ED ed, String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Human getPatient(String edName, String name, String surname, String state, String healthInsurance,
+	public Human getPatient(ED ed, String name, String surname, String state, String healthInsurance,
 			String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Room getRoom(String roomType, String edName) {
+	public Room getRoom(String roomType, ED ed) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
-			return new WaitingRoom(edName);
+			return new WaitingRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("BOXROOM")){
-			return new BoxRoom(edName);
+			return new BoxRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("SHOCKROOM")){
-			return new ShockRoom(edName);
+			return new ShockRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("RADIOROOM")){
-			return new RadioRoom(edName);
+			return new RadioRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("MRIROOM")){
-			return new MRIRoom(edName);
+			return new MRIRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("BLOODROOM")){
-			return new BloodRoom(edName);
+			return new BloodRoom(ed);
 		}
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
-			return new Corridor(edName);
+			return new Corridor(ed);
 		}
 		return null;
 	}
 	@Override
-	public Room getRoom(String roomType, String edName, String name) {
+	public Room getRoom(String roomType, ED ed, String name) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
-			return new WaitingRoom(edName, name);
+			return new WaitingRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("BOXROOM")){
-			return new BoxRoom(edName, name);
+			return new BoxRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("SHOCKROOM")){
-			return new ShockRoom(edName, name);
+			return new ShockRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("RADIOROOM")){
-			return new RadioRoom(edName, name);
+			return new RadioRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("MRIROOM")){
-			return new MRIRoom(edName, name);
+			return new MRIRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("BLOODROOM")){
-			return new BloodRoom(edName, name);
+			return new BloodRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
-			return new Corridor(edName, name);
+			return new Corridor(ed, name);
 		}
 		return null;
 	}
 	
 	
 	@Override
-	public Facility getFacility(String facilityType, String edName) {
+	public Facility getFacility(String facilityType, ED ed) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Facility getFacility(String facilityType, String edName, String name) {
+	public Facility getFacility(String facilityType, ED ed, String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
