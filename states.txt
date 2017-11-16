@@ -1,0 +1,33 @@
+Listes des états possibles pour les entités de l'ED :
+
+
+Pysician :
+*idle
+*visiting
+*ofDuty
+
+Patient :
+*arrived
+*registred
+*transporting
+*waitingForConsultation
+*inConsultation
+*waitingForMRI
+*waitingForBloodTest
+*waitingForRadio
+*transportation
+*waitingForMRIT
+*waitingForBloodTestT
+*waitingForRadioT
+*released
+
+Transporter:
+*idle
+*ofDuty
+*transportation
+
+Nurse:
+*idle
+*ofDuty
+*transporting
+
