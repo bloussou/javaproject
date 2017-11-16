@@ -1,8 +1,10 @@
 package Facilities;
 
+import Emergency.ED;
+
 public abstract class Facility {
 
-	private String edName;
+	private ED ed;
 	private int id;
 	private String name;
 	private String state;
@@ -10,11 +12,11 @@ public abstract class Facility {
 	
 	
 	
-	public String getEdName() {
-		return edName;
+	public ED getEd() {
+		return ed;
 	}
-	public void setEdName(String edName) {
-		this.edName = edName;
+	public void setEd(ED ed) {
+		this.ed = ed;
 	}
 
 	public int getId() {
@@ -48,7 +50,7 @@ public abstract class Facility {
 	
 	@Override
 	public String toString() {
-		return "Facility [edName=" + edName + ", id=" + id + ", name=" + name + ", state=" + state + ", location="
+		return "Facility [ed=" + ed + ", id=" + id + ", name=" + name + ", state=" + state + ", location="
 				+ location + "]";
 	}
 	

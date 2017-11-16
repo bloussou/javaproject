@@ -1,5 +1,6 @@
 package Rooms;
 
+import Emergency.ED;
 import HR.Patient;
 import HR.Physician;
 
@@ -10,24 +11,24 @@ public class BoxRoom extends Room{
 	private Physician physician;
 	
 
-	public BoxRoom(String edName, String name){
+	public BoxRoom(ED ed, String name){
 		super();
 		this.setCapacity(1);  // the default value of capacity is one
 		BoxRoom.compteurBoxRoomId += 1;
 		this.setId(BoxRoom.compteurBoxRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
 		
 	}
-	public BoxRoom(String edName){
+	public BoxRoom(ED ed){
 		super();
 		
 		BoxRoom.compteurBoxRoomId += 1;
 		this.setId(BoxRoom.compteurBoxRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("BoxRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 	}

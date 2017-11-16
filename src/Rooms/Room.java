@@ -2,11 +2,12 @@ package Rooms;
 
 import java.util.Arrays;
 
+import Emergency.ED;
 import HR.Patient;
 
 public abstract class Room {
 
-	private String edName;
+	private ED ed;
 	private int id;
 	private String name;
 	private String dist;
@@ -16,11 +17,11 @@ public abstract class Room {
 	
 	
 
-	public String getEdName() {
-		return edName;
+	public ED getEd() {
+		return ed;
 	}
-	public void setEdName(String edName) {
-		this.edName = edName;
+	public void setEd(ED ed) {
+		this.ed = ed;
 	}
 	public int getId() {
 		return id;
@@ -61,7 +62,7 @@ public abstract class Room {
 	
 	@Override
 	public String toString() {
-		return "Room [edName=" + edName + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
+		return "Room [ed=" + ed + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
 				+ ", distParam=" + Arrays.toString(distParam) + ", capacity=" + capacity + "]";
 	}
 	

@@ -1,25 +1,27 @@
 package Facilities;
 
+import Emergency.ED;
+
 public class Stretcher extends Facility{
 
 	private static int compteurStretcherId;
 	
-	public Stretcher(String edName, String name){
+	public Stretcher(ED ed, String name){
 		super();
 		
 		Stretcher.compteurStretcherId += 1;
 		this.setId(Stretcher.compteurStretcherId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 	}
-	public Stretcher(String edName){
+	public Stretcher(ED ed){
 		super();
 		
 		Stretcher.compteurStretcherId += 1;
 		this.setId(Stretcher.compteurStretcherId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("Stretcher" + Integer.toString(Stretcher.compteurStretcherId));
 
 	}

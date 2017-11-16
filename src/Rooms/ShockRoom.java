@@ -1,5 +1,6 @@
 package Rooms;
 
+import Emergency.ED;
 import HR.*;
 
 public class ShockRoom extends Room{
@@ -8,23 +9,23 @@ public class ShockRoom extends Room{
 	private Patient patient;
 	private Physician physician;
 	
-	public ShockRoom(String edName, String name){
+	public ShockRoom(ED ed, String name){
 		super();
 		
 		ShockRoom.compteurShockRoomId += 1;
 		this.setId(ShockRoom.compteurShockRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
 	}
-	public ShockRoom(String edName){
+	public ShockRoom(ED ed){
 		super();
 		
 		ShockRoom.compteurShockRoomId += 1;
 		this.setId(ShockRoom.compteurShockRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("ShockRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 	}

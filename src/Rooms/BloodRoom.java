@@ -1,5 +1,6 @@
 package Rooms;
 
+import Emergency.ED;
 import HR.Patient;
 
 public class BloodRoom extends Room{
@@ -7,24 +8,24 @@ public class BloodRoom extends Room{
 	private static int compteurBloodRoomId;
 	private Patient patient;
 	
-	public BloodRoom(String edName, String name){
+	public BloodRoom(ED ed, String name){
 		super();
 		
 		BloodRoom.compteurBloodRoomId += 1;
 		this.setId(BloodRoom.compteurBloodRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
 		this.setDist("Unif");
 	}
-	public BloodRoom(String edName){
+	public BloodRoom(ED ed){
 		super();
 		
 		BloodRoom.compteurBloodRoomId += 1;
 		this.setId(BloodRoom.compteurBloodRoomId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("BloodRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 		this.setDist("Unif");
