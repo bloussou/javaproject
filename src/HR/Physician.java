@@ -74,7 +74,7 @@ public class Physician extends Human implements Observer{
 		this.setState("visiting");
 		
 		//add the patient to the list patientOverseeing
-				this.patientOverseeing.add(patient);
+		this.patientOverseeing.add(patient);
 		
 		//set the state of the patient
 		patient.setState("inConsultation");
