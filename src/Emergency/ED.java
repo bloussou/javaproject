@@ -46,15 +46,18 @@ public class ED {
 		return edRegister;
 	}
 
-	public void setEdRegister(ArrayList<Patient> edRegister) {
-		this.edRegister = edRegister;
+	public void addPatientToEdRegister(Patient patient) {
+		this.edRegister.add(patient);
+	}
+		
+	public void removePatientFromEdRegister(Patient patient) {
+		this.edRegister.remove(patient);
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 }
+	
+	
+	
+	
+

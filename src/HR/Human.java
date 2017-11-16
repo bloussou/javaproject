@@ -18,7 +18,7 @@ public abstract class Human {
 		this.id = id;
 	}
 
-	public ED getEdName() {
+	public ED getEd() {
 		return ed;
 	}
 	public void setEd(ED ed) {

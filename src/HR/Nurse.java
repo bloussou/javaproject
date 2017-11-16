@@ -40,7 +40,7 @@ public class Nurse extends Human{
 		this.setEd(ed);
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
-		this.setState("Free");
+		this.setState("Idle");
 		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
@@ -53,16 +53,36 @@ public class Nurse extends Human{
 	}
 	
 	public void register(Patient patient){
-		
+		patient.getEd().addPatientToEdRegister(patient);
 		patient.setState("Registered");
-		
 	}
 	
 	public void transport(Patient patient, Room targetRoom){
+		//set the target room
+		this.setTargetRoom(targetRoom);
+		
+		//set the state of the transporter
+		this.setState("transportation");
+		
+		//set the state of the patient
+		patient.setState("transportation");
+		
+		//add the patient to patient transported
+		this.patientTransported.add(patient);
+		
+		//set the start and the end of the transportation
+		startTime = new TimeStamp() ;
+		endTime = new TimeStamp(duration);
 	}
 
 	public void dropPatient(Patient patient){
-		
+		patient.setState("waitingForConsultation");
+			
+		//ajout à la room 
+		this.getTargetRoom().addOccupant(patient);
+	
+		//set the state of the nurse
+		this.setState("idle");
 	}
 	
 	
