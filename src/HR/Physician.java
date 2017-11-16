@@ -107,6 +107,7 @@ public class Physician extends Human implements Observer{
 		
 		//add the patient to the array patientTreated
 		this.patientAlreadyTreated.add(patient);
+		
 	}
 	
 	
