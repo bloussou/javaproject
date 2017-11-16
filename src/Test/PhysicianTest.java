@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import Emergency.ED;
 import Events.Time;
 import Events.TimeStamp;
 import HR.Patient;
@@ -15,10 +16,11 @@ public class PhysicianTest {
 
 	@Test
 	public void testGetPatientOverseeing() {
+		ED ed = new ED("ed1","france");
 		Time time = Time.getInstanceTime();
 		time.timeGoes(10);
-		Patient patient = new Patient("ED1","L1",new TimeStamp());
-		Physician physician = new Physician("ED1");
+		Patient patient = new Patient(ed,"L1",new TimeStamp());
+		Physician physician = new Physician(ed);
 		physician.handleNewPatient(patient);
 		ArrayList<Patient> tryList = new ArrayList<Patient>();
 		tryList.add(patient);
@@ -29,10 +31,11 @@ public class PhysicianTest {
 
 	@Test
 	public void testHandleNewPatient() {
+		ED ed = new ED("ed1","france");
 		Time time = Time.getInstanceTime();
 		time.timeGoes(10);
-		Patient patient = new Patient("ED1","L1",new TimeStamp());
-		Physician physician = new Physician("ED1");
+		Patient patient = new Patient(ed,"L1",new TimeStamp());
+		Physician physician = new Physician(ed);
 		physician.handleNewPatient(patient);
 	
 		
@@ -45,10 +48,11 @@ public class PhysicianTest {
 
 	@Test
 	public void testEmitVerdict() {
+	ED ed = new ED("ed1","france");
 	Time time = Time.getInstanceTime();
 	time.timeGoes(10);
-	Patient patient = new Patient("ED1","L1",new TimeStamp());
-	Physician physician = new Physician("ED1");
+	Patient patient = new Patient(ed,"L1",new TimeStamp());
+	Physician physician = new Physician(ed);
 	physician.handleNewPatient(patient);
 	physician.emitVerdict(patient);
 	
@@ -58,10 +62,11 @@ public class PhysicianTest {
 
 	@Test
 	public void testPrescribe() {
+	ED ed = new ED("ed1","france");
 	Time time = Time.getInstanceTime();
 	time.timeGoes(10);
-	Patient patient = new Patient("ED1","L1",new TimeStamp());
-	Physician physician = new Physician("ED1");
+	Patient patient = new Patient(ed,"L1",new TimeStamp());
+	Physician physician = new Physician(ed);
 	physician.handleNewPatient(patient);
 	physician.prescribe(patient);
 	

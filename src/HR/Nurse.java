@@ -2,6 +2,7 @@ package HR;
 
 import java.util.*;
 
+import Emergency.ED;
 import Events.TimeStamp;
 import Rooms.Room;
 
@@ -16,13 +17,13 @@ public class Nurse extends Human{
 	private Room targetRoom;
 	
 
-	public Nurse(String edName, String name, String surname, String state){
+	public Nurse(ED ed, String name, String surname, String state){
 		super();
 		
 		Nurse.compteurNurseId += 1;
 		this.setId(Nurse.compteurNurseId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setSurname(surname);
 		this.setState(state);
@@ -30,13 +31,13 @@ public class Nurse extends Human{
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
 	}	
-	public Nurse(String edName){
+	public Nurse(ED ed){
 		super();
 
 		Nurse.compteurNurseId += 1;
 		this.setId(Nurse.compteurNurseId);
 
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
 		this.setState("Free");

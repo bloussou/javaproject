@@ -1,5 +1,7 @@
 package HR;
 import java.util.*;
+
+import Emergency.ED;
 import Proba.Uniform;
 import Events.TimeStamp;
 
@@ -16,13 +18,13 @@ public class Physician extends Human implements Observer{
 	private double duration;
 	
 	
-	public Physician(String edName, String name, String surname, String state){
+	public Physician(ED ed, String name, String surname, String state){
 		super();
 		
 		Physician.compteurPhysicianId += 1;
 		this.setId(Physician.compteurPhysicianId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setSurname(surname);
 		this.setState(state);
@@ -30,13 +32,13 @@ public class Physician extends Human implements Observer{
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
 	}
-	public Physician(String edName){
+	public Physician(ED ed){
 		super();
 		
 		Physician.compteurPhysicianId += 1;
 		this.setId(Physician.compteurPhysicianId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("Phisician" + Integer.toString(this.getId()));
 		this.setSurname("Physician" + Integer.toString(this.getId()));
 		this.setState("Free");

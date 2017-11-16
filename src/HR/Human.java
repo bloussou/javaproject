@@ -1,8 +1,10 @@
 package HR;
 
+import Emergency.ED;
+
 public abstract class Human {
 
-	private String edName;
+	private ED ed;
 	private int id;
 	private String name;
 	private String surname;
@@ -16,11 +18,11 @@ public abstract class Human {
 		this.id = id;
 	}
 
-	public String getEdName() {
-		return edName;
+	public ED getEdName() {
+		return ed;
 	}
-	public void setEdName(String edName) {
-		this.edName = edName;
+	public void setEd(ED ed) {
+		this.ed = ed;
 	}
 	
 	public String getName() {
@@ -47,7 +49,7 @@ public abstract class Human {
 
 	@Override
 	public String toString() {
-		return "Human [EDname=" + edName + ", id=" + id + ", name=" + name + ", surname=" + surname + ", state=" + state + "]";
+		return "Human [EDname=" + ed.getName() + ", id=" + id + ", name=" + name + ", surname=" + surname + ", state=" + state + "]";
 	}
 
 

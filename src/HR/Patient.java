@@ -1,5 +1,6 @@
 package HR;
 
+import Emergency.ED;
 import Events.*;
 
 public class Patient extends Human{
@@ -14,13 +15,13 @@ public class Patient extends Human{
 	private float charges;
 	private Physician physician;
 	
-	public Patient(String edName, String name, String surname, String state, String healthInsurance, String severityLevel, TimeStamp arrivalTime){
+	public Patient(ED ed, String name, String surname, String state, String healthInsurance, String severityLevel, TimeStamp arrivalTime){
 		super();
 		
 		Patient.compteurPatientId += 1;
 		this.setId(Patient.compteurPatientId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setSurname(surname);
 		this.setState(state);
@@ -32,13 +33,13 @@ public class Patient extends Human{
 		this.history = "";
 		this.charges = 0;
 	}
-	public Patient(String edName, String severityLevel, TimeStamp arrivalTime){
+	public Patient(ED ed, String severityLevel, TimeStamp arrivalTime){
 		super();
 		
 		Patient.compteurPatientId += 1;
 		this.setId(Patient.compteurPatientId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
 		this.setState("Arriving");

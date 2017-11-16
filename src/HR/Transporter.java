@@ -1,32 +1,34 @@
 package HR;
 import java.util.*;
 
+import Emergency.ED;
+
 
 public class Transporter extends Human{
 	
 	private static int compteurTransporterId;
 	private ArrayList<Patient> patientTransported;
 	
-	public Transporter(String edName, String name, String surname, String state){
+	public Transporter(ED ed, String name, String surname, String state){
 		super();
 		
 		Transporter.compteurTransporterId += 1;
 		this.setId(Transporter.compteurTransporterId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName(name);
 		this.setSurname(surname);
 		this.setState(state);
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
-	public Transporter(String edName){
+	public Transporter(ED ed){
 		super();
 		
 		Transporter.compteurTransporterId += 1;
 		this.setId(Transporter.compteurTransporterId);
 		
-		this.setEdName(edName);
+		this.setEd(ed);
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
 		this.setState("Free");
@@ -41,7 +43,8 @@ public class Transporter extends Human{
 		
 	}
 	
-	public void transport(){
+	public void transport(Patient patient){
+		this.setState("transportation");
 		
 	}
 	
