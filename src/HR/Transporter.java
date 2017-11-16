@@ -65,9 +65,9 @@ public class Transporter extends Human{
 		this.setId(Transporter.compteurTransporterId);
 		
 		this.setEd(ed);
-		this.setName("Nurse" + Integer.toString(this.getId()));
-		this.setSurname("Nurse" + Integer.toString(this.getId()));
-		this.setState("Free");
+		this.setName("Transporter" + Integer.toString(this.getId()));
+		this.setSurname("Transporter" + Integer.toString(this.getId()));
+		this.setState("idle");
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
