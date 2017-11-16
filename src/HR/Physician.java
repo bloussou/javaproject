@@ -41,7 +41,7 @@ public class Physician extends Human implements Observer{
 		this.setEd(ed);
 		this.setName("Phisician" + Integer.toString(this.getId()));
 		this.setSurname("Physician" + Integer.toString(this.getId()));
-		this.setState("Free");
+		this.setState("idle");
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
