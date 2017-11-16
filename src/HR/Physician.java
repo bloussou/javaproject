@@ -133,7 +133,7 @@ public class Physician extends Human implements Observer{
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
 		}
 		else {
-			prescription = "waitingForRMI";
+			prescription = "waitingForMRI";
 			//set history with the prescription
 			TimeStamp time = new TimeStamp();
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
