@@ -119,6 +119,7 @@ public class Physician extends Human implements Observer{
 		if (num<=35){
 			prescription = "released";
 			this.emitVerdict(patient);
+			
 		}
 		else if(num <= 55){
 			prescription = "waitingForRadio";
@@ -139,6 +140,8 @@ public class Physician extends Human implements Observer{
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
 		}
 		
+		//set the state of the patient
+		patient.setState(prescription);
 		
 		
 		//set the state of the physician
