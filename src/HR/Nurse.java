@@ -53,11 +53,12 @@ public class Nurse extends Human{
 	}
 	
 	public void register(Patient patient){
+		
 		patient.setState("Registered");
+		
 	}
 	
 	public void transport(Patient patient, Room targetRoom){
-		
 	}
 
 	public void dropPatient(Patient patient){
