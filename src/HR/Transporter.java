@@ -3,7 +3,6 @@ import java.util.*;
 
 import Emergency.ED;
 import Events.TimeStamp;
-import Proba.Uniform;
 import Rooms.Room;
 
 
@@ -16,34 +15,7 @@ public class Transporter extends Human{
 	
 	private static int compteurTransporterId;
 	private ArrayList<Patient> patientTransported;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Room getTargetRoom() {
-		return targetRoom;
-	}
-	public void setTargetRoom(Room targetRoom) {
-		this.targetRoom = targetRoom;
-	}
-	public TimeStamp getStartTime() {
-		return startTime;
-	}
-	public TimeStamp getEndTime() {
-		return endTime;
-	}
-	public ArrayList<Patient> getPatientTransported() {
-		return patientTransported;
-	}
 
-
-	
-	
 	
 	public Transporter(ED ed, String name, String surname, String state){
 		super();
@@ -65,15 +37,13 @@ public class Transporter extends Human{
 		this.setId(Transporter.compteurTransporterId);
 		
 		this.setEd(ed);
-		this.setName("Transporter" + Integer.toString(this.getId()));
-		this.setSurname("Transporter" + Integer.toString(this.getId()));
-		this.setState("idle");
+		this.setName("Nurse" + Integer.toString(this.getId()));
+		this.setSurname("Nurse" + Integer.toString(this.getId()));
+		this.setState("Free");
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
-	
-	
-	
+		
 	@Override
 	public void create() {
 		
@@ -127,5 +97,22 @@ public class Transporter extends Human{
 		this.setState("idle");
 	}
 	
+
+	public Room getTargetRoom() {
+		return targetRoom;
+	}
+	public void setTargetRoom(Room targetRoom) {
+		this.targetRoom = targetRoom;
+	}
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	public ArrayList<Patient> getPatientTransported() {
+		return patientTransported;
+	}
+
 	
 }

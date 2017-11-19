@@ -1,12 +1,14 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import HR.Patient;
 
 public class WaitingRoom extends Room{
 
 	private static int compteurWaitingRoomId;
-	Patient[] occupants;
+	private ArrayList<Patient> occupants;
 	
 	public WaitingRoom(ED ed, String name){
 		super();
@@ -37,24 +39,27 @@ public class WaitingRoom extends Room{
 		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
 	}
 	
-	public void getOccupant(){
-		
+	
+	public ArrayList<Patient> getOccupants(){
+		return occupants;
 	}
 	@Override
 	public void addOccupant(Patient patient){
-		
+		occupants.add(patient);
 	}
 	@Override
 	public void removeOccupant(Patient patient){
-		
+		occupants.remove(patient);
 	}
 	@Override
 	public void construct(){
 		
 	}
 	@Override
-	public void updatePatientCharge(){
-		
+	public void updatePatientCharge(Patient patient){
+		if (occupants.contains(patient)){
+		patient.setCharges(patient.getCharges()+this.getCost());
+		}
 	}
 	
 	

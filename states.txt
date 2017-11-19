@@ -19,6 +19,9 @@ Patient :
 *waitingForMRIT
 *waitingForBloodTestT
 *waitingForRadioT
+*bloodTested
+*mriTested
+*radioTested
 *released
 
 Transporter:
@@ -31,3 +34,6 @@ Nurse:
 *ofDuty
 *transporting
 
+Room :
+*free
+*occupied

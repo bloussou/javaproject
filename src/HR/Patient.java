@@ -2,6 +2,7 @@ package HR;
 
 import Emergency.ED;
 import Events.*;
+import Rooms.Room;
 
 public class Patient extends Human{
 
@@ -10,7 +11,7 @@ public class Patient extends Human{
 	private String severityLevel;
 	private TimeStamp arrivalTime;
 	private TimeStamp departureTime;
-	private String location;
+	private Room location;
 	private String history;
 	private float charges;
 	private Physician physician;
@@ -29,7 +30,7 @@ public class Patient extends Human{
 		this.healthInsurance = healthInsurance;
 		this.severityLevel = severityLevel;
 		this.arrivalTime = arrivalTime;
-		this.location = "";
+		this.location = null;
 		this.history = "";
 		this.charges = 0;
 	}
@@ -46,7 +47,7 @@ public class Patient extends Human{
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
 		this.arrivalTime = arrivalTime;
-		this.location = "";
+		this.location = null;
 		this.history = "";
 		this.charges = 0;
 	}
@@ -73,10 +74,19 @@ public class Patient extends Human{
 		this.arrivalTime = arrivalTime;
 	}
 
-	public String getLocation() {
+	public TimeStamp getDepartureTime() {
+		return this.departureTime;
+	}
+	public void setDepartureTime(TimeStamp departureTime) {
+		this.departureTime = departureTime;
+	}
+
+	
+	
+	public Room getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
+	public void setLocation(Room location) {
 		this.location = location;
 	}
 

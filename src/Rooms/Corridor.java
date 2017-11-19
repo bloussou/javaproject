@@ -1,12 +1,14 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import HR.Patient;
 
 public class Corridor extends Room{
 
 	private static int compteurCorridorId;
-	private Patient[] occupants;
+	private ArrayList<Patient> occupants;
 	
 	public Corridor(ED ed, String name){
 		super();
@@ -28,18 +30,26 @@ public class Corridor extends Room{
 		this.setName("Corridor" + Integer.toString(this.getId()));
 		this.setCapacity(100000);
 	}
+
 	
 	
-	
-	
+	public static int getCompteurCorridorId() {
+		return compteurCorridorId;
+	}
+	public static void setCompteurCorridorId(int compteurCorridorId) {
+		Corridor.compteurCorridorId = compteurCorridorId;
+	}
+	public ArrayList<Patient> getOccupants(){
+		return occupants;
+	}
 	@Override
 	public void addOccupant(Patient patient) {
-		// TODO Auto-generated method stub
+		this.occupants.add(patient);
 		
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
-		// TODO Auto-generated method stub
+		this.occupants.remove(patient);
 		
 	}
 
@@ -49,9 +59,10 @@ public class Corridor extends Room{
 		
 	}
 	@Override
-	public void updatePatientCharge() {
-		// TODO Auto-generated method stub
-		
+	public void updatePatientCharge(Patient patient) {
+		if (occupants.contains(patient)){
+		patient.setCharges(patient.getCharges()+this.getCost());
+		}
 	}
 
 }

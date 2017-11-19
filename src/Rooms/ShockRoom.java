@@ -40,9 +40,6 @@ public class ShockRoom extends Room{
 	public Patient getPatient() {
 		return patient;
 	}
-	public void setPatient(Patient patient){
-		
-	}
 	public Physician getPhysician() {
 		return physician;
 	}
@@ -52,24 +49,22 @@ public class ShockRoom extends Room{
 	
 	@Override	
 	public void addOccupant(Patient patient) {
-		// TODO Auto-generated method stub
-		
+		this.patient = patient;		
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.patient = null;
+			}
 	@Override
 	public void construct() {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void updatePatientCharge() {
-		// TODO Auto-generated method stub
-		
+	public void updatePatientCharge(Patient patient) {
+		if (this.patient == patient){
+		patient.setCharges(patient.getCharges()+this.getCost());
+		}
 	}
-
 	
 }

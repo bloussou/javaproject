@@ -34,9 +34,6 @@ public class BoxRoom extends Room{
 	}
 	
 	
-	
-	
-	
 	public static int getCompteurBoxRoomId() {
 		return compteurBoxRoomId;
 	}
@@ -44,9 +41,6 @@ public class BoxRoom extends Room{
 		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
 	}
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
 	public void setPhysician(Physician physician) {
 		this.physician = physician;
 	}
@@ -61,19 +55,21 @@ public class BoxRoom extends Room{
 	
 	@Override
 	public void addOccupant(Patient patient){
-		
+		this.patient = patient;
 	}
 	@Override
 	public void removeOccupant(Patient patient){
-		
+		this.patient = null;
 	}
 	@Override
 	public void construct(){
 		
 	}
 	@Override
-	public void updatePatientCharge(){
-		
+	public void updatePatientCharge(Patient patient){
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+this.getCost());
+		}
 	}
 	
 	

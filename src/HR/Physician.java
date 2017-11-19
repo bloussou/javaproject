@@ -93,15 +93,13 @@ public class Physician extends Human implements Observer{
 		//set the history of the patient
 		patient.setHistory("(visited, "+ this.startTime.toString() + "), ");
 		
-		
-		
-		
 	}
 	
 	public void emitVerdict(Patient patient){
-		TimeStamp releasedTime = new TimeStamp();
+		TimeStamp departureTime = new TimeStamp();
 		patient.setState("released");
-		patient.setHistory("(released, "+ releasedTime.toString() + "), ");
+		patient.setHistory("(released, "+ departureTime.toString() + "), ");
+		patient.setDepartureTime(departureTime);
 		
 		//remove the patient of the list patient
 		this.patientOverseeing.remove(patient);
@@ -118,6 +116,8 @@ public class Physician extends Human implements Observer{
 		//building the prescription
 		String prescription = "" ;
 		double num = new Uniform().randSample(0, 100);
+		TimeStamp time = new TimeStamp();
+		
 		if (num<=35){
 			prescription = "released";
 			this.emitVerdict(patient);
@@ -126,19 +126,16 @@ public class Physician extends Human implements Observer{
 		else if(num <= 55){
 			prescription = "waitingForRadio";
 			//set history with the prescription
-			TimeStamp time = new TimeStamp();
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
 		}
 		else if(num<=95){
 			prescription = "waitingForBloodTest";
 			//set history with the prescription
-			TimeStamp time = new TimeStamp();
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
 		}
 		else {
 			prescription = "waitingForMRI";
 			//set history with the prescription
-			TimeStamp time = new TimeStamp();
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
 		}
 		

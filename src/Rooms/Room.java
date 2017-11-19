@@ -8,6 +8,7 @@ import HR.Patient;
 public abstract class Room {
 
 	private ED ed;
+	private String state;
 	private int id;
 	private String name;
 	private String dist;
@@ -22,6 +23,12 @@ public abstract class Room {
 	}
 	public void setEd(ED ed) {
 		this.ed = ed;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	public int getId() {
 		return id;
@@ -70,7 +77,7 @@ public abstract class Room {
 	abstract public void addOccupant(Patient patient);
 	abstract public void removeOccupant(Patient patient);
 	abstract public void construct();
-	abstract public void updatePatientCharge();
+	abstract public void updatePatientCharge(Patient patient);
 		
 		
 }

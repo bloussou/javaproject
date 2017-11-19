@@ -1,12 +1,18 @@
 package Rooms;
 
 import Emergency.ED;
+import Events.TimeStamp;
 import HR.Patient;
+import Proba.Uniform;
 
 public class BloodRoom extends Room{
 
 	private static int compteurBloodRoomId;
 	private Patient patient;
+	private TimeStamp startTime;
+	private TimeStamp endTime;
+	private double duration;
+	
 	
 	public BloodRoom(ED ed, String name){
 		super();
@@ -33,9 +39,24 @@ public class BloodRoom extends Room{
 	
 	
 	
-	
-	
-	
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(TimeStamp startTime) {
+		this.startTime = startTime;
+	}
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(TimeStamp endTime) {
+		this.endTime = endTime;
+	}
+	public double getDuration() {
+		return duration;
+	}
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
 	public static int getCompteurBloodRoomId() {
 		return compteurBloodRoomId;
 	}
@@ -45,18 +66,17 @@ public class BloodRoom extends Room{
 	public Patient getPatient() {
 		return patient;
 	}
-	public void setPatient(Patient patient){
-		
-	}
 	
 	@Override
 	public void addOccupant(Patient patient) {
-		// TODO Auto-generated method stub
-		
+		this.patient = patient;
+		this.patient.setLocation(this);
+		this.setState("occupied");
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
-		// TODO Auto-generated method stub
+		this.patient = null;
+		this.setState("free");
 		
 	}
 	@Override
@@ -65,12 +85,27 @@ public class BloodRoom extends Room{
 		
 	}
 	@Override
-	public void updatePatientCharge() {
-		// TODO Auto-generated method stub
+	public void updatePatientCharge(Patient patient) {
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+this.getCost());
+			}
 		
 	}
 	
 	public void bloodTesting(){
+		this.startTime = new TimeStamp() ;
+		this.setDuration(new Uniform().randSample(15,90));
+		int duree = (int)(this.getDuration());
+		this.endTime = new TimeStamp(duree);
 		
+		this.patient.setState("bloodTested");		
+		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
 	}
+	
+	public void endBloodTesting(){
+		TimeStamp time = new TimeStamp();
+		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
+	}
+	
+	
 }
