@@ -155,7 +155,7 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Vf7ygMQNEeeGKuJ9g2aAeg" name="produce"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_JvTH8MQLEeeGKuJ9g2aAeg" name="KPI" isAbstract="true"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_LOm-kMQLEeeGKuJ9g2aAeg" name="EventManager" isAbstract="true">
+  <packagedElement xmi:type="uml:Class" xmi:id="_LOm-kMQLEeeGKuJ9g2aAeg" name="Events" isAbstract="true">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Yj4eYMX_Eee70fhPxcVGUg" name="waitingQueue" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_F2PTgMX_Eee70fhPxcVGUg" name="enQueue"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_UpAkQMX_Eee70fhPxcVGUg" name="deQueue"/>
@@ -229,15 +229,15 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_iMJmcMQNEeeGKuJ9g2aAeg" name="getFacility"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Realization" xmi:id="_sRk-UMQNEeeGKuJ9g2aAeg" client="_cWxugMQNEeeGKuJ9g2aAeg" supplier="_uLkm0MQCEeeGKuJ9g2aAeg"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_24GJsMQQEeeGKuJ9g2aAeg" name="ArrivalManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_5PqeAMQQEeeGKuJ9g2aAeg" name="RegistrationManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_8LIJkMQQEeeGKuJ9g2aAeg" name="ConsultationManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_GA8YIMQREeeGKuJ9g2aAeg" name="InstallationManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IVcKUMQREeeGKuJ9g2aAeg" name="TransportationManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_M3FJgMQREeeGKuJ9g2aAeg" name="ExaminationManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_O_Y50MQREeeGKuJ9g2aAeg" name="RadioManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_SZ21kMQREeeGKuJ9g2aAeg" name="MRIManager"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_T_yRkMQREeeGKuJ9g2aAeg" name="BloodManager"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_24GJsMQQEeeGKuJ9g2aAeg" name="Transportation"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5PqeAMQQEeeGKuJ9g2aAeg" name="Consultation"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8LIJkMQQEeeGKuJ9g2aAeg" name="Transport"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GA8YIMQREeeGKuJ9g2aAeg" name="Registration"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IVcKUMQREeeGKuJ9g2aAeg" name="Arrival"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_M3FJgMQREeeGKuJ9g2aAeg" name="Test"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_O_Y50MQREeeGKuJ9g2aAeg" name="RadioTest"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_SZ21kMQREeeGKuJ9g2aAeg" name="MRITest"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_T_yRkMQREeeGKuJ9g2aAeg" name="BloodTest"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_m33x4MQREeeGKuJ9g2aAeg" client="_O_Y50MQREeeGKuJ9g2aAeg" supplier="_M3FJgMQREeeGKuJ9g2aAeg"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_nov1MMQREeeGKuJ9g2aAeg" client="_SZ21kMQREeeGKuJ9g2aAeg" supplier="_M3FJgMQREeeGKuJ9g2aAeg"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_oB8YUMQREeeGKuJ9g2aAeg" client="_T_yRkMQREeeGKuJ9g2aAeg" supplier="_M3FJgMQREeeGKuJ9g2aAeg"/>
@@ -258,7 +258,7 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_6DtfMMQSEeeGKuJ9g2aAeg" name="removeObserver"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_7sMf8MQSEeeGKuJ9g2aAeg" name="notify"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_zpxFIMQTEeeGKuJ9g2aAeg" name="SINGLETONPATTERN"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zpxFIMQTEeeGKuJ9g2aAeg" name="EventsManager"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_3v6TwMQWEeeGKuJ9g2aAeg" name="Human" isAbstract="true">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_9QXEkMQWEeeGKuJ9g2aAeg" name="id" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
