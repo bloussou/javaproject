@@ -80,12 +80,16 @@ public class ED {
 		}
 		
 		//add the list "free", "occupied"
-				for (int j = 0 ; j < 2 ; j++){
-					this.dbStretcher.add(new ArrayList<Stretcher>());
+		for (int j = 0 ; j < 2 ; j++){
+			this.dbMRIRoom.add(new ArrayList<MRIRoom>());
 		}
 		//add the list "free", "occupied"
 		for (int j = 0 ; j < 2 ; j++){
-			this.dbStretcher.add(new ArrayList<Stretcher>());
+			this.dbRadioRoom.add(new ArrayList<RadioRoom>());
+		}
+		//add the list "free", "occupied"
+		for (int j = 0 ; j < 2 ; j++){
+			this.dbShockRoom.add(new ArrayList<ShockRoom>());
 		}
 		
 		
@@ -107,8 +111,29 @@ public class ED {
 	 */
 
 	public void updateNurse(Nurse nurse) {
-		if(nurse.getState().equals("idle")){
-			this.dbNurse(1).
+		if(nurse.getState().equals("idle") && this.dbNurse.get(1).contains(nurse) ){
+			this.dbNurse.get(1).remove(nurse);
+			this.dbNurse.get(0).add(nurse);
+		}
+		else if (nurse.getState().equals("idle") && this.dbNurse.get(2).contains(nurse)){
+			this.dbNurse.get(2).remove(nurse);
+			this.dbNurse.get(0).add(nurse);
+		}
+		else if (nurse.getState().equals("transporting") && this.dbNurse.get(0).contains(nurse)){
+			this.dbNurse.get(0).remove(nurse);
+			this.dbNurse.get(1).add(nurse);
+		}
+		else if (nurse.getState().equals("transporting") && this.dbNurse.get(2).contains(nurse)){
+			this.dbNurse.get(2).remove(nurse);
+			this.dbNurse.get(1).add(nurse);
+		}
+		else if (nurse.getState().equals("ofDuty") && this.dbNurse.get(0).contains(nurse)){
+			this.dbNurse.get(0).remove(nurse);
+			this.dbNurse.get(2).add(nurse);
+		}
+		else if (nurse.getState().equals("ofDuty") && this.dbNurse.get(1).contains(nurse)){
+			this.dbNurse.get(1).remove(nurse);
+			this.dbNurse.get(2).add(nurse);
 		}
 	}
 	
