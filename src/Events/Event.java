@@ -4,7 +4,7 @@ public abstract class Event {
 
 	private TimeStamp startTime;
 	private TimeStamp endTime;
-	
+	private int duration;
 	
 	
 	

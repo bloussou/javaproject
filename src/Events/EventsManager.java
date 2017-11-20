@@ -21,6 +21,11 @@ public class EventsManager {
 	
 	private void checkNewRegistration(){
 		for (ED ed : eds) {
+			
+			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() ){
+				
+			}
+			
 		}
 		
 		
