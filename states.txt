@@ -37,3 +37,7 @@ Nurse:
 Room :
 *free
 *occupied
+
+Stretchers :
+*free
+*occupied

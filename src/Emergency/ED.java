@@ -137,45 +137,103 @@ public class ED {
 		}
 	}
 	
-	public void removeNurse()
 
 
 
 
 
 
-	public ArrayList<Physician> getDbPhysician() {
+
+
+
+
+
+
+
+
+	public ArrayList<ArrayList<Physician>> getDbPhysician() {
 		return dbPhysician;
 	}
 
-	public void setDbPhysician(ArrayList<Physician> dbPhysician) {
-		this.dbPhysician = dbPhysician;
-	}
 
 
 
 
 
-
-	public ArrayList<Transporter> getDbTransporter() {
+	public ArrayList<ArrayList<Transporter>> getDbTransporter() {
 		return dbTransporter;
 	}
 
-	public void setDbTransporter(ArrayList<Transporter> dbTransporter) {
-		this.dbTransporter = dbTransporter;
-	}
 
 
 
 
 
-
-	public ArrayList<Patient> getDbPatient() {
+	public ArrayList<ArrayList<Patient>> getDbPatient() {
 		return dbPatient;
 	}
 
-	public void setDbPatient(ArrayList<Patient> dbPatient) {
-		this.dbPatient = dbPatient;
+
+
+
+
+
+	public ArrayList<ArrayList<Stretcher>> getDbStretcher() {
+		return dbStretcher;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<WaitingRoom>> getDbWaitingRoom() {
+		return dbWaitingRoom;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<BoxRoom>> getDbBoxRoom() {
+		return dbBoxRoom;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<BloodRoom>> getDbBloodRoom() {
+		return dbBloodRoom;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<MRIRoom>> getDbMRIRoom() {
+		return dbMRIRoom;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<RadioRoom>> getDbRadioRoom() {
+		return dbRadioRoom;
+	}
+
+
+
+
+
+
+	public ArrayList<ArrayList<ShockRoom>> getDbShockRoom() {
+		return dbShockRoom;
 	}
 
 
