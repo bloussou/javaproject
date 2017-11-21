@@ -29,6 +29,17 @@ public class Physician extends Human implements Observer{
 		this.setSurname(surname);
 		this.setState(state);
 		
+		//add the physician to the state physician db
+		if (this.getState().equals("idle")){
+			ed.getDbPhysician().get(0).add(this);
+		}
+		else if (this.getState().equals("visiting")){
+			ed.getDbPhysician().get(1).add(this);
+		}
+		else {
+			ed.getDbPhysician().get(2).add(this);
+		}
+		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
 	}
@@ -42,6 +53,7 @@ public class Physician extends Human implements Observer{
 		this.setName("Phisician" + Integer.toString(this.getId()));
 		this.setSurname("Physician" + Integer.toString(this.getId()));
 		this.setState("idle");
+		ed.getDbPhysician().get(0).add(this);
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
@@ -72,13 +84,29 @@ public class Physician extends Human implements Observer{
 	
 	
 	public void handleNewPatient(Patient patient){
+		ED edp = this.getEd();
+		
 		//set the state of the physician
+		if(this.getState().equalsIgnoreCase("idle")){
+			edp.getDbPhysician().get(0).remove(this);
+		}
+		else{
+			edp.getDbPhysician().get(2).remove(this);
+		}
+		edp.getDbPhysician().get(1).add(this);
 		this.setState("visiting");
 		
 		//add the patient to the list patientOverseeing
 		this.patientOverseeing.add(patient);
 		
 		//set the state of the patient
+		if(patient.getState().equalsIgnoreCase("waitingForConsultation")){
+			edp.getDbPatient().get(3).remove(patient);
+		}
+		else{
+			System.out.println("il y a un pb dans l'algo");
+		}
+		edp.getDbPatient().get(4).add(patient);
 		patient.setState("inConsultation");
 		
 		//set the start and the end of the consultation
@@ -96,8 +124,9 @@ public class Physician extends Human implements Observer{
 	}
 	
 	public void emitVerdict(Patient patient){
+		ED edp = patient.getEd();
 		TimeStamp departureTime = new TimeStamp();
-		patient.setState("released");
+		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
 		patient.setDepartureTime(departureTime);
 		
@@ -107,6 +136,28 @@ public class Physician extends Human implements Observer{
 		
 		//add the patient to the array patientTreated
 		this.patientAlreadyTreated.add(patient);
+		
+		//remove the patient from the db
+		String patientState = patient.getState();
+		if (patientState.equalsIgnoreCase("released")){
+			edp.getDbPatient().get(4).remove(patient);
+		}
+		else if (patientState.equalsIgnoreCase("bloodTested")){
+			edp.getDbPatient().get(12).remove(patient);
+		}
+		else if (patientState.equalsIgnoreCase("mriTested")){
+			edp.getDbPatient().get(13).remove(patient);
+		}
+		else if (patientState.equalsIgnoreCase("radioTested")){
+			edp.getDbPatient().get(14).remove(patient);
+		}
+		else{
+			System.out.println("il y a un pb dans l'algo");
+		}
+		edp.getDbPatient().get(15).add(patient);
+		
+		
+		patient.setState("released");
 		
 	}
 	
@@ -119,8 +170,8 @@ public class Physician extends Human implements Observer{
 		TimeStamp time = new TimeStamp();
 		
 		if (num<=35){
-			prescription = "released";
 			this.emitVerdict(patient);
+			prescription = "released";
 			
 		}
 		else if(num <= 55){

@@ -7,22 +7,22 @@ Pysician :
 *ofDuty
 
 Patient :
-*arrived
-*registered
-*transporting
-*waitingForConsultation
-*inConsultation
-*waitingForMRI
-*waitingForBloodTest
-*waitingForRadio
-*transportation
-*waitingForMRIT
-*waitingForBloodTestT
-*waitingForRadioT
-*bloodTested
-*mriTested
-*radioTested
-*released
+*arrived 0
+*registered 1
+*transporting 2
+*waitingForConsultation 3
+*inConsultation 4
+*waitingForMRI 5
+*waitingForBloodTest 6
+*waitingForRadio 7
+*transportation 8
+*waitingForMRIT 9
+*waitingForBloodTestT 10
+*waitingForRadioT 11
+*bloodTested 12
+*mriTested 13
+*radioTested 14
+*released 15
 
 Transporter:
 *idle
@@ -33,6 +33,11 @@ Nurse:
 *idle
 *ofDuty
 *transporting
+
+WaitingRoom :
+*available
+*full
+
 
 Room :
 *free
