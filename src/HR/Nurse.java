@@ -55,6 +55,7 @@ public class Nurse extends Human{
 	public void register(Patient patient){
 		patient.getEd().addPatientToEdRegister(patient);
 		patient.setState("Registered");
+		this.addPatientRegistered(patient);
 	}
 	
 	public void transport(Patient patient, Room targetRoom){
@@ -96,8 +97,8 @@ public class Nurse extends Human{
 	public ArrayList<Patient> getPatientRegistered() {
 		return patientRegistered;
 	}
-	public void setPatientRegistered(ArrayList<Patient> patientRegistered) {
-		this.patientRegistered = patientRegistered;
+	public void addPatientRegistered(Patient patientRegistered) {
+		this.patientRegistered.add(patientRegistered);
 	}
 	public ArrayList<Patient> getPatientTransported() {
 		return patientTransported;

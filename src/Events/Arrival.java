@@ -5,15 +5,20 @@ import HR.*;
 
 public class Arrival extends Event{
 
-	private ED ed;
 	private Patient patient;
 	
 	public Arrival(ED ed, Patient patient){
-		this.ed = ed;
+		this.setEd(ed);
 		this.patient = patient;
 		this.setStartTime(new TimeStamp());
 		Time time = Time.getInstanceTime();
-		this.setEndTime();
+		this.setEndTime(new TimeStamp(this.getDuration()));
 	}
+
+	@Override
+	public void endEvent() {
+		//nothing happens at the end of these events
+	}
+
 	
 }
