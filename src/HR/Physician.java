@@ -109,18 +109,8 @@ public class Physician extends Human implements Observer{
 		edp.getDbPatient().get(4).add(patient);
 		patient.setState("inConsultation");
 		
-		//set the start and the end of the consultation
-		startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(10,20));
-		int duree = (int)(this.getDuration());
-		endTime = new TimeStamp(duree);
-		
 		//set the physician of the patient
-		patient.setPhysician(this);
-		
-		//set the history of the patient
-		patient.setHistory("(visited, "+ this.startTime.toString() + "), ");
-		
+		patient.setPhysician(this);		
 	}
 	
 	public void emitVerdict(Patient patient){
@@ -163,8 +153,6 @@ public class Physician extends Human implements Observer{
 	
 	
 	public void prescribe(Patient patient){
-		ED edp = patient.getEd();
-		
 		
 		//building the prescription
 		String prescription = "" ;
@@ -180,22 +168,16 @@ public class Physician extends Human implements Observer{
 			prescription = "waitingForRadio";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(7).remove(patient);
 		}
 		else if(num<=95){
 			prescription = "waitingForBloodTest";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(6).remove(patient);
 		}
 		else {
 			prescription = "waitingForMRI";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(5).remove(patient);
 		}
 		
 		//set the state of the patient
@@ -204,8 +186,6 @@ public class Physician extends Human implements Observer{
 		
 		//set the state of the physician
 		this.setState("idle");
-		edp.getDbPhysician().get(1).remove(this);
-		edp.getDbPhysician().get(0).add(this);
 	}
 	
 		

@@ -38,12 +38,6 @@ WaitingRoom :
 *available
 *full
 
-Les shockroom sont réservée uniquement aux patients :
-L1,L2,L3
-ON verra plus tard pour la priorisation :
-il faudrait que la liste dbpatient.waitingforconsultation soit trié par degré de sévérité décroissant
-
-
 Room :
 *free
 *occupied
@@ -51,3 +45,10 @@ Room :
 Stretchers :
 *free
 *occupied
+
+Les shockroom sont réservée uniquement aux patients :
+L1,L2,L3
+ON verra plus tard pour la priorisation :
+il faudrait que la liste dbpatient.waitingforconsultation soit trié par degré de sévérité décroissant
+
+

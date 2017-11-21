@@ -17,8 +17,14 @@ public class Consultation extends Event{
 		this.physician = physician;
 		this.targetRoom = targetRoom;
 		
+		this.setStartTime(new TimeStamp());
+		Time time = Time.getInstanceTime();
+		this.setEndTime(new TimeStamp(this.getDuration()));
+		
 		physician.handleNewPatient(patient);
 		
+		//set the history of the patient
+		patient.setHistory("(visited, "+ this.getStartTime().toString() + "), ");
 		
 	}
 	
