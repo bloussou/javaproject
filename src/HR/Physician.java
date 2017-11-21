@@ -163,6 +163,8 @@ public class Physician extends Human implements Observer{
 	
 	
 	public void prescribe(Patient patient){
+		ED edp = patient.getEd();
+		
 		
 		//building the prescription
 		String prescription = "" ;
@@ -178,16 +180,22 @@ public class Physician extends Human implements Observer{
 			prescription = "waitingForRadio";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			edp.getDbPatient().get(4).remove(patient);
+			edp.getDbPatient().get(7).remove(patient);
 		}
 		else if(num<=95){
 			prescription = "waitingForBloodTest";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			edp.getDbPatient().get(4).remove(patient);
+			edp.getDbPatient().get(6).remove(patient);
 		}
 		else {
 			prescription = "waitingForMRI";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			edp.getDbPatient().get(4).remove(patient);
+			edp.getDbPatient().get(5).remove(patient);
 		}
 		
 		//set the state of the patient
@@ -196,6 +204,8 @@ public class Physician extends Human implements Observer{
 		
 		//set the state of the physician
 		this.setState("idle");
+		edp.getDbPhysician().get(1).remove(this);
+		edp.getDbPhysician().get(0).add(this);
 	}
 	
 		

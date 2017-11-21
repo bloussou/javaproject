@@ -28,6 +28,17 @@ public class Transporter extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
+		//add the nurse to the state nurse db
+		if (this.getState().equals("idle")){
+			ed.getDbTransporter().get(0).add(this);
+		}
+		else if (this.getState().equals("transportation")){
+			ed.getDbTransporter().get(1).add(this);
+		}
+		else {
+			ed.getDbTransporter().get(2).add(this);
+		}
+		
 		this.patientTransported = new ArrayList<Patient>();
 	}
 	public Transporter(ED ed){
@@ -37,9 +48,10 @@ public class Transporter extends Human{
 		this.setId(Transporter.compteurTransporterId);
 		
 		this.setEd(ed);
-		this.setName("Nurse" + Integer.toString(this.getId()));
-		this.setSurname("Nurse" + Integer.toString(this.getId()));
-		this.setState("Free");
+		this.setName("Transporter" + Integer.toString(this.getId()));
+		this.setSurname("Transporter" + Integer.toString(this.getId()));
+		this.setState("idle");
+		ed.getDbTransporter().get(0).add(this);
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
@@ -50,11 +62,17 @@ public class Transporter extends Human{
 	}
 	
 	public void transport(Patient patient, Room targetRoom){
+		ED edp = patient.getEd();
+		
 		
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
 		//set the state of the transporter
+		if (this.getState().equalsIgnoreCase("idle")){
+			edp.getdb
+		}
+		
 		this.setState("transportation");
 		
 		//set the state of the patient

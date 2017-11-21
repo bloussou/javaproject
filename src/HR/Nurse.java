@@ -74,18 +74,17 @@ public class Nurse extends Human{
 	public void register(Patient patient){
 		
 		patient.getEd().addPatientToEdRegister(patient);
-<<<<<<< HEAD
+
 		patient.setState("Registered");
 		this.addPatientRegistered(patient);
-=======
-		patient.setState("registered");
+
+
 		
 		//move the patient to the good db list
 		ED edp = patient.getEd();
 		edp.getDbPatient().get(0).remove(patient);
 		edp.getDbPatient().get(1).add(patient);
 		
->>>>>>> f502eff3d9690ebe430eed7263778392623ed000
 	}
 	
 	public void transport(Patient patient, WaitingRoom targetRoom){
