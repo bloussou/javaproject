@@ -15,6 +15,7 @@ public class Transport_Nurse extends Event{
 		this.patient = patient;
 		this.nurse = nurse;
 		this.targetRoom = targetRoom;
+		this.setDuration(2);
 		
 		this.setStartTime(new TimeStamp());
 		Time time = Time.getInstanceTime();

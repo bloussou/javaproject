@@ -15,13 +15,22 @@ public class EventsManager {
 	}
 	
 	
-	public void checkNewEvents(){
+	public void checkNewEvents(ArrayList<ED> eds){
+		
+		for (ED ed : eds) {
+			
+			this.checkNewRegistration(ed);
+			this.checkNewTransport_Nurse(ed);
+			
+			
+			
+		}
+		
 		
 	}
 	
-	private void checkNewRegistration(){
+	private void checkNewRegistration(ED ed){
 		//check for each ED if new Registrations have to be done
-		for (ED ed : eds) {
 			
 			//While there is an 'idle' Nurse and an 'arrived' patient --> match them together by creating an event Registration
 			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() ){
@@ -35,17 +44,15 @@ public class EventsManager {
 				}
 				this.inProgress.add(insertionIndex, newRegistration);
 			}
-		}
 	}
 	
-	private void checkNewTransport_Nurse(){
-		//check for each ED if new Registrations have to be done
-		for (ED ed : eds) {
-			
-			//While there is an 'idle' Nurse and an 'arrived' patient --> match them together by creating an event Registration
+	private void checkNewTransport_Nurse(ED ed){
+		//check for each ED if new Transportation by a Nurse to a WaitingRoom have to be done
+
+			//While there is an 'idle' Nurse and a 'registred' patient and an 'available' WaitingRoom --> match them together by creating an event Transport_Nurse
 			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
 				
-				Transport_Nurse newTransport_Nurse = new Transport_Nurse();
+				Transport_Nurse newTransport_Nurse = new Transport_Nurse(ed, ed.getDbPatient().get(1).get(0),ed.getDbNurse().get(0).get(0), ed.getDbWaitingRoom().get(0).get(0));
 				
 				// Insert it in InProgress ordered by Event.endTime
 				int insertionIndex = 0;
@@ -54,8 +61,10 @@ public class EventsManager {
 				}
 				this.inProgress.add(insertionIndex, newTransport_Nurse);
 			}
-		}
 	}
+	
+	
+	
 	
 	public void timeGoesToNextEventEnd(){
 		
