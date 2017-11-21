@@ -28,9 +28,23 @@ public class Nurse extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
+		//add the nurse to the state nurse db
+		if (this.getState().equals("idle")){
+			ed.getDbNurse().get(0).add(this);
+		}
+		else if (this.getState().equals("transporting")){
+			ed.getDbNurse().get(1).add(this);
+		}
+		else {
+			ed.getDbNurse().get(2).add(this);
+		}
+		
+		
+		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
 	}	
+	
 	public Nurse(ED ed){
 		super();
 
@@ -41,6 +55,10 @@ public class Nurse extends Human{
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
 		this.setState("Idle");
+		
+		//add the nurse to the idle nurse
+		ed.getDbNurse().get(0).add(this);
+		
 		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();

@@ -20,17 +20,17 @@ public class ED {
 	private String country;
 	private int id;
 	private ArrayList<Patient> edRegister;
-	private ArrayList<ArrayList<Nurse>> dbNurse;
-	private ArrayList<ArrayList<Physician>> dbPhysician;
-	private ArrayList<ArrayList<Transporter>> dbTransporter;
-	private ArrayList<ArrayList<Patient>> dbPatient;
-	private ArrayList<ArrayList<Stretcher>> dbStretcher;
-	private ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom;
-	private ArrayList<ArrayList<BoxRoom>> dbBoxRoom;
-	private ArrayList<ArrayList<BloodRoom>> dbBloodRoom;
-	private ArrayList<ArrayList<MRIRoom>> dbMRIRoom;
-	private ArrayList<ArrayList<RadioRoom>> dbRadioRoom;
-	private ArrayList<ArrayList<ShockRoom>> dbShockRoom;
+	private ArrayList<ArrayList<Nurse>> dbNurse; // [[idle],[transporting],[ofDuty]]
+	private ArrayList<ArrayList<Physician>> dbPhysician; // [[idle],[visiting],[ofDuty]]
+	private ArrayList<ArrayList<Transporter>> dbTransporter; // [[idle],[transportation],[ofDuty]]
+	private ArrayList<ArrayList<Patient>> dbPatient; // [[arrived],[registered],[transporting],[waitingForConsultation],[inConsultation],[waitingForMRI],[waitingForBloodTest],[waitingForRadio],[transportation],[waitingForMRIT],[waitingForBloodTestT],[waitingForRadioT],[bloodTested],[mriTested],[radioTested],[released]]
+	private ArrayList<ArrayList<Stretcher>> dbStretcher; // [[free],[occupied]]
+	private ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<BoxRoom>> dbBoxRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<BloodRoom>> dbBloodRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<MRIRoom>> dbMRIRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<RadioRoom>> dbRadioRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<ShockRoom>> dbShockRoom; // [[free],[occupied]]
 	
 	
 	
