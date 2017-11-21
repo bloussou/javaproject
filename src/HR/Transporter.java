@@ -70,13 +70,32 @@ public class Transporter extends Human{
 		
 		//set the state of the transporter
 		if (this.getState().equalsIgnoreCase("idle")){
-			edp.getdb
+			edp.getDbTransporter().get(0).remove(this);
 		}
+		else{
+			edp.getDbTransporter().get(2).remove(this);
+		}
+		edp.getDbTransporter().get(1).add(this);
 		
 		this.setState("transportation");
 		
 		//set the state of the patient
+		if (patient.getState().equalsIgnoreCase("waitingForMRI")){
+			edp.getDbPatient().get(5).remove(patient);
+		}
+		else if (patient.getState().equalsIgnoreCase("waitingForBloodTest")){
+			edp.getDbPatient().get(6).remove(patient);
+		}
+		else if (patient.getState().equalsIgnoreCase("waitingForRadio")){
+			edp.getDbPatient().get(7).remove(patient);
+		}
+		
+		
+		edp.getDbPatient().get(8).add(patient);
+		
+		
 		patient.setState("transportation");
+		
 		
 		//add the patient to patient transported
 		this.patientTransported.add(patient);
