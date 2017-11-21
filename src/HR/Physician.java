@@ -108,18 +108,10 @@ public class Physician extends Human implements Observer{
 		}
 		edp.getDbPatient().get(4).add(patient);
 		patient.setState("inConsultation");
-		
-		//set the start and the end of the consultation
-		startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(10,20));
-		int duree = (int)(this.getDuration());
-		endTime = new TimeStamp(duree);
+	
 		
 		//set the physician of the patient
 		patient.setPhysician(this);
-		
-		//set the history of the patient
-		patient.setHistory("(visited, "+ this.startTime.toString() + "), ");
 		
 	}
 	
