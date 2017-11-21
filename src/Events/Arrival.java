@@ -13,7 +13,7 @@ public class Arrival extends Event{
 		this.patient = patient;
 		this.setStartTime(new TimeStamp());
 		Time time = Time.getInstanceTime();
-		this.setEndTime(endTime);
+		this.setEndTime();
 	}
 	
 }
