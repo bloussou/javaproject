@@ -24,6 +24,10 @@ public class EventsManager {
 			
 			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() ){
 				
+				Registration newRegistration = new Registration(ed, ed.getDbPatient().get(0).get(0), ed.getDbNurse().get(0).get(0));
+				int insertionIndex;
+				while (insertionIndex < inProgress.size() && )
+					this.inProgress.add(index, newRegistration);
 			}
 			
 		}

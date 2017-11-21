@@ -96,10 +96,6 @@ public class ED {
 		
 		
 	}
-
-	
-	
-	
 	
 	
 	public ArrayList<ArrayList<Nurse>> getDbNurse() {

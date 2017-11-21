@@ -46,10 +46,14 @@ public class WaitingRoom extends Room{
 	@Override
 	public void addOccupant(Patient patient){
 		occupants.add(patient);
+		if (occupants.size() == this.getCapacity()){
+			this.setState("full");
+		}
 	}
 	@Override
 	public void removeOccupant(Patient patient){
 		occupants.remove(patient);
+		this.setState("available");
 	}
 	@Override
 	public void construct(){
