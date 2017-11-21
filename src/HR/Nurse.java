@@ -5,6 +5,7 @@ import java.util.*;
 import Emergency.ED;
 import Events.TimeStamp;
 import Rooms.Room;
+import Rooms.WaitingRoom;
 
 public class Nurse extends Human{
 	
@@ -71,20 +72,57 @@ public class Nurse extends Human{
 	}
 	
 	public void register(Patient patient){
+		
 		patient.getEd().addPatientToEdRegister(patient);
+<<<<<<< HEAD
 		patient.setState("Registered");
 		this.addPatientRegistered(patient);
+=======
+		patient.setState("registered");
+		
+		//move the patient to the good db list
+		ED edp = patient.getEd();
+		edp.getDbPatient().get(0).remove(patient);
+		edp.getDbPatient().get(1).add(patient);
+		
+>>>>>>> f502eff3d9690ebe430eed7263778392623ed000
 	}
 	
-	public void transport(Patient patient, Room targetRoom){
+	public void transport(Patient patient, WaitingRoom targetRoom){
+		ED edp = patient.getEd();
+		String nurseState = this.getState();
+		String patientState = patient.getState();
+		
+		
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
-		//set the state of the transporter
-		this.setState("transportation");
+		
+		
+		//set the state of the nurse
+		this.setState("transporting");
+		
+		if (nurseState.equalsIgnoreCase("idle")){
+			edp.getDbNurse().get(0).remove(this);
+		}
+		else{
+			edp.getDbNurse().get(2).remove(this);
+		}
+		edp.getDbNurse().get(1).add(this);
+		
+		
+		
 		
 		//set the state of the patient
-		patient.setState("transportation");
+		patient.setState("transporting");
+		if (patientState.equalsIgnoreCase("registred")){
+			edp.getDbPatient().get(0).remove(patient);
+		}
+		else{
+			System.out.println("il y a un problème dans l'algo");
+		}
+		edp.getDbPatient().get(1).remove(patient);
+		
 		
 		//add the patient to patient transported
 		this.patientTransported.add(patient);
@@ -95,13 +133,26 @@ public class Nurse extends Human{
 	}
 
 	public void dropPatient(Patient patient){
+		ED edp = patient.getEd();
+		
+		
+		if (patient.getState().equalsIgnoreCase("transporting")){
+			edp.getDbPatient().get(2).remove(patient);
+		}
+		else{
+			System.out.println("il y a un problème dans l'algo");
+		}
+		edp.getDbPatient().get(3).add(patient);
 		patient.setState("waitingForConsultation");
+		
 			
 		//ajout à la room 
 		this.getTargetRoom().addOccupant(patient);
 	
 		//set the state of the nurse
 		this.setState("idle");
+		edp.getDbNurse().get(1).remove(this);
+		edp.getDbNurse().get(0).add(this);
 	}
 	
 	

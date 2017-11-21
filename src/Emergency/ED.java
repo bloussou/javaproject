@@ -25,7 +25,7 @@ public class ED {
 	private ArrayList<ArrayList<Transporter>> dbTransporter; // [[idle],[transportation],[ofDuty]]
 	private ArrayList<ArrayList<Patient>> dbPatient; // [[arrived],[registered],[transporting],[waitingForConsultation],[inConsultation],[waitingForMRI],[waitingForBloodTest],[waitingForRadio],[transportation],[waitingForMRIT],[waitingForBloodTestT],[waitingForRadioT],[bloodTested],[mriTested],[radioTested],[released]]
 	private ArrayList<ArrayList<Stretcher>> dbStretcher; // [[free],[occupied]]
-	private ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom; // [[available],[full]]
 	private ArrayList<ArrayList<BoxRoom>> dbBoxRoom; // [[free],[occupied]]
 	private ArrayList<ArrayList<BloodRoom>> dbBloodRoom; // [[free],[occupied]]
 	private ArrayList<ArrayList<MRIRoom>> dbMRIRoom; // [[free],[occupied]]

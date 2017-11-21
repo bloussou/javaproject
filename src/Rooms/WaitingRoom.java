@@ -47,12 +47,17 @@ public class WaitingRoom extends Room{
 	public void addOccupant(Patient patient){
 		occupants.add(patient);
 		if (occupants.size() == this.getCapacity()){
+			this.getEd().getDbWaitingRoom().get(0).remove(this);
+			this.getEd().getDbWaitingRoom().get(1).add(this);
 			this.setState("full");
 		}
+
 	}
 	@Override
 	public void removeOccupant(Patient patient){
 		occupants.remove(patient);
+		this.getEd().getDbWaitingRoom().get(1).remove(this);
+		this.getEd().getDbWaitingRoom().get(0).add(this);
 		this.setState("available");
 	}
 	@Override

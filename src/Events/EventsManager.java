@@ -20,19 +20,41 @@ public class EventsManager {
 	}
 	
 	private void checkNewRegistration(){
+		//check for each ED if new Registrations have to be done
 		for (ED ed : eds) {
 			
+			//While there is an 'idle' Nurse and an 'arrived' patient --> match them together by creating an event Registration
 			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() ){
 				
 				Registration newRegistration = new Registration(ed, ed.getDbPatient().get(0).get(0), ed.getDbNurse().get(0).get(0));
-				int insertionIndex;
-				while (insertionIndex < inProgress.size() && )
-					this.inProgress.add(index, newRegistration);
+				
+				// Insert it in InProgress ordered by Event.endTime
+				int insertionIndex = 0;
+				while (newRegistration.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
+					insertionIndex +=1;
+				}
+				this.inProgress.add(insertionIndex, newRegistration);
 			}
-			
 		}
-		
-		
+	}
+	
+	private void checkNewTransport_Nurse(){
+		//check for each ED if new Registrations have to be done
+		for (ED ed : eds) {
+			
+			//While there is an 'idle' Nurse and an 'arrived' patient --> match them together by creating an event Registration
+			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
+				
+				Transport_Nurse newTransport_Nurse = new Transport_Nurse();
+				
+				// Insert it in InProgress ordered by Event.endTime
+				int insertionIndex = 0;
+				while (newTransport_Nurse.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
+					insertionIndex +=1;
+				}
+				this.inProgress.add(insertionIndex, newTransport_Nurse);
+			}
+		}
 	}
 	
 	public void timeGoesToNextEventEnd(){
@@ -41,15 +63,11 @@ public class EventsManager {
 	
 	public static void main(String[] args) {
 		
-		EventsManager EM = new EventsManager();
-		ED hosp1 = new ED("Hosp1", "France");
-		ED hosp2 = new ED("Hosp2", "France");
 		
-		EM.eds.add(hosp2);
-		EM.eds.add(hosp1);
 		
-		EM.checkNewRegistration();
-				
+		
+		
 	}
 	
+
 }
