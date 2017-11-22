@@ -12,6 +12,7 @@ public class Transporter extends Human{
 	private TimeStamp endTime;
 	final int duration = 4;
 	private Room targetRoom;
+	private String lastPatientState ;
 	
 	private static int compteurTransporterId;
 	private ArrayList<Patient> patientTransported;
@@ -68,6 +69,9 @@ public class Transporter extends Human{
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
+		//memorize the patient state
+		this.setLastPatientState(patient.getState());
+		
 		//set the state of the transporter
 		if (this.getState().equalsIgnoreCase("idle")){
 			edp.getDbTransporter().get(0).remove(this);
@@ -108,17 +112,25 @@ public class Transporter extends Human{
 	}
 	
 	public void dropPatient(Patient patient){
-		if (patient.getState().equals("waitingForMRI")){
+		ED edp = patient.getEd();
+		
+		
+		
+		if (this.getLastPatientState().equals("waitingForMRI")){
 			//set patient state
 			patient.setState("waitingForMRIT");
+			edp.getDbPatient().get(5).remove(patient);
+			edp.getDbPatient().get(9).add(patient);
 			
 			//ajout à la room 
 			this.getTargetRoom().addOccupant(patient);	
 		}
-		else if (patient.getState().equals("waitingForBloodTest")){
+		else if (this.getLastPatientState().equals("waitingForBloodTest")){
 			
 			//set patient state
 			patient.setState("waitingForBloodTestT");
+			edp.getDbPatient().get(6).remove(patient);
+			edp.getDbPatient().get(10).add(patient);
 			
 			//ajout à la room 
 			this.getTargetRoom().addOccupant(patient);	
@@ -126,6 +138,8 @@ public class Transporter extends Human{
 		else {
 			//set patient state
 			patient.setState("waitingForRadioT");
+			edp.getDbPatient().get(7).remove(patient);
+			edp.getDbPatient().get(11).add(patient);
 			
 			//ajout à la room 
 			this.getTargetRoom().addOccupant(patient);
@@ -135,6 +149,14 @@ public class Transporter extends Human{
 	}
 	
 
+	
+	
+	public String getLastPatientState() {
+		return lastPatientState;
+	}
+	public void setLastPatientState(String lastPatientState) {
+		this.lastPatientState = lastPatientState;
+	}
 	public Room getTargetRoom() {
 		return targetRoom;
 	}
