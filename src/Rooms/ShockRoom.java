@@ -18,6 +18,8 @@ public class ShockRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
+		
+		ed.getDbShockRoom().get(0).add(this);
 	}
 	public ShockRoom(ED ed){
 		super();
@@ -28,6 +30,8 @@ public class ShockRoom extends Room{
 		this.setEd(ed);
 		this.setName("ShockRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
+		
+		ed.getDbShockRoom().get(0).add(this);
 	}
 	
 	
@@ -50,10 +54,22 @@ public class ShockRoom extends Room{
 	@Override	
 	public void addOccupant(Patient patient) {
 		this.patient = patient;		
+		
+		
+		ED edp = this.getEd();
+		edp.getDbShockRoom().get(0).remove(this);
+		edp.getDbShockRoom().get(1).add(this);
+		
+		
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
 		this.patient = null;
+		
+		
+		ED edp = this.getEd();
+		edp.getDbShockRoom().get(1).remove(this);
+		edp.getDbShockRoom().get(0).add(this);
 			}
 	@Override
 	public void construct() {

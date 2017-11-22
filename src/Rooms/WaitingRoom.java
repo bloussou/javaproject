@@ -19,6 +19,10 @@ public class WaitingRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(20);
+		
+		
+		
+		ed.getDbWaitingRoom().get(0).add(this);
 	}
 	public WaitingRoom(ED ed){
 		super();
@@ -29,6 +33,9 @@ public class WaitingRoom extends Room{
 		this.setEd(ed);
 		this.setName("WaintingRoom" + Integer.toString(this.getId()));
 		this.setCapacity(20);
+		
+		
+		ed.getDbWaitingRoom().get(0).add(this);
 	}
 	
 	
@@ -45,20 +52,27 @@ public class WaitingRoom extends Room{
 	}
 	@Override
 	public void addOccupant(Patient patient){
+		ED edp = this.getEd();
 		occupants.add(patient);
 		if (occupants.size() == this.getCapacity()){
 			this.getEd().getDbWaitingRoom().get(0).remove(this);
 			this.getEd().getDbWaitingRoom().get(1).add(this);
 			this.setState("full");
+			edp.getDbWaitingRoom().get(1).add(this);
+			edp.getDbWaitingRoom().get(0).remove(this);
 		}
 
 	}
 	@Override
 	public void removeOccupant(Patient patient){
+		ED edp = this.getEd();
 		occupants.remove(patient);
 		this.getEd().getDbWaitingRoom().get(1).remove(this);
 		this.getEd().getDbWaitingRoom().get(0).add(this);
 		this.setState("available");
+		edp.getDbWaitingRoom().get(0).add(this);
+		edp.getDbWaitingRoom().get(1).remove(this);
+		
 	}
 	@Override
 	public void construct(){

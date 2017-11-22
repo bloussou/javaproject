@@ -4,6 +4,7 @@ import java.util.*;
 import Emergency.ED;
 import Events.TimeStamp;
 import Rooms.Room;
+import Rooms.WaitingRoom;
 
 
 public class Transporter extends Human{
@@ -111,6 +112,51 @@ public class Transporter extends Human{
 		
 	}
 	
+	public void backToPhysician(Patient patient, WaitingRoom targetroom){
+		ED edp = patient.getEd();
+		
+		
+		//set the target room
+		this.setTargetRoom(targetRoom);
+		
+		
+		//set the state of the transporter
+		if (this.getState().equalsIgnoreCase("idle")){
+			edp.getDbTransporter().get(0).remove(this);
+		}
+		else{
+			edp.getDbTransporter().get(2).remove(this);
+		}
+		edp.getDbTransporter().get(1).add(this);
+		
+		this.setState("transportation");
+		
+		//set the state of the patient
+		if (patient.getState().equalsIgnoreCase("bloodtested")){
+			edp.getDbPatient().get(12).remove(patient);
+		}
+		else if (patient.getState().equalsIgnoreCase("mritested")){
+			edp.getDbPatient().get(13).remove(patient);
+		}
+		else if (patient.getState().equalsIgnoreCase("radiotested")){
+			edp.getDbPatient().get(14).remove(patient);
+		}
+		
+		
+		edp.getDbPatient().get(8).add(patient);
+		
+		
+		
+		
+		
+		//add the patient to patient transported
+		this.patientTransported.add(patient);
+		
+		//set the start and the end of the transportation
+		startTime = new TimeStamp() ;
+		endTime = new TimeStamp(duration);
+	}
+	
 	public void dropPatient(Patient patient){
 		ED edp = patient.getEd();
 		
@@ -131,6 +177,15 @@ public class Transporter extends Human{
 			patient.setState("waitingForBloodTestT");
 			edp.getDbPatient().get(6).remove(patient);
 			edp.getDbPatient().get(10).add(patient);
+			
+			//ajout à la room 
+			this.getTargetRoom().addOccupant(patient);	
+		}
+		else if (this.getLastPatientState().equals("bloodTested") || this.getLastPatientState().equals("mriTested") || this.getLastPatientState().equals("radioTested")){
+			
+			
+			edp.getDbPatient().get(8).remove(patient);
+			edp.getDbPatient().get(3).add(patient);
 			
 			//ajout à la room 
 			this.getTargetRoom().addOccupant(patient);	

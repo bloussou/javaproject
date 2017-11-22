@@ -21,6 +21,9 @@ public class BoxRoom extends Room{
 		this.setName(name);
 		this.setCapacity(1);
 		
+		
+		ED edp = this.getEd();
+		edp.getDbBoxRoom().get(0).add(this);
 	}
 	public BoxRoom(ED ed){
 		super();
@@ -31,6 +34,9 @@ public class BoxRoom extends Room{
 		this.setEd(ed);
 		this.setName("BoxRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
+		
+		ED edp = this.getEd();
+		edp.getDbBoxRoom().get(0).add(this);
 	}
 	
 	
@@ -56,10 +62,20 @@ public class BoxRoom extends Room{
 	@Override
 	public void addOccupant(Patient patient){
 		this.patient = patient;
+		
+		
+		ED edp = this.getEd();
+		edp.getDbBoxRoom().get(0).remove(this);
+		edp.getDbBoxRoom().get(1).add(this);
 	}
 	@Override
 	public void removeOccupant(Patient patient){
 		this.patient = null;
+		
+		
+		ED edp = this.getEd();
+		edp.getDbBoxRoom().get(1).remove(this);
+		edp.getDbBoxRoom().get(0).add(this);
 	}
 	@Override
 	public void construct(){
