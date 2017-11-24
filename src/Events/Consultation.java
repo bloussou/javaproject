@@ -21,10 +21,9 @@ public class Consultation extends Event{
 		Time time = Time.getInstanceTime();
 		this.setEndTime(new TimeStamp(this.getDuration()));
 		
-		physician.handleNewPatient(patient);
+		physician.handleNewPatient(patient, targetRoom);
 		
-		//set the history of the patient
-		patient.setHistory("(visited, "+ this.getStartTime().toString() + "), ");
+
 		
 	}
 	
@@ -32,7 +31,8 @@ public class Consultation extends Event{
 	
 	@Override
 	public void endEvent() {
-		//nothing happens at the end of these events
+		
+		physician.prescribe(patient, targetRoom);
 		
 	}
 

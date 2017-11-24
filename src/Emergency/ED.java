@@ -27,10 +27,11 @@ public class ED {
 	private ArrayList<ArrayList<Stretcher>> dbStretcher; // [[free],[occupied]]
 	private ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom; // [[available],[full]]
 	private ArrayList<ArrayList<BoxRoom>> dbBoxRoom; // [[free],[occupied]]
+	private ArrayList<ArrayList<ShockRoom>> dbShockRoom; // [[free],[occupied]]
 	private ArrayList<ArrayList<BloodRoom>> dbBloodRoom; // [[free],[occupied]]
 	private ArrayList<ArrayList<MRIRoom>> dbMRIRoom; // [[free],[occupied]]
 	private ArrayList<ArrayList<RadioRoom>> dbRadioRoom; // [[free],[occupied]]
-	private ArrayList<ArrayList<ShockRoom>> dbShockRoom; // [[free],[occupied]]
+
 	
 	
 	
@@ -76,6 +77,16 @@ public class ED {
 		
 		//add the list "free", "occupied"
 		for (int j = 0 ; j < 2 ; j++){
+			this.dbBoxRoom.add(new ArrayList<BoxRoom>());
+		}
+		
+		//add the list "free", "occupied"
+		for (int j = 0 ; j < 2 ; j++){
+			this.dbShockRoom.add(new ArrayList<ShockRoom>());
+		}
+		
+		//add the list "free", "occupied"
+		for (int j = 0 ; j < 2 ; j++){
 			this.dbBloodRoom.add(new ArrayList<BloodRoom>());
 		}
 		
@@ -87,10 +98,7 @@ public class ED {
 		for (int j = 0 ; j < 2 ; j++){
 			this.dbRadioRoom.add(new ArrayList<RadioRoom>());
 		}
-		//add the list "free", "occupied"
-		for (int j = 0 ; j < 2 ; j++){
-			this.dbShockRoom.add(new ArrayList<ShockRoom>());
-		}
+
 		
 		
 		

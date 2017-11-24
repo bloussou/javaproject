@@ -3,6 +3,7 @@ import java.util.*;
 
 import Emergency.ED;
 import Proba.Uniform;
+import Rooms.*;
 import Events.TimeStamp;
 
 
@@ -83,7 +84,7 @@ public class Physician extends Human implements Observer{
 	
 	
 	
-	public void handleNewPatient(Patient patient){
+	public void handleNewPatient(Patient patient, Room consultationRoom){
 		ED edp = this.getEd();
 		
 		//set the state of the physician
@@ -108,10 +109,33 @@ public class Physician extends Human implements Observer{
 		}
 		edp.getDbPatient().get(4).add(patient);
 		patient.setState("inConsultation");
-	
+		
+		//set the state of the room
+		if(consultationRoom.getState().equalsIgnoreCase("free")){
+			if(consultationRoom instanceof BoxRoom){
+				edp.getDbBoxRoom().get(0).remove(consultationRoom);
+				edp.getDbBoxRoom().get(1).add((BoxRoom) consultationRoom);
+			}
+			else if (consultationRoom instanceof ShockRoom) {
+				edp.getDbShockRoom().get(0).remove(consultationRoom);
+				edp.getDbShockRoom().get(1).add((ShockRoom) consultationRoom);
+			}
+			else {
+				System.out.println("Encore un soucis dans l'algo ???");
+			}
+			consultationRoom.setState("occupied");
+		}
+		else{
+			System.out.println("il y a un pb dans l'algo ici aussi ?");
+		}
+
 		
 		//set the physician of the patient
 		patient.setPhysician(this);
+		
+		//set the history of the patient
+		this.startTime = new TimeStamp();
+		patient.setHistory("(visited, "+ this.getStartTime().toString() + "), ");
 		
 	}
 	
@@ -154,7 +178,7 @@ public class Physician extends Human implements Observer{
 	}
 	
 	
-	public void prescribe(Patient patient){
+	public void prescribe(Patient patient, Room consultationRoom){
 		ED edp = patient.getEd();
 		
 		
@@ -198,9 +222,35 @@ public class Physician extends Human implements Observer{
 		this.setState("idle");
 		edp.getDbPhysician().get(1).remove(this);
 		edp.getDbPhysician().get(0).add(this);
+	
+	
+		//set the state of the room
+		if(consultationRoom.getState().equalsIgnoreCase("occupied")){
+			if(consultationRoom instanceof BoxRoom){
+				edp.getDbBoxRoom().get(1).remove(consultationRoom);
+				edp.getDbBoxRoom().get(0).add((BoxRoom) consultationRoom);
+			}
+			else if (consultationRoom instanceof ShockRoom) {
+				edp.getDbShockRoom().get(1).remove(consultationRoom);
+				edp.getDbShockRoom().get(0).add((ShockRoom) consultationRoom);
+			}
+			else {
+				System.out.println("Encore un soucis dans l'algo ???");
+			}
+			consultationRoom.setState("free");
+		}
+		else{
+			System.out.println("il y a un pb dans l'algo ici aussi ?");
+		}
+	
+	
 	}
 	
 		
+		
+	
+	
+	
 	@Override
 	public void displayMsgBox() {
 		// TODO Auto-generated method stub

@@ -63,7 +63,22 @@ public class EventsManager {
 			}
 	}
 	
-	
+	private void checkNewConsultation(ED ed){
+		//check for each ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
+
+			//While there is an 'idle' Physician and a 'WaitingForConsultation' patient and an 'available' corresponding room --> match them together by creating an event Transport_Nurse
+			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
+				
+				Transport_Nurse newTransport_Nurse = new Transport_Nurse(ed, ed.getDbPatient().get(1).get(0),ed.getDbNurse().get(0).get(0), ed.getDbWaitingRoom().get(0).get(0));
+				
+				// Insert it in InProgress ordered by Event.endTime
+				int insertionIndex = 0;
+				while (newTransport_Nurse.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
+					insertionIndex +=1;
+				}
+				this.inProgress.add(insertionIndex, newTransport_Nurse);
+			}
+	}
 	
 	
 	public void timeGoesToNextEventEnd(){

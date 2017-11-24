@@ -45,7 +45,6 @@ public class Nurse extends Human{
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
 	}	
-	
 	public Nurse(ED ed){
 		super();
 
@@ -78,8 +77,6 @@ public class Nurse extends Human{
 		patient.setState("Registered");
 		this.addPatientRegistered(patient);
 
-
-		
 		//move the patient to the good db list
 		ED edp = patient.getEd();
 		edp.getDbPatient().get(0).remove(patient);
