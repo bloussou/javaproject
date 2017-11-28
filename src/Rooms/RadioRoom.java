@@ -24,6 +24,8 @@ public class RadioRoom extends Room{
 		this.setName(name);
 		this.setCapacity(1);
 		this.setDist("Unif");
+		
+		ed.getDbRadioRoom().get(0).add(this);
 	}
 	public RadioRoom(ED ed){
 		super();
@@ -35,6 +37,8 @@ public class RadioRoom extends Room{
 		this.setName("RadioRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 		this.setDist("Unif");
+		
+		ed.getDbRadioRoom().get(0).add(this);
 	}
 	
 
@@ -74,11 +78,24 @@ public class RadioRoom extends Room{
 		this.patient = patient;
 		this.patient.setLocation(this);
 		this.setState("occupied");
+		
+		ED edp = this.getEd();
+		edp.getDbRadioRoom().get(0).remove(this);
+		edp.getDbRadioRoom().get(1).add(this);
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
 		this.patient = null;
 		this.setState("free");
+		
+		
+		ED edp = this.getEd();
+		edp.getDbRadioRoom().get(1).remove(this);
+		edp.getDbRadioRoom().get(0).add(this);
+		
+		//change patient db state : he goes to the WaitingRoom
+		edp.getDbPatient().get(12).remove(patient);
+		edp.getDbPatient().get(3).remove(patient);
 		
 	}
 	@Override
@@ -100,7 +117,10 @@ public class RadioRoom extends Room{
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
 		
-		this.patient.setState("radioTested");		
+		this.patient.setState("radioTested");	
+		ED edp = this.getEd();
+		edp.getDbPatient().get(10).remove(patient);
+		edp.getDbPatient().get(12).add(patient);
 		this.patient.setHistory("(RadioTested, "+ this.startTime.toString() + "), ");
 	}
 	
