@@ -10,6 +10,10 @@
         <element xmi:type="uml:Property" href="UML1.uml#_PUhB8MADEeemDPcuaa2bPw"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PUhB8sADEeemDPcuaa2bPw"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_Qg7XkNSEEeefD6elI-bbfQ" type="Property_ClassAttributeLabel">
+        <element xmi:type="uml:Property" href="UML1.uml#_QcAbUNSEEeefD6elI-bbfQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Qg7XkdSEEeefD6elI-bbfQ"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_afjzhMACEeemDPcuaa2bPw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_afjzhcACEeemDPcuaa2bPw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_afjzhsACEeemDPcuaa2bPw"/>
