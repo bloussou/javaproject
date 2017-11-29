@@ -5,11 +5,12 @@ import Emergency.ED;
 import Proba.Uniform;
 import Rooms.*;
 import Events.TimeStamp;
+import MessageBox.Message;
 
 
 
 
-public class Physician extends Human implements Observer{
+public class Physician extends Human  implements Observer{
 	
 	private static int compteurPhysicianId;
 	private ArrayList<Patient> patientOverseeing;	
@@ -17,6 +18,8 @@ public class Physician extends Human implements Observer{
 	private TimeStamp startTime;
 	private TimeStamp endTime;
 	private double duration;
+	private ArrayList<ArrayList<Message>> mailBox;
+	
 	
 	
 	public Physician(ED ed, String name, String surname, String state){
@@ -43,6 +46,11 @@ public class Physician extends Human implements Observer{
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
+		
+		
+		//initialize the messageBox=[unread,alreadyread]
+		this.mailBox.add(new ArrayList<Message>());
+		this.mailBox.add(new ArrayList<Message>());
 	}
 	public Physician(ED ed){
 		super();
@@ -58,6 +66,11 @@ public class Physician extends Human implements Observer{
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
+		
+		
+		//initialize the messageBox=[unread,alreadyread]
+		this.mailBox.add(new ArrayList<Message>());
+		this.mailBox.add(new ArrayList<Message>());
 	}
 	
 	
@@ -80,6 +93,9 @@ public class Physician extends Human implements Observer{
 	}
 	public void setDuration(double duration) {
 		this.duration = duration;
+	}
+	public ArrayList<ArrayList<Message>> getMailBox() {
+		return mailBox;
 	}
 	
 	

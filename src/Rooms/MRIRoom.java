@@ -24,6 +24,7 @@ public class MRIRoom extends Room {
 		this.setName(name);
 		this.setCapacity(1);
 		this.setDist("Unif");
+		ed.getDbMRIRoom().get(0).add(this);
 		
 	}
 	public MRIRoom(ED ed){
@@ -35,6 +36,7 @@ public class MRIRoom extends Room {
 		this.setEd(ed);
 		this.setName("MRIRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
+		ed.getDbMRIRoom().get(0).add(this);
 	}
 	
 	
@@ -72,11 +74,23 @@ public class MRIRoom extends Room {
 		this.patient = patient;
 		this.patient.setLocation(this);
 		this.setState("occupied");
+		
+		ED edp = this.getEd();
+		edp.getDbMRIRoom().get(0).remove(this);
+		edp.getDbMRIRoom().get(1).add(this);
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
 		this.patient = null;
 		this.setState("free");
+		
+		ED edp = this.getEd();
+		edp.getDbMRIRoom().get(1).remove(this);
+		edp.getDbMRIRoom().get(0).add(this);
+		
+		//change patient db state : he goes to the WaitingRoom
+		edp.getDbPatient().get(12).remove(patient);
+		edp.getDbPatient().get(3).remove(patient);
 		
 	}
 	@Override
@@ -98,7 +112,10 @@ public class MRIRoom extends Room {
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
 		
-		this.patient.setState("mriTested");		
+		this.patient.setState("mriTested");	
+		ED edp = this.getEd();
+		edp.getDbPatient().get(10).remove(patient);
+		edp.getDbPatient().get(12).add(patient);
 		this.patient.setHistory("(MRItested, "+ this.startTime.toString() + "), ");
 	}
 	

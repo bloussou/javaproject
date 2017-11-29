@@ -9,6 +9,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GdJjMMAEEeemDPcuaa2bPw" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GdzqgMAEEeemDPcuaa2bPw" value="*"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_QcAbUNSEEeefD6elI-bbfQ" name="mailBox"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_cGaYQMQCEeeGKuJ9g2aAeg" name="create"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_NU_GIMQUEeeGKuJ9g2aAeg" name="handleMsg"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_RIqMEMQUEeeGKuJ9g2aAeg" name="emitVerdict"/>
