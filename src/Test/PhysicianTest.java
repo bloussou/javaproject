@@ -6,26 +6,44 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import Emergency.ED;
-import Events.Time;
-import Events.TimeStamp;
-import HR.Patient;
-import HR.Physician;
+import Emergency.*;
+import Factory.*;
+import HR.*;
+import Rooms.*;
+import Events.*;
  
 public class PhysicianTest {
 
 	@Test
 	public void testGetPatientOverseeing() {
-		ED ed = new ED("ed1","france");
-		Time time = Time.getInstanceTime();
-		time.timeGoes(10);
-		Patient patient = new Patient(ed,"L1",new TimeStamp());
-		Physician physician = new Physician(ed);
-		physician.handleNewPatient(patient);
-		ArrayList<Patient> tryList = new ArrayList<Patient>();
-		tryList.add(patient);
 		
-		assertTrue(physician.getPatientOverseeing().equals(tryList));
+		// INITIALISATION D'UN ED
+		ED ed = new ED("ED1", "France");
+		Time time = Time.getInstanceTime();
+		
+		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
+		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
+		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
+		
+		
+		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
+		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
+		
+		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		
+		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		
+		// TEST
+
+		physician1.handleNewPatient(patient1, boxRoom1);
+		
+		//good answer PatientOverseeing list
+		ArrayList<Patient> tryList = new ArrayList<Patient>();
+		tryList.add(patient1);
+
+		assertTrue(physician1.getPatientOverseeing().equals(tryList));
 	}
 
 
@@ -73,8 +91,6 @@ public class PhysicianTest {
 	assertTrue(physician.getState().equals("idle"));
 	assertTrue(patient.getState().equalsIgnoreCase("WaitingForBloodTest") || patient.getState().equalsIgnoreCase("WaitingForMRI") 
 			|| patient.getState().equalsIgnoreCase("WaitingForRadio") || patient.getState().equalsIgnoreCase("Released"));
-	
-	
 	}
 
 }

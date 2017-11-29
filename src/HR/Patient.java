@@ -27,6 +27,18 @@ public class Patient extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
+		//add the patient to the state patient db
+		if (this.getState().equalsIgnoreCase("arrived")){
+			ed.getDbPatient().get(0).add(this);
+		}
+		else if (this.getState().equalsIgnoreCase("registred")){
+			ed.getDbPatient().get(1).add(this);
+		}
+		else{
+			System.out.println("il ne faut pas créer de patient au statut différent de 'arrived' ou 'registred'");
+		}
+		
+		
 		this.healthInsurance = healthInsurance;
 		this.severityLevel = severityLevel;
 		this.arrivalTime = arrivalTime;
@@ -43,7 +55,9 @@ public class Patient extends Human{
 		this.setEd(ed);
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
-		this.setState("Arriving");
+		this.setState("Arrived");
+		ed.getDbPatient().get(0).add(this);
+		
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
 		this.arrivalTime = arrivalTime;

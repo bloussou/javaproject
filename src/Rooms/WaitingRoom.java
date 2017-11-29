@@ -19,6 +19,7 @@ public class WaitingRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(20);
+		this.occupants = new ArrayList<Patient>();
 		
 		
 		
@@ -33,7 +34,7 @@ public class WaitingRoom extends Room{
 		this.setEd(ed);
 		this.setName("WaintingRoom" + Integer.toString(this.getId()));
 		this.setCapacity(20);
-		
+		this.occupants = new ArrayList<Patient>();
 		
 		ed.getDbWaitingRoom().get(0).add(this);
 	}

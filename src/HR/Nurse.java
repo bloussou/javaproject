@@ -87,8 +87,7 @@ public class Nurse extends Human{
 	public void transport(Patient patient, WaitingRoom targetRoom){
 		ED edp = patient.getEd();
 		String nurseState = this.getState();
-		String patientState = patient.getState();
-		
+		String patientState = patient.getState();		
 		
 		//set the target room
 		this.setTargetRoom(targetRoom);
@@ -111,13 +110,8 @@ public class Nurse extends Human{
 		
 		//set the state of the patient
 		patient.setState("transporting");
-		if (patientState.equalsIgnoreCase("registred")){
-			edp.getDbPatient().get(0).remove(patient);
-		}
-		else{
-			System.out.println("il y a un problème dans l'algo");
-		}
 		edp.getDbPatient().get(1).remove(patient);
+		edp.getDbPatient().get(2).add(patient);
 		
 		
 		//add the patient to patient transported

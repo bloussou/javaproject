@@ -1,7 +1,7 @@
 package Events;
 
 import java.util.ArrayList;
-
+import HR.*;
 import Emergency.ED;
 
 public class EventsManager {
@@ -66,6 +66,19 @@ public class EventsManager {
 	private void checkNewConsultation(ED ed){
 		//check for each ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
 
+		//extract the lists of "waitingforConsultation" patients : the first filled with shockRoom Severity level, and the other ther rest
+		ArrayList<Patient> shockRoomPatientList = new ArrayList<Patient>();
+		ArrayList<Patient> boxRoomPatientList = new ArrayList<Patient>();		
+		
+		for (Patient patient : ed.getDbPatient().get(3)) {
+			if (patient.getSeverityLevel() == 'L2' || patient.getSeverityLevel() == 'L1'){
+				shockRoomPatientList.add(patient)
+			}
+			else {
+				boxRoomPatientList.add(patient);
+			}
+		} 		
+		
 			//While there is an 'idle' Physician and a 'WaitingForConsultation' patient and an 'available' corresponding room --> match them together by creating an event Transport_Nurse
 			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
 				
