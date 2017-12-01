@@ -33,25 +33,19 @@ public class Physician extends Human  implements Observer{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		//add the physician to the state physician db
-		if (this.getState().equals("idle")){
-			ed.getDbPhysician().get(0).add(this);
-		}
-		else if (this.getState().equals("visiting")){
-			ed.getDbPhysician().get(1).add(this);
-		}
-		else {
-			ed.getDbPhysician().get(2).add(this);
-		}
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
+		this.mailBox = new ArrayList<ArrayList<Message>>();
 		
 		
-		//initialize the messageBox=[unread,alreadyread]
+		//initialize the messageBox=[unread,already read]
 		this.mailBox.add(new ArrayList<Message>());
 		this.mailBox.add(new ArrayList<Message>());
 	}
+	
+	
+	
 	public Physician(ED ed){
 		super();
 		
@@ -62,15 +56,15 @@ public class Physician extends Human  implements Observer{
 		this.setName("Phisician" + Integer.toString(this.getId()));
 		this.setSurname("Physician" + Integer.toString(this.getId()));
 		this.setState("idle");
-		ed.getDbPhysician().get(0).add(this);
 		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
+		this.mailBox = new ArrayList<ArrayList<Message>>();
 		
-		
-		//initialize the messageBox=[unread,alreadyread]
+		//initialize the messageBox=[unread,already read]
 		this.mailBox.add(new ArrayList<Message>());
 		this.mailBox.add(new ArrayList<Message>());
+		
 	}
 	
 	
@@ -104,13 +98,6 @@ public class Physician extends Human  implements Observer{
 		ED edp = this.getEd();
 		
 		//set the state of the physician
-		if(this.getState().equalsIgnoreCase("idle")){
-			edp.getDbPhysician().get(0).remove(this);
-		}
-		else{
-			edp.getDbPhysician().get(2).remove(this);
-		}
-		edp.getDbPhysician().get(1).add(this);
 		this.setState("visiting");
 		
 		//add the patient to the list patientOverseeing
@@ -236,8 +223,7 @@ public class Physician extends Human  implements Observer{
 		
 		//set the state of the physician
 		this.setState("idle");
-		edp.getDbPhysician().get(1).remove(this);
-		edp.getDbPhysician().get(0).add(this);
+
 	
 	
 		//set the state of the room
@@ -262,10 +248,110 @@ public class Physician extends Human  implements Observer{
 	
 	}
 	
-		
-		
+	
+	/*
+	 * writeMessage allows this physician to write a message with the good arguments
+	 */
+	
+	public void writeMessage(Patient patient, Physician physician, String obj, String content){
+		new Message(patient, physician, obj, content);
+	}
 	
 	
+	/*
+	 * readUnreadMessageBox shows the message unread and put it in the already read file	
+	 */
+	public void readMessage() {
+		ArrayList<Message> unread = this.mailBox.get(0);
+		if (unread.size() != -1) {
+			for (int i = 0; i<unread.size(); i++){
+				unread.get(i).read();
+			}
+		}
+		else {
+			System.out.println("the mail box is empty !");
+		}
+		
+	}
+	
+	/*
+	 * readMessage, it allows to read only one message
+	 */
+	public void readMessage(Message message){
+		ArrayList<Message> unread = this.mailBox.get(0);
+		int messageIndex = unread.indexOf(message);
+		if (messageIndex != -1){
+			unread.get(unread.indexOf(message)).read();
+		}
+		else {
+			System.out.println("there is no sucht message in the mailing box");
+		}
+	}
+	
+	/*
+	 * unReadMessage allows the physician to unread a message he has receive
+	 */
+	public void unReadMessage(Message message){
+		ArrayList<Message> read = this.mailBox.get(1);
+		int messageIndex = read.indexOf(message);
+		if (messageIndex != -1){
+			read.get(messageIndex).unRead();
+		}
+		else {
+			System.out.println("this message do not exist or isn't read");
+		}
+	}
+	
+	/*
+	 * Remove message is a method that allows to remove the message he chooses
+	 */
+	public void removeMessage(Message message){
+		ArrayList<Message> unread = this.mailBox.get(0);
+		ArrayList<Message> read = this.mailBox.get(1);
+		int messageIndex1 = read.indexOf(message);
+		int messageIndex2 = unread.indexOf(message);
+		
+		if (messageIndex1 != -1){
+			read.get(messageIndex1).removeMessage();
+		}
+		else{
+			if (messageIndex2 != -1) {
+				unread.get(messageIndex2).removeMessage();
+			}
+			else{
+				System.out.println("this message doesn't exist");
+			}
+		}
+	}
+	
+	@Override
+	public void setState(String state) {
+		
+		ArrayList<ArrayList<Physician>> dbPhysician = this.ed.getDbPhysician();
+		
+		
+		for (int i = 0; i<dbPhysician.size(); i++){
+			dbPhysician.get(i).remove(this);
+		}
+		
+		
+		//add the nurse to the state physician db
+		if (state.equals("idle")){
+			this.ed.getDbPhysician().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("visiting")){
+			this.ed.getDbPhysician().get(1).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("ofDuty")){
+			this.ed.getDbPhysician().get(2).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
+	}
 	
 	@Override
 	public void displayMsgBox() {

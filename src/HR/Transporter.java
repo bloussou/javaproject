@@ -30,16 +30,6 @@ public class Transporter extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		//add the nurse to the state nurse db
-		if (this.getState().equals("idle")){
-			ed.getDbTransporter().get(0).add(this);
-		}
-		else if (this.getState().equals("transportation")){
-			ed.getDbTransporter().get(1).add(this);
-		}
-		else {
-			ed.getDbTransporter().get(2).add(this);
-		}
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
@@ -53,7 +43,6 @@ public class Transporter extends Human{
 		this.setName("Transporter" + Integer.toString(this.getId()));
 		this.setSurname("Transporter" + Integer.toString(this.getId()));
 		this.setState("idle");
-		ed.getDbTransporter().get(0).add(this);
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
@@ -73,14 +62,6 @@ public class Transporter extends Human{
 		//memorize the patient state
 		this.setLastPatientState(patient.getState());
 		
-		//set the state of the transporter
-		if (this.getState().equalsIgnoreCase("idle")){
-			edp.getDbTransporter().get(0).remove(this);
-		}
-		else{
-			edp.getDbTransporter().get(2).remove(this);
-		}
-		edp.getDbTransporter().get(1).add(this);
 		
 		this.setState("transportation");
 		
@@ -120,14 +101,6 @@ public class Transporter extends Human{
 		this.setTargetRoom(targetRoom);
 		
 		
-		//set the state of the transporter
-		if (this.getState().equalsIgnoreCase("idle")){
-			edp.getDbTransporter().get(0).remove(this);
-		}
-		else{
-			edp.getDbTransporter().get(2).remove(this);
-		}
-		edp.getDbTransporter().get(1).add(this);
 		
 		this.setState("transportation");
 		
@@ -226,6 +199,34 @@ public class Transporter extends Human{
 	}
 	public ArrayList<Patient> getPatientTransported() {
 		return patientTransported;
+	}
+	
+	@Override
+	public void setState(String state) {
+		ArrayList<ArrayList<Transporter>> dbTransporter = this.ed.getDbTransporter();
+		
+		
+		for (int i = 0; i<dbTransporter.size(); i++){
+			dbTransporter.get(i).remove(this);
+		}
+		
+		
+		//add the transporter to the state transporter db
+		if (state.equals("idle")){
+			this.ed.getDbTransporter().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("transportation")){
+			this.ed.getDbTransporter().get(1).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("ofDuty")){
+			this.ed.getDbTransporter().get(2).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
 	}
 
 	

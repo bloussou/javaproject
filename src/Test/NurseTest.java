@@ -78,6 +78,43 @@ public class NurseTest {
 		assertTrue("2.9", nurse.getTargetRoom().equals(wRoom1));
 	}
 	
+	@Test
+	public void testSetState(){
+		System.out.println("test setState !!!");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		Time time = Time.getInstanceTime();
+		
+		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
+				
+		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		
+		//test idle
+		nurse.setState("idle");
+		assertTrue("idle",nurse.getState().equalsIgnoreCase("idle"));
+		assertTrue(ed.getDbNurse().get(0).contains(nurse));
+		assertFalse(ed.getDbNurse().get(1).contains(nurse));
+		assertFalse(ed.getDbNurse().get(2).contains(nurse));
+		//test transporting
+		nurse.setState("transporting");
+		assertTrue("transporting",nurse.getState().equalsIgnoreCase("transporting"));
+		assertTrue(ed.getDbNurse().get(1).contains(nurse));
+		assertFalse(ed.getDbNurse().get(2).contains(nurse));
+		assertFalse(ed.getDbNurse().get(0).contains(nurse));
+		
+		//test ofduty
+		nurse.setState("ofDuty");
+		assertTrue("ofDuty",nurse.getState().equalsIgnoreCase("ofDuty"));
+		assertTrue(ed.getDbNurse().get(2).contains(nurse));
+		assertFalse(ed.getDbNurse().get(1).contains(nurse));
+		assertFalse(ed.getDbNurse().get(0).contains(nurse));
+		
+		//test error
+		nurse.setState("lol");
+		assertFalse("lol",nurse.getState().equalsIgnoreCase("lol"));
+	}
+	
 	
 	@Test
 	public void testDropPatient(){

@@ -29,22 +29,16 @@ public class Nurse extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		//add the nurse to the state nurse db
-		if (this.getState().equals("idle")){
-			ed.getDbNurse().get(0).add(this);
-		}
-		else if (this.getState().equals("transporting")){
-			ed.getDbNurse().get(1).add(this);
-		}
-		else {
-			ed.getDbNurse().get(2).add(this);
-		}
+		
 		
 		
 		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
 	}	
+	
+	
+	
 	public Nurse(ED ed){
 		super();
 
@@ -54,10 +48,8 @@ public class Nurse extends Human{
 		this.setEd(ed);
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
-		this.setState("Idle");
+		this.setState("idle");
 		
-		//add the nurse to the idle nurse
-		ed.getDbNurse().get(0).add(this);
 		
 		
 		this.patientRegistered = new ArrayList<Patient>();
@@ -65,10 +57,14 @@ public class Nurse extends Human{
 	}
 	
 	
+	
+	
 	@Override
 	public void create(){
 		System.out.println("Création d'une infirmière :\n" + this.toString());
 	}
+	
+	
 	
 	public void register(Patient patient){
 		
@@ -84,9 +80,12 @@ public class Nurse extends Human{
 		
 	}
 	
+	
+	
+	
 	public void transport(Patient patient, WaitingRoom targetRoom){
 		ED edp = patient.getEd();
-		String nurseState = this.getState();
+		//String nurseState = this.getState();
 		String patientState = patient.getState();		
 		
 		//set the target room
@@ -96,14 +95,6 @@ public class Nurse extends Human{
 		
 		//set the state of the nurse
 		this.setState("transporting");
-		
-		if (nurseState.equalsIgnoreCase("idle")){
-			edp.getDbNurse().get(0).remove(this);
-		}
-		else{
-			edp.getDbNurse().get(2).remove(this);
-		}
-		edp.getDbNurse().get(1).add(this);
 		
 		
 		
@@ -141,8 +132,8 @@ public class Nurse extends Human{
 	
 		//set the state of the nurse
 		this.setState("idle");
-		edp.getDbNurse().get(1).remove(this);
-		edp.getDbNurse().get(0).add(this);
+		
+		
 	}
 	
 	
@@ -182,6 +173,32 @@ public class Nurse extends Human{
 	}
 	public void setTargetRoom(Room targetRoom) {
 		this.targetRoom = targetRoom;
+	}
+	
+	
+	@Override
+	public void setState(String state){
+		
+		ArrayList<ArrayList<Nurse>> dbNurse = this.ed.getDbNurse();
+		for (int i = 0; i<dbNurse.size(); i++){
+			dbNurse.get(i).remove(this);
+		}
+		//add the nurse to the state nurse db
+		if (state.equals("idle")){
+			this.ed.getDbNurse().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("transporting")){
+			this.ed.getDbNurse().get(1).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("ofDuty")){
+			this.ed.getDbNurse().get(2).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
 	}
 
 	

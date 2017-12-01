@@ -4,11 +4,11 @@ import Emergency.ED;
 
 public abstract class Human {
 
-	private ED ed;
+	protected ED ed;
 	private int id;
 	private String name;
 	private String surname;
-	private String state;
+	protected String state;
 	
 	
 	public int getId() {

@@ -1,5 +1,7 @@
 package HR;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import Events.*;
 import Rooms.Room;
@@ -27,16 +29,7 @@ public class Patient extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		//add the patient to the state patient db
-		if (this.getState().equalsIgnoreCase("arrived")){
-			ed.getDbPatient().get(0).add(this);
-		}
-		else if (this.getState().equalsIgnoreCase("registred")){
-			ed.getDbPatient().get(1).add(this);
-		}
-		else{
-			System.out.println("il ne faut pas créer de patient au statut différent de 'arrived' ou 'registred'");
-		}
+		
 		
 		
 		this.healthInsurance = healthInsurance;
@@ -56,7 +49,6 @@ public class Patient extends Human{
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
 		this.setState("Arrived");
-		ed.getDbPatient().get(0).add(this);
 		
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
@@ -128,6 +120,88 @@ public class Patient extends Human{
 	@Override
 	public void create(){
 		
+	}
+	
+	
+	@Override
+	public void setState(String state){
+		
+		ArrayList<ArrayList<Patient>> dbPatient = this.ed.getDbPatient();
+		
+		
+		for (int i = 0; i<dbPatient.size(); i++){
+			dbPatient.get(i).remove(this);
+		}
+		
+		//add the patient to the state patient db
+		if (state.equalsIgnoreCase("arrived")){
+			this.ed.getDbPatient().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("registered")){
+			this.ed.getDbPatient().get(1).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("transporting")){
+			this.ed.getDbPatient().get(2).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForConsultation")){
+			this.ed.getDbPatient().get(3).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("inConsultation")){
+			this.ed.getDbPatient().get(4).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForMRI")){
+			this.ed.getDbPatient().get(5).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForBloodTest")){
+			this.ed.getDbPatient().get(6).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForRadio")){
+			this.ed.getDbPatient().get(7).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("transportation")){
+			this.ed.getDbPatient().get(8).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForMRIT")){
+			this.ed.getDbPatient().get(9).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForBloodTestT")){
+			this.ed.getDbPatient().get(10).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("waitingForRadioT")){
+			this.ed.getDbPatient().get(11).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("bloodTested")){
+			this.ed.getDbPatient().get(12).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("mriTested")){
+			this.ed.getDbPatient().get(13).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("radioTested")){
+			this.ed.getDbPatient().get(14).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("released")){
+			this.ed.getDbPatient().get(15).add(this);
+			this.state = state;
+		}
+		
+		else{
+			System.out.println("cet état n'existe pas");
+		}		
 	}
 
 		
