@@ -20,6 +20,7 @@ public class Message {
 		this.physician = physician;
 		this.obj = obj;
 		this.content = content;
+		this.time = new TimeStamp();
 		
 		Message.messageId += 1;
 		this.setId(this.messageId);
@@ -29,7 +30,7 @@ public class Message {
 	}
 	
 	public void read(){
-		System.out.println("objet : "+this.obj+" heure : "+this.time.toString()+" message : "+  this.content);
+		System.out.println("[OBJECT] : "+this.obj+"\n [TIME] : "+this.time.toString()+"\n [MESSAGE] : "+  this.content);
 		this.physician.getMailBox().get(1).add(this);
 		this.physician.getMailBox().get(0).remove(this);
 	}

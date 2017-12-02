@@ -104,13 +104,6 @@ public class Physician extends Human  implements Observer{
 		this.patientOverseeing.add(patient);
 		
 		//set the state of the patient
-		if(patient.getState().equalsIgnoreCase("waitingForConsultation")){
-			edp.getDbPatient().get(3).remove(patient);
-		}
-		else{
-			System.out.println("il y a un pb dans l'algo");
-		}
-		edp.getDbPatient().get(4).add(patient);
 		patient.setState("inConsultation");
 		
 		//set the state of the room
@@ -143,8 +136,8 @@ public class Physician extends Human  implements Observer{
 	}
 	
 	public void emitVerdict(Patient patient){
-		ED edp = patient.getEd();
 		TimeStamp departureTime = new TimeStamp();
+		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
 		patient.setDepartureTime(departureTime);
@@ -156,27 +149,6 @@ public class Physician extends Human  implements Observer{
 		//add the patient to the array patientTreated
 		this.patientAlreadyTreated.add(patient);
 		
-		//remove the patient from the db
-		String patientState = patient.getState();
-		if (patientState.equalsIgnoreCase("released")){
-			edp.getDbPatient().get(4).remove(patient);
-		}
-		else if (patientState.equalsIgnoreCase("bloodTested")){
-			edp.getDbPatient().get(12).remove(patient);
-		}
-		else if (patientState.equalsIgnoreCase("mriTested")){
-			edp.getDbPatient().get(13).remove(patient);
-		}
-		else if (patientState.equalsIgnoreCase("radioTested")){
-			edp.getDbPatient().get(14).remove(patient);
-		}
-		else{
-			System.out.println("il y a un pb dans l'algo");
-		}
-		edp.getDbPatient().get(15).add(patient);
-		
-		
-		patient.setState("released");
 		
 	}
 	
@@ -199,22 +171,16 @@ public class Physician extends Human  implements Observer{
 			prescription = "waitingForRadio";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(7).remove(patient);
 		}
 		else if(num<=95){
 			prescription = "waitingForBloodTest";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(6).remove(patient);
 		}
 		else {
 			prescription = "waitingForMRI";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
-			edp.getDbPatient().get(4).remove(patient);
-			edp.getDbPatient().get(5).remove(patient);
 		}
 		
 		//set the state of the patient
@@ -226,24 +192,10 @@ public class Physician extends Human  implements Observer{
 
 	
 	
+		
 		//set the state of the room
-		if(consultationRoom.getState().equalsIgnoreCase("occupied")){
-			if(consultationRoom instanceof BoxRoom){
-				edp.getDbBoxRoom().get(1).remove(consultationRoom);
-				edp.getDbBoxRoom().get(0).add((BoxRoom) consultationRoom);
-			}
-			else if (consultationRoom instanceof ShockRoom) {
-				edp.getDbShockRoom().get(1).remove(consultationRoom);
-				edp.getDbShockRoom().get(0).add((ShockRoom) consultationRoom);
-			}
-			else {
-				System.out.println("Encore un soucis dans l'algo ???");
-			}
-			consultationRoom.setState("free");
-		}
-		else{
-			System.out.println("il y a un pb dans l'algo ici aussi ?");
-		}
+		
+		consultationRoom.setState("free");
 	
 	
 	}
@@ -252,7 +204,6 @@ public class Physician extends Human  implements Observer{
 	/*
 	 * writeMessage allows this physician to write a message with the good arguments
 	 */
-	
 	public void writeMessage(Patient patient, Physician physician, String obj, String content){
 		new Message(patient, physician, obj, content);
 	}
@@ -263,13 +214,14 @@ public class Physician extends Human  implements Observer{
 	 */
 	public void readMessage() {
 		ArrayList<Message> unread = this.mailBox.get(0);
-		if (unread.size() != -1) {
+		if (unread.isEmpty()) {
+			System.out.println("the mail box is empty !");
+		}
+		else {
 			for (int i = 0; i<unread.size(); i++){
 				unread.get(i).read();
 			}
-		}
-		else {
-			System.out.println("the mail box is empty !");
+
 		}
 		
 	}
@@ -363,7 +315,7 @@ public class Physician extends Human  implements Observer{
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Physician n°" +this.getId() +"created");
 	}
 
 }
