@@ -1,5 +1,7 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import Events.TimeStamp;
 import HR.Patient;
@@ -25,7 +27,7 @@ public class RadioRoom extends Room{
 		this.setCapacity(1);
 		this.setDist("Unif");
 		
-		ed.getDbRadioRoom().get(0).add(this);
+		this.setState("free");
 	}
 	public RadioRoom(ED ed){
 		super();
@@ -38,7 +40,7 @@ public class RadioRoom extends Room{
 		this.setCapacity(1);
 		this.setDist("Unif");
 		
-		ed.getDbRadioRoom().get(0).add(this);
+		this.setState("free");
 	}
 	
 
@@ -79,9 +81,7 @@ public class RadioRoom extends Room{
 		this.patient.setLocation(this);
 		this.setState("occupied");
 		
-		ED edp = this.getEd();
-		edp.getDbRadioRoom().get(0).remove(this);
-		edp.getDbRadioRoom().get(1).add(this);
+		
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
@@ -90,14 +90,15 @@ public class RadioRoom extends Room{
 		
 		
 		ED edp = this.getEd();
-		edp.getDbRadioRoom().get(1).remove(this);
-		edp.getDbRadioRoom().get(0).add(this);
+
 		
-		//change patient db state : he goes to the WaitingRoom
+		//change patient db state : he goes to the WaitingRoom with the state radio tested
 		edp.getDbPatient().get(12).remove(patient);
 		edp.getDbPatient().get(3).remove(patient);
 		
 	}
+	
+	
 	@Override
 	public void construct() {
 		// TODO Auto-generated method stub
@@ -118,16 +119,35 @@ public class RadioRoom extends Room{
 		this.endTime = new TimeStamp(duree);
 		
 		this.patient.setState("radioTested");	
-		ED edp = this.getEd();
-		edp.getDbPatient().get(10).remove(patient);
-		edp.getDbPatient().get(12).add(patient);
+		
 		this.patient.setHistory("(RadioTested, "+ this.startTime.toString() + "), ");
 	}
 	
-	public void endMRITesting(){
+	public void endRadioTesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		this.removeOccupant(this.patient);
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<RadioRoom>> dbRadioRoom = this.ed.getDbRadioRoom();
+		
+		for (int i = 0; i<dbRadioRoom.size(); i++){
+			dbRadioRoom.get(i).remove(this);
+		}
+		//add the MRIROOM to the state MRIROOM db
+		if (state.equals("free")){
+			this.ed.getDbRadioRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbRadioRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
 	}
 
 }

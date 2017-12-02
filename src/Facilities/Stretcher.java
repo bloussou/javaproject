@@ -1,6 +1,9 @@
 package Facilities;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
+import Rooms.BoxRoom;
 
 public class Stretcher extends Facility{
 
@@ -14,6 +17,8 @@ public class Stretcher extends Facility{
 		
 		this.setEd(ed);
 		this.setName(name);
+		
+		this.setState("free");
 	}
 	public Stretcher(ED ed){
 		super();
@@ -23,6 +28,8 @@ public class Stretcher extends Facility{
 		
 		this.setEd(ed);
 		this.setName("Stretcher" + Integer.toString(Stretcher.compteurStretcherId));
+		
+		this.setState("free");
 
 	}
 	
@@ -42,6 +49,27 @@ public class Stretcher extends Facility{
 	public void produce() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<Stretcher>> dbStretcher = this.ed.getDbStretcher();
+		
+		for (int i = 0; i<dbStretcher.size(); i++){
+			dbStretcher.get(i).remove(this);
+		}
+		//add the stretcher to the state stretcher db
+		if (state.equals("free")){
+			this.ed.getDbStretcher().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbStretcher().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
 	}
 
 	

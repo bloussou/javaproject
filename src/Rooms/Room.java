@@ -7,8 +7,8 @@ import HR.Patient;
 
 public abstract class Room {
 
-	private ED ed;
-	private String state;
+	protected ED ed;
+	protected String state;
 	private int id;
 	private String name;
 	private String dist;

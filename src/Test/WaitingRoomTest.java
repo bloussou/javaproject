@@ -7,22 +7,49 @@ import org.junit.Test;
 import Emergency.ED;
 import Events.Time;
 import Events.TimeStamp;
+import Factory.FactoryCreator;
+import Factory.RoomFactory;
 import HR.Patient;
 import HR.Physician;
+import Rooms.Room;
 import Rooms.WaitingRoom;
 
 public class WaitingRoomTest {
 
+	
+	@Test
+	public void testSetState() {
+		System.out.println("test setState !!!");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		
+		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
+				
+		Room waitingRoom = (Room) roomFactory.getRoom("WAITINGROOM", ed);
+		
+		//test available
+		waitingRoom.setState("available");
+		assertTrue("available",waitingRoom.getState().equalsIgnoreCase("available"));
+		assertTrue(ed.getDbWaitingRoom().get(0).contains(waitingRoom));
+		assertFalse(ed.getDbWaitingRoom().get(1).contains(waitingRoom));
+		
+		//test occupied
+		waitingRoom.setState("full");
+		assertTrue("full",waitingRoom.getState().equalsIgnoreCase("full"));
+		assertTrue(ed.getDbWaitingRoom().get(1).contains(waitingRoom));
+		assertFalse(ed.getDbWaitingRoom().get(0).contains(waitingRoom));
+		
+		//test error
+		waitingRoom.setState("lol");
+		assertFalse("lol",waitingRoom.getState().equalsIgnoreCase("lol"));
+	}
+	
+	
+	
 	@Test
 	public void testAddOccupant() {
-		ED ed = new ED("ed1","france");
-		Time time = Time.getInstanceTime();
-		time.timeGoes(10);
-		WaitingRoom waiting1 = new WaitingRoom(ed);
-		Patient patient1 = new Patient(ed,"L1",new TimeStamp());
-		Patient patient2 = new Patient(ed,"L2", new TimeStamp());
-		waiting1.addOccupant(patient);
-		assertTrue(waiting1.getOccupants().equals([patient]));
+		fail("Not yet implemented");
 	}
 
 	@Test

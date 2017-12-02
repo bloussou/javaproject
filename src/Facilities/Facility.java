@@ -4,10 +4,10 @@ import Emergency.ED;
 
 public abstract class Facility {
 
-	private ED ed;
+	protected ED ed;
 	private int id;
 	private String name;
-	private String state;
+	protected String state;
 	private String location;
 	
 	

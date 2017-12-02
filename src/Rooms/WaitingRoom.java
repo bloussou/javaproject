@@ -23,7 +23,7 @@ public class WaitingRoom extends Room{
 		
 		
 		
-		ed.getDbWaitingRoom().get(0).add(this);
+		this.setState("available");
 	}
 	public WaitingRoom(ED ed){
 		super();
@@ -36,7 +36,7 @@ public class WaitingRoom extends Room{
 		this.setCapacity(20);
 		this.occupants = new ArrayList<Patient>();
 		
-		ed.getDbWaitingRoom().get(0).add(this);
+		this.setState("avalaible");
 	}
 	
 	
@@ -56,11 +56,7 @@ public class WaitingRoom extends Room{
 		ED edp = this.getEd();
 		occupants.add(patient);
 		if (occupants.size() == this.getCapacity()){
-			this.getEd().getDbWaitingRoom().get(0).remove(this);
-			this.getEd().getDbWaitingRoom().get(1).add(this);
 			this.setState("full");
-			edp.getDbWaitingRoom().get(1).add(this);
-			edp.getDbWaitingRoom().get(0).remove(this);
 		}
 
 	}
@@ -68,11 +64,7 @@ public class WaitingRoom extends Room{
 	public void removeOccupant(Patient patient){
 		ED edp = this.getEd();
 		occupants.remove(patient);
-		this.getEd().getDbWaitingRoom().get(1).remove(this);
-		this.getEd().getDbWaitingRoom().get(0).add(this);
 		this.setState("available");
-		edp.getDbWaitingRoom().get(0).add(this);
-		edp.getDbWaitingRoom().get(1).remove(this);
 		
 	}
 	@Override
@@ -83,6 +75,27 @@ public class WaitingRoom extends Room{
 	public void updatePatientCharge(Patient patient){
 		if (occupants.contains(patient)){
 		patient.setCharges(patient.getCharges()+this.getCost());
+		}
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom = this.ed.getDbWaitingRoom();
+		
+		for (int i = 0; i<dbWaitingRoom.size(); i++){
+			dbWaitingRoom.get(i).remove(this);
+		}
+		//add the shock room to the state shock room db
+		if (state.equals("available")){
+			this.ed.getDbWaitingRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("full")){
+			this.ed.getDbWaitingRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
 		}
 	}
 	

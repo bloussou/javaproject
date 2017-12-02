@@ -1,5 +1,7 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import HR.*;
 
@@ -19,7 +21,7 @@ public class ShockRoom extends Room{
 		this.setName(name);
 		this.setCapacity(1);
 		
-		ed.getDbShockRoom().get(0).add(this);
+		this.setState("free");
 	}
 	public ShockRoom(ED ed){
 		super();
@@ -31,7 +33,7 @@ public class ShockRoom extends Room{
 		this.setName("ShockRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 		
-		ed.getDbShockRoom().get(0).add(this);
+		this.setState("free");
 	}
 	
 	
@@ -54,23 +56,20 @@ public class ShockRoom extends Room{
 	@Override	
 	public void addOccupant(Patient patient) {
 		this.patient = patient;		
+		this.setState("occupied");
 		
-		
-		ED edp = this.getEd();
-		edp.getDbShockRoom().get(0).remove(this);
-		edp.getDbShockRoom().get(1).add(this);
+
 		
 		
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
 		this.patient = null;
-		
-		
-		ED edp = this.getEd();
-		edp.getDbShockRoom().get(1).remove(this);
-		edp.getDbShockRoom().get(0).add(this);
-			}
+		this.setState("free");
+	}
+	
+	
+	
 	@Override
 	public void construct() {
 		// TODO Auto-generated method stub
@@ -80,6 +79,27 @@ public class ShockRoom extends Room{
 	public void updatePatientCharge(Patient patient) {
 		if (this.patient == patient){
 		patient.setCharges(patient.getCharges()+this.getCost());
+		}
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<ShockRoom>> dbShockRoom = this.ed.getDbShockRoom();
+		
+		for (int i = 0; i<dbShockRoom.size(); i++){
+			dbShockRoom.get(i).remove(this);
+		}
+		//add the shock room to the state shock room db
+		if (state.equals("free")){
+			this.ed.getDbShockRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbShockRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
 		}
 	}
 	

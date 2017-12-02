@@ -1,7 +1,10 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import Events.TimeStamp;
+import HR.Nurse;
 import HR.Patient;
 import Proba.Uniform;
 
@@ -24,8 +27,8 @@ public class BloodRoom extends Room{
 		this.setName(name);
 		this.setCapacity(1);
 		this.setDist("Unif");
+		this.setState("free");
 		
-		ed.getDbBloodRoom().get(0).add(this);
 	}
 	public BloodRoom(ED ed){
 		super();
@@ -38,7 +41,7 @@ public class BloodRoom extends Room{
 		this.setCapacity(1);
 		this.setDist("Unif");
 		
-		ed.getDbBloodRoom().get(0).add(this);
+		this.setState("free");
 	}
 	
 	
@@ -77,22 +80,18 @@ public class BloodRoom extends Room{
 		this.patient.setLocation(this);
 		this.setState("occupied");
 		
-		ED edp = this.getEd();
-		edp.getDbBloodRoom().get(0).remove(this);
-		edp.getDbBloodRoom().get(1).add(this);
-		
-		
 	}
+	
 	@Override
 	public void removeOccupant(Patient patient) {
 		this.patient = null;
 		this.setState("free");
 		
-		ED edp = this.getEd();
-		edp.getDbBloodRoom().get(1).remove(this);
-		edp.getDbBloodRoom().get(0).add(this);
 		
-		//change patient db state : he goes to the WaitingRoom
+		
+		ED edp = this.getEd();
+		
+		//change patient db state : he goes to the WaitingRoom with the state bloodtested
 		edp.getDbPatient().get(12).remove(patient);
 		edp.getDbPatient().get(3).remove(patient);
 		
@@ -117,9 +116,7 @@ public class BloodRoom extends Room{
 		this.endTime = new TimeStamp(duree);
 		
 		this.patient.setState("bloodTested");
-		ED edp = this.getEd();
-		edp.getDbPatient().get(10).remove(patient);
-		edp.getDbPatient().get(12).add(patient);
+		
 		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
 	}
 	
@@ -131,6 +128,27 @@ public class BloodRoom extends Room{
 		
 		this.removeOccupant(this.getPatient());
 		
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<BloodRoom>> dbBloodRoom = this.ed.getDbBloodRoom();
+		
+		for (int i = 0; i<dbBloodRoom.size(); i++){
+			dbBloodRoom.get(i).remove(this);
+		}
+		//add the bloodroom to the state nurse db
+		if (state.equals("free")){
+			this.ed.getDbBloodRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbBloodRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
 	}
 	
 	

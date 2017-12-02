@@ -1,5 +1,7 @@
 package Rooms;
 
+import java.util.ArrayList;
+
 import Emergency.ED;
 import HR.Patient;
 import HR.Physician;
@@ -22,8 +24,7 @@ public class BoxRoom extends Room{
 		this.setCapacity(1);
 		
 		
-		ED edp = this.getEd();
-		edp.getDbBoxRoom().get(0).add(this);
+		this.setState("free");
 	}
 	public BoxRoom(ED ed){
 		super();
@@ -35,8 +36,7 @@ public class BoxRoom extends Room{
 		this.setName("BoxRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
 		
-		ED edp = this.getEd();
-		edp.getDbBoxRoom().get(0).add(this);
+		this.setState("free");
 	}
 	
 	
@@ -64,18 +64,14 @@ public class BoxRoom extends Room{
 		this.patient = patient;
 		
 		
-		ED edp = this.getEd();
-		edp.getDbBoxRoom().get(0).remove(this);
-		edp.getDbBoxRoom().get(1).add(this);
+		this.setState("occupied");
 	}
 	@Override
 	public void removeOccupant(Patient patient){
 		this.patient = null;
 		
 		
-		ED edp = this.getEd();
-		edp.getDbBoxRoom().get(1).remove(this);
-		edp.getDbBoxRoom().get(0).add(this);
+		this.setState("free");
 	}
 	@Override
 	public void construct(){
@@ -85,6 +81,27 @@ public class BoxRoom extends Room{
 	public void updatePatientCharge(Patient patient){
 		if (this.patient == patient){
 			patient.setCharges(patient.getCharges()+this.getCost());
+		}
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<BoxRoom>> dbBoxRoom = this.ed.getDbBoxRoom();
+		
+		for (int i = 0; i<dbBoxRoom.size(); i++){
+			dbBoxRoom.get(i).remove(this);
+		}
+		//add the box room to the state box room db
+		if (state.equals("free")){
+			this.ed.getDbBoxRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbBoxRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
 		}
 	}
 	

@@ -1,7 +1,7 @@
 Listes des états possibles pour les entités de l'ED :
 
 
-Pysician :
+Physician :
 *idle
 *visiting
 *ofDuty
