@@ -41,7 +41,14 @@ public class MRIRoomTest {
 
 	@Test
 	public void testAddOccupant() {
-		fail("Not yet implemented");
+		System.out.println("test setState !!!");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		
+		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
+				
+		Room mriRoom = (Room) roomFactory.getRoom("MRIROOM", ed);
 	}
 
 	@Test

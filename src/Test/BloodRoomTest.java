@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.jmx.snmp.Timestamp;
 
 import Emergency.ED;
 import Events.Time;
@@ -12,7 +11,6 @@ import Events.TimeStamp;
 import Factory.FactoryCreator;
 import Factory.PeopleFactory;
 import Factory.RoomFactory;
-import HR.Nurse;
 import HR.Patient;
 import Rooms.BloodRoom;
 import Rooms.Room;
@@ -79,15 +77,14 @@ public class BloodRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		Room bloodRoom = (Room) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
 		//TEST
 		bloodRoom.addOccupant(patient);
 		bloodRoom.removeOccupant(patient);
-		
-		assertTrue(ed.getDbPatient().get(3).contains(patient));
+		assertTrue(bloodRoom.getState().contentEquals("free"));
 	}
 
 	@Test

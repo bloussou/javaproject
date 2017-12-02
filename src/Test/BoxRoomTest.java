@@ -39,15 +39,8 @@ public class BoxRoomTest {
 		assertFalse("lol",boxRoom.getState().equalsIgnoreCase("lol"));
 	}
 
-	@Test
-	public void testAddOccupant() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testRemoveOccupant() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testUpdatePatientCharge() {
