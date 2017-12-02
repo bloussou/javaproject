@@ -3,7 +3,6 @@ package Facilities;
 import java.util.ArrayList;
 
 import Emergency.ED;
-import Rooms.BoxRoom;
 
 public class Stretcher extends Facility{
 
@@ -48,7 +47,7 @@ public class Stretcher extends Facility{
 	@Override
 	public void produce() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Stretcher n°"+ this.getId() +" produce");
 	}
 	
 	@Override

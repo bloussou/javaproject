@@ -80,6 +80,8 @@ public class BloodRoom extends Room{
 		this.patient.setLocation(this);
 		this.setState("occupied");
 		
+		
+		
 	}
 	
 	@Override
@@ -93,7 +95,7 @@ public class BloodRoom extends Room{
 		
 		//change patient db state : he goes to the WaitingRoom with the state bloodtested
 		edp.getDbPatient().get(12).remove(patient);
-		edp.getDbPatient().get(3).remove(patient);
+		edp.getDbPatient().get(3).add(patient);
 		
 	}
 	@Override

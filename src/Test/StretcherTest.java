@@ -43,12 +43,37 @@ public class StretcherTest {
 
 	@Test
 	public void testStretcherEDString() {
-		fail("Not yet implemented");
+		System.out.println("test setState !!!");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		
+		FacilityFactory facilityFactory  = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
+				
+		Stretcher stretcher = (Stretcher) facilityFactory.getFacility("STRETCHER", ed, "1");
+		
+		//TEST
+		assertTrue(stretcher.getEd().equals(ed));
+		assertTrue(stretcher.getName().equals("1"));
+		assertTrue(ed.getDbStretcher().get(0).contains(stretcher));
+		
 	}
 
 	@Test
 	public void testStretcherED() {
-		fail("Not yet implemented");
+		System.out.println("test setState !!!");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		
+		FacilityFactory facilityFactory  = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
+				
+		Stretcher stretcher = (Stretcher) facilityFactory.getFacility("STRETCHER", ed);
+		
+		//TEST
+		assertTrue(stretcher.getEd().equals(ed));
+		assertTrue(ed.getDbStretcher().get(0).contains(stretcher));
+		
 	}
 
 }
