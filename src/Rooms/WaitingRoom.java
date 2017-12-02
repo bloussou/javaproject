@@ -53,16 +53,18 @@ public class WaitingRoom extends Room{
 	}
 	@Override
 	public void addOccupant(Patient patient){
-		ED edp = this.getEd();
+		
 		occupants.add(patient);
 		if (occupants.size() == this.getCapacity()){
 			this.setState("full");
+		}
+		else {
+			this.setState("available");
 		}
 
 	}
 	@Override
 	public void removeOccupant(Patient patient){
-		ED edp = this.getEd();
 		occupants.remove(patient);
 		this.setState("available");
 		
@@ -86,11 +88,11 @@ public class WaitingRoom extends Room{
 			dbWaitingRoom.get(i).remove(this);
 		}
 		//add the shock room to the state shock room db
-		if (state.equals("available")){
+		if (state.equalsIgnoreCase("available")){
 			this.ed.getDbWaitingRoom().get(0).add(this);
 			this.state = state;
 		}
-		else if (state.equals("full")){
+		else if (state.equalsIgnoreCase("full")){
 			this.ed.getDbWaitingRoom().get(1).add(this);
 			this.state = state;
 		}

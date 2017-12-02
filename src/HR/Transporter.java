@@ -53,9 +53,6 @@ public class Transporter extends Human{
 	}
 	
 	public void transport(Patient patient, Room targetRoom){
-		ED edp = patient.getEd();
-		
-		
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
@@ -66,20 +63,6 @@ public class Transporter extends Human{
 		this.setState("transportation");
 		
 		//set the state of the patient
-		if (patient.getState().equalsIgnoreCase("waitingForMRI")){
-			edp.getDbPatient().get(5).remove(patient);
-		}
-		else if (patient.getState().equalsIgnoreCase("waitingForBloodTest")){
-			edp.getDbPatient().get(6).remove(patient);
-		}
-		else if (patient.getState().equalsIgnoreCase("waitingForRadio")){
-			edp.getDbPatient().get(7).remove(patient);
-		}
-		
-		
-		edp.getDbPatient().get(8).add(patient);
-		
-		
 		patient.setState("transportation");
 		
 		
@@ -94,32 +77,16 @@ public class Transporter extends Human{
 	}
 	
 	public void backToPhysician(Patient patient, WaitingRoom targetroom){
-		ED edp = patient.getEd();
-		
-		
-		//set the target room
-		this.setTargetRoom(targetRoom);
-		
-		
-		
 		this.setState("transportation");
 		
-		//set the state of the patient
-		if (patient.getState().equalsIgnoreCase("bloodtested")){
-			edp.getDbPatient().get(12).remove(patient);
-		}
-		else if (patient.getState().equalsIgnoreCase("mritested")){
-			edp.getDbPatient().get(13).remove(patient);
-		}
-		else if (patient.getState().equalsIgnoreCase("radiotested")){
-			edp.getDbPatient().get(14).remove(patient);
-		}
+		//set the target room
+		this.setTargetRoom(targetroom);
 		
 		
-		edp.getDbPatient().get(8).add(patient);
+		this.setLastPatientState(patient.getState());
 		
 		
-		
+		patient.setState("transportation");
 		
 		
 		//add the patient to patient transported
@@ -131,47 +98,26 @@ public class Transporter extends Human{
 	}
 	
 	public void dropPatient(Patient patient){
-		ED edp = patient.getEd();
+		//ajout à la room 
+		this.getTargetRoom().addOccupant(patient);
 		
-		
-		
-		if (this.getLastPatientState().equals("waitingForMRI")){
-			//set patient state
-			patient.setState("waitingForMRIT");
-			edp.getDbPatient().get(5).remove(patient);
-			edp.getDbPatient().get(9).add(patient);
-			
-			//ajout à la room 
-			this.getTargetRoom().addOccupant(patient);	
+		//set patient state
+		if (this.getLastPatientState().equalsIgnoreCase("waitingForMRI")){
+			patient.setState("waitingForMRIT");		
 		}
-		else if (this.getLastPatientState().equals("waitingForBloodTest")){
-			
-			//set patient state
+		
+		else if (this.getLastPatientState().equalsIgnoreCase("waitingForBloodTest")){
 			patient.setState("waitingForBloodTestT");
-			edp.getDbPatient().get(6).remove(patient);
-			edp.getDbPatient().get(10).add(patient);
-			
-			//ajout à la room 
-			this.getTargetRoom().addOccupant(patient);	
 		}
-		else if (this.getLastPatientState().equals("bloodTested") || this.getLastPatientState().equals("mriTested") || this.getLastPatientState().equals("radioTested")){
-			
-			
-			edp.getDbPatient().get(8).remove(patient);
-			edp.getDbPatient().get(3).add(patient);
-			
-			//ajout à la room 
-			this.getTargetRoom().addOccupant(patient);	
+		
+		else if (this.getLastPatientState().equalsIgnoreCase("bloodTested") || this.getLastPatientState().equalsIgnoreCase("mriTested") || this.getLastPatientState().equalsIgnoreCase("radioTested")){
+			patient.setState("WaitingForConsultation");
 		}
+		
 		else {
-			//set patient state
 			patient.setState("waitingForRadioT");
-			edp.getDbPatient().get(7).remove(patient);
-			edp.getDbPatient().get(11).add(patient);
-			
-			//ajout à la room 
-			this.getTargetRoom().addOccupant(patient);
 		}
+		
 		//set the state of the transporter
 		this.setState("idle");
 	}

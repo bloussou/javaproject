@@ -71,8 +71,8 @@ public class EventsManager {
 		ArrayList<Patient> boxRoomPatientList = new ArrayList<Patient>();		
 		
 		for (Patient patient : ed.getDbPatient().get(3)) {
-			if (patient.getSeverityLevel() == 'L2' || patient.getSeverityLevel() == 'L1'){
-				shockRoomPatientList.add(patient)
+			if (patient.getSeverityLevel() == "L2" || patient.getSeverityLevel() == "L1"){
+				shockRoomPatientList.add(patient);
 			}
 			else {
 				boxRoomPatientList.add(patient);

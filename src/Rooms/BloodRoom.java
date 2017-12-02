@@ -89,14 +89,6 @@ public class BloodRoom extends Room{
 		this.patient = null;
 		this.setState("free");
 		
-		
-		
-		ED edp = this.getEd();
-		
-		//change patient db state : he goes to the WaitingRoom with the state bloodtested
-		edp.getDbPatient().get(12).remove(patient);
-		edp.getDbPatient().get(3).add(patient);
-		
 	}
 	@Override
 	public void construct() {
@@ -117,7 +109,7 @@ public class BloodRoom extends Room{
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
 		
-		this.patient.setState("bloodTested");
+		
 		
 		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
 	}
@@ -127,7 +119,7 @@ public class BloodRoom extends Room{
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		
 		
-		
+		this.patient.setState("bloodTested");
 		this.removeOccupant(this.getPatient());
 		
 	}
