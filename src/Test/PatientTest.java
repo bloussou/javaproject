@@ -20,7 +20,6 @@ public class PatientTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
