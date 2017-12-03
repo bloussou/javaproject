@@ -7,19 +7,20 @@ import org.apache.commons.math3.distribution.LogNormalDistribution;
 public class LogNorm {
 	
 	public LogNorm(){}
-	
 	/*
-	 * f is the inner function in the integral
-	 */
+	
+	// f is the inner function in the integral
+	 
 	private static double f(double t){
 		return Math.exp(-t*t);
 	}
 	
 	
-	/*
-	 * integral( min, max, precision) is calculating the integral of the function f define in this class
-	 * it uses the simpson method
-	 */
+	
+	 // integral( min, max, precision) is calculating the integral of the function f define in this class
+	 // it uses the simpson method
+	 
+	
 	private static double integral(double a, double b, int n){
 		int i;
 		int z;
@@ -38,24 +39,23 @@ public class LogNorm {
 	    } 
 	
 	
-	/*
-	 * erf method implements the erf function
-	 */
+	
+	 // erf method implements the erf function
+	 
 	private static double erf(double z){
 		return (2 / Math.sqrt(Math.PI) * LogNorm.integral(0, z, 100 ));
 	}
 	
-	/*
-	 * logNormRepar is the repartition function of the LogNorm distribution
-	 */
+	
+	 // logNormRepar is the repartition function of the LogNorm distribution
+	 
 	private static double logNormRepar(double x, double mu, double sigma){
 		return 0.5+0.5*LogNorm.erf(  (Math.log(x)-mu)  / (sigma*Math.sqrt(2))  );
 	}
 	
-	/*
-	 * logNormReparderivate is the derived of the repartition function
-	 * 
-	 */
+	
+	 // logNormReparderivate is the derived of the repartition function
+	 
 	private static double logNormReparDerivate(double x, double mu, double sigma){
 		return 1/(x*sigma*Math.sqrt(2*Math.PI))*Math.exp((-1)*(Math.log(x)-mu)*(Math.log(x)-mu)/(2*sigma*sigma));
 	}
@@ -76,10 +76,16 @@ public class LogNorm {
 		
 		return x;	
 	}
-	
-//	public static double Rand2sample(double mu, double sigma){
-//		return new LogNormalDistribution(mu, sigma).sample();
-//	}
+	*/
+	/**
+	 * 
+	 * @param mu
+	 * @param sigma
+	 * @return {@link LogNormalDistribution#sample()}
+	 */
+	public static double Rand2sample(double mu, double sigma){
+		return new LogNormalDistribution(mu, sigma).sample();
+	}
 	
 
 }

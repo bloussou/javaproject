@@ -245,7 +245,10 @@ public class ED {
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @return {@link ED#dbNurse}
+	 */
 	public ArrayList<ArrayList<Nurse>> getDbNurse() {
 		return dbNurse;
 	}

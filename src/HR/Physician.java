@@ -11,17 +11,44 @@ import MessageBox.Message;
 
 
 public class Physician extends Human  implements Observer{
-	
+	/**
+	 * An int to give a unique id to each physician
+	 */
 	private static int compteurPhysicianId;
+	/**
+	 * An array with the patient overseeing by this physician
+	 */
 	private ArrayList<Patient> patientOverseeing;	
+	/**
+	 * An array with the patient the physician had been treating
+	 */
 	private ArrayList<Patient> patientAlreadyTreated;
+	/**
+	 * the start time of the current action of this physician
+	 */
 	private TimeStamp startTime;
+	/**
+	 * the end time of the current action of this physician
+	 */
 	private TimeStamp endTime;
+	/**
+	 * the duration of the current action of this physician
+	 */
 	private double duration;
+	/**
+	 * The mailbox of this physician :
+	 * <p>mailBox=[unread,already read]
+	 */
 	private ArrayList<ArrayList<Message>> mailBox;
 	
 	
-	
+	/**
+	 * Constructor of the physician
+	 * @param ed
+	 * @param name
+	 * @param surname
+	 * @param state
+	 */
 	public Physician(ED ed, String name, String surname, String state){
 		super();
 		
@@ -39,13 +66,18 @@ public class Physician extends Human  implements Observer{
 		this.mailBox = new ArrayList<ArrayList<Message>>();
 		
 		
-		//initialize the messageBox=[unread,already read]
+		
 		this.mailBox.add(new ArrayList<Message>());
 		this.mailBox.add(new ArrayList<Message>());
 	}
 	
 	
-	
+	/**
+	 * Constructor of the physician :
+	 * <li>set the state of the physician to idle</li>
+	 * <li>set the name and surname of the physician to Physician+id</li>
+	 * @param ed
+	 */
 	public Physician(ED ed){
 		super();
 		
@@ -69,33 +101,73 @@ public class Physician extends Human  implements Observer{
 	
 	
 	
-	
+	/**
+	 * 
+	 * @return {@link Physician#patientOverseeing}
+	 */
 	public ArrayList<Patient> getPatientOverseeing() {
 		return patientOverseeing;
 	}
+	/**
+	 * 
+	 * @return {@link Physician#patientAlreadyTreated}
+	 */
 	public ArrayList<Patient> getPatientAlreadyTreated() {
 		return patientAlreadyTreated;
 	}
+	/**
+	 * 
+	 * @return {@link Physician#startTime}
+	 */
 	public TimeStamp getStartTime() {
 		return startTime;
 	}
+	/**
+	 * 
+	 * @return {@link Physician#endTime}
+	 */
 	public TimeStamp getEndTime() {
 		return endTime;
 	}
+	/**
+	 * 
+	 * @return {@link Physician#duration}
+	 */
 	public double getDuration() {
 		return duration;
 	}
+	/**
+	 * Set the {@link Physician#duration} of the current event of the physician
+	 * @param duration
+	 */
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
+	/**
+	 * 
+	 * @return {@link Physician#mailBox}
+	 */
 	public ArrayList<ArrayList<Message>> getMailBox() {
 		return mailBox;
 	}
 	
 	
-	
+	/**
+	 * A method where the physician handle a new patient :
+	 * <li>set the state of the patient to inConsultation</li>
+	 * <li>set the state of the physician to visiting</li>
+	 * <li>add the patient to the {@link Physician#patientOverseeing}</li>
+	 * <li>set the state of the room to occupied</li>
+	 * <li>set the {@link Patient#setPhysician(Physician)}</li>
+	 * <li>add this event to the patient history</li>
+	 * @param patient
+	 * @param consultationRoom
+	 * @see Patient#setState(String)
+	 * @see Physician#setState(String)
+	 * @see BoxRoom#setState(String)
+	 * @see ShockRoom#setState(String)
+	 */
 	public void handleNewPatient(Patient patient, Room consultationRoom){
-		ED edp = this.getEd();
 		
 		//set the state of the physician
 		this.setState("visiting");
@@ -107,24 +179,7 @@ public class Physician extends Human  implements Observer{
 		patient.setState("inConsultation");
 		
 		//set the state of the room
-		if(consultationRoom.getState().equalsIgnoreCase("free")){
-			if(consultationRoom instanceof BoxRoom){
-				edp.getDbBoxRoom().get(0).remove(consultationRoom);
-				edp.getDbBoxRoom().get(1).add((BoxRoom) consultationRoom);
-			}
-			else if (consultationRoom instanceof ShockRoom) {
-				edp.getDbShockRoom().get(0).remove(consultationRoom);
-				edp.getDbShockRoom().get(1).add((ShockRoom) consultationRoom);
-			}
-			else {
-				System.out.println("Encore un soucis dans l'algo ???");
-			}
-			consultationRoom.setState("occupied");
-		}
-		else{
-			System.out.println("il y a un pb dans l'algo ici aussi ?");
-		}
-
+		consultationRoom.setState("occupied");
 		
 		//set the physician of the patient
 		patient.setPhysician(this);
@@ -135,6 +190,15 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
+	/**
+	 * Emit the verdict a the end of the exam : 
+	 * <li>set the patient state to released</li>
+	 * <li>add this event to the patient history</li>
+	 * <li>set the departure time of the patient</li>
+	 * <li>remove the patient from the {@link Physician#patientOverseeing}</li>
+	 * <li>add the patient to the {@link Physician#patientAlreadyTreated}</li>
+	 * @param patient
+	 */
 	public void emitVerdict(Patient patient){
 		TimeStamp departureTime = new TimeStamp();
 		patient.setState("released");
@@ -152,9 +216,23 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
-	
+	/**
+	 * Using the probability it gives a prescription add the end of the consultation to the patient . Set patient's state to the state to the prescription :
+	 * <li>Released and use {@link Physician#emitVerdict(Patient)}</li>
+	 * <li>waitingForRadio</li>
+	 * <li>waitingForBloodTest</li>
+	 * <li>waitingForMRI</li>
+	 * <li>add it to the history</li>
+	 * <li>set the state of the consultation room to free</li>
+	 * <li>set the physician state to idle</li>
+	 * @param patient
+	 * @param consultationRoom
+	 * @see Uniform#randSample(double, double)
+	 * @see Patient#setState(String)
+	 * @see Physician#setState(String)
+	 * @see Room#setState(String)
+	 */
 	public void prescribe(Patient patient, Room consultationRoom){
-		ED edp = patient.getEd();
 		
 		
 		//building the prescription
@@ -201,16 +279,22 @@ public class Physician extends Human  implements Observer{
 	}
 	
 	
-	/*
-	 * writeMessage allows this physician to write a message with the good arguments
+	/**
+	 * Write a message about a patient to a physician with an object and a content
+	 * @param patient
+	 * @param physician
+	 * @param obj
+	 * @param content
+	 * @see Message#Message(Patient, Physician, String, String)
 	 */
 	public void writeMessage(Patient patient, Physician physician, String obj, String content){
 		new Message(patient, physician, obj, content);
 	}
 	
 	
-	/*
-	 * readUnreadMessageBox shows the message unread and put it in the already read file	
+	/**
+	 * Read all the unread message of the physician and display "the mail box is empty !" if there is no message unread
+	 * @see Message#read()
 	 */
 	public void readMessage() {
 		ArrayList<Message> unread = this.mailBox.get(0);
@@ -226,8 +310,11 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
-	/*
-	 * readMessage, it allows to read only one message
+	/**
+	 * Read a decided message in the mailBox, display "there is no sucht message in the mailing box" if it's the case
+	 * @param message
+	 * @see Message#read()
+	 * @see Physician#mailBox
 	 */
 	public void readMessage(Message message){
 		ArrayList<Message> unread = this.mailBox.get(0);
@@ -240,8 +327,11 @@ public class Physician extends Human  implements Observer{
 		}
 	}
 	
-	/*
-	 * unReadMessage allows the physician to unread a message he has receive
+	/**
+	 * Unread a certain message that the physician has already read, display "this message do not exist or isn't read" if it's the case
+	 * @param message
+	 * @see Message#unRead()
+	 * @see Physician#mailBox
 	 */
 	public void unReadMessage(Message message){
 		ArrayList<Message> read = this.mailBox.get(1);
@@ -254,8 +344,11 @@ public class Physician extends Human  implements Observer{
 		}
 	}
 	
-	/*
-	 * Remove message is a method that allows to remove the message he chooses
+	/**
+	 * Remove a message in the mailBox, display "this message doesn't exist" if the message isn't in the mail Box
+	 * @param message
+	 * @see Message#removeMessage()
+	 * @see Physician#mailBox
 	 */
 	public void removeMessage(Message message){
 		ArrayList<Message> unread = this.mailBox.get(0);
@@ -276,6 +369,14 @@ public class Physician extends Human  implements Observer{
 		}
 	}
 	
+	/**
+	 * Sets the state of the Physician and moves him/her to the good list of {@link ED#getDbNurse()}, it :
+	 * <li>removes it from its last db state</li>
+	 * <li>put it in the good db</li>
+	 * 
+	 * @param String state
+	 * @see ED#getDbPhysician()
+	 */
 	@Override
 	public void setState(String state) {
 		
@@ -311,7 +412,10 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
-
+	/**
+	 * Display the following message  :
+	 * <p>"Physician n°" +this.getId() +"created"</p>
+	 */
 	@Override
 	public void create() {
 		// TODO Auto-generated method stub
