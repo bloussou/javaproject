@@ -62,17 +62,16 @@ public class BoxRoom extends Room{
 	@Override
 	public void addOccupant(Patient patient){
 		this.patient = patient;
-		
-		
 		this.setState("occupied");
 	}
+	
 	@Override
 	public void removeOccupant(Patient patient){
 		this.patient = null;
-		
-		
 		this.setState("free");
 	}
+	
+	
 	@Override
 	public void construct(){
 		

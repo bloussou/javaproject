@@ -5,8 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Emergency.ED;
+import Events.Time;
+import Events.TimeStamp;
 import Factory.FactoryCreator;
+import Factory.PeopleFactory;
 import Factory.RoomFactory;
+import HR.Patient;
+import Rooms.BoxRoom;
 import Rooms.Room;
 
 public class BoxRoomTest {
@@ -44,7 +49,24 @@ public class BoxRoomTest {
 
 	@Test
 	public void testUpdatePatientCharge() {
-		fail("Not yet implemented");
+		System.out.println("\n test update patient charges");
+		// INITIALISATION D'UN ED
+		
+		ED ed = new ED("ED1", "France");
+		Time time = Time.getInstanceTime();
+		time.timeGoes(10);
+		
+		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
+		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
+				
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
+		
+		
+		//TEST
+		boxRoom.updatePatientCharge(patient);
+		
+		assertTrue(patient.getCharges() == boxRoom.getCost());
 	}
 
 }

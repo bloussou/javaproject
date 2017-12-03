@@ -8,8 +8,6 @@ import Emergency.ED;
 import Facilities.Stretcher;
 import Factory.FacilityFactory;
 import Factory.FactoryCreator;
-import Factory.RoomFactory;
-import Rooms.Room;
 
 public class StretcherTest {
 

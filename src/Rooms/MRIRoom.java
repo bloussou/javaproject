@@ -88,11 +88,6 @@ public class MRIRoom extends Room {
 		this.patient = null;
 		this.setState("free");
 		
-		ED edp = this.getEd();
-		
-		//change patient db state : he goes to the WaitingRoom with the state MRITested
-		edp.getDbPatient().get(12).remove(patient);
-		edp.getDbPatient().get(3).remove(patient);
 		
 	}
 	@Override
@@ -122,7 +117,9 @@ public class MRIRoom extends Room {
 	public void endMRITesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
-		this.removeOccupant(this.patient);
+		this.patient.setState("mriTested");
+		this.removeOccupant(this.getPatient());
+		
 	}
 	
 	@Override

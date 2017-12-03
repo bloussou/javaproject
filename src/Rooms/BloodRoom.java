@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Emergency.ED;
 import Events.TimeStamp;
-import HR.Nurse;
 import HR.Patient;
 import Proba.Uniform;
 

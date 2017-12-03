@@ -85,16 +85,9 @@ public class RadioRoom extends Room{
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
-		this.patient = null;
+		
 		this.setState("free");
-		
-		
-		ED edp = this.getEd();
-
-		
-		//change patient db state : he goes to the WaitingRoom with the state radio tested
-		edp.getDbPatient().get(12).remove(patient);
-		edp.getDbPatient().get(3).remove(patient);
+		this.patient = null;
 		
 	}
 	
@@ -126,6 +119,7 @@ public class RadioRoom extends Room{
 	public void endRadioTesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
+		this.patient.setState("radioTested");
 		this.removeOccupant(this.patient);
 	}
 	
