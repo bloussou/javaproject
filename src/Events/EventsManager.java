@@ -28,6 +28,9 @@ public class EventsManager {
 		
 		
 	}
+
+	
+	
 	
 	private void checkNewRegistration(ED ed){
 		//check for each ED if new Registrations have to be done

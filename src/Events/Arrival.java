@@ -11,13 +11,12 @@ public class Arrival extends Event{
 		this.setEd(ed);
 		this.patient = patient;
 		this.setStartTime(new TimeStamp());
-		Time time = Time.getInstanceTime();
 		this.setEndTime(new TimeStamp(this.getDuration()));
 	}
 
 	@Override
 	public void endEvent() {
-		//nothing happens at the end of these events
+		//nothing happend at the end of this event
 	}
 
 	
