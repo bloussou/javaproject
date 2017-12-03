@@ -30,14 +30,6 @@ public class Time {
 		return "day:" + Integer.toString(this.min/1440) + "  hour:" + Integer.toString((this.min%1440)/60) + "  min:" + Integer.toString((this.min%1440)%60);
 	}
 
-	public static void main(String[] args) {
-		
-		Time t = Time.getInstanceTime();
-		for (int i = 0; i < 5426; i++) {
-			t.timeGoes(2);
-		}
-		System.out.println("Time : " + t.getTime() + " minutes");
-		System.out.println("Time : " + t.toString());
-	}
+
 	
 }
