@@ -36,7 +36,7 @@ public class WaitingRoom extends Room{
 		this.setCapacity(20);
 		this.occupants = new ArrayList<Patient>();
 		
-		this.setState("avalaible");
+		this.setState("available");
 	}
 	
 	

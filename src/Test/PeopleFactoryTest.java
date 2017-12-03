@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Emergency.ED;
-import Events.Time;
 import Events.TimeStamp;
 import Factory.FactoryCreator;
 import Factory.PeopleFactory;
@@ -21,7 +20,6 @@ public class PeopleFactoryTest {
 	// INITIALISATION D'UN ED
 		
 	ED ed = new ED("ED1", "France");
-	Time time = Time.getInstanceTime();
 		
 	PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 	
@@ -45,13 +43,13 @@ public class PeopleFactoryTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 			
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 		//TEST
-		Patient patient = (Patient) new PeopleFactory().getPatient(ed, "L1", new TimeStamp());
+		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		assertTrue(ed.getDbPatient().get(0).contains(patient));
+		assertTrue(patient.getSeverityLevel().equalsIgnoreCase("L1"));
 	}
 
 }

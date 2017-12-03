@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import Emergency.*;
@@ -20,21 +19,16 @@ public class PhysicianTest {
 		System.out.println("\n test patient overseeing !");
 		// INITIALISATION D'UN ED
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 		
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 		
 		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
 		
 		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
 		
 		// TEST
 
@@ -58,17 +52,13 @@ public class PhysicianTest {
 			
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 				
 				
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 				
 		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
 				
 		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
 		
 		
 		
@@ -105,19 +95,12 @@ public class PhysicianTest {
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
-		Patient patient3 = (Patient) peopleFactory.getPatient(ed, "L2", new TimeStamp());
-		Patient patient4 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
-		Patient patient5 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 						
 		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
 						
-		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
 				
 						
 				
@@ -142,7 +125,6 @@ public class PhysicianTest {
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -183,7 +165,6 @@ public class PhysicianTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");		
 				
@@ -227,8 +208,6 @@ public class PhysicianTest {
 		time.timeGoes(10);
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -251,8 +230,6 @@ public class PhysicianTest {
 		time.timeGoes(10);
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -279,8 +256,6 @@ public class PhysicianTest {
 		time.timeGoes(10);
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -309,8 +284,6 @@ public class PhysicianTest {
 		time.timeGoes(10);
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -340,8 +313,6 @@ public class PhysicianTest {
 		time.timeGoes(10);
 					
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 						
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());

@@ -5,11 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Emergency.ED;
-import Events.Time;
 import Events.TimeStamp;
 import Factory.FactoryCreator;
 import Factory.PeopleFactory;
-import HR.Nurse;
 import HR.Patient;
 
 public class PatientTest {

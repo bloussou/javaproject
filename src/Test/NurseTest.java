@@ -18,11 +18,8 @@ public class NurseTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 		
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
@@ -54,11 +51,9 @@ public class NurseTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");		
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
@@ -84,7 +79,6 @@ public class NurseTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
@@ -122,11 +116,9 @@ public class NurseTest {
 		// INITIALISATION D'UN ED
 		
 		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-		FacilityFactory facilityFactory = (FacilityFactory) FactoryCreator.getFactory("FACILITY");		
+		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");	
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
