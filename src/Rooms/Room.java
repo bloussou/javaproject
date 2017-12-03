@@ -204,6 +204,13 @@ public abstract class Room {
 		this.distParam = distParam;
 	}
 	
+	/**
+	 * Return a description of the Room like :
+	 * 		return "Room [ed=" + ed + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
+				+ ", distParam=" + Arrays.toString(distParam) + ", capacity=" + capacity + "]";
+	 * @return String
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "Room [ed=" + ed + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
