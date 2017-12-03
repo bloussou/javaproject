@@ -8,11 +8,31 @@ import HR.Physician;
 
 public class BoxRoom extends Room{
 	
+	/**
+	 * a static int to give a unique id to each BoxRoom
+	 */
 	private static int compteurBoxRoomId;
+	
+	/**
+	 * The patient occupying this BoxRoom (all Severity-Level accepted)
+	 */
 	private Patient patient;
+	
+	/**
+	 * The physician occupying this BoxRoom
+	 */
 	private Physician physician;
 	
 
+	/**
+	 * Create a BoxRoom with those parameters
+	 * @param ed
+	 * @param name
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see BoxRoom#setEd(ED)
+	 * @see BoxRoom#setName(String)
+	 */
 	public BoxRoom(ED ed, String name){
 		super();
 		this.setCapacity(1);  // the default value of capacity is one
@@ -23,9 +43,19 @@ public class BoxRoom extends Room{
 		this.setName(name);
 		this.setCapacity(1);
 		
-		
 		this.setState("free");
 	}
+	
+	
+	/**
+	 * Create a BoxRoom named 'BoxRoom N' with those parameters
+	 * @param ed
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see BoxRoom#setEd(ED)
+	 * @see BoxRoom#setName(String)
+	 * @see BoxRoom#addOccupant(Patient)
+	 */
 	public BoxRoom(ED ed){
 		super();
 		
@@ -39,25 +69,6 @@ public class BoxRoom extends Room{
 		this.setState("free");
 	}
 	
-	
-	public static int getCompteurBoxRoomId() {
-		return compteurBoxRoomId;
-	}
-	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
-		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
-	}
-
-	public void setPhysician(Physician physician) {
-		this.physician = physician;
-	}
-	
-	public Patient getPatient() {
-		return patient;
-	}
-	public Physician getPhysician() {
-		return physician;
-	}
-
 	
 	@Override
 	public void addOccupant(Patient patient){
@@ -103,6 +114,28 @@ public class BoxRoom extends Room{
 			System.out.println("cet état n'existe pas");
 		}
 	}
+
 	
+	
+	public static int getCompteurBoxRoomId() {
+		return compteurBoxRoomId;
+	}
+	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
+		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
+	}
+
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
+	
+	public Patient getPatient() {
+		return patient;
+	}
+	public Physician getPhysician() {
+		return physician;
+	}
+
+	
+		
 	
 }

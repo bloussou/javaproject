@@ -3,13 +3,32 @@ package Rooms;
 import java.util.ArrayList;
 
 import Emergency.ED;
+import HR.Human;
+import HR.Nurse;
 import HR.Patient;
 
 public class WaitingRoom extends Room{
 
+	/**
+	 * a static int to give a unique id to each WaitingRoom
+	 */
 	private static int compteurWaitingRoomId;
+	
+	/**
+	 * an array which contains the lists of patients in this WaitingRoom
+	 */
 	private ArrayList<Patient> occupants;
 	
+	
+	/**
+	 * Create a WaitingRoom with those parameters
+	 * @param ed
+	 * @param name
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see WaitingRoom#setEd(ED)
+	 * @see WaitingRoom#setName(String)
+	 */
 	public WaitingRoom(ED ed, String name){
 		super();
 		
@@ -19,12 +38,18 @@ public class WaitingRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(20);
-		this.occupants = new ArrayList<Patient>();
-		
-		
-		
+		this.occupants = new ArrayList<Patient>();		
 		this.setState("available");
 	}
+	
+	/**
+	 * Create a WaitingRoom named 'WaitingRoom N' with those parameters
+	 * @param ed
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see WaitingRoom#setEd(ED)
+	 * @see WaitingRoom#setName(String)
+	 */
 	public WaitingRoom(ED ed){
 		super();
 		
@@ -32,7 +57,7 @@ public class WaitingRoom extends Room{
 		this.setId(WaitingRoom.compteurWaitingRoomId);
 		
 		this.setEd(ed);
-		this.setName("WaintingRoom" + Integer.toString(this.getId()));
+		this.setName("WaitingRoom" + Integer.toString(this.getId()));
 		this.setCapacity(20);
 		this.occupants = new ArrayList<Patient>();
 		
@@ -40,17 +65,7 @@ public class WaitingRoom extends Room{
 	}
 	
 	
-	public static int getCompteurWaitingRoomId() {
-		return compteurWaitingRoomId;
-	}
-	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
-		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
-	}
 	
-	
-	public ArrayList<Patient> getOccupants(){
-		return occupants;
-	}
 	@Override
 	public void addOccupant(Patient patient){
 		
@@ -61,18 +76,27 @@ public class WaitingRoom extends Room{
 		else {
 			this.setState("available");
 		}
-
 	}
+	
+
 	@Override
 	public void removeOccupant(Patient patient){
 		occupants.remove(patient);
 		this.setState("available");
 		
 	}
+	
+	/**
+	 * Display the message :
+	 * "Construction d'une WaitingRoom :\n" + this.toString()
+	 * @see Room#toString()
+	 */
 	@Override
 	public void construct(){
-		
+		System.out.println("Construction d'une WaitingRoom : \n" + this.toString());
 	}
+	
+
 	@Override
 	public void updatePatientCharge(Patient patient){
 		if (occupants.contains(patient)){
@@ -100,6 +124,20 @@ public class WaitingRoom extends Room{
 			System.out.println("cet état n'existe pas");
 		}
 	}
+	
+	public static int getCompteurWaitingRoomId() {
+		return compteurWaitingRoomId;
+	}
+	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
+		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
+	}
+	
+	
+	public ArrayList<Patient> getOccupants(){
+		return occupants;
+	}
+	
+
 	
 	
 }

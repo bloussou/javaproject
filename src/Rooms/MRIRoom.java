@@ -9,13 +9,42 @@ import Proba.Uniform;
 
 public class MRIRoom extends Room {
 
+	/**
+	 * a static int to give a unique id to each MRIdRoom
+	 */
 	private static int compteurMRIRoomId;
+	
+	/**
+	 * The patient currently treated in this MRIRoom
+	 */
 	private Patient patient;
+
+	/**
+	 * The TimeStamp corresponding to the time at the beginning of the MRI test
+	 */
 	private TimeStamp startTime;
+	
+	/**
+	 * The TimeStamp corresponding to the time at the end of the MRI test
+	 */
 	private TimeStamp endTime;
+	
+	/** 
+	 * The duration (int) in minutes of the test
+	 */
 	private double duration;
 	
-	
+	/**
+	 * Create an MRIRoom with those parameters
+	 * @param ed
+	 * @param name
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see MRIRoom#setEd(ED)
+	 * @see MRIoom#setName(String)
+	 * @see MRIRoom#setDist(String)
+	 * @see MRIRoom#setDistParam(float[])
+	 */
 	public MRIRoom(ED ed, String name){
 		super();
 		
@@ -31,6 +60,17 @@ public class MRIRoom extends Room {
 		this.setState("free");
 		
 	}
+	
+	/**
+	 * Create a MRIRoom named 'MRIRoom N' with those parameters
+	 * @param ed
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see MRIRoom#setEd(ED)
+	 * @see MRIRoom#setName(String)
+	 * @see MRIRoom#setDist(String)
+	 * @see MRIRoom#setDistParam(float[])
+	 */
 	public MRIRoom(ED ed){
 		super();
 		

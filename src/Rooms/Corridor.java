@@ -1,15 +1,31 @@
 package Rooms;
 
 import java.util.ArrayList;
-
 import Emergency.ED;
 import HR.Patient;
 
 public class Corridor extends Room{
 
+	/**
+	 * a static int to give a unique id to each ShockRoom
+	 */
 	private static int compteurCorridorId;
+	
+	/**
+	 * an array which represents the list of the patients waiting in the corridor (no place in WaitingRooms)
+	 */
 	private ArrayList<Patient> occupants;
 	
+	
+	/**
+	 * Create a Corridor with those parameters
+	 * @param ed
+	 * @param name
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see Corridor#setEd(ED)
+	 * @see Corridor#setName(String)
+	 */
 	public Corridor(ED ed, String name){
 		super();
 		
@@ -20,6 +36,15 @@ public class Corridor extends Room{
 		this.setName(name);
 		this.setCapacity(1000000);
 	}
+	
+	/**
+	 * Create a Corridor called 'Corridor N' with those parameters
+	 * @param ed
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see Corridor#setEd(ED)
+	 * @see Corridor#setName(String)
+	 */
 	public Corridor(ED ed){
 		super();
 		

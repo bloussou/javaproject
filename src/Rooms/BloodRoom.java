@@ -9,13 +9,45 @@ import Proba.Uniform;
 
 public class BloodRoom extends Room{
 
+	
+	/**
+	 * a static int to give a unique id to each BloodRoom
+	 */
 	private static int compteurBloodRoomId;
+	
+	/**
+	 * The patient currently treated in this BloodRoom
+	 */
 	private Patient patient;
+	
+	/**
+	 * The TimeStamp corresponding to the time at the beginning of the blood test
+	 */
 	private TimeStamp startTime;
+	
+	/**
+	 * The TimeStamp corresponding to the time at the end of the blood test
+	 */
 	private TimeStamp endTime;
+	
+	/** 
+	 * The duration (int) in minutes of the test
+	 */
 	private double duration;
 	
 	
+	
+	/**
+	 * Create a BloodRoom with those parameters
+	 * @param ed
+	 * @param name
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see BloodRoom#setEd(ED)
+	 * @see BloodRoom#setName(String)
+	 * @see BloodRoom#setDist(String)
+	 * @see BloodRoom#setDistParam(float[])
+	 */
 	public BloodRoom(ED ed, String name){
 		super();
 		
@@ -29,6 +61,17 @@ public class BloodRoom extends Room{
 		this.setState("free");
 		
 	}
+	
+	/**
+	 * Create a BloodRoom named 'BloodRoom N' with those parameters
+	 * @param ed
+	 * @see Room#getId()
+	 * @see Room#getEd()
+	 * @see BloodRoom#setEd(ED)
+	 * @see BloodRoom#setName(String)
+	 * @see BloodRoom#setDist(String)
+	 * @see BloodRoom#setDistParam(float[])
+	 */
 	public BloodRoom(ED ed){
 		super();
 		

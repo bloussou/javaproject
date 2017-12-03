@@ -218,9 +218,28 @@ public abstract class Room {
 	}
 	
 	
+	/**
+	 * A method to add a new patient in the Room :
+	 * <li>adds the patient to this.occupants</li>
+	 * <li>updates the state of the Room</li>
+	 * @param patient
+	 */
 	abstract public void addOccupant(Patient patient);
+	
+	/**
+	 * A method to remove a new patient from the Room :
+	 * <li>removes the patient from this.occupants</li>
+	 * <li>updates the state of the Room</li>
+	 * @param patient
+	 */
 	abstract public void removeOccupant(Patient patient);
+	
 	abstract public void construct();
+	
+	/**
+	 * A method to update the total charge of a patient currently in this Room
+	 * @param patient
+	 */
 	abstract public void updatePatientCharge(Patient patient);
 		
 		
