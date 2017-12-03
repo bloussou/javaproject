@@ -167,9 +167,15 @@ public class Nurse extends Human{
 		endTime = new TimeStamp(duration);
 	}
 	/**
-	 * Drop the patient in the targeted waiting room
-	 * 
+	 * Drop the patient in the targeted waiting room,
+	 * it :
+	 * <li>set the patient state to waitingForConsultation</li>
+	 * <li>add the patient to the target room</li>
+	 * <li>the the nurse state to idle</li>
 	 * @param patient
+	 * @see Patient#setState(String)
+	 * @see Nurse#setState
+	 * @see Nurse#targetRoom
 	 */
 	public void dropPatient(Patient patient){
 		patient.setState("waitingForConsultation");
@@ -185,45 +191,92 @@ public class Nurse extends Human{
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return {@link Nurse#compteurNurseId}
+	 */
 	public static int getCompteurNurseId() {
 		return compteurNurseId;
 	}
+	/**
+	 * sets the {@link Nurse#compteurNurseId}
+	 * @param compteurNurseId
+	 */
 	public static void setCompteurNurseId(int compteurNurseId) {
 		Nurse.compteurNurseId = compteurNurseId;
 	}
+	/**
+	 * 
+	 * @return {@link Nurse#patientRegistered}
+	 */
 	public ArrayList<Patient> getPatientRegistered() {
 		return patientRegistered;
 	}
+	/**
+	 * add a patient to the list {@link Nurse#patientRegistered}
+	 * @param patientRegistered
+	 */
 	public void addPatientRegistered(Patient patientRegistered) {
 		this.patientRegistered.add(patientRegistered);
 	}
+	/**
+	 * 
+	 * @return {@link Nurse#patientTransported}
+	 */
 	public ArrayList<Patient> getPatientTransported() {
 		return patientTransported;
 	}
-	public void setPatientTransported(ArrayList<Patient> patientTransported) {
-		this.patientTransported = patientTransported;
-	}
+	/**
+	 * 
+	 * @return {@link Nurse#startTime}
+	 */
 	public TimeStamp getStartTime() {
 		return startTime;
 	}
+	/**
+	 * Sets the {@link Nurse#startTime}
+	 * @param startTime
+	 */
 	public void setStartTime(TimeStamp startTime) {
 		this.startTime = startTime;
 	}
+	/**
+	 * 
+	 * @return {@link Nurse#endTime}
+	 */
 	public TimeStamp getEndTime() {
 		return endTime;
 	}
+	/**
+	 * Sets the {@link Nurse#endTime}
+	 * @param endTime
+	 */
 	public void setEndTime(TimeStamp endTime) {
 		this.endTime = endTime;
 	}
+	/**
+	 * 
+	 * @return {@link Nurse#targetRoom}
+	 */
 	public Room getTargetRoom() {
 		return targetRoom;
 	}
+	/**
+	 * Sets the {@link Nurse#targetRoom}
+	 * @param targetRoom
+	 */
 	public void setTargetRoom(Room targetRoom) {
 		this.targetRoom = targetRoom;
 	}
 	
-	
+	/**
+	 * Sets the state of the nurse and moves him/her to the good list of {@link ED#getDbNurse()}, it :
+	 * <li>removes it from its last db state</li>
+	 * <li>put it in the good db</li>
+	 * 
+	 * @param String state
+	 * @see ED#getDbNurse()
+	 */
 	@Override
 	public void setState(String state){
 		
