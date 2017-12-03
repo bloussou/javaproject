@@ -107,14 +107,17 @@ public abstract class Human {
 		this.state = state;
 	}
 
-	
-	@Override
 	/**
 	 * Return a description of the human like :
 	 * return "Human [EDname=" + ed.getName() + ", id=" + id + ", name=" + name + ", surname=" + surname + ", state=" + state + "]";
 	 * @return String
-	 * 
+	 * @see Human#ed
+	 * @see Human#id
+	 * @see Human#name
+	 * @see Human#surname
+	 * @see Human#state
 	 */
+	@Override
 	public String toString() {
 		return "Human [EDname=" + ed.getName() + ", id=" + id + ", name=" + name + ", surname=" + surname + ", state=" + state + "]";
 	}

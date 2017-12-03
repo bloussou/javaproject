@@ -8,16 +8,47 @@ import Rooms.Room;
 import Rooms.WaitingRoom;
 
 public class Nurse extends Human{
-	
+	/**
+	 * a int to give a unique id to each Nurse
+	 */
 	private static int compteurNurseId;
+	/**
+	 * An array which contains the patient registered by this Nurse
+	 */
 	private ArrayList<Patient> patientRegistered;
+	/**
+	 * An array which contains the patient transported by this Nurse
+	 */
 	private ArrayList<Patient> patientTransported;
+	/**
+	 * the start time of the event the nurse is doing
+	 */
 	private TimeStamp startTime;
+	/**
+	 * the end time of the event the nurse is doing
+	 */
 	private TimeStamp endTime;
+	/**
+	 * the duration of a transportation
+	 * 2 min
+	 */
 	final int duration = 2;
+	/**
+	 * The target room of the Nurse to drop the patient
+	 */
 	private Room targetRoom;
 	
-
+	/**
+	 * Create a Nurse with this parameters
+	 * @param ed
+	 * @param name
+	 * @param surname
+	 * @param state
+	 * @see Human#getId()
+	 * @see Human#setId(int)
+	 * @see Nurse#patientRegistered
+	 * @see Nurse#patientTransported
+	 */
 	public Nurse(ED ed, String name, String surname, String state){
 		super();
 		
@@ -38,7 +69,14 @@ public class Nurse extends Human{
 	}	
 	
 	
-	
+	/**
+	 * Create a Nurse with only a parameters
+	 * @param ed
+	 * @see Human#getId()
+	 * @see Human#setId(int)
+	 * @see Nurse#patientRegistered
+	 * @see Nurse#patientTransported
+	 */
 	public Nurse(ED ed){
 		super();
 
@@ -58,14 +96,25 @@ public class Nurse extends Human{
 	
 	
 	
-	
+	/**
+	 * Display the message :
+	 * "Création d'une infirmière :\n" + this.toString()
+	 * @see Human#toString()
+	 */
 	@Override
 	public void create(){
 		System.out.println("Création d'une infirmière :\n" + this.toString());
 	}
 	
 	
-	
+	/**
+	 * A method to register a patient it :
+	 * <li>adds the patient to {@link ED#getEdRegister()}</li>
+	 * <li>set the state of the patient an dmove it to the good list of {@link ED#getDbPatient()}</li>
+	 * @param patient
+	 * @see ED#addPatientToEdRegister(Patient)
+	 * @see Patient#setState(String)
+	 */
 	public void register(Patient patient){
 		
 		patient.getEd().addPatientToEdRegister(patient);
@@ -73,37 +122,42 @@ public class Nurse extends Human{
 		patient.setState("Registered");
 		this.addPatientRegistered(patient);
 
-		//move the patient to the good db list
-		ED edp = patient.getEd();
-		edp.getDbPatient().get(0).remove(patient);
-		edp.getDbPatient().get(1).add(patient);
 		
 	}
 	
 	
 	
-	
+	/**
+	 * A method to transport the patient to the good target room (here a waiting room) :
+	 * it :
+	 * <p>
+	 * <li>set the target room</li>
+	 * <li>set the state of the nurse to transporting</li>
+	 * <li>set the state of the patient to transporting</li>
+	 * <li>add the patient to {@link Nurse#patientTransported}</li>
+	 * <li>set the start time and the end time</li>
+	 * </p>
+	 * @param patient
+	 * @param targetRoom
+	 * @see Nurse#setState(String)
+	 * @see Patient#setState(String)
+	 * @see Nurse#patientTransported
+	 * @see TimeStamp
+	 * @see Nurse#startTime
+	 * @see Nurse#endTime
+	 * @see Nurse#duration
+	 */
 	public void transport(Patient patient, WaitingRoom targetRoom){
-		ED edp = patient.getEd();
-		//String nurseState = this.getState();
-		String patientState = patient.getState();		
-		
 		//set the target room
 		this.setTargetRoom(targetRoom);
-		
 		
 		
 		//set the state of the nurse
 		this.setState("transporting");
 		
 		
-		
-		
 		//set the state of the patient
 		patient.setState("transporting");
-		edp.getDbPatient().get(1).remove(patient);
-		edp.getDbPatient().get(2).add(patient);
-		
 		
 		//add the patient to patient transported
 		this.patientTransported.add(patient);
@@ -112,18 +166,12 @@ public class Nurse extends Human{
 		startTime = new TimeStamp() ;
 		endTime = new TimeStamp(duration);
 	}
-
+	/**
+	 * Drop the patient in the targeted waiting room
+	 * 
+	 * @param patient
+	 */
 	public void dropPatient(Patient patient){
-		ED edp = patient.getEd();
-		
-		
-		if (patient.getState().equalsIgnoreCase("transporting")){
-			edp.getDbPatient().get(2).remove(patient);
-		}
-		else{
-			System.out.println("il y a un problème dans l'algo");
-		}
-		edp.getDbPatient().get(3).add(patient);
 		patient.setState("waitingForConsultation");
 		
 			
