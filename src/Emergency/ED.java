@@ -15,13 +15,57 @@ import Rooms.ShockRoom;
 import Rooms.WaitingRoom;
 
 public class ED {
+	/**
+	 * le compteur d'ED, il permet que chaque ED ai un id unique
+	 */
 	private static int compteurEDId;
+	/**
+	 * le nom de l'hopital si il en a un
+	 * 
+	 * @see ED#setName(String)
+	 * @see ED#getName()
+	 */
 	private String name;
+	/**
+	 * Country name of the ED
+	 * 
+	 * @see ED#setCountry(String)
+	 * @see ED#getCountry()
+	 */
 	private String country;
+	/**
+	 * l'id unique de chaque hopital
+	 * 
+	 * L'id est unique et ne peut pas être changé, il est juste affichable
+	 * 
+	 * @see ED#getId()
+	 */
 	private int id;
+	/**
+	 * La liste de tout les patients enregistrés dans l'hopital. 
+	 * 
+	 * @see ED#getEdRegister()
+	 */
 	private ArrayList<Patient> edRegister;
-	private ArrayList<ArrayList<Nurse>> dbNurse; // [[idle],[transporting],[ofDuty]]
-	private ArrayList<ArrayList<Physician>> dbPhysician; // [[idle],[visiting],[ofDuty]]
+	/**
+	 * La liste des nurses de l'hôpital et de leur état.
+	 * Elle est composées de trois sous listes sous cette forme :
+	 * [[idle],[transporting],[ofDuty]]
+	 * 
+	 * @see ED#getDbNurse()
+	 */
+	private ArrayList<ArrayList<Nurse>> dbNurse; 
+	/**
+	 * La liste des médecins de l'hôpital et de leur état.
+	 * Elle est composées de trois sous listes sous cette forme :
+	 * [[idle],[visiting],[ofDuty]]
+	 * 
+	 * @see ED#getDbPhysician()
+	 */
+	private ArrayList<ArrayList<Physician>> dbPhysician; 
+	/**
+	 * 
+	 */
 	private ArrayList<ArrayList<Transporter>> dbTransporter; // [[idle],[transportation],[ofDuty]]
 	private ArrayList<ArrayList<Patient>> dbPatient; // [[arrived],[registered],[transporting],[waitingForConsultation],[inConsultation],[waitingForMRI],[waitingForBloodTest],[waitingForRadio],[transportation],[waitingForMRIT],[waitingForBloodTestT],[waitingForRadioT],[bloodTested],[mriTested],[radioTested],[released]]
 	private ArrayList<ArrayList<Stretcher>> dbStretcher; // [[free],[occupied]]
