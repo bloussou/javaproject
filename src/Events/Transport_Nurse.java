@@ -6,9 +6,21 @@ import Rooms.*;
 
 public class Transport_Nurse extends Event{
 
+	/**
+	 * The patient which is associated to this instance of the event Transport_Nurse
+	 */
 	private Patient patient;
+	
+	/**
+	 * The nurse which is associated to this instance of the event Transport_Nurse
+	 */
 	private Nurse nurse;
+	
+	/**
+	 * The WaitingRoom which is associated to this instance of the event Transport_Nurse
+	 */
 	private WaitingRoom targetRoom;
+	
 	
 	public Transport_Nurse(ED ed, Patient patient, Nurse nurse, WaitingRoom targetRoom){
 		this.setEd(ed);

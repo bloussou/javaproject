@@ -21,7 +21,7 @@ public class Uniform {
 	 * @return random double in [l,h]
 	 */
 
-	public double randSample(double l , double h) {
+	public static double randSample(double l , double h) {
 		double x = Math.random();
 		
 		return (x*(h-l)+l);

@@ -2,6 +2,7 @@ package Events;
 
 import Emergency.ED;
 import HR.*;
+import Proba.Uniform;
 import Rooms.*;
 
 public class Consultation extends Event{
@@ -18,13 +19,10 @@ public class Consultation extends Event{
 		this.targetRoom = targetRoom;
 		
 		this.setStartTime(new TimeStamp());
-		Time time = Time.getInstanceTime();
+		this.setDuration((int) Uniform.randSample(5, 20));
 		this.setEndTime(new TimeStamp(this.getDuration()));
 		
 		physician.handleNewPatient(patient, targetRoom);
-		
-
-		
 	}
 	
 	
