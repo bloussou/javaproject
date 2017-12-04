@@ -60,10 +60,6 @@ public class Nurse extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		
-		
-		
-		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
 	}	
@@ -121,6 +117,10 @@ public class Nurse extends Human{
 
 		patient.setState("Registered");
 		this.addPatientRegistered(patient);
+		
+		//set the history of the patient
+		this.startTime = new TimeStamp();
+		patient.setHistory("(registered, "+ this.getStartTime().toString() + "), ");
 
 		
 	}
@@ -159,12 +159,10 @@ public class Nurse extends Human{
 		//set the state of the patient
 		patient.setState("transporting");
 		
-		//add the patient to patient transported
-		this.patientTransported.add(patient);
+		//set the history of the patient
+		this.startTime = new TimeStamp();
+		patient.setHistory("(transporting, "+ this.getStartTime().toString() + "), ");
 		
-		//set the start and the end of the transportation
-		startTime = new TimeStamp() ;
-		endTime = new TimeStamp(duration);
 	}
 	/**
 	 * Drop the patient in the targeted waiting room,
@@ -179,15 +177,16 @@ public class Nurse extends Human{
 	 */
 	public void dropPatient(Patient patient){
 		patient.setState("waitingForConsultation");
-		
 			
 		//ajout à la room 
 		this.getTargetRoom().addOccupant(patient);
 	
 		//set the state of the nurse
-		this.setState("idle");
+		this.setState("idle");	
 		
-		
+		//set the history of the patient
+		this.startTime = new TimeStamp();
+		patient.setHistory("(dropedInWaitingRoom, "+ this.getStartTime().toString() + "), ");
 	}
 	
 	

@@ -13,8 +13,8 @@ public class Arrival extends Event{
 	
 	/**
 	 * Creation of an Arrival :
-	 * <li>patient associated to this instance of arrival<li>
-	 * <li>set the timeStamp of this arrival<li>
+	 * <li>patient associated to this instance of arrival</li>
+	 * <li>set the timeStamp of this arrival</li>
 	 * @param ed
 	 * @param patient
 	 * @see Event#setStartTime(TimeStamp)
@@ -30,7 +30,7 @@ public class Arrival extends Event{
 
 	/**
 	 * Processing the actions which have to be performed at the end of the event :
-	 * <li>Nothing has to happen because an arrivla is instantaneous<li>
+	 * <li>Nothing has to happen because an arrival is instantaneous</li>
 	 */
 	@Override
 	public void endEvent() {

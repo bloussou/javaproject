@@ -21,16 +21,31 @@ public class Transport_Nurse extends Event{
 	 */
 	private WaitingRoom targetRoom;
 	
-	
+	/**
+	 * Creation of a Transport_Nurse event :
+	 * <li>ED associated to this instance of transport</li>
+	 * <li>patient associated to this instance of transport</li>
+	 * <li>nurse associated to this instance of transport</li>
+	 * <li>set the timeStamp of this transport</li>
+	 * <li>perform the transport of {@link Transport_Nurse#patient} by {@link Transport_Nurse#nurse} 
+	 * to the room {@link Transport_Nurse#targetRoom}</li>
+	 * @param ed
+	 * @param patient
+	 * @param nurse
+	 * @param targetRoom
+	 * @see Event#setStartTime(TimeStamp)
+	 * @see Event#setDuration(int)
+	 * @see Event#setEndTime(TimeStamp)
+	 * @see Nurse#transport(Patient)
+	 */
 	public Transport_Nurse(ED ed, Patient patient, Nurse nurse, WaitingRoom targetRoom){
 		this.setEd(ed);
 		this.patient = patient;
 		this.nurse = nurse;
 		this.targetRoom = targetRoom;
-		this.setDuration(2);
-		
+
 		this.setStartTime(new TimeStamp());
-		Time time = Time.getInstanceTime();
+		this.setDuration(2);
 		this.setEndTime(new TimeStamp(this.getDuration()));
 		
 		this.nurse.transport(patient, targetRoom);
@@ -38,11 +53,15 @@ public class Transport_Nurse extends Event{
 
 	
 	
-	
+	/**
+	 * Processing the actions which have to be performed at the end of the event :
+	 * <li>{@link Transport_Nurse#nurse} drops {@link Transport_Nurse#patient} in 
+	 * {@link Transport_Nurse#targetRoom}</li>
+	 */
 	@Override
 	public void endEvent() {
-		//nothing happens at the end of these events
 		
+		this.nurse.dropPatient(patient);
 	}
 	
 }

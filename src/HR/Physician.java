@@ -60,12 +60,9 @@ public class Physician extends Human  implements Observer{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		
 		this.patientOverseeing = new ArrayList<Patient>();
 		this.patientAlreadyTreated = new ArrayList<Patient>();
 		this.mailBox = new ArrayList<ArrayList<Message>>();
-		
-		
 		
 		this.mailBox.add(new ArrayList<Message>());
 		this.mailBox.add(new ArrayList<Message>());

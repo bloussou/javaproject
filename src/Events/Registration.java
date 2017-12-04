@@ -17,11 +17,11 @@ public class Registration extends Event{
 	
 	/**
 	 * Creation of a Registration :
-	 * <li>ED associated to this instance of registration<li>
-	 * <li>patient associated to this instance of registration<li>
-	 * <li>nurse associated to this instance of registration<li>
-	 * <li>set the timeStamp of this registration<li>
-	 * <li>perform the registration of {@link Registration#patient} by {@link Registration#nurse}<li>
+	 * <li>ED associated to this instance of registration</li>
+	 * <li>patient associated to this instance of registration</li>
+	 * <li>nurse associated to this instance of registration</li>
+	 * <li>set the timeStamp of this registration</li>
+	 * <li>perform the registration of {@link Registration#patient} by {@link Registration#nurse}</li>
 	 * @param ed
 	 * @param patient
 	 * @param nurse
@@ -43,6 +43,10 @@ public class Registration extends Event{
 	}
 	
 	
+	/**
+	 * Processing the actions which have to be performed at the end of the event :
+	 * <li>Nothing has to happen because a registration is instantaneous</li>
+	 */
 	@Override
 	public void endEvent() {
 		//nothing happens at the end of these events
