@@ -40,7 +40,15 @@ public class FacilityFactory extends AbstractFactory {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**
+	 * Return the good facility :
+	 * <li>"Stretcher" return Stretcher</li>
+	 * <li>"other" return null</li>
+	 * @param facilityType
+	 * @param ed
+	 * @return {@link Stretcher} or null
+	 * @see Stretcher#Stretcher(ED)
+	 */
 	@Override
 	public Facility getFacility(String facilityType, ED ed) {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
@@ -48,6 +56,15 @@ public class FacilityFactory extends AbstractFactory {
 		}
 		return null;
 	}
+	/**
+	 * Return the good facility :
+	 * <li>"Stretcher" return Stretcher</li>
+	 * <li>"other" return null</li>
+	 * @param facilityType
+	 * @param ed
+	 * @return {@link Stretcher} or null
+	 * @see Stretcher#Stretcher(ED, String))
+	 */
 	@Override
 	public Facility getFacility(String facilityType, ED ed, String name) {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){

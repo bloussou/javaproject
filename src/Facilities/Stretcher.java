@@ -5,9 +5,16 @@ import java.util.ArrayList;
 import Emergency.ED;
 
 public class Stretcher extends Facility{
-
+	/**
+	 * A int to give a unique id to each stretcher
+	 */
 	private static int compteurStretcherId;
-	
+	/**
+	 * Build a stretcher and set its state to "free"
+	 * @param ed
+	 * @param name
+	 * @see Stretcher#setState(String)
+	 */
 	public Stretcher(ED ed, String name){
 		super();
 		
@@ -19,6 +26,11 @@ public class Stretcher extends Facility{
 		
 		this.setState("free");
 	}
+	/**
+	 * Build a stretcher and set its state to "free"
+	 * @param ed
+	 * @see Stretcher#setState(String)
+	 */
 	public Stretcher(ED ed){
 		super();
 		
@@ -32,24 +44,32 @@ public class Stretcher extends Facility{
 
 	}
 	
-	
+	/**
+	 * 
+	 * @return {@link Stretcher#compteurStretcherId}
+	 */
 	public static int getCompteurStretcherId() {
 		return compteurStretcherId;
 	}
 
 
-	public static void setCompteurStretcherId(int compteurStretcherId) {
-		Stretcher.compteurStretcherId = compteurStretcherId;
-	}
-	
 
-
+	/**
+	 * write the following string on the console : 
+	 * "Stretcher n°"+ this.getId() +" produce"
+	 */
 	@Override
 	public void produce() {
 		// TODO Auto-generated method stub
 		System.out.println("Stretcher n°"+ this.getId() +" produce");
 	}
-	
+	/**
+	 * Set the state of the stretcher and put it in the good {@link ED#getDbStretcher()}
+	 * <li>state1 : free</li>
+	 * <li>state2 : occupied</li>
+	 * @see ED#getDbStretcher()
+	 * @see Facility#state
+	 */
 	@Override
 	public void setState(String state){
 		ArrayList<ArrayList<Stretcher>> dbStretcher = this.ed.getDbStretcher();

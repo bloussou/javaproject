@@ -27,7 +27,27 @@ public class RoomFactory extends AbstractFactory{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**
+	 * Return the good room chosen with the string :
+	 * <li>"BoxRoom" return BoxRoom</li>
+	 * <li>"ShockRoom" return ShockRoom</li>
+	 * <li>"WaitingRoom" return WaitingRoom</li>
+	 * <li>"BloodRoom" return BloodRoom</li>
+	 * <li>"MRIRoom" return MRIRoom</li>
+	 * <li>"RadioRoom" return RadioRoom</li>
+	 * <li>"Corridor" return Corridor</li>
+	 * <li>"other" return null</li>
+	 * @param roomType
+	 * @param ed
+	 * @return {@link BoxRoom} or {@link ShockRoom} or {@link WaitingRoom} or {@link BloodRoom} or {@link MRIRoom} or {@link RadioRoom} or {@link Corridor}
+	 * @see BoxRoom#BoxRoom(ED)
+	 * @see ShockRoom#ShockRoom(ED)
+	 * @see WaitingRoom#WaitingRoom(ED)
+	 * @see BloodRoom#BloodRoom(ED)
+	 * @see MRIRoom#MRIRoom(ED)
+	 * @see RadioRoom#RadioRoom(ED)
+	 * 
+	 */
 	@Override
 	public Room getRoom(String roomType, ED ed) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
@@ -53,6 +73,8 @@ public class RoomFactory extends AbstractFactory{
 		}
 		return null;
 	}
+	
+	
 	@Override
 	public Room getRoom(String roomType, ED ed, String name) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
@@ -79,7 +101,27 @@ public class RoomFactory extends AbstractFactory{
 		return null;
 	}
 	
-	
+	/**
+	 * Return the good room chosen with the string :
+	 * <li>"BoxRoom" return BoxRoom</li>
+	 * <li>"ShockRoom" return ShockRoom</li>
+	 * <li>"WaitingRoom" return WaitingRoom</li>
+	 * <li>"BloodRoom" return BloodRoom</li>
+	 * <li>"MRIRoom" return MRIRoom</li>
+	 * <li>"RadioRoom" return RadioRoom</li>
+	 * <li>"Corridor" return Corridor</li>
+	 * <li>"other" return null</li>
+	 * @param roomType
+	 * @param ed
+	 * @param name
+	 * @return {@link BoxRoom} or {@link ShockRoom} or {@link WaitingRoom} or {@link BloodRoom} or {@link MRIRoom} or {@link RadioRoom} or {@link Corridor}
+	 * @see BoxRoom#BoxRoom(ED, String))
+	 * @see ShockRoom#ShockRoom(ED, String))
+	 * @see WaitingRoom#WaitingRoom(ED, String))
+	 * @see BloodRoom#BloodRoom(ED, String))
+	 * @see MRIRoom#MRIRoom(ED, String))
+	 * @see RadioRoom#RadioRoom(ED, String))
+	 */
 	@Override
 	public Facility getFacility(String facilityType, ED ed) {
 		// TODO Auto-generated method stub
