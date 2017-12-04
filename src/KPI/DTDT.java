@@ -19,7 +19,7 @@ public class DTDT extends Kpi{
 	 */
 	private String severityLevel;
 	/**
-	 * The ed where the los has to be calculate
+	 * The ed where the dtdt has to be calculate
 	 */
 	private ED ed;
 	
@@ -54,8 +54,7 @@ public class DTDT extends Kpi{
 					if (this.getSeverityLevel().equalsIgnoreCase(eddbPatient.get(j).getSeverityLevel())){
 						dbPatient.add(eddbPatient.get(j));
 					}
-					else{
-						
+					else{	
 					}
 				}
 			}
