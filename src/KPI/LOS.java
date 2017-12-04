@@ -42,7 +42,7 @@ public class LOS extends Kpi{
 	 */
 	@Override
 	public double calculate() {
-		ArrayList<Patient> dbPatient = ed.getDbPatient().get(14);
+		ArrayList<Patient> dbPatient = ed.getDbPatient().get(15);
 		if (dbPatient.isEmpty()){
 			return -1;
 		}
@@ -69,9 +69,17 @@ public class LOS extends Kpi{
 		// TODO Auto-generated method stub
 		return "KPI :"+ "LOS = " +this.calculate()+"for the ED : " +this.ed.getName();
 	}
+	/**
+	 * 
+	 * @return {@link LOS#los}
+	 */
 	public double getLos() {
 		return los;
 	}
+	/**
+	 * set the {@link LOS#los}
+	 * @param los
+	 */
 	public void setLos(double los) {
 		this.los = los;
 	}

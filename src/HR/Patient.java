@@ -46,6 +46,10 @@ public class Patient extends Human{
 	 * the unique physician of this patient
 	 */
 	private Physician physician;
+	/**
+	 * the time hen the patient start the consultation
+	 */
+	private TimeStamp dtdtime;
 	
 	/**
 	 * The constructor of the patient
@@ -328,11 +332,28 @@ public class Patient extends Human{
 		else if (state.equalsIgnoreCase("released")){
 			this.ed.getDbPatient().get(15).add(this);
 			this.state = state;
+			this.departureTime = new TimeStamp();
 		}
 		
 		else{
 			System.out.println("cet état n'existe pas");
 		}		
+	}
+	
+	
+	/**
+	 * 
+	 * @return {@link Patient#dtdtime}
+	 */
+	public TimeStamp getDtdtime() {
+		return dtdtime;
+	}
+	/**
+	 * Set the {@link Patient#dtdtime}
+	 * @param dtdtime
+	 */
+	public void setDtdtime(TimeStamp dtdtime) {
+		this.dtdtime = dtdtime;
 	}
 
 		

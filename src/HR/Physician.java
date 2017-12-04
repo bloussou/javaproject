@@ -160,6 +160,7 @@ public class Physician extends Human  implements Observer{
 	 * <li>set the state of the room to occupied</li>
 	 * <li>set the {@link Patient#setPhysician(Physician)}</li>
 	 * <li>add this event to the patient history</li>
+	 * <li>set the {@link Patient#setDtdtime(TimeStamp)}</li>
 	 * @param patient
 	 * @param consultationRoom
 	 * @see Patient#setState(String)
@@ -187,6 +188,9 @@ public class Physician extends Human  implements Observer{
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(visited, "+ this.getStartTime().toString() + "), ");
+		
+		//set the dtdt time of the patient
+		patient.setDtdtime(new TimeStamp());
 		
 	}
 	
