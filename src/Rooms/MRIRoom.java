@@ -145,18 +145,17 @@ public class MRIRoom extends Room {
 	
 	public void mriTesting(){
 		this.startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(30,70));
+		this.setDuration(Uniform.randSample(30,70));
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
-		
-		this.patient.setState("mriTested");	
-		
+
 		this.patient.setHistory("(MRItested, "+ this.startTime.toString() + "), ");
 	}
 	
 	public void endMRITesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
+		
 		this.patient.setState("mriTested");
 		this.removeOccupant(this.getPatient());
 		

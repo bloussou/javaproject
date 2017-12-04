@@ -1,5 +1,11 @@
 package Events;
 
-public class RadioExamination {
+public class RadioExamination extends Event {
+
+	@Override
+	public void endEvent() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
