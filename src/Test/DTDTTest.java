@@ -29,7 +29,7 @@ public class DTDTTest {
 		Patient p1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient p2 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient p3 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
-		Patient p4 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
+		Patient p4 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 		
 		Physician phys1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
 		
@@ -45,9 +45,17 @@ public class DTDTTest {
 		time.timeGoes(40);
 		phys1.handleNewPatient(p3, box1);
 		p3.setState("waitingForBloodTest");
+		
+		time.timeGoes(40);
+		phys1.handleNewPatient(p4, box1);
 
-		DTDT dtdt = new DTDT(ed);
-		assertTrue(dtdt.calculate() == 30);
+		DTDT dtdtL1 = new DTDT(ed, "L1");
+		assertTrue(dtdtL1.calculate() == 30);
+		DTDT dtdtL2 = new DTDT(ed, "L2");
+		System.out.println(dtdtL2.toString());
+		assertTrue(dtdtL2.calculate() == -1);
+		DTDT dtdtL3 = new DTDT(ed, "L3");
+		assertTrue(dtdtL3.calculate() == 100);
 	}
 
 	@Test
@@ -78,7 +86,7 @@ public class DTDTTest {
 		phys1.handleNewPatient(p3, box1);
 		p3.setState("waitingForBloodTest");
 
-		DTDT dtdt = new DTDT(ed);
+		DTDT dtdt = new DTDT(ed, "L1");
 		System.out.println(dtdt.toString());
 		assertTrue(dtdt.calculate() == 30);
 	}

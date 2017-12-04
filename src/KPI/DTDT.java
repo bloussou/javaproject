@@ -10,6 +10,15 @@ import HR.Patient;
  */
 public class DTDT extends Kpi{
 	/**
+	 * The severity level of the patient
+	 * <li>L1</li>
+	 * <li>L2</li>
+	 * <li>L3</li>
+	 * <li>L4</li>
+	 * <li>L5</li>
+	 */
+	private String severityLevel;
+	/**
 	 * The ed where the los has to be calculate
 	 */
 	private ED ed;
@@ -20,18 +29,19 @@ public class DTDT extends Kpi{
 	private double dtdt;
 	
 	/**
-	 * Build a dtdt and set its ed
+	 * Build a dtdt and set its ed and severity level
 	 * @param ed
 	 * @see DTDT#ed
 	 */
-	public DTDT(ED ed) {
+	public DTDT(ED ed, String severityLevel) {
 		this.setEd(ed);
+		this.setSeverityLevel(severityLevel);
 	}
 
 	/**
 	 * It calculates the door to door time on all the patient who have been handle by a physician !
 	 * @see ED#getDbPatient()
-	 * @return {@link DTDT#dtdt} or -1 if there is no patient with who have been handle by a physician !
+	 * @return {@link DTDT#dtdt} or -1 if there is no patient with who have been handle by a physician with the good severity level!
 	 */
 	@Override
 	public double calculate() {
@@ -41,7 +51,12 @@ public class DTDT extends Kpi{
 			ArrayList<Patient> eddbPatient = ed.getDbPatient().get(i);
 			if (!eddbPatient.isEmpty()){
 				for (int j=0; j<eddbPatient.size(); j++){
-					dbPatient.add(eddbPatient.get(j));
+					if (this.getSeverityLevel().equalsIgnoreCase(eddbPatient.get(j).getSeverityLevel())){
+						dbPatient.add(eddbPatient.get(j));
+					}
+					else{
+						
+					}
 				}
 			}
 			else {
@@ -105,6 +120,14 @@ public class DTDT extends Kpi{
 	 */
 	public void setDtdt(double dtdt) {
 		this.dtdt = dtdt;
+	}
+
+	public String getSeverityLevel() {
+		return severityLevel;
+	}
+
+	public void setSeverityLevel(String severityLevel) {
+		this.severityLevel = severityLevel;
 	}
 
 }
