@@ -7,7 +7,7 @@ Physician :
 *ofDuty
 
 Patient :
-*arrived 0
+*arriving 0
 *registered 1
 *transporting 2
 *waitingForConsultation 3

@@ -74,7 +74,7 @@ public class ED {
 	/**
 	 * La liste des patients de l'hôpital et de leur état.
 	 * Elle est composées de 15 sous listes sous cette forme :
-	 * [[arrived],[registered],[transporting],[waitingForConsultation],[inConsultation],[waitingForMRI],[waitingForBloodTest],[waitingForRadio],[transportation],[waitingForMRIT],[waitingForBloodTestT],[waitingForRadioT],[bloodTested],[mriTested],[radioTested],[released]]
+	 * [[arriving],[registered],[transporting],[waitingForConsultation],[inConsultation],[waitingForMRI],[waitingForBloodTest],[waitingForRadio],[transportation],[waitingForMRIT],[waitingForBloodTestT],[waitingForRadioT],[bloodTested],[mriTested],[radioTested],[released]]
 	 * 
 	 * @see ED#getDbPatient() 
 	 */

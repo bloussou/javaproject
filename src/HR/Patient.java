@@ -87,7 +87,7 @@ public class Patient extends Human{
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
-		this.setHistory("(arrived, "+ arrivalTime.toString() + "), ");
+		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
 		
 		this.location = null;
@@ -121,13 +121,13 @@ public class Patient extends Human{
 		this.setEd(ed);
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
-		this.setState("Arrived");
+		this.setState("Arriving");
 		
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
-		this.setHistory("(arrived, "+ arrivalTime.toString() + "), ");
+		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
 		
 		this.location = null;
@@ -276,7 +276,7 @@ public class Patient extends Human{
 		}
 		
 		//add the patient to the state patient db
-		if (state.equalsIgnoreCase("arrived")){
+		if (state.equalsIgnoreCase("arriving")){
 			this.ed.getDbPatient().get(0).add(this);
 			this.state = state;
 		}

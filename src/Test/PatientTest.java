@@ -24,8 +24,8 @@ public class PatientTest {
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		//test arrived
-		patient.setState("arrived");
-		assertTrue("arrived",patient.getState().equalsIgnoreCase("arrived"));
+		patient.setState("arriving");
+		assertTrue("arriving",patient.getState().equalsIgnoreCase("arriving"));
 		assertTrue(ed.getDbPatient().get(0).contains(patient));
 		assertFalse(ed.getDbPatient().get(1).contains(patient));
 		assertFalse(ed.getDbPatient().get(2).contains(patient));
@@ -323,10 +323,32 @@ public class PatientTest {
 				assertFalse(ed.getDbPatient().get(0).contains(patient));
 				assertFalse(ed.getDbPatient().get(15).contains(patient));
 				
+				
+				//test arrived
+				patient.setState("waitingForFinalConsultation");
+				assertTrue("waitingForFinalConsultation",patient.getState().equalsIgnoreCase("waitingForFinalConsultation"));
+				assertTrue(ed.getDbPatient().get(15).contains(patient));
+				assertFalse(ed.getDbPatient().get(1).contains(patient));
+				assertFalse(ed.getDbPatient().get(2).contains(patient));
+				assertFalse(ed.getDbPatient().get(3).contains(patient));
+				assertFalse(ed.getDbPatient().get(4).contains(patient));
+				assertFalse(ed.getDbPatient().get(5).contains(patient));
+				assertFalse(ed.getDbPatient().get(6).contains(patient));
+				assertFalse(ed.getDbPatient().get(7).contains(patient));
+				assertFalse(ed.getDbPatient().get(8).contains(patient));
+				assertFalse(ed.getDbPatient().get(9).contains(patient));
+				assertFalse(ed.getDbPatient().get(10).contains(patient));
+				assertFalse(ed.getDbPatient().get(11).contains(patient));
+				assertFalse(ed.getDbPatient().get(12).contains(patient));
+				assertFalse(ed.getDbPatient().get(13).contains(patient));
+				assertFalse(ed.getDbPatient().get(14).contains(patient));
+				assertFalse(ed.getDbPatient().get(16).contains(patient));
+				
+				
 				//test arrived
 				patient.setState("released");
 				assertTrue("released",patient.getState().equalsIgnoreCase("released"));
-				assertTrue(ed.getDbPatient().get(15).contains(patient));
+				assertTrue(ed.getDbPatient().get(16).contains(patient));
 				assertFalse(ed.getDbPatient().get(1).contains(patient));
 				assertFalse(ed.getDbPatient().get(2).contains(patient));
 				assertFalse(ed.getDbPatient().get(3).contains(patient));

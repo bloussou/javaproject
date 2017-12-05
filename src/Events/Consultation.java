@@ -17,6 +17,7 @@ public class Consultation extends Event{
 	 */
 	private Physician physician;
 	
+	private boolean physicianAlreadyConsulted;
 	/**
 	 * The consultation room {BoxRoom, ShockRoom} which is associated to this instance of the event Consultation
 	 */
@@ -31,7 +32,9 @@ public class Consultation extends Event{
 	 * <li>set the start time of the consultation</li>
 	 * <li>generate duration thanks to the {@link Uniform} method</li>
 	 * <li>set the end time of the consultation</li>
-	 * <li>The physician handles this patient
+	 * <li>If the patient has never seen this physician, the physician handles this patient as a new Patient</li>
+	 * <li>Else if the patient has already seen him, it means that he has already passed a prescribed test, and 
+	 * is just waiting for a verdict from his physician </li>
 	 * @param ed
 	 * @param patient
 	 * @param physician
@@ -46,14 +49,19 @@ public class Consultation extends Event{
 		this.targetRoom = targetRoom;
 		
 		this.setStartTime(new TimeStamp());
-		if(patient.getPhysician().equals(physician)){
+		
+		this.physicianAlreadyConsulted = (patient.getPhysician()== this.physician);
+		
+		
+		if(this.physicianAlreadyConsulted){
 			this.setDuration(2);
 		}else {
 			this.setDuration((int) Uniform.randSample(5, 20));
+			physician.handleNewPatient(patient, targetRoom);
 		}
-		this.setEndTime(new TimeStamp(this.getDuration()));
 		
-		physician.handleNewPatient(patient, targetRoom);
+		this.setEndTime(new TimeStamp(this.getDuration()));
+
 	}
 	
 	/**
@@ -62,8 +70,12 @@ public class Consultation extends Event{
 	 */
 	@Override
 	public void endEvent() {
-		this.physician.prescribe(patient, targetRoom);
 		
+		if(this.physicianAlreadyConsulted){
+			this.physician.emitVerdict(this.patient);
+		}else {
+			this.physician.prescribe(this.patient, this.targetRoom);
+		}
 	}
 
 }

@@ -9,21 +9,25 @@ public class EventsManager {
 	public ArrayList<Event> inProgress;
 	public ArrayList<ED> eds;
 	
+	/**
+	 * The constructor initializes the event list InProgress, and the EDs' list
+	 */
 	public EventsManager() {
 		this.inProgress = new ArrayList<Event>();
 		this.eds = new ArrayList<ED>();
 	}
 	
-	
+	/**
+	 * For each ED in the eds' list, check if new events have to be created
+	 * @param eds
+	 */
 	public void checkNewEvents(ArrayList<ED> eds){
 		
 		for (ED ed : eds) {
 			
 			this.checkNewRegistration(ed);
 			this.checkNewTransport_Nurse(ed);
-			
-			
-			
+	
 		}
 		
 		
