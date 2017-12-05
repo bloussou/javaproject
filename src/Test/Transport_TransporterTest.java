@@ -83,7 +83,6 @@ public class Transport_TransporterTest {
 		assertTrue("1.1",transporter1.getState().equalsIgnoreCase("idle"));
 		assertTrue("1.2",transporter2.getState().equalsIgnoreCase("idle"));
 		assertTrue("2.1", patient1.getState().equalsIgnoreCase("waitingForMRIT"));
-		assertTrue("2.2", patient2.getState().equalsIgnoreCase("waitingForFinalConsultation"));
 		assertTrue("3.1", boxRoom.getState().equalsIgnoreCase("occupied"));
 		assertTrue("3.2", bRoom.getState().equalsIgnoreCase("occupied"));
 		assertTrue("4.1", transporter1.getLastPatientState().equalsIgnoreCase("waitingForMRI"));

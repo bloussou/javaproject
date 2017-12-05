@@ -117,7 +117,7 @@ public class Transporter extends Human{
 		this.startTime = new TimeStamp() ;
 		this.endTime = new TimeStamp(duration);
 		
-		
+		patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
 	}
 	
 //	/**
@@ -182,11 +182,13 @@ public class Transporter extends Human{
 		}
 		
 		else {
-			patient.setState("waitingForFinalConsultation");
+			patient.setState("waitingForConsultation");
 		}
 		
 		//set the state of the transporter
 		this.setState("idle");
+		
+		patient.setHistory("("+patient.getState() +", "+ this.getEndTime().toString() + "), ");
 	}
 	
 

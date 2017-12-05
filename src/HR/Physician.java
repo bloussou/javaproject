@@ -189,6 +189,8 @@ public class Physician extends Human  implements Observer{
 		//set the dtdt time of the patient
 		patient.setDtdtime(new TimeStamp());
 		
+		System.out.println(patient.getName()+patient.getHistory());
+		
 	}
 	
 	/**
@@ -207,6 +209,8 @@ public class Physician extends Human  implements Observer{
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
 		System.out.println(patient.getHistory());
 		patient.setDepartureTime(departureTime);
+		
+		patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
 		
 		//remove the patient of the list patient
 		this.patientOverseeing.remove(patient);

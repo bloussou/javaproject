@@ -21,9 +21,12 @@ public class EventsManager {
 	
 
 	public void nextStep(){
-		this.dequeueEvents();
-		this.timeGoesToNextEventEnd();
 		this.checkNewEvents(eds);
+		this.timeGoesToNextEventEnd();
+		System.out.println(this.inProgress);
+		this.dequeueEvents();
+		
+		
 
 	}
 
@@ -269,20 +272,20 @@ public class EventsManager {
 			nextEventEndTime = this.getInProgress().get(0).getEndTime().getTimeStamp();
 		}
 
-		this.time.timeGoes(Math.min(nextArrivalTime, nextEventEndTime));
+		this.time.timeGoes(Math.min(nextArrivalTime, nextEventEndTime)-time.getTime());
 	}
 	
 	/**
 	 * Dequeue all the events in progress that are supposed to end currently
 	 */
 	public void dequeueEvents(){
-		int index = 0;
-		if (!this.getInProgress().isEmpty()){
-			while (this.getInProgress().get(index).getEndTime().getTimeStamp() <= time.getTime() && index<this.getInProgress().size()){
-				this.getInProgress().get(0).endEvent();
-				this.getInProgress().remove(0);
-				index ++;
-			}
+		
+		
+		while (!this.getInProgress().isEmpty() && this.getInProgress().get(0).getEndTime().getTimeStamp() <= time.getTime() ){
+			this.getInProgress().get(0).endEvent();
+			this.getInProgress().remove(0);
+				
+		
 		}
 	}
 	
