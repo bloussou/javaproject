@@ -2,7 +2,6 @@ package Events;
 
 import Emergency.ED;
 import HR.Patient;
-import Proba.Uniform;
 import Rooms.MRIRoom;
 
 public class MRIExamination extends Event {
