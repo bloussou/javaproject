@@ -100,6 +100,36 @@ public class EventsManager {
 			}
 	}
 	
+	private void checkNewBloodExamination(ED ed) {
+		while(!ed.getDbBloodRoom().get(0).isEmpty() && !ed.getDbPatient().get(10).isEmpty()){
+			this.insertNewEvent(new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0)));
+		}
+	}
+	
+	private void checkNewMRIExamination(ED ed) {
+		while(!ed.getDbMRIRoom().get(0).isEmpty() && !ed.getDbPatient().get(9).isEmpty()){
+			this.insertNewEvent(new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0)));
+		}
+	}
+	
+	private void checkNewRadioExamination(ED ed) {
+		while(!ed.getDbRadioRoom().get(0).isEmpty() && !ed.getDbPatient().get(11).isEmpty()){
+			this.insertNewEvent(new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0)));
+		}
+	}
+	
+	private void insertNewEvent(Event event){
+		if(this.inProgress.isEmpty()){
+			this.inProgress.add(event);
+		}
+		else {
+			int i=0;
+			while (event.getEndTime().getTimeStamp() >= inProgress.get(i).getEndTime().getTimeStamp()){
+				i++;
+			}
+			inProgress.add(i, event);
+		}
+	}
 	
 	public void timeGoesToNextEventEnd(){
 		
