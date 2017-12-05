@@ -118,6 +118,7 @@ public class EventsManager {
 		}
 	}
 	
+	
 	private void insertNewEvent(Event event){
 		if(this.inProgress.isEmpty()){
 			this.inProgress.add(event);
