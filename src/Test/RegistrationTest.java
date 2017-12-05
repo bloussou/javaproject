@@ -35,8 +35,7 @@ public class RegistrationTest {
 		// CHECK 
 		assertTrue("1.1", ed.getEdRegister().contains(patient));
 		assertTrue("2.1", registration.getStartTime().toString().equals(time.toString()));
-		
-
+		assertTrue("2.2", registration.getEndTime().toString().equals(time.toString()));
 	}
 
 }

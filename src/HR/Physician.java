@@ -269,9 +269,7 @@ public class Physician extends Human  implements Observer{
 		//set the state of the physician
 		this.setState("idle");
 
-	
-	
-		
+
 		//set the state of the room
 		
 		consultationRoom.setState("free");
