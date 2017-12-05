@@ -121,6 +121,8 @@ public class Nurse extends Human{
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(registered, "+ this.getStartTime().toString() + "), ");
+		
+		System.out.println(patient.getName()+" register at :" + startTime.getTimeStamp());
 
 		
 	}

@@ -238,7 +238,7 @@ public class EventsManager {
 		}
 		else {
 			int i=0;
-			while (event.getEndTime().getTimeStamp() >= inProgress.get(i).getEndTime().getTimeStamp() && i<this.getInProgress().size()){
+			while (i<this.getInProgress().size() && event.getEndTime().getTimeStamp() >= inProgress.get(i).getEndTime().getTimeStamp() ){
 				i++;
 			}
 			inProgress.add(i, event);
