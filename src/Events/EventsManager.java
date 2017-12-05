@@ -6,39 +6,46 @@ import Emergency.ED;
 
 public class EventsManager {
 
-	public ArrayList<Event> inProgress;
-	public ArrayList<ED> eds;
+	private ArrayList<Event> inProgress;
+	private ArrayList<ED> eds;
+	public Time time;
 	
 	/**
 	 * The constructor initializes the event list InProgress, and the EDs' list
 	 */
-	public EventsManager() {
+	public EventsManager(ArrayList<ED> eds) {
 		this.inProgress = new ArrayList<Event>();
-		this.eds = new ArrayList<ED>();
+		this.eds = eds;
+		this.time = Time.getInstanceTime();
 	}
 	
 
+	public void nextStep(){
+		this.dequeueEvents();
+		this.timeGoesToNextEventEnd();
+		this.checkNewEvents(eds);
+
+	}
 
 	/**
 	 * For each ED in the eds' list, check if new events have to be created
 	 * @param eds
 	 */
 	public void checkNewEvents(ArrayList<ED> eds){
-		
 		for (ED ed : eds) {
-			
 			this.checkNewRegistration(ed);
 			this.checkNewTransport_Nurse(ed);
-	
+			this.checkNewConsultation(ed);
+			this.checkTransport_transporter(ed);
+			this.checkNewBloodExamination(ed);
+			this.checkNewMRIExamination(ed);
+			this.checkNewRadioExamination(ed);
 		}
-		
-		
 	}
 	
 	
-	
 	/**
-	 * check for each ED if new Registrations have to be done
+	 * check in ED if new Registrations have to be done
 	 * @param ed
 	 */
 	public void checkNewRegistration(ED ed){
@@ -55,7 +62,7 @@ public class EventsManager {
 	
 	
 	/**
-	 * check for each ED if new Transportation by a Nurse to a WaitingRoom have to be done
+	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be done
 	 * @param ed
 	 */
 	public void checkNewTransport_Nurse(ED ed){
@@ -70,7 +77,7 @@ public class EventsManager {
 	}
 	
 	/**
-	 * check for each ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
+	 * check in ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
 	 * @param ed
 	 */
 	public void checkNewConsultation(ED ed){
@@ -115,25 +122,44 @@ public class EventsManager {
 	}
 	
 	
-	
+	/**
+	 * check in ED if new BloodExamination have to be done
+	 * @param ed
+	 */
 	public void checkNewBloodExamination(ED ed) {
 		while(!ed.getDbBloodRoom().get(0).isEmpty() && !ed.getDbPatient().get(10).isEmpty()){
 			this.insertNewEvent(new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0)));
 		}
 	}
 	
+	/**
+	 * check in ED if new MRIExamination have to be done
+	 * @param ed
+	 */
 	public void checkNewMRIExamination(ED ed) {
 		while(!ed.getDbMRIRoom().get(0).isEmpty() && !ed.getDbPatient().get(9).isEmpty()){
 			this.insertNewEvent(new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0)));
 		}
 	}
 	
+	/**
+	 * check in ED if new RadioExamination have to be done
+	 * @param ed
+	 */
 	public void checkNewRadioExamination(ED ed) {
 		while(!ed.getDbRadioRoom().get(0).isEmpty() && !ed.getDbPatient().get(11).isEmpty()){
 			this.insertNewEvent(new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0)));
 		}
 	}
 	
+	/**
+	 * check in ED if new Transport by a transporter have to be done
+	 * <li>Check if patients who have been tested are waiting to be transported to another consultation with the physician they have formely met in consultation</li>
+	 * <li>Check if patients are waiting to be transported to an MRITest Room</li>
+	 * <li>Check if patients are waiting to be transported to an BloodTest Room</li>
+	 * <li>Check if patients are waiting to be transported to an RadioTest Room</li>
+	 * @param ed
+	 */
 	public void checkTransport_transporter(ED ed){
 		ArrayList<Patient> patientTested = new ArrayList<Patient>();
 		patientTested.addAll(ed.getDbPatient().get(12));
@@ -201,28 +227,101 @@ public class EventsManager {
 	
 	
 	
-	
+	/**
+	 * Insert a new event in the list InProgress, of events in progress. Insert it so that the list is sorted by endTime.
+	 * @param event
+	 * @see Event#getEndTime()
+	 */
 	public void insertNewEvent(Event event){
 		if(this.inProgress.isEmpty()){
 			this.inProgress.add(event);
 		}
 		else {
 			int i=0;
-			while (event.getEndTime().getTimeStamp() >= inProgress.get(i).getEndTime().getTimeStamp()){
+			while (event.getEndTime().getTimeStamp() >= inProgress.get(i).getEndTime().getTimeStamp() && i<this.getInProgress().size()){
 				i++;
 			}
 			inProgress.add(i, event);
 		}
 	}
 	
-	
+	/**
+	 * Time flows automatically to the next change in the system :
+	 * <li>Either flows to the next Event end</li>
+	 * <li>Either flows to the next arrival time</li>
+	 * @see Event#getEndTime()
+	 * @see Event#endEvent()
+	 * @see Patient#getArrivalTime()
+	 */
 	public void timeGoesToNextEventEnd(){
 		
+		int nextArrivalTime = 100000000;
+		for (ED ed : eds) {
+			if(!ed.getDbPatient().get(0).isEmpty()){
+				if(ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp() < nextArrivalTime){
+					nextArrivalTime = ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp();
+				}
+			}
+		}
+		
+		int nextEventEndTime = 100000000;
+		if (!this.getInProgress().isEmpty()){
+			nextEventEndTime = this.getInProgress().get(0).getEndTime().getTimeStamp();
+		}
+
+		this.time.timeGoes(Math.min(nextArrivalTime, nextEventEndTime));
 	}
+	
+	/**
+	 * Dequeue all the events in progress that are supposed to end currently
+	 */
+	public void dequeueEvents(){
+		int index = 0;
+		if (!this.getInProgress().isEmpty()){
+			while (this.getInProgress().get(index).getEndTime().getTimeStamp() <= time.getTime() && index<this.getInProgress().size()){
+				this.getInProgress().get(0).endEvent();
+				this.getInProgress().remove(0);
+				index ++;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public ArrayList<Event> getInProgress() {
 		return inProgress;
 	}
+	
+	
+	public ArrayList<ED> getEds() {
+		return eds;
+	}
+
+
+
+	public void setEds(ArrayList<ED> eds) {
+		this.eds = eds;
+	}
+
+
+
+
+
+	public void setInProgress(ArrayList<Event> inProgress) {
+		this.inProgress = inProgress;
+	}
+
+
+
 	public static void main(String[] args) {
 		
 		

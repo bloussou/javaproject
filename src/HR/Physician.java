@@ -205,6 +205,7 @@ public class Physician extends Human  implements Observer{
 		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
+		System.out.println(patient.getHistory());
 		patient.setDepartureTime(departureTime);
 		
 		//remove the patient of the list patient

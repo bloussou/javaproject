@@ -1,4 +1,4 @@
-package Events;
+package Test;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import Emergency.ED;
+import Events.Consultation;
+import Events.Event;
+import Events.EventsManager;
+import Events.Time;
+import Events.TimeStamp;
 import Factory.FactoryCreator;
 import Factory.PeopleFactory;
 import Factory.RoomFactory;
@@ -20,9 +25,12 @@ public class EventsManagerTest {
 	public void testInsertNewEvent() {
 
 		// INITIALISATION D'UN ED
+		ArrayList<ED> eds = new ArrayList<ED>();
 		ED ed = new ED("ED1", "France");
+		eds.add(ed);
+
 		Time time = Time.getInstanceTime();
-		EventsManager simulator = new EventsManager();
+		EventsManager simulator = new EventsManager(eds);
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
