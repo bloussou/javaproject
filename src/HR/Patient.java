@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Emergency.ED;
 import Events.*;
+import Factory.FactoryCreator;
+import Factory.PeopleFactory;
 import Rooms.Room;
 
 public class Patient extends Human{
@@ -121,7 +123,6 @@ public class Patient extends Human{
 		this.setEd(ed);
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
-		this.setState("Arriving");
 		
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
@@ -129,6 +130,7 @@ public class Patient extends Human{
 		//set the history of the patient
 		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
+		this.setState("Arriving");
 		
 		this.location = null;
 		this.history = "";
@@ -277,7 +279,20 @@ public class Patient extends Human{
 		
 		//add the patient to the state patient db
 		if (state.equalsIgnoreCase("arriving")){
-			this.ed.getDbPatient().get(0).add(this);
+			int insertionIndex = 0;
+			boolean indexFound = false;
+			
+			while(indexFound == false && insertionIndex < this.getEd().getDbPatient().get(0).size()){
+				Patient comparedFeature = this.getEd().getDbPatient().get(0).get(insertionIndex);
+				if(comparedFeature.getArrivalTime().getTimeStamp()<this.getArrivalTime().getTimeStamp()){
+					insertionIndex += 1;
+				}
+				else {
+					indexFound = true;
+				}
+			}
+			
+			this.getEd().getDbPatient().get(0).add(insertionIndex, this);			
 			this.state = state;
 		}
 		else if (state.equalsIgnoreCase("registered")){
@@ -367,5 +382,6 @@ public class Patient extends Human{
 		this.dtdtime = dtdtime;
 	}
 
+	
 		
 }
