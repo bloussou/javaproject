@@ -151,6 +151,8 @@ public class Nurse extends Human{
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
+		//add the patient to patienttransported
+		this.getPatientTransported().add(patient);
 		
 		//set the state of the nurse
 		this.setState("transporting");
@@ -161,6 +163,7 @@ public class Nurse extends Human{
 		
 		//set the history of the patient
 		this.startTime = new TimeStamp();
+		this.setEndTime(new TimeStamp(2));
 		patient.setHistory("(transporting, "+ this.getStartTime().toString() + "), ");
 		
 	}

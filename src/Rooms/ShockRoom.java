@@ -70,6 +70,7 @@ public class ShockRoom extends Room{
 	@Override	
 	public void addOccupant(Patient patient) {
 		this.patient = patient;		
+		patient.setLocation(this);
 		this.setState("occupied");	
 	}
 	

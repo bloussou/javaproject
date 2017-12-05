@@ -68,7 +68,7 @@ public class WaitingRoom extends Room{
 	
 	@Override
 	public void addOccupant(Patient patient){
-		
+		patient.setLocation(this);
 		occupants.add(patient);
 		if (occupants.size() == this.getCapacity()){
 			this.setState("full");

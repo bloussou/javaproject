@@ -70,6 +70,7 @@ public class Corridor extends Room{
 	@Override
 	public void addOccupant(Patient patient) {
 		this.occupants.add(patient);
+		patient.setLocation(this);
 		
 	}
 	@Override
