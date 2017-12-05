@@ -83,12 +83,13 @@ public class Patient extends Human{
 		this.setSurname(surname);
 		this.setState(state);
 		
-		
-		
-		
 		this.healthInsurance = healthInsurance;
 		this.severityLevel = severityLevel;
+		
+		//set the history of the patient
+		this.setHistory("(arrived, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
+		
 		this.location = null;
 		this.history = "";
 		this.charges = 0;
@@ -124,7 +125,11 @@ public class Patient extends Human{
 		
 		this.healthInsurance = "NO_INSURANCE";
 		this.severityLevel = severityLevel;
+		
+		//set the history of the patient
+		this.setHistory("(arrived, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
+		
 		this.location = null;
 		this.history = "";
 		this.charges = 0;

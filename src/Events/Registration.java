@@ -36,8 +36,7 @@ public class Registration extends Event{
 		this.nurse = nurse;
 		
 		this.setStartTime(new TimeStamp());
-		Time time = Time.getInstanceTime();
-		this.setEndTime(new TimeStamp(this.getDuration()));
+		this.setEndTime(new TimeStamp());
 		
 		this.nurse.register(patient);
 	}
