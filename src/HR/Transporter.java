@@ -114,8 +114,8 @@ public class Transporter extends Human{
 		this.patientTransported.add(patient);
 		
 		//set the start and the end of the transportation
-		startTime = new TimeStamp() ;
-		endTime = new TimeStamp(duration);
+		this.startTime = new TimeStamp() ;
+		this.endTime = new TimeStamp(duration);
 		
 		
 	}
