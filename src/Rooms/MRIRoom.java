@@ -135,14 +135,25 @@ public class MRIRoom extends Room {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Update the patient's charge with the cost of this room's MRI test
+	 */
 	@Override
 	public void updatePatientCharge(Patient patient) {
 		if (this.patient == patient){
 			patient.setCharges(patient.getCharges()+this.getCost());
-			}
-		
+			}	
 	}
 	
+	
+	/**
+	 * Process the MRI test.
+	 * <li>Save the startTime</li>
+	 * <li>Set the duration of this test to Unif.randSample(30,70) ... {@link Uniform#randSample(double, double)}</li>
+	 * <li>Set the endTime</li>
+	 * <li>Update the patient's history</li>
+	 */
 	public void mriTesting(){
 		this.startTime = new TimeStamp() ;
 		this.setDuration(Uniform.randSample(30,70));
@@ -152,6 +163,10 @@ public class MRIRoom extends Room {
 		this.patient.setHistory("(MRItested, "+ this.startTime.toString() + "), ");
 	}
 	
+	
+	/**
+	 * End the MRI test and update the patient's history
+	 */
 	public void endMRITesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");

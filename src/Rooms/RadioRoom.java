@@ -138,6 +138,10 @@ public class RadioRoom extends Room{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Update the patient's charge with the cost of this room's Radio test
+	 */
 	@Override
 	public void updatePatientCharge(Patient patient) {
 		if (this.patient == patient){
@@ -146,6 +150,13 @@ public class RadioRoom extends Room{
 		
 	}
 	
+	/**
+	 * Process the Radio test.
+	 * <li>Save the startTime</li>
+	 * <li>Set the duration of this test to Unif.randSample(10,20) ... {@link Uniform#randSample(double, double)}</li>
+	 * <li>Set the endTime</li>
+	 * <li>Update the patient's history</li>
+	 */
 	public void radioTesting(){
 		this.startTime = new TimeStamp() ;
 		this.setDuration(new Uniform().randSample(10,20));
@@ -157,6 +168,9 @@ public class RadioRoom extends Room{
 		this.patient.setHistory("(RadioTested, "+ this.startTime.toString() + "), ");
 	}
 	
+	/**
+	 * End the Radio test and update the patient's history
+	 */
 	public void endRadioTesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");

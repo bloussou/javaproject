@@ -46,7 +46,11 @@ public class Consultation extends Event{
 		this.targetRoom = targetRoom;
 		
 		this.setStartTime(new TimeStamp());
-		this.setDuration((int) Uniform.randSample(5, 20));
+		if(patient.getPhysician().equals(physician)){
+			this.setDuration(2);
+		}else {
+			this.setDuration((int) Uniform.randSample(5, 20));
+		}
 		this.setEndTime(new TimeStamp(this.getDuration()));
 		
 		physician.handleNewPatient(patient, targetRoom);

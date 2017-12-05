@@ -27,12 +27,11 @@ public class MRIExamination extends Event {
 		this.setPatient(patient);
 		this.setMriRoom(mriRoom);
 		
-
-
 		
 		this.getMriRoom().updatePatientCharge(patient);
 		this.getMriRoom().mriTesting();
 		this.setStartTime(mriRoom.getStartTime());
+		this.setDuration((int) this.getMriRoom().getDuration());
 		this.setEndTime(mriRoom.getEndTime());
 		
 	}

@@ -20,7 +20,7 @@ public class Transport_Nurse extends Event{
 	/**
 	 * The WaitingRoom which is associated to this instance of the event Transport_Nurse
 	 */
-	private WaitingRoom targetRoom;
+	private Room targetRoom;
 	
 	/**
 	 * Creation of a Transport_Nurse event :
@@ -39,7 +39,7 @@ public class Transport_Nurse extends Event{
 	 * @see Event#setEndTime(TimeStamp)
 	 * @see Nurse#transport(Patient)
 	 */
-	public Transport_Nurse(ED ed, Patient patient, Nurse nurse, WaitingRoom targetRoom){
+	public Transport_Nurse(ED ed, Patient patient, Nurse nurse, Room targetRoom){
 		this.setEd(ed);
 		this.patient = patient;
 		this.nurse = nurse;

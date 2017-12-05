@@ -147,7 +147,7 @@ public class Nurse extends Human{
 	 * @see Nurse#endTime
 	 * @see Nurse#duration
 	 */
-	public void transport(Patient patient, WaitingRoom targetRoom){
+	public void transport(Patient patient, Room targetRoom){
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		

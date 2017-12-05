@@ -26,13 +26,12 @@ public class RadioExamination extends Event {
 		this.setEd(ed);
 		this.setPatient(patient);
 		this.setRadioRoom(radioRoom);
-		
-
 
 		
 		this.getRadioRoom().updatePatientCharge(patient);
 		this.getRadioRoom().radioTesting();
 		this.setStartTime(radioRoom.getStartTime());
+		this.setDuration((int) this.getRadioRoom().getDuration());
 		this.setEndTime(radioRoom.getEndTime());
 		
 	}

@@ -137,6 +137,10 @@ public class BloodRoom extends Room{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Update the patient's charge with the cost of this room's blood test
+	 */
 	@Override
 	public void updatePatientCharge(Patient patient) {
 		if (this.patient == patient){
@@ -145,17 +149,25 @@ public class BloodRoom extends Room{
 		
 	}
 	
+	/**
+	 * Process the blood test.
+	 * <li>Save the startTime</li>
+	 * <li>Set the duration of this test to Unif.randSample(15,90) ... {@link Uniform#randSample(double, double)}</li>
+	 * <li>Set the endTime</li>
+	 * <li>Update the patient's history</li>
+	 */
 	public void bloodTesting(){
 		this.startTime = new TimeStamp() ;
 		this.setDuration(new Uniform().randSample(15,90));
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
-		
-		
-		
+
 		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
 	}
 	
+	/**
+	 * End the blood test and update the patient's history
+	 */
 	public void endBloodTesting(){
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
