@@ -17,6 +17,8 @@ public class EventsManager {
 		this.eds = new ArrayList<ED>();
 	}
 	
+
+
 	/**
 	 * For each ED in the eds' list, check if new events have to be created
 	 * @param eds
@@ -32,7 +34,7 @@ public class EventsManager {
 		
 		
 	}
-
+	
 	
 	
 	
@@ -136,6 +138,9 @@ public class EventsManager {
 		
 	}
 	
+	public ArrayList<Event> getInProgress() {
+		return inProgress;
+	}
 	public static void main(String[] args) {
 		
 		
