@@ -163,8 +163,6 @@ public class ED {
 	 * @see ED#edRegister
 	 * 
 	 */
-	
-	
 	public ED(String name, String country){
 		
 		ED.compteurEDId += 1;
@@ -193,7 +191,7 @@ public class ED {
 		
 		//add the list as the state list of states for patients!
 		this.dbPatient = new ArrayList<ArrayList<Patient>>();
-		for (int j = 0;j < 16; j++){
+		for (int j = 0;j < 17; j++){
 			this.dbPatient.add(new ArrayList<Patient>());
 		}
 		
@@ -238,7 +236,7 @@ public class ED {
 			this.dbRadioRoom.add(new ArrayList<RadioRoom>());
 		}
 
-		
+		//instanciate the ED register
 		this.edRegister = new ArrayList<Patient>();
 		
 		

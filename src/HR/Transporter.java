@@ -132,11 +132,11 @@ public class Transporter extends Human{
 	 * @param patient
 	 * @param targetroom
 	 */
-	public void backToPhysician(Patient patient, WaitingRoom targetroom){
+	public void backToPhysician(Patient patient, Room targetRoom){
 		this.setState("transportation");
 		
 		//set the target room
-		this.setTargetRoom(targetroom);
+		this.setTargetRoom(targetRoom);
 		
 		
 		this.setLastPatientState(patient.getState());
@@ -177,12 +177,12 @@ public class Transporter extends Human{
 			patient.setState("waitingForBloodTestT");
 		}
 		
-		else if (this.getLastPatientState().equalsIgnoreCase("bloodTested") || this.getLastPatientState().equalsIgnoreCase("mriTested") || this.getLastPatientState().equalsIgnoreCase("radioTested")){
-			patient.setState("WaitingForConsultation");
+		else if (this.getLastPatientState().equalsIgnoreCase("waitingForRadio")){
+			patient.setState("waitingForRadioT");
 		}
 		
 		else {
-			patient.setState("waitingForRadioT");
+			patient.setState("waitingForFinalConsultation");
 		}
 		
 		//set the state of the transporter

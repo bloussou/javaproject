@@ -336,8 +336,12 @@ public class Patient extends Human{
 			this.ed.getDbPatient().get(14).add(this);
 			this.state = state;
 		}
-		else if (state.equalsIgnoreCase("released")){
+		else if (state.equalsIgnoreCase("waitingForFinalConsultation")){
 			this.ed.getDbPatient().get(15).add(this);
+			this.state = state;
+		}
+		else if (state.equalsIgnoreCase("released")){
+			this.ed.getDbPatient().get(16).add(this);
 			this.state = state;
 			this.departureTime = new TimeStamp();
 		}

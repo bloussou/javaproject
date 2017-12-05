@@ -14,7 +14,7 @@ public class Transport_Transporter extends Event {
 	private Patient patient;
 	
 	/**
-	 * The nurse which is associated to this instance of the event Transport_Transporter
+	 * The transporter which is associated to this instance of the event Transport_Transporter
 	 */
 	private Transporter transporter;
 	
@@ -27,7 +27,7 @@ public class Transport_Transporter extends Event {
 	 * Creation of a Transport_Transporter event :
 	 * <li>ED associated to this instance of transport</li>
 	 * <li>patient associated to this instance of transport</li>
-	 * <li>nurse associated to this instance of transport</li>
+	 * <li>transporter associated to this instance of transport</li>
 	 * <li>set the timeStamp of this transport</li>
 	 * <li>perform the transport of {@link Transport_Transporter#patient} by {@link Transport_Transporter#Transporter} 
 	 * to the room {@link Transport_Transporter#targetRoom}</li>
@@ -43,15 +43,20 @@ public class Transport_Transporter extends Event {
 	public Transport_Transporter(ED ed, Patient patient, Transporter transporter, Room targetRoom){
 		this.setEd(ed);
 		this.patient = patient;
-		this.setTransporter(transporter);
-		this.setTargetRoom(targetRoom);
+		this.transporter = transporter;
+		this.targetRoom = targetRoom;
 
+		this.setStartTime(new TimeStamp());
+		this.setDuration(4);
+		this.setEndTime(new TimeStamp(this.getDuration()));
+		
+		if(this.patient.getState()== "waitingForFinalConsultation"){
+			this.transporter.backToPhysician(patient, targetRoom);
+		} else{
+			this.transporter.transport(patient, targetRoom);
+		}
+		this.targetRoom.setState("occupied");
 
-		
-		this.transporter.transport(patient, targetRoom);
-		
-		this.setStartTime(this.transporter.getStartTime());
-		this.setEndTime(this.transporter.getEndTime());
 	}
 
 	
@@ -68,26 +73,4 @@ public class Transport_Transporter extends Event {
 	}
 
 
-
-	public Transporter getTransporter() {
-		return transporter;
-	}
-
-
-
-	public void setTransporter(Transporter transporter) {
-		this.transporter = transporter;
-	}
-
-
-
-	public Room getTargetRoom() {
-		return targetRoom;
-	}
-
-
-
-	public void setTargetRoom(Room targetRoom) {
-		this.targetRoom = targetRoom;
-	}
 }

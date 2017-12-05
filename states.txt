@@ -1,4 +1,4 @@
-Listes des états possibles pour les entités de l'ED :
+Listes des états possibles pour les entitées de l'ED :
 
 
 Physician :
@@ -22,7 +22,8 @@ Patient :
 *bloodTested 12
 *mriTested 13
 *radioTested 14
-*released 15
+*waitingForFinalConsultation 15
+*released 16
 
 Transporter:
 *idle
