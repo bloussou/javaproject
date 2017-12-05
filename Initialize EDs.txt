@@ -1,0 +1,81 @@
+NEW ED
+
+ED - name : Régis
+ED - country : France
+
+RH - number of physicians 10
+RH - number of nurses 2
+RH - number of transporters 2
+
+Facilities - number of stretchers 100
+
+Rooms - number of WaitingRooms 10
+Rooms - number of ShockRooms 2
+Rooms - number of BoxRooms 5
+Rooms - number of BloodTestRooms 1
+Rooms - number of MRITestRooms 1
+Rooms - number of RadioTestRooms 1
+
+Patients L1 - number of rescusitation arrivals L1 : 10
+Patients L1 - arriving between startTime=0minutes and endTime=100minutes
+Patients L1 - arrivals distribution : UNIFORM
+
+Patients L2 - number of emergency arrivals L2 : 10
+Patients L2 - arriving between startTime=0minutes and endTime=100minutes
+Patients L2 - arrivals distribution : UNIFORM
+
+Patients L3 - number of urgent arrivals L3 : 10
+Patients L3 - arriving between startTime=0minutes and endTime=100minutes
+Patients L3 - arrivals distribution : UNIFORM
+
+Patients L4 - number of less-urgent arrivals L4 : 10
+Patients L4 - arriving between startTime=0minutes and endTime=100minutes
+Patients L4 - arrivals distribution : UNIFORM
+
+Patients L5 - number of non-urgent arrivals L5 : 10
+Patients L5 - arriving between startTime=0minutes and endTime=100minutes
+Patients L5 - arrivals distribution : UNIFORM
+
+
+NEW ED
+
+ED - name : Régis2
+ED - country : France
+
+RH - number of physicians 10
+RH - number of nurses 2
+RH - number of transporters 2
+
+Facilities - number of stretchers 100
+
+Rooms - number of WaitingRooms 10
+Rooms - number of ShockRooms 2
+Rooms - number of BoxRooms 5
+Rooms - number of BloodTestRooms 1
+Rooms - number of MRITestRooms 1
+Rooms - number of RadioTestRooms 1
+
+Patients L1 - number of rescusitation arrivals L1 : 10
+Patients L1 - arriving between startTime=0minutes and endTime=100minutes
+Patients L1 - arrivals distribution : UNIFORM
+
+Patients L2 - number of emergency arrivals L2 : 10
+Patients L2 - arriving between startTime=0minutes and endTime=100minutes
+Patients L2 - arrivals distribution : UNIFORM
+
+Patients L3 - number of urgent arrivals L3 : 10
+Patients L3 - arriving between startTime=0minutes and endTime=100minutes
+Patients L3 - arrivals distribution : UNIFORM
+
+Patients L4 - number of less-urgent arrivals L4 : 10
+Patients L4 - arriving between startTime=0minutes and endTime=100minutes
+Patients L4 - arrivals distribution : UNIFORM
+
+Patients L5 - number of non-urgent arrivals L5 : 10
+Patients L5 - arriving between startTime=0minutes and endTime=100minutes
+Patients L5 - arrivals distribution : UNIFORM
+
+
+
+
+
