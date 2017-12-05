@@ -37,45 +37,45 @@ public class EventsManager {
 	
 	
 	
-	
-	private void checkNewRegistration(ED ed){
-		//check for each ED if new Registrations have to be done
-			
+	/**
+	 * check for each ED if new Registrations have to be done
+	 * @param ed
+	 */
+	public void checkNewRegistration(ED ed){
+
+			TimeStamp ts = new TimeStamp();
 			//While there is an 'idle' Nurse and an 'arrived' patient --> match them together by creating an event Registration
-			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() ){
-				
+			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(0).isEmpty() && (ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp()<=ts.getTimeStamp())){
+				 
 				Registration newRegistration = new Registration(ed, ed.getDbPatient().get(0).get(0), ed.getDbNurse().get(0).get(0));
 				
-				// Insert it in InProgress ordered by Event.endTime
-				int insertionIndex = 0;
-				while (newRegistration.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
-					insertionIndex +=1;
-				}
-				this.inProgress.add(insertionIndex, newRegistration);
+				this.insertNewEvent(newRegistration);
 			}
 	}
 	
-	private void checkNewTransport_Nurse(ED ed){
-		//check for each ED if new Transportation by a Nurse to a WaitingRoom have to be done
+	
+	/**
+	 * check for each ED if new Transportation by a Nurse to a WaitingRoom have to be done
+	 * @param ed
+	 */
+	public void checkNewTransport_Nurse(ED ed){
 
 			//While there is an 'idle' Nurse and a 'registred' patient and an 'available' WaitingRoom --> match them together by creating an event Transport_Nurse
-			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
+			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(0).isEmpty()){
 				
 				Transport_Nurse newTransport_Nurse = new Transport_Nurse(ed, ed.getDbPatient().get(1).get(0),ed.getDbNurse().get(0).get(0), ed.getDbWaitingRoom().get(0).get(0));
 				
-				// Insert it in InProgress ordered by Event.endTime
-				int insertionIndex = 0;
-				while (newTransport_Nurse.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
-					insertionIndex +=1;
-				}
-				this.inProgress.add(insertionIndex, newTransport_Nurse);
+				this.insertNewEvent(newTransport_Nurse);
 			}
 	}
 	
-	private void checkNewConsultation(ED ed){
-		//check for each ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
-
-		//extract the lists of "waitingforConsultation" patients : the first filled with shockRoom Severity level, and the other ther rest
+	/**
+	 * check for each ED if new Consultation by a Physician in a BoxRoom for L5, L4 and L3 Patients and ShockRoom for L2, L1 Patients have to be done
+	 * @param ed
+	 */
+	public void checkNewConsultation(ED ed){
+		
+		//extract the lists of "waitingforConsultation" patients : the first filled with shockRoom Severity level, and the other the rest
 		ArrayList<Patient> shockRoomPatientList = new ArrayList<Patient>();
 		ArrayList<Patient> boxRoomPatientList = new ArrayList<Patient>();		
 		
@@ -88,40 +88,121 @@ public class EventsManager {
 			}
 		} 		
 		
-			//While there is an 'idle' Physician and a 'WaitingForConsultation' patient and an 'available' corresponding room --> match them together by creating an event Transport_Nurse
-			while(!ed.getDbNurse().get(0).isEmpty() && !ed.getDbPatient().get(1).isEmpty() && !ed.getDbWaitingRoom().get(1).isEmpty()){
-				
-				Transport_Nurse newTransport_Nurse = new Transport_Nurse(ed, ed.getDbPatient().get(1).get(0),ed.getDbNurse().get(0).get(0), ed.getDbWaitingRoom().get(0).get(0));
-				
-				// Insert it in InProgress ordered by Event.endTime
-				int insertionIndex = 0;
-				while (newTransport_Nurse.getEndTime().getTimeStamp() > this.inProgress.get(insertionIndex).getEndTime().getTimeStamp() && insertionIndex < this.inProgress.size()){
-					insertionIndex +=1;
-				}
-				this.inProgress.add(insertionIndex, newTransport_Nurse);
+		//New Consultation for high level of severity Patients
+		while(!ed.getDbPhysician().get(0).isEmpty() && !shockRoomPatientList.isEmpty() && (!ed.getDbShockRoom().get(0).isEmpty() || !ed.getDbBoxRoom().get(0).isEmpty())){
+			
+			Consultation newConsultation;
+			
+			if(!ed.getDbShockRoom().get(0).isEmpty()){
+				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbShockRoom().get(0).get(0));
+				shockRoomPatientList.remove(0);
 			}
+			else {
+				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbBoxRoom().get(0).get(0));
+			}
+			
+			this.insertNewEvent(newConsultation);
+		}
+		
+		//New Consultation for low level of severity Patients
+		while(!ed.getDbPhysician().get(0).isEmpty() && !boxRoomPatientList.isEmpty() && !ed.getDbBoxRoom().get(0).isEmpty()){
+			
+			Consultation newConsultation = new Consultation(ed, boxRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbBoxRoom().get(0).get(0));
+			boxRoomPatientList.remove(0);
+			this.insertNewEvent(newConsultation);
+		}
+		
 	}
 	
-	private void checkNewBloodExamination(ED ed) {
+	
+	
+	public void checkNewBloodExamination(ED ed) {
 		while(!ed.getDbBloodRoom().get(0).isEmpty() && !ed.getDbPatient().get(10).isEmpty()){
 			this.insertNewEvent(new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0)));
 		}
 	}
 	
-	private void checkNewMRIExamination(ED ed) {
+	public void checkNewMRIExamination(ED ed) {
 		while(!ed.getDbMRIRoom().get(0).isEmpty() && !ed.getDbPatient().get(9).isEmpty()){
 			this.insertNewEvent(new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0)));
 		}
 	}
 	
-	private void checkNewRadioExamination(ED ed) {
+	public void checkNewRadioExamination(ED ed) {
 		while(!ed.getDbRadioRoom().get(0).isEmpty() && !ed.getDbPatient().get(11).isEmpty()){
 			this.insertNewEvent(new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0)));
 		}
 	}
 	
+	public void checkTransport_transporter(ED ed){
+		ArrayList<Patient> patientTested = new ArrayList<Patient>();
+		patientTested.addAll(ed.getDbPatient().get(12));
+		patientTested.addAll(ed.getDbPatient().get(13));
+		patientTested.addAll(ed.getDbPatient().get(14));
+		if (patientTested.isEmpty() || ed.getDbTransporter().get(0).isEmpty()){	
+		}
+		else {
+			for (Patient patient : patientTested){
+				
+				if (patient.getPhysician().getState() == "idle"){
+					if(patient.getSeverityLevel().equalsIgnoreCase("L1") || patient.getSeverityLevel().equalsIgnoreCase("L2")) {
+						if(!ed.getDbBoxRoom().isEmpty()){
+							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
+						}
+						else if(!ed.getDbShockRoom().isEmpty()){
+							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbShockRoom().get(0).get(0)));
+						}
+						else {
+							//no room available
+						}
+						
+					}
+					else {
+						if(!ed.getDbBoxRoom().isEmpty()){
+							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
+						}
+						else {
+							//pas de box room
+						}
+					}
+				}
+			}
+		}
+		
+
+		//Transport to mri room
+		while(!ed.getDbTransporter().get(0).isEmpty() && !ed.getDbPatient().get(5).isEmpty() && !ed.getDbMRIRoom().get(0).isEmpty()){
+			
+			Transport_Transporter newTransport_Transporter = new Transport_Transporter(ed, ed.getDbPatient().get(5).get(0),ed.getDbTransporter().get(0).get(0), ed.getDbMRIRoom().get(0).get(0));
+			
+			this.insertNewEvent(newTransport_Transporter);
+		}
+		
+		//Transport to blood room
+		while(!ed.getDbTransporter().get(0).isEmpty() && !ed.getDbPatient().get(6).isEmpty() && !ed.getDbBloodRoom().get(0).isEmpty()){
+			
+			Transport_Transporter newTransport_Transporter = new Transport_Transporter(ed, ed.getDbPatient().get(6).get(0),ed.getDbTransporter().get(0).get(0), ed.getDbBloodRoom().get(0).get(0));
+			
+			this.insertNewEvent(newTransport_Transporter);
+		}
+		
+		//Transport to radio room
+		while(!ed.getDbTransporter().get(0).isEmpty() && !ed.getDbPatient().get(7).isEmpty() && !ed.getDbRadioRoom().get(0).isEmpty()){
+			
+			Transport_Transporter newTransport_Transporter = new Transport_Transporter(ed, ed.getDbPatient().get(7).get(0),ed.getDbTransporter().get(0).get(0), ed.getDbRadioRoom().get(0).get(0));
+			
+			this.insertNewEvent(newTransport_Transporter);
+		}
+		
+		
+		
+	}
 	
-	private void insertNewEvent(Event event){
+	
+	
+	
+	
+	public void insertNewEvent(Event event){
 		if(this.inProgress.isEmpty()){
 			this.inProgress.add(event);
 		}
@@ -133,6 +214,7 @@ public class EventsManager {
 			inProgress.add(i, event);
 		}
 	}
+	
 	
 	public void timeGoesToNextEventEnd(){
 		

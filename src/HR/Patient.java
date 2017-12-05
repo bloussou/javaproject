@@ -304,7 +304,20 @@ public class Patient extends Human{
 			this.state = state;
 		}
 		else if (state.equalsIgnoreCase("waitingForConsultation")){
-			this.ed.getDbPatient().get(3).add(this);
+			int insertionIndex = 0;
+			boolean indexFound = false;
+			
+			while(indexFound == false && insertionIndex < this.getEd().getDbPatient().get(3).size()){
+				Patient comparedFeature = this.getEd().getDbPatient().get(3).get(insertionIndex);
+				if((int) comparedFeature.getSeverityLevel().charAt(1) <= (int)this.getSeverityLevel().charAt(1) ){
+					insertionIndex += 1;
+				}
+				else {
+					indexFound = true;
+				}
+			}
+			
+			this.getEd().getDbPatient().get(3).add(insertionIndex, this);
 			this.state = state;
 		}
 		else if (state.equalsIgnoreCase("inConsultation")){
@@ -351,12 +364,8 @@ public class Patient extends Human{
 			this.ed.getDbPatient().get(14).add(this);
 			this.state = state;
 		}
-		else if (state.equalsIgnoreCase("waitingForFinalConsultation")){
-			this.ed.getDbPatient().get(15).add(this);
-			this.state = state;
-		}
 		else if (state.equalsIgnoreCase("released")){
-			this.ed.getDbPatient().get(16).add(this);
+			this.ed.getDbPatient().get(15).add(this);
 			this.state = state;
 			this.departureTime = new TimeStamp();
 		}

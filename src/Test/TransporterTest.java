@@ -49,33 +49,33 @@ public class TransporterTest {
 		
 	}
 
-	@Test
-	public void testBackToPhysician() {
-		System.out.println("\n test BackToPhysician !!!");
-		// INITIALISATION D'UN ED
-		
-		ED ed = new ED("ED1", "France");
-		Time time = Time.getInstanceTime();
-		time.timeGoes(10);
-		
-		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");	
-		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-				
-		Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-		
-		//TEST
-		patient1.setState("bloodtested");
-		
-		transporter.backToPhysician(patient1, waitingRoom);
-		ArrayList<Patient> trylist = new ArrayList<Patient>();
-		trylist.add(patient1);
-		
-		assertTrue(patient1.getState().equalsIgnoreCase("transportation"));
-		assertTrue(transporter.getState().equalsIgnoreCase("transportation"));
-		
-	}
+//	@Test
+//	public void testBackToPhysician() {
+//		System.out.println("\n test BackToPhysician !!!");
+//		// INITIALISATION D'UN ED
+//		
+//		ED ed = new ED("ED1", "France");
+//		Time time = Time.getInstanceTime();
+//		time.timeGoes(10);
+//		
+//		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");	
+//		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
+//				
+//		Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+//		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
+//		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+//		
+//		//TEST
+//		patient1.setState("bloodtested");
+//		
+//		transporter.backToPhysician(patient1, waitingRoom);
+//		ArrayList<Patient> trylist = new ArrayList<Patient>();
+//		trylist.add(patient1);
+//		
+//		assertTrue(patient1.getState().equalsIgnoreCase("transportation"));
+//		assertTrue(transporter.getState().equalsIgnoreCase("transportation"));
+//		
+//	}
 
 	@Test
 	public void testDropPatient() {
@@ -132,27 +132,27 @@ public class TransporterTest {
 		assertTrue(radioRoom.getState().equalsIgnoreCase("occupied"));
 		assertTrue(radioRoom.getPatient().equals(patient3));
 		
-		transporter.backToPhysician(patient4, waitingRoom);
-		assertTrue(transporter.getTargetRoom().equals(waitingRoom));
-		transporter.dropPatient(patient4);
-		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
-		assertTrue(patient4.getState().equalsIgnoreCase("waitingForConsultation"));
-		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
-		assertTrue(waitingRoom.getOccupants().contains(patient4));
-		
-		transporter.backToPhysician(patient5, waitingRoom);
-		transporter.dropPatient(patient5);
-		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
-		assertTrue(patient5.getState().equalsIgnoreCase("waitingForConsultation"));
-		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
-		assertTrue(waitingRoom.getOccupants().contains(patient5));
-		
-		transporter.backToPhysician(patient6, waitingRoom);
-		transporter.dropPatient(patient6);
-		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
-		assertTrue(patient6.getState().equalsIgnoreCase("waitingForConsultation"));
-		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
-		assertTrue(waitingRoom.getOccupants().contains(patient6));
+//		transporter.backToPhysician(patient4, waitingRoom);
+//		assertTrue(transporter.getTargetRoom().equals(waitingRoom));
+//		transporter.dropPatient(patient4);
+//		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
+//		assertTrue(patient4.getState().equalsIgnoreCase("waitingForConsultation"));
+//		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
+//		assertTrue(waitingRoom.getOccupants().contains(patient4));
+//		
+//		transporter.backToPhysician(patient5, waitingRoom);
+//		transporter.dropPatient(patient5);
+//		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
+//		assertTrue(patient5.getState().equalsIgnoreCase("waitingForConsultation"));
+//		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
+//		assertTrue(waitingRoom.getOccupants().contains(patient5));
+//		
+//		transporter.backToPhysician(patient6, waitingRoom);
+//		transporter.dropPatient(patient6);
+//		assertTrue(transporter.getState().equalsIgnoreCase("idle"));
+//		assertTrue(patient6.getState().equalsIgnoreCase("waitingForConsultation"));
+//		assertTrue(waitingRoom.getState().equalsIgnoreCase("available"));
+//		assertTrue(waitingRoom.getOccupants().contains(patient6));
 		
 
 		

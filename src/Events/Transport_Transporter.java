@@ -50,11 +50,8 @@ public class Transport_Transporter extends Event {
 		this.setDuration(4);
 		this.setEndTime(new TimeStamp(this.getDuration()));
 		
-		if(this.patient.getState()== "waitingForFinalConsultation"){
-			this.transporter.backToPhysician(patient, targetRoom);
-		} else{
-			this.transporter.transport(patient, targetRoom);
-		}
+		this.transporter.transport(patient, targetRoom);
+		
 		this.targetRoom.setState("occupied");
 
 	}

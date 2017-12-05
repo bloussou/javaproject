@@ -2,6 +2,8 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Emergency.ED;
@@ -22,6 +24,9 @@ public class PatientTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
+		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L2", new TimeStamp());
+		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
+		
 		
 		//test arrived
 		patient.setState("arriving");
@@ -84,7 +89,16 @@ public class PatientTest {
 				assertFalse(ed.getDbPatient().get(15).contains(patient));
 				
 				//test arrived
+				patient1.setState("waitingForConsultation");
+				patient2.setState("waitingForConsultation");
 				patient.setState("waitingForConsultation");
+				
+				ArrayList<Patient> trylist = new ArrayList<Patient>();
+				trylist.add(patient);
+				trylist.add(patient1);
+				trylist.add(patient2);
+				assertTrue(ed.getDbPatient().get(3).equals(trylist));
+				
 				assertTrue("waitingForConsultation",patient.getState().equalsIgnoreCase("waitingForConsultation"));
 				assertTrue(ed.getDbPatient().get(3).contains(patient));
 				assertFalse(ed.getDbPatient().get(1).contains(patient));
@@ -324,31 +338,11 @@ public class PatientTest {
 				assertFalse(ed.getDbPatient().get(15).contains(patient));
 				
 				
-				//test arrived
-				patient.setState("waitingForFinalConsultation");
-				assertTrue("waitingForFinalConsultation",patient.getState().equalsIgnoreCase("waitingForFinalConsultation"));
-				assertTrue(ed.getDbPatient().get(15).contains(patient));
-				assertFalse(ed.getDbPatient().get(1).contains(patient));
-				assertFalse(ed.getDbPatient().get(2).contains(patient));
-				assertFalse(ed.getDbPatient().get(3).contains(patient));
-				assertFalse(ed.getDbPatient().get(4).contains(patient));
-				assertFalse(ed.getDbPatient().get(5).contains(patient));
-				assertFalse(ed.getDbPatient().get(6).contains(patient));
-				assertFalse(ed.getDbPatient().get(7).contains(patient));
-				assertFalse(ed.getDbPatient().get(8).contains(patient));
-				assertFalse(ed.getDbPatient().get(9).contains(patient));
-				assertFalse(ed.getDbPatient().get(10).contains(patient));
-				assertFalse(ed.getDbPatient().get(11).contains(patient));
-				assertFalse(ed.getDbPatient().get(12).contains(patient));
-				assertFalse(ed.getDbPatient().get(13).contains(patient));
-				assertFalse(ed.getDbPatient().get(14).contains(patient));
-				assertFalse(ed.getDbPatient().get(16).contains(patient));
-				
 				
 				//test arrived
 				patient.setState("released");
 				assertTrue("released",patient.getState().equalsIgnoreCase("released"));
-				assertTrue(ed.getDbPatient().get(16).contains(patient));
+				assertTrue(ed.getDbPatient().get(15).contains(patient));
 				assertFalse(ed.getDbPatient().get(1).contains(patient));
 				assertFalse(ed.getDbPatient().get(2).contains(patient));
 				assertFalse(ed.getDbPatient().get(3).contains(patient));

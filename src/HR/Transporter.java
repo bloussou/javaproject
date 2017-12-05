@@ -120,38 +120,38 @@ public class Transporter extends Human{
 		
 	}
 	
-	/**
-	 * The method to transport a patient after an exam back to his physician, then the physician emit a verdict
-	 * <li>set the {@link Transporter#targetRoom}</li>
-	 * <li>set the {@link Transporter#lastPatientState}</li>
-	 * <li>set the patient state to transportation</li>
-	 * <li>set the transporter state to transportation</li>
-	 * <li>add the patient to the list {@link Transporter#patientTransported}</li>
-	 * <li>set the {@link Transporter#startTime}</li>
-	 * <li>set the {@link Transporter#endTime}</li>
-	 * @param patient
-	 * @param targetroom
-	 */
-	public void backToPhysician(Patient patient, Room targetRoom){
-		this.setState("transportation");
-		
-		//set the target room
-		this.setTargetRoom(targetRoom);
-		
-		
-		this.setLastPatientState(patient.getState());
-		
-		
-		patient.setState("transportation");
-		
-		
-		//add the patient to patient transported
-		this.patientTransported.add(patient);
-		
-		//set the start and the end of the transportation
-		startTime = new TimeStamp() ;
-		endTime = new TimeStamp(duration);
-	}
+//	/**
+//	 * The method to transport a patient after an exam back to his physician, then the physician emit a verdict
+//	 * <li>set the {@link Transporter#targetRoom}</li>
+//	 * <li>set the {@link Transporter#lastPatientState}</li>
+//	 * <li>set the patient state to transportation</li>
+//	 * <li>set the transporter state to transportation</li>
+//	 * <li>add the patient to the list {@link Transporter#patientTransported}</li>
+//	 * <li>set the {@link Transporter#startTime}</li>
+//	 * <li>set the {@link Transporter#endTime}</li>
+//	 * @param patient
+//	 * @param targetroom
+//	 */
+//	public void backToPhysician(Patient patient, Room targetRoom){
+//		this.setState("transportation");
+//		
+//		//set the target room
+//		this.setTargetRoom(targetRoom);
+//		
+//		
+//		this.setLastPatientState(patient.getState());
+//		
+//		
+//		patient.setState("transportation");
+//		
+//		
+//		//add the patient to patient transported
+//		this.patientTransported.add(patient);
+//		
+//		//set the start and the end of the transportation
+//		startTime = new TimeStamp() ;
+//		endTime = new TimeStamp(duration);
+//	}
 	
 	/**
 	 * drop the patient in the {@link Transporter#targetRoom} and set the patient to the good state :

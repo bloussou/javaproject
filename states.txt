@@ -22,8 +22,7 @@ Patient :
 *bloodTested 12
 *mriTested 13
 *radioTested 14
-*waitingForFinalConsultation 15
-*released 16
+*released 15
 
 Transporter:
 *idle
