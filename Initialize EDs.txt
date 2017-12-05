@@ -9,19 +9,19 @@ RH - number of transporters 2
 
 Facilities - number of stretchers 100
 
-Rooms - number of WaitingRooms 10
-Rooms - number of ShockRooms 2
-Rooms - number of BoxRooms 5
-Rooms - number of BloodTestRooms 1
-Rooms - number of MRITestRooms 1
-Rooms - number of RadioTestRooms 1
+Rooms - number of WaitingRooms : 10
+Rooms - number of ShockRooms : 2
+Rooms - number of BoxRooms : 5
+Rooms - number of BloodTestRooms : 1
+Rooms - number of MRITestRooms : 1
+Rooms - number of RadioTestRooms : 1
 
 Patients L1 - number of rescusitation arrivals L1 : 10
-Patients L1 - arriving between startTime=0minutes and endTime=100minutes
+Patients L1 - arriving between startTime:0 minutes and endTime:100 minutes
 Patients L1 - arrivals distribution : UNIFORM
 
 Patients L2 - number of emergency arrivals L2 : 10
-Patients L2 - arriving between startTime=0minutes and endTime=100minutes
+Patients L2 - arriving between startTime= 0 minutes and endTime=100minutes
 Patients L2 - arrivals distribution : UNIFORM
 
 Patients L3 - number of urgent arrivals L3 : 10
