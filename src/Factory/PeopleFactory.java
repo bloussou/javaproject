@@ -37,7 +37,10 @@ public class PeopleFactory extends AbstractFactory{
 		else if(staffType.equalsIgnoreCase("TRANSPORTER")){
 			return new Transporter(ed);
 		}
-		return null;
+		else {
+			System.out.println("Problème dans People Factory : le type de people a créer n'est pas bien valide");
+			return null;
+		}
 	}
 	
 	/**

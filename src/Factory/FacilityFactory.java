@@ -54,7 +54,10 @@ public class FacilityFactory extends AbstractFactory {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
 			return new Stretcher(ed);
 		}
-		return null;
+		else {
+			System.out.println("Problème dans Facility Factory : le type de facility entré n'est pas valide");
+			return null;
+		}
 	}
 	/**
 	 * Return the good facility :

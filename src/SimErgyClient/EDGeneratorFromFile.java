@@ -22,7 +22,7 @@ public class EDGeneratorFromFile {
 	 * @param setOff
 	 * @return
 	 */
-	public ArrayList<StringBuilder> getValuesFromLine(String str, int setOff){
+	public ArrayList<StringBuilder> getNumbersFromLine(String str, int setOff){
 		ArrayList<StringBuilder> values = new ArrayList<StringBuilder>();
 		StringBuilder myNumbers = new StringBuilder();
 		boolean digitDetected = false;
@@ -43,49 +43,63 @@ public class EDGeneratorFromFile {
 		return values;
 	}
 		
+	public String getWordFromLine(String str, int setOff){
+		String returnValue = "";
+		int i = setOff;
+		boolean wordFound = false;
+		
+		while(i< str.length() && !(str.charAt(i)==' ' && wordFound) && !(str.charAt(i)=='\n')){
+			if(!(str.charAt(i)==' ')){
+				wordFound = true;
+				returnValue+=str.charAt(i);
+			}
+			i++;
+		}
+		
+		return returnValue;
+	}
 	
 	public void generateFromLine(String line){
 		
 		if (line.startsWith("NEW ED")){
+			this.edsGenerated.add(new ED("ED","UnknownCountry"));
+		}
+		else if (line.startsWith("ED - name") && !this.edsGenerated.isEmpty()) {
+		}
+		else if (line.startsWith("ED - country") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("ED - name" && )) {
+		else if (line.startsWith("RH - number of physicians") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("ED - country")){
+		else if (line.startsWith("RH - number of nurses") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("RH - number of physicians")){
+		else if (line.startsWith("RH - number of transporters") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("RH - number of nurses")){
+		else if (line.startsWith("Facilities - number of stretchers") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("RH - number of transporters")){
+		else if (line.startsWith("Rooms - number of WaitingRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("Facilities - number of stretchers")){
+		else if (line.startsWith("Rooms - number of ShockRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("Rooms - number of WaitingRooms")){
+		else if (line.startsWith("Rooms - number of BoxRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("Rooms - number of ShockRooms")){
+		else if (line.startsWith("Rooms - number of BloodTestRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("Rooms - number of BoxRooms")){
-			
-		}
-		else if (line.startsWith("Rooms - number of BloodTestRooms")){
-			
-		}
-		else if (line.startsWith("Rooms - number of MRITestRooms")){
+		else if (line.startsWith("Rooms - number of MRITestRooms") && !this.edsGenerated.isEmpty()){
 			
 		}		
-		else if (line.startsWith("Rooms - number of RadioTestRooms")){
+		else if (line.startsWith("Rooms - number of RadioTestRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
-		else if (line.startsWith("Rooms - number of WaitingRooms")){
+		else if (line.startsWith("Rooms - number of WaitingRooms") && !this.edsGenerated.isEmpty()){
 			
 		}
 		
@@ -105,48 +119,36 @@ public class EDGeneratorFromFile {
 			// wrapping a FileReader into a BufferedReader for reading line by line 
 			String line = ""; 
 			while ((line = reader.readLine()) != null) {
-				 this.GenerateFromLine(line);
 			}
-		} catch (Exception e) {
-			throw new RuntimeException(e); 
-		} finally {
+		} 
+		catch (Exception e) {throw new RuntimeException(e);} 
+		finally {
 			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					// Ignore issues 
-				} 
+				try {reader.close();} 
+				catch (IOException e) {} 
 			} 
 			if (file != null) {
-				try {
-					file.close();
-				} catch (IOException e) {
-					// Ignore issues during closing 
-				} 
-			}
-			
+				try {file.close();} 
+				catch (IOException e) {} 
+				}			
 		return edsGenerated;
-	}
-	
+		}
+		
+}
 	
 	
 	
 	public static void main(String[] args) {
 	    String str = "abc d 1234567890pqr 54897";
-	    StringBuilder myNumbers = new StringBuilder();
-	    for (int i = 0; i < str.length(); i++) {
-	        if (Character.isDigit(str.charAt(i))) {
-	            myNumbers.append(str.charAt(i));
-	            System.out.println(str.charAt(i) + " is a digit.");
-	        } else {
-	            System.out.println(str.charAt(i) + " not a digit.");
-	        }
-	    }
-	    System.out.println("Your numbers: " + myNumbers.toString());
-	    
+
 	    EDGeneratorFromFile EDG = new EDGeneratorFromFile();
-	    System.out.println(EDG.getValuesFromLine(str, 0));
+	    System.out.println(EDG.getNumbersFromLine(str, 0));
+	    
+	    String str2 = "ED - name : Régis";
+	    System.out.println(EDG.getWordFromLine(str2, 11));
 	}
+	
+	
 
 
 }

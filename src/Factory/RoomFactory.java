@@ -71,7 +71,11 @@ public class RoomFactory extends AbstractFactory{
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
 			return new Corridor(ed);
 		}
-		return null;
+		else{
+			System.out.println("Problème dans Room Factory : le type de room a créer n'est pas bien valide");
+			return null;
+		}
+		
 	}
 	
 	
