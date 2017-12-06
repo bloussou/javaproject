@@ -179,6 +179,7 @@ public class Physician extends Human  implements Observer{
 		//set the state of the room
 		consultationRoom.setState("occupied");
 		
+		
 		//set the physician of the patient
 		patient.setPhysician(this);
 		
@@ -207,10 +208,11 @@ public class Physician extends Human  implements Observer{
 		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
+		System.out.println("affichage de la libératio du patient dans emit verdict");
 		System.out.println(patient.getHistory());
 		patient.setDepartureTime(departureTime);
 		
-		patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
+		//patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
 		
 		//remove the patient of the list patient
 		this.patientOverseeing.remove(patient);
@@ -248,27 +250,35 @@ public class Physician extends Human  implements Observer{
 		
 		if (num<=35){
 			this.emitVerdict(patient);
-			prescription = "released";
+			//prescription = "released";
 			
 		}
 		else if(num <= 55){
 			prescription = "waitingForRadio";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			
+			//set the state of the patient
+			patient.setState(prescription);
 		}
 		else if(num<=95){
 			prescription = "waitingForBloodTest";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			
+			//set the state of the patient
+			patient.setState(prescription);
 		}
 		else {
 			prescription = "waitingForMRI";
 			//set history with the prescription
 			patient.setHistory("(" + prescription +", "+ time.toString() + "), ");
+			
+			//set the state of the patient
+			patient.setState(prescription);
 		}
 		
-		//set the state of the patient
-		patient.setState(prescription);
+
 		
 		
 		//set the state of the physician

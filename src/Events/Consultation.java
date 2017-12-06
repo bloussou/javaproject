@@ -53,6 +53,7 @@ public class Consultation extends Event{
 		this.physicianAlreadyConsulted = (patient.getPhysician()== this.physician);
 		
 		
+		
 		if(this.physicianAlreadyConsulted){
 			this.setDuration(2);
 		}else {

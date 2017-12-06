@@ -191,7 +191,7 @@ public class ED {
 		
 		//add the list as the state list of states for patients!
 		this.dbPatient = new ArrayList<ArrayList<Patient>>();
-		for (int j = 0;j < 16; j++){
+		for (int j = 0;j < 17; j++){
 			this.dbPatient.add(new ArrayList<Patient>());
 		}
 		

@@ -102,7 +102,7 @@ public class TransporterTest {
 		//Initialization of the patient state
 		patient1.setState("waitingForMRI");
 		patient2.setState("waitingForBloodTest");
-		patient3.setState("waitingForRadioTest");
+		patient3.setState("waitingForRadio");
 		patient4.setState("bloodTested");
 		patient5.setState("mriTested");
 		patient6.setState("radioTested");		

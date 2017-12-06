@@ -23,6 +23,7 @@ Patient :
 *mriTested 13
 *radioTested 14
 *released 15
+*testing 16 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Transporter:
 *idle

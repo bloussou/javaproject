@@ -60,15 +60,20 @@ public class SimErgy {
 		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
 		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
 //		
-		MRIRoom MRIRoom0 = (MRIRoom) roomFactory.getRoom("MRIROOOM", ed);
-		BloodRoom bloddRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
 		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
 		
-		patient0.setPhysician(physician0);
-		patient0.setState("radiotested");
-		System.out.println(ed.getDbTransporter().get(0));
-		System.out.println(ed.getDbBoxRoom().get(0));
+		//patient0.setPhysician(physician0);
+		//patient0.setState("bloodtested");
+		
+		System.out.println(ed.getDbTransporter().isEmpty());
+		System.out.println(ed.getDbPatient().get(5));
+		System.out.println(ed.getDbMRIRoom().get(0));
+		System.out.println(ed.getDbMRIRoom().get(1));
 		while (time.getTime()<600000){
+			//System.out.println("\n"+simulator.getInProgress());
+			System.out.println(patient0.getState());
 			simulator.nextStep();
 		}
 		System.out.println("\n"+patient0.getHistory());
