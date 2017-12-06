@@ -1,0 +1,54 @@
+NEW ED
+
+ED - name : Régis
+ED - country : France
+
+RH - number of physicians 2
+RH - number of nurses 2
+RH - number of transporters 2
+
+Facilities - number of stretchers 2
+
+Rooms - number of WaitingRooms : 2
+Rooms - number of ShockRooms : 3
+Rooms - number of BoxRooms : 2
+Rooms - number of BloodTestRooms : 3
+Rooms - number of MRITestRooms : 2
+Rooms - number of RadioTestRooms : 1
+
+Patients L1 - 100patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L2 - 11patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L3 - 12patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L4 - 13patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L5 - 5patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+
+
+NEW ED
+
+ED - name : Régis2
+ED - country : France
+
+RH - number of physicians 1
+RH - number of nurses 1
+RH - number of transporters 1
+
+Facilities - number of stretchers 1
+
+Rooms - number of WaitingRooms 1
+Rooms - number of ShockRooms 1
+Rooms - number of BoxRooms 1
+Rooms - number of BloodTestRooms 2
+Rooms - number of MRITestRooms 1
+Rooms - number of RadioTestRooms 2
+
+
+Patients L1 - 10patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L2 - 11patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L3 - 12patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L4 - 13patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+Patients L5 - 5patients arriving between (Start:0min,End:10min), distribution : UNIFORM
+
+
+
+
+
