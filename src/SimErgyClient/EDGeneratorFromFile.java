@@ -9,44 +9,11 @@ import Emergency.ED;
 
 public class EDGeneratorFromFile {
 	
-	private String readLine = "";
-	private int compteurEmptyLines = 0;
-	private ArrayList<ED> edsGenerated = new ArrayList<ED>();
+	private ArrayList<ED> edsGenerated;
 	
-	public String readTextFileLineByLine(String fileName) {
-		String returnValue = "";
-		FileReader file = null; 
-		BufferedReader reader = null; 
+	public EDGeneratorFromFile(){
 		
-		try { 
-			file = new FileReader(fileName);
-			// a FileReader for reading byte by byte 
-			reader = new BufferedReader(file); 
-			// wrapping a FileReader into a BufferedReader for reading line by line 
-			String line = ""; 
-			while ((line = reader.readLine()) != null) {
-				// read the file line by line 
-				returnValue += line + "\n"; 
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e); 
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					// Ignore issues 
-				} 
-			} 
-			if (file != null) {
-				try {
-					file.close();
-				} catch (IOException e) {
-					// Ignore issues during closing 
-				} 
-			}
-		}
-		return returnValue;
+		this.edsGenerated = new ArrayList<ED>();
 	}
 	
 	/**
@@ -75,24 +42,86 @@ public class EDGeneratorFromFile {
 	    
 		return values;
 	}
-			
-	public ArrayList<ED> EDSGenerating(String fileName){
 		
-		while (this.compteurEmptyLines < 10){
-			this.readLine = this.readTextFileLineByLine(fileName);
+	
+	public void generateFromLine(String line){
+		
+		if (line.startsWith("NEW ED")){
 			
-			if(this.readLine.startsWith("NEW ED")){
-				this.edsGenerated.add(new ED("EDSUIVANT", "CountryEDSUIVANT"));
-			}
+		}
+		else if (line.startsWith("ED - name")) {
 			
-			if( !edsGenerated.isEmpty() && readLine.startsWith("ED - name :") ){
-				
-			}
+		}
+		else if (line.startsWith("ED - country")){
 			
+		}
+		else if (line.startsWith("RH - number of physicians")){
+			
+		}
+		else if (line.startsWith("RH - number of nurses")){
+			
+		}
+		else if (line.startsWith("RH - number of transporters")){
+			
+		}
+		else if (line.startsWith("Facilities - number of stretchers")){
+			
+		}
+		else if (line.startsWith("Rooms - number of WaitingRooms")){
+			
+		}
+		else if (line.startsWith("Rooms - number of ShockRooms")){
+			
+		}
+		else if (line.startsWith("Rooms - number of BoxRooms")){
+			
+		}
+		else if (line.startsWith("Rooms - number of BloodTestRooms")){
+			
+		}
+		else if (line.startsWith("Rooms - number of MRITestRooms")){
+			
+		}		
+		else if (line.startsWith("Rooms - number of RadioTestRooms")){
 			
 		}
 		
 		
+	}
+	
+	
+	public ArrayList<ED> edsGenerating(String fileName){
+		
+		FileReader file = null; 
+		BufferedReader reader = null; 
+		
+		try { 
+			file = new FileReader(fileName);
+			// a FileReader for reading byte by byte 
+			reader = new BufferedReader(file); 
+			// wrapping a FileReader into a BufferedReader for reading line by line 
+			String line = ""; 
+			while ((line = reader.readLine()) != null) {
+				 this.GenerateFromLine(line);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e); 
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					// Ignore issues 
+				} 
+			} 
+			if (file != null) {
+				try {
+					file.close();
+				} catch (IOException e) {
+					// Ignore issues during closing 
+				} 
+			}
+			
 		return edsGenerated;
 	}
 	
