@@ -163,9 +163,10 @@ public class RadioRoom extends Room{
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
 		
-		this.patient.setState("radioTested");	
+			
 		
 		this.patient.setHistory("(RadioTested, "+ this.startTime.toString() + "), ");
+		System.out.println(patient.getHistory());
 	}
 	
 	/**
@@ -175,7 +176,9 @@ public class RadioRoom extends Room{
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		this.patient.setState("radioTested");
+		System.out.println(patient.getHistory());
 		this.removeOccupant(this.patient);
+		
 	}
 	
 	@Override

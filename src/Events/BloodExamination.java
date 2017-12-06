@@ -27,6 +27,8 @@ public class BloodExamination extends Event {
 		this.setPatient(patient);
 		this.setBloodRoom(bloodRoom);
 		
+		this.getBloodRoom().addOccupant(this.patient);
+		
 		this.getBloodRoom().updatePatientCharge(patient);
 		this.getBloodRoom().bloodTesting();
 		this.setStartTime(this.getBloodRoom().getStartTime());

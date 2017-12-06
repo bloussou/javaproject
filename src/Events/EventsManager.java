@@ -131,7 +131,9 @@ public class EventsManager {
 	 */
 	public void checkNewBloodExamination(ED ed) {
 		while(!ed.getDbBloodRoom().get(0).isEmpty() && !ed.getDbPatient().get(10).isEmpty()){
-			this.insertNewEvent(new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0)));
+			BloodExamination bloodExamination = new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0));
+		
+			this.insertNewEvent(bloodExamination);
 		}
 	}
 	
@@ -140,8 +142,10 @@ public class EventsManager {
 	 * @param ed
 	 */
 	public void checkNewMRIExamination(ED ed) {
+		
 		while(!ed.getDbMRIRoom().get(0).isEmpty() && !ed.getDbPatient().get(9).isEmpty()){
-			this.insertNewEvent(new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0)));
+			MRIExamination mriExamination = new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0));
+			this.insertNewEvent(mriExamination);
 		}
 	}
 	
@@ -151,7 +155,8 @@ public class EventsManager {
 	 */
 	public void checkNewRadioExamination(ED ed) {
 		while(!ed.getDbRadioRoom().get(0).isEmpty() && !ed.getDbPatient().get(11).isEmpty()){
-			this.insertNewEvent(new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0)));
+			RadioExamination radioExamination = new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0));
+			this.insertNewEvent(radioExamination);
 		}
 	}
 	
@@ -165,10 +170,18 @@ public class EventsManager {
 	 */
 	public void checkTransport_transporter(ED ed){
 		ArrayList<Patient> patientTested = new ArrayList<Patient>();
-		patientTested.addAll(ed.getDbPatient().get(12));
-		patientTested.addAll(ed.getDbPatient().get(13));
-		patientTested.addAll(ed.getDbPatient().get(14));
+		for (Patient patient : ed.getDbPatient().get(12)){
+			patientTested.add(patient);
+		}
+		for (Patient patient : ed.getDbPatient().get(13)){
+			patientTested.add(patient);
+		}
+		for (Patient patient : ed.getDbPatient().get(14)){
+			patientTested.add(patient);
+		}
+		
 		if (patientTested.isEmpty() || ed.getDbTransporter().get(0).isEmpty()){	
+			
 		}
 		else {
 			for (Patient patient : patientTested){

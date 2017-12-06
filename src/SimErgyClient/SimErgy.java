@@ -57,16 +57,18 @@ public class SimErgy {
 //		
 //	
 		WaitingRoom wRoom0 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-//		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
 		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
 //		
 		MRIRoom MRIRoom0 = (MRIRoom) roomFactory.getRoom("MRIROOOM", ed);
 		BloodRoom bloddRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
 		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
 		
-		
-		
-		while (time.getTime()<6000){
+		patient0.setPhysician(physician0);
+		patient0.setState("radiotested");
+		System.out.println(ed.getDbTransporter().get(0));
+		System.out.println(ed.getDbBoxRoom().get(0));
+		while (time.getTime()<600000){
 			simulator.nextStep();
 		}
 		System.out.println("\n"+patient0.getHistory());

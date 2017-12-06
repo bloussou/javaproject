@@ -161,8 +161,9 @@ public class BloodRoom extends Room{
 		this.setDuration(new Uniform().randSample(15,90));
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
-
+		
 		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
+		System.out.println(patient.getHistory());
 	}
 	
 	/**
@@ -172,7 +173,7 @@ public class BloodRoom extends Room{
 		TimeStamp time = new TimeStamp();
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		
-		
+		System.out.println(patient.getHistory());
 		this.patient.setState("bloodTested");
 		this.removeOccupant(this.getPatient());
 		
