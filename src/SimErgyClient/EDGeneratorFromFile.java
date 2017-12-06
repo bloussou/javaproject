@@ -49,7 +49,7 @@ public class EDGeneratorFromFile {
 		if (line.startsWith("NEW ED")){
 			
 		}
-		else if (line.startsWith("ED - name")) {
+		else if (line.startsWith("ED - name" && )) {
 			
 		}
 		else if (line.startsWith("ED - country")){
@@ -83,6 +83,9 @@ public class EDGeneratorFromFile {
 			
 		}		
 		else if (line.startsWith("Rooms - number of RadioTestRooms")){
+			
+		}
+		else if (line.startsWith("Rooms - number of WaitingRooms")){
 			
 		}
 		
