@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import Emergency.ED;
 
 public class EDGeneratorFromFile {
@@ -48,21 +49,31 @@ public class EDGeneratorFromFile {
 		return returnValue;
 	}
 	
-	public ArrayList<String> getValueFromLine(String line){
-		ArrayList<String> value = new ArrayList<String>();
-		String buf = "";
-		int indexBegin;
-		int indexEnd;
-		int index = 0;
-		
-		while (line.indexOf(":",index)!=-1){
-			indexBegin = line.indexOf(":",index);
-			indexEnd = Math.min(line.indexOf(" ",indexBegin), line.indexOf(" ",indexBegin));
-			value.add(line.substring(indexBegin, indexEnd));
-					
-		}
-			
-		return value;
+	/**
+	 * Extract all the numbers in the String str from the index setOff, and return them in an ArrayList<StringBuilder> 
+	 * @param str
+	 * @param setOff
+	 * @return
+	 */
+	public ArrayList<StringBuilder> getValuesFromLine(String str, int setOff){
+		ArrayList<StringBuilder> values = new ArrayList<StringBuilder>();
+		StringBuilder myNumbers = new StringBuilder();
+		boolean digitDetected = false;
+	    
+	    for (int i = setOff; i < str.length(); i++) {
+	        if (Character.isDigit(str.charAt(i))) {
+	        	digitDetected = true;
+	            myNumbers.append(str.charAt(i));
+	            System.out.println("myNuber : " + myNumbers);
+	        } else if (digitDetected) {
+	            digitDetected = false;
+	            values.add(myNumbers);
+	            myNumbers = new StringBuilder();
+	        }
+	    }
+		if(digitDetected){values.add(myNumbers);}
+	    
+		return values;
 	}
 			
 	public ArrayList<ED> EDSGenerating(String fileName){
@@ -89,14 +100,21 @@ public class EDGeneratorFromFile {
 	
 	
 	public static void main(String[] args) {
-		EDGeneratorFromFile EDG = new EDGeneratorFromFile();
-		String ligne = "Rooms - number of WaitingRooms : 10";
-		ArrayList<String> values = new ArrayList<String>();
-		values = EDG.getValueFromLine(ligne);
-		System.out.println("Hello");
-		System.out.println(values);
+	    String str = "abc d 1234567890pqr 54897";
+	    StringBuilder myNumbers = new StringBuilder();
+	    for (int i = 0; i < str.length(); i++) {
+	        if (Character.isDigit(str.charAt(i))) {
+	            myNumbers.append(str.charAt(i));
+	            System.out.println(str.charAt(i) + " is a digit.");
+	        } else {
+	            System.out.println(str.charAt(i) + " not a digit.");
+	        }
+	    }
+	    System.out.println("Your numbers: " + myNumbers.toString());
+	    
+	    EDGeneratorFromFile EDG = new EDGeneratorFromFile();
+	    System.out.println(EDG.getValuesFromLine(str, 0));
 	}
-
 
 
 }
