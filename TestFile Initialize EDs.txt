@@ -21,7 +21,6 @@ Rooms - number of RadioTestRooms : 1
 *	- EXP(L) : Exponential law where L is the parameter 
 * 	- LOGNORM(U,S) : LogNormal law where u is the esperance, and S is the variance
 *	- GAMMA(K,T) : 
-
 Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)
 Patients L2 - arriving until Time=10min, arrivals probability distribution : EXP(5)
 Patients L3 - arriving until Time=10min, arrivals probability distribution : LOGNORM(2,3)

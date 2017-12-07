@@ -88,19 +88,22 @@ public class EDGeneratorFromFile {
 		
 //--ED---------------------------------------------------------------------------------------------- 		
 		if (line.startsWith("NEW ED")){
+				System.out.println("EDGGENERATORFROMFILE --- creating New Ed");
 				this.edsGenerated.add(new ED("ED"+this.numED,"UnknownCountry"));
 				this.numED ++;
 				}
 		else if (line.startsWith("ED - name") && !this.edsGenerated.isEmpty()) {
+				System.out.println("EDGGENERATORFROMFILE --- New ed name");
 				this.edsGenerated.get(this.numED).setName(this.getWordFromLine(line, 11));
 		}
 		else if (line.startsWith("ED - country") && !this.edsGenerated.isEmpty()){
-			
+				System.out.println("EDGGENERATORFROMFILE --- New ed country");
 				this.edsGenerated.get(this.numED).setCountry(this.getWordFromLine(line, 14));
 		}
 //--RH---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("RH - number of physicians") && !this.edsGenerated.isEmpty()){
 				int numPhysicians = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numPhysicians + " physicians");
 				if (numPhysicians>0){
 					for (int i = 0; i < numPhysicians ; i++) {
 						this.humanFactory.getStaff("PHYSICIAN", this.edsGenerated.get(this.numED));
@@ -110,6 +113,7 @@ public class EDGeneratorFromFile {
 		}
 		else if (line.startsWith("RH - number of nurses") && !this.edsGenerated.isEmpty()){
 				int numNurses = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numNurses + " nurses");
 				if (numNurses>0){
 					for (int i = 0; i < numNurses ; i++) {
 						this.humanFactory.getStaff("NURSE", this.edsGenerated.get(this.numED));
@@ -119,6 +123,7 @@ public class EDGeneratorFromFile {
 		}
 		else if (line.startsWith("RH - number of transporters") && !this.edsGenerated.isEmpty()){
 				int numTransporters = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numTransporters + " transporters");
 				if (numTransporters>0){
 					for (int i = 0; i < numTransporters ; i++) {
 						this.humanFactory.getStaff("TRANSPORTER", this.edsGenerated.get(this.numED));
@@ -129,6 +134,7 @@ public class EDGeneratorFromFile {
 //--FACILITIES---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Facilities - number of stretchers") && !this.edsGenerated.isEmpty()){
 				int numStretchers = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numStretchers + " stretchers");
 				if (numStretchers>0){
 					for (int i = 0; i < numStretchers ; i++) {
 						this.facilityFactory.getFacility("FACILITY", this.edsGenerated.get(this.numED));
@@ -257,7 +263,11 @@ public class EDGeneratorFromFile {
 
 	}
 	
-	
+	/**
+	 * Read the initialisation file (filename) and treat it line by line until the end
+	 * @param fileName
+	 * @return
+	 */
 	public ArrayList<ED> edsGenerating(String fileName){
 		
 		FileReader file = null; 
@@ -288,7 +298,6 @@ public class EDGeneratorFromFile {
 		
 }
 
-	
 	
 	public ArrayList<ED> getEdsGenerated() {
 		return edsGenerated;
