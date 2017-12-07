@@ -80,7 +80,7 @@ public class MRIRoom extends Room {
 		this.setEd(ed);
 		this.setName("MRIRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
-
+		this.setDist("Unif");
 
 		this.setState("free");
 	}
@@ -125,9 +125,9 @@ public class MRIRoom extends Room {
 	}
 	@Override
 	public void removeOccupant(Patient patient) {
-		this.patient = null;
-		this.setState("free");
 		
+		this.setState("free");
+		this.patient = null;
 		
 	}
 	@Override
@@ -159,8 +159,9 @@ public class MRIRoom extends Room {
 		this.setDuration(Uniform.randSample(30,70));
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
-
-		this.patient.setHistory("(MRItested, "+ this.startTime.toString() + "), ");
+		this.getPatient().setState("testing");
+		this.patient.setHistory("(Start Test, "+ this.startTime.toString() + "), ");
+		System.out.println(patient.getHistory());
 	}
 	
 	
@@ -172,6 +173,7 @@ public class MRIRoom extends Room {
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		
 		this.patient.setState("mriTested");
+		System.out.println(patient.getHistory());
 		this.removeOccupant(this.getPatient());
 		
 	}

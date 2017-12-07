@@ -2,6 +2,9 @@ package Events;
 
 import java.util.ArrayList;
 import HR.*;
+import Rooms.BloodRoom;
+import Rooms.MRIRoom;
+import Rooms.RadioRoom;
 import Emergency.ED;
 
 public class EventsManager {
@@ -23,7 +26,7 @@ public class EventsManager {
 	public void nextStep(){
 		this.checkNewEvents(eds);
 		this.timeGoesToNextEventEnd();
-		System.out.println(this.inProgress);
+		System.out.println("\nin progress : "+this.inProgress);
 		this.dequeueEvents();
 		
 		
@@ -130,9 +133,9 @@ public class EventsManager {
 	 * @param ed
 	 */
 	public void checkNewBloodExamination(ED ed) {
-		while(!ed.getDbBloodRoom().get(0).isEmpty() && !ed.getDbPatient().get(10).isEmpty()){
-			BloodExamination bloodExamination = new BloodExamination(ed.getDbPatient().get(10).get(0), ed, ed.getDbBloodRoom().get(0).get(0));
-		
+		while(!ed.getDbPatient().get(10).isEmpty()){
+			BloodExamination bloodExamination = new BloodExamination(ed.getDbPatient().get(10).get(0), ed, (BloodRoom) ed.getDbPatient().get(10).get(0).getLocation());
+			
 			this.insertNewEvent(bloodExamination);
 		}
 	}
@@ -142,9 +145,10 @@ public class EventsManager {
 	 * @param ed
 	 */
 	public void checkNewMRIExamination(ED ed) {
-		
-		while(!ed.getDbMRIRoom().get(0).isEmpty() && !ed.getDbPatient().get(9).isEmpty()){
-			MRIExamination mriExamination = new MRIExamination(ed.getDbPatient().get(9).get(0), ed, ed.getDbMRIRoom().get(0).get(0));
+		while(!ed.getDbPatient().get(9).isEmpty()){
+			
+			MRIExamination mriExamination = new MRIExamination(ed.getDbPatient().get(9).get(0), ed, (MRIRoom) ed.getDbPatient().get(9).get(0).getLocation());
+			
 			this.insertNewEvent(mriExamination);
 		}
 	}
@@ -154,8 +158,9 @@ public class EventsManager {
 	 * @param ed
 	 */
 	public void checkNewRadioExamination(ED ed) {
-		while(!ed.getDbRadioRoom().get(0).isEmpty() && !ed.getDbPatient().get(11).isEmpty()){
-			RadioExamination radioExamination = new RadioExamination(ed.getDbPatient().get(11).get(0), ed, ed.getDbRadioRoom().get(0).get(0));
+		while(!ed.getDbPatient().get(11).isEmpty()){
+			RadioExamination radioExamination = new RadioExamination(ed.getDbPatient().get(11).get(0), ed, (RadioRoom) ed.getDbPatient().get(11).get(0).getLocation());
+			
 			this.insertNewEvent(radioExamination);
 		}
 	}
@@ -185,7 +190,8 @@ public class EventsManager {
 		}
 		else {
 			for (Patient patient : patientTested){
-				
+				System.out.println("on est dans la boucle de la liste patient tested de check transport");
+				System.out.println(patient.getPhysician());
 				if (patient.getPhysician().getState() == "idle"){
 					if(patient.getSeverityLevel().equalsIgnoreCase("L1") || patient.getSeverityLevel().equalsIgnoreCase("L2")) {
 						if(!ed.getDbBoxRoom().isEmpty()){
@@ -211,10 +217,9 @@ public class EventsManager {
 			}
 		}
 		
-
+		
 		//Transport to mri room
 		while(!ed.getDbTransporter().get(0).isEmpty() && !ed.getDbPatient().get(5).isEmpty() && !ed.getDbMRIRoom().get(0).isEmpty()){
-			
 			Transport_Transporter newTransport_Transporter = new Transport_Transporter(ed, ed.getDbPatient().get(5).get(0),ed.getDbTransporter().get(0).get(0), ed.getDbMRIRoom().get(0).get(0));
 			
 			this.insertNewEvent(newTransport_Transporter);

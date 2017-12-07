@@ -161,7 +161,8 @@ public class BloodRoom extends Room{
 		this.setDuration(new Uniform().randSample(15,90));
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(duree);
-		
+
+		this.getPatient().setState("testing");
 		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
 		System.out.println(patient.getHistory());
 	}

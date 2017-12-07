@@ -367,6 +367,11 @@ public class Patient extends Human{
 			this.state = state;
 			this.departureTime = new TimeStamp();
 		}
+		else if (state.equalsIgnoreCase("testing")){
+			this.ed.getDbPatient().get(16).add(this);
+			this.state = state;
+			this.departureTime = new TimeStamp();
+		}
 		
 		else{
 			System.out.println("cet état n'existe pas");
