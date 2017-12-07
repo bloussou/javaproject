@@ -41,7 +41,7 @@ public class Patient extends Human{
 	/**
 	 * The history of the patient
 	 */
-	private String history;
+	private String history = "";
 	/**
 	 * the total charges of the patient
 	 */
@@ -83,17 +83,16 @@ public class Patient extends Human{
 		this.setEd(ed);
 		this.setName(name);
 		this.setSurname(surname);
-		this.setState(state);
 		
 		this.healthInsurance = healthInsurance;
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
-		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
-		
+		this.setState(state);
+		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
+
 		this.location = null;
-		this.history = "";
 		this.charges = 0;
 	}
 	
@@ -128,12 +127,11 @@ public class Patient extends Human{
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
-		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		this.arrivalTime = arrivalTime;
 		this.setState("Arriving");
+		this.setHistory("(arriving, "+ arrivalTime.toString() + "), ");
 		
 		this.location = null;
-		this.history = "";
 		this.charges = 0;
 	}
 	
@@ -215,7 +213,7 @@ public class Patient extends Human{
 	 * @return {@link Patient#history}
 	 */
 	public String getHistory() {
-		return history;
+		return this.history;
 	}
 	/**
 	 * Add the history updates to the {@link Patient#history}
@@ -229,7 +227,7 @@ public class Patient extends Human{
 	 * @return {@link Patient#charges}
 	 */
 	public float getCharges() {
-		return charges;
+		return this.charges;
 	}
 	/**
 	 * Add the new charges to {@link Patient#charges}
@@ -243,7 +241,7 @@ public class Patient extends Human{
 	 * @return {@link Patient#physician}
 	 */
 	public Physician getPhysician() {
-		return physician;
+		return this.physician;
 	}
 	/**
 	 * Set the {@link Patient#physician}

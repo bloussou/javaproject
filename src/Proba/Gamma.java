@@ -14,7 +14,7 @@ public class Gamma  {
 	 * @param theta
 	 * @return {@link GammaDistribution#sample()}
 	 */
-	public double randSample(double k, double theta) {
+	public static double randSample(double k, double theta) {
 		return new GammaDistribution(k, theta).sample();
 	}
 	

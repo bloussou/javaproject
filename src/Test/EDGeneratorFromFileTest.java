@@ -4,17 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import HR.Patient;
 import SimErgyClient.EDGeneratorFromFile;
 
 public class EDGeneratorFromFileTest {
 
 	@Test
 	public void testgetNumbersFromLine() {
-		String str = "abc d 1234567890pqr 54897\n";
+		String str = "Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)\n";
 
 	    EDGeneratorFromFile EDG = new EDGeneratorFromFile();
-	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 0).get(0))==1234567890);
-	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 0).get(1))==54897);
+	    
+	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(0))==10);
+	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(1))==2);
+	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(2))==5);
 	}
 	
 	
@@ -24,8 +27,6 @@ public class EDGeneratorFromFileTest {
 		
 	    EDGeneratorFromFile EDG = new EDGeneratorFromFile();
 	    String str2 = "ED - country : France";
-	    System.out.println(EDG.getWordFromLine(str2, 14));
-	    System.out.println(EDG.getWordFromLine(str2, 14).length());
 	    assertTrue(EDG.getWordFromLine(str2, 14).equalsIgnoreCase("France"));
 	}
 
@@ -117,7 +118,35 @@ public class EDGeneratorFromFileTest {
 	}
 	
 	
-	
+	@Test
+	public void testgenerateFromLinePatients() {
+		
+		
+		System.out.println("\n--------testgenerateFromLinePatients-------");
+	    EDGeneratorFromFile EDG = new EDGeneratorFromFile(); 
+	    String line0 = "NEW ED";
+	    EDG.generateFromLine(line0);
+	    
+	    String line1 = "Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)";
+	    EDG.generateFromLine(line1);
+	    
+	    String line2 = "Patients L2 - arriving until Time=10min, arrivals probability distribution : EXP(1)";
+	    EDG.generateFromLine(line2);
+	    
+	    String line3 = "Patients L3 - arriving until Time=10min, arrivals probability distribution : LOGNORM(3,1)";
+	    EDG.generateFromLine(line3);
+	    
+	    String line4 = "Patients L4 - arriving until Time=10min, arrivals probability distribution : GAMMA(1,2)";
+	    EDG.generateFromLine(line4);
+	    
+	    System.out.println(EDG.getEdsGenerated().get(0).getDbPatient());
+	    for (Patient patient : EDG.getEdsGenerated().get(0).getDbPatient().get(0)) {
+			System.out.println("Patient de degré d'urgence " + patient.getSeverityLevel() + " " + patient.getHistory());
+		}
+	    
+	    System.out.println("--------testgenerateFromLinePatients----END---\n");
+
+	}
 	
 	
 }

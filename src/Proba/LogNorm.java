@@ -83,7 +83,7 @@ public class LogNorm {
 	 * @param sigma
 	 * @return {@link LogNormalDistribution#sample()}
 	 */
-	public static double Rand2sample(double mu, double sigma){
+	public static double randSample(double mu, double sigma){
 		return new LogNormalDistribution(mu, sigma).sample();
 	}
 	

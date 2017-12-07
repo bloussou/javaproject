@@ -7,7 +7,12 @@ import java.util.ArrayList;
 
 import Emergency.ED;
 import Events.Time;
+import Events.TimeStamp;
 import Factory.FactoryCreator;
+import Proba.Exp;
+import Proba.Gamma;
+import Proba.LogNorm;
+import Proba.Uniform;
 
 public class EDGeneratorFromFile {
 	
@@ -64,7 +69,7 @@ public class EDGeneratorFromFile {
 		int i = setOff;
 		boolean wordFound = false;
 		
-		while(i< str.length() && !(str.charAt(i)==' ' && wordFound) && !(str.charAt(i)=='\n')){
+		while(i< str.length() && !(str.charAt(i)==' ' && wordFound) && !(str.charAt(i)=='(')&& !(str.charAt(i)=='\n')){
 			if(!(str.charAt(i)==' ') && !(str.charAt(i)==':')){
 				wordFound = true;
 				returnValue+=str.charAt(i);
@@ -75,6 +80,10 @@ public class EDGeneratorFromFile {
 		return returnValue;
 	}
 	
+	/**
+	 * Interprete a line and creates the corresponding elements in the system
+	 * @param line
+	 */
 	public void generateFromLine(String line){
 		
 //--ED---------------------------------------------------------------------------------------------- 		
@@ -185,27 +194,67 @@ public class EDGeneratorFromFile {
 		}
 //--PATIENTS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Patients") && !this.edsGenerated.isEmpty()){
+			
 				ArrayList<String> dataNum = this.getNumbersFromLine(line, 12);
-				int numPatientsL1 = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
-				int startMinute = Integer.parseInt(this.getNumbersFromLine(line, 0).get(1));
-				int endMinute = Integer.parseInt(this.getNumbersFromLine(line, 0).get(2));
-				String severityLevel = this.getWordFromLine(line, 8);
+				String sevLevel = this.getWordFromLine(line, 8);
+				int endTime = Integer.parseInt(dataNum.get(0));
+
 				String distribution = this.getWordFromLine(line, line.indexOf("distribution")+12);
+				TimeStamp nextArrivalTime;
 				
-				if (numPatientsL1>0){
-					for (int i = 0; i < numPatientsL1 ; i++) {
-						this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), severityLevel, arrivalTime)("RADIOROOM", this.edsGenerated.get(this.numED));
+				
+				if (sevLevel.equalsIgnoreCase("L1") || sevLevel.equalsIgnoreCase("L2") || sevLevel.equalsIgnoreCase("L3") || sevLevel.equalsIgnoreCase("L4") || sevLevel.equalsIgnoreCase("L5")){
+					if(distribution.equalsIgnoreCase("UNIFORM") && dataNum.size()==3){
+						int minLap = Integer.parseInt(dataNum.get(1));
+						int maxLap = Integer.parseInt(dataNum.get(2));
+						int durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
+						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
+						while(nextArrivalTime.getTimeStamp()<=endTime){
+							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
+							durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
+							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						}
+					}
+					else if (distribution.equalsIgnoreCase("EXP") && dataNum.size()==2){
+						int lambda = Integer.parseInt(dataNum.get(1));
+						int durationBeforeNextArrival = (int) Exp.RandSample(lambda);
+						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
+						while(nextArrivalTime.getTimeStamp()<=endTime){
+							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
+							durationBeforeNextArrival = (int) Exp.RandSample(lambda);
+							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						}
+					}
+					else if (distribution.equalsIgnoreCase("GAMMA") && dataNum.size()==3){
+						int K = Integer.parseInt(dataNum.get(1));
+						int T = Integer.parseInt(dataNum.get(2));
+						int durationBeforeNextArrival = (int) Gamma.randSample(K, T);
+						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
+						while(nextArrivalTime.getTimeStamp()<=endTime){
+							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
+							durationBeforeNextArrival = (int) Gamma.randSample(K, T);
+							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						}
+					}
+					else if (distribution.equalsIgnoreCase("LOGNORM") && dataNum.size()==3){
+						int E = Integer.parseInt(dataNum.get(1));
+						int S = Integer.parseInt(dataNum.get(2));
+						int durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
+						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
+						while(nextArrivalTime.getTimeStamp()<=endTime){
+							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
+							durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
+							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						}
+					}
+					else{
+						System.out.println("La loi de distribution ou son paramétrage n'est pas valide");
 					}
 				}
-				else {System.out.println("Problème avec le nb de radioRooms de " + this.edsGenerated.get(this.numED).getName());}
+				else {System.out.println("Problème avec le degré de sévérité des patients pour l'ed " + this.edsGenerated.get(this.numED).getName());}
 		}	
 	
-	
-	
-	
 
-	
-	
 	}
 	
 	
@@ -221,6 +270,7 @@ public class EDGeneratorFromFile {
 			// wrapping a FileReader into a BufferedReader for reading line by line 
 			String line = ""; 
 			while ((line = reader.readLine()) != null) {
+				this.generateFromLine(line);
 			}
 		} 
 		catch (Exception e) {throw new RuntimeException(e);} 
@@ -247,8 +297,6 @@ public class EDGeneratorFromFile {
 	public void setEdsGenerated(ArrayList<ED> edsGenerated) {
 		this.edsGenerated = edsGenerated;
 	}
-	
-	
 	
 
 
