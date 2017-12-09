@@ -38,7 +38,7 @@ public class SimErgy {
 //		
 //		
 		Patient patient0 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(5));
-//		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(15));
+		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(15));
 //		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(4));
 //		Patient patient3 = (Patient) peopleFactory.getPatient(ed, "L3" , new TimeStamp(18));
 //		Patient patient4 = (Patient) peopleFactory.getPatient(ed, "L4" , new TimeStamp(20));
