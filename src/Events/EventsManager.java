@@ -26,7 +26,6 @@ public class EventsManager {
 	public void nextStep(){
 		this.checkNewEvents(eds);
 		this.timeGoesToNextEventEnd();
-		System.out.println("\nin progress : "+this.inProgress);
 		this.dequeueEvents();
 		
 		
@@ -190,14 +189,13 @@ public class EventsManager {
 		}
 		else {
 			for (Patient patient : patientTested){
-				System.out.println("on est dans la boucle de la liste patient tested de check transport");
 				System.out.println(patient.getPhysician());
 				if (patient.getPhysician().getState() == "idle"){
 					if(patient.getSeverityLevel().equalsIgnoreCase("L1") || patient.getSeverityLevel().equalsIgnoreCase("L2")) {
-						if(!ed.getDbBoxRoom().isEmpty()){
+						if(!ed.getDbBoxRoom().get(0).isEmpty()){
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
 						}
-						else if(!ed.getDbShockRoom().isEmpty()){
+						else if(!ed.getDbShockRoom().get(0).isEmpty()){
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbShockRoom().get(0).get(0)));
 						}
 						else {
@@ -206,7 +204,7 @@ public class EventsManager {
 						
 					}
 					else {
-						if(!ed.getDbBoxRoom().isEmpty()){
+						if(!ed.getDbBoxRoom().get(0).isEmpty()){
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
 						}
 						else {

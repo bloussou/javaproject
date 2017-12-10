@@ -35,49 +35,44 @@ public class SimErgy {
 				
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
-//		
-//		
+		
+	
 		Patient patient0 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(5));
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(15));
-//		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(4));
-//		Patient patient3 = (Patient) peopleFactory.getPatient(ed, "L3" , new TimeStamp(18));
-//		Patient patient4 = (Patient) peopleFactory.getPatient(ed, "L4" , new TimeStamp(20));
-//		Patient patient5 = (Patient) peopleFactory.getPatient(ed, "L5" , new TimeStamp(19));
-//		Patient patient6 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(25));
-//		Patient patient7 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(24));
-//		
+		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(4));
+		Patient patient3 = (Patient) peopleFactory.getPatient(ed, "L3" , new TimeStamp(18));
+		Patient patient4 = (Patient) peopleFactory.getPatient(ed, "L4" , new TimeStamp(20));
+		Patient patient5 = (Patient) peopleFactory.getPatient(ed, "L5" , new TimeStamp(19));
+		Patient patient6 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(25));
+		Patient patient7 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(24));
+	
 		Nurse nurse0 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-//		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-//		
+		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
+	
 		Transporter transporter0 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
 		Transporter transporter1 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-//		
+		
 		Physician physician0 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-//		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-//		
-//	
+		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		
+
 		WaitingRoom wRoom0 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
 		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
 		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-//		
+		
 		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
 		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
 		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
 		
-		//patient0.setPhysician(physician0);
-		//patient0.setState("bloodtested");
 		
 		System.out.println(ed.getDbTransporter().isEmpty());
 		System.out.println(ed.getDbPatient().get(5));
 		System.out.println(ed.getDbMRIRoom().get(0));
 		System.out.println(ed.getDbMRIRoom().get(1));
 		while (time.getTime()<600000){
-			//System.out.println("\n"+simulator.getInProgress());
-			System.out.println(patient0.getState());
 			simulator.nextStep();
 		}
-		System.out.println("\n"+patient0.getHistory());
-		System.out.println(patient0.getState());
+
 		
 		
 	}

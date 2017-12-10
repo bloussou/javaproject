@@ -121,8 +121,6 @@ public class Nurse extends Human{
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(registered, "+ this.getStartTime().toString() + "), ");
-		
-		System.out.println(patient.getName()+" register at :" + startTime.getTimeStamp());
 
 		
 	}
@@ -168,8 +166,6 @@ public class Nurse extends Human{
 		this.setEndTime(new TimeStamp(2));
 		patient.setHistory("(transporting, "+ this.getStartTime().toString() + "), ");
 		
-		System.out.println(patient.getName()+" start transportation at : "+this.startTime.getTimeStamp());
-		
 	}
 	/**
 	 * Drop the patient in the targeted waiting room,
@@ -194,7 +190,6 @@ public class Nurse extends Human{
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(dropedInWaitingRoom, "+ this.getStartTime().toString() + "), ");
-		System.out.println(patient.getName()+" drop at :"+endTime.getTimeStamp()+" in : "+patient.getLocation());
 	}
 	
 	

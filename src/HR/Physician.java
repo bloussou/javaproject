@@ -190,8 +190,6 @@ public class Physician extends Human  implements Observer{
 		//set the dtdt time of the patient
 		patient.setDtdtime(new TimeStamp());
 		
-		System.out.println(patient.getName()+patient.getHistory());
-		
 	}
 	
 	/**

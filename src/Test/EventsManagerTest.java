@@ -353,7 +353,7 @@ public class EventsManagerTest {
 		
 		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
 		
-
+		patient1.setLocation(mriRoom);
 		System.out.println(patient1.getState());
 		System.out.println(patient2.getState());
 		//Test
@@ -368,6 +368,9 @@ public class EventsManagerTest {
 		assertTrue(mriexam.getPatient().equals(patient2) || mriexam.getPatient().equals(patient1));
 		assertTrue(simulator.getInProgress().size() ==1);
 		assertTrue(mriRoom.getState().contentEquals("occupied"));
+
+
+
 
 
 	}

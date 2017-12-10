@@ -190,7 +190,6 @@ public class Transporter extends Human{
 		
 		
 		patient.setHistory("("+patient.getState() +", "+ this.getEndTime().toString() + "), ");
-		System.out.println(patient.getName()+" "+patient.getHistory());
 	}
 	
 
