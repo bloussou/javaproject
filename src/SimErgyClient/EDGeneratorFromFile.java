@@ -23,6 +23,12 @@ public class EDGeneratorFromFile {
 	public Factory.AbstractFactory facilityFactory;
 	public Time time;
 	
+	/**
+	 * Instanciate :
+	 * <li> Time </li>
+	 * <li> generated EDs's list</li>
+	 * <li> all the factories which are used to instanciate new pieces of the SimErgy system</li>
+	 */
 	public EDGeneratorFromFile(){
 		this.time = Time.getInstanceTime();
 		this.edsGenerated = new ArrayList<ED>();
@@ -302,7 +308,6 @@ public class EDGeneratorFromFile {
 	public ArrayList<ED> getEdsGenerated() {
 		return edsGenerated;
 	}
-
 	public void setEdsGenerated(ArrayList<ED> edsGenerated) {
 		this.edsGenerated = edsGenerated;
 	}

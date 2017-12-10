@@ -23,15 +23,16 @@ public class EventsManager {
 	}
 	
 
+	/**
+	 * Processes one step of simulation
+	 */
 	public void nextStep(){
 		this.checkNewEvents(eds);
 		this.timeGoesToNextEventEnd();
 		this.dequeueEvents();
-		
-		
-
 	}
 
+	
 	/**
 	 * For each ED in the eds' list, check if new events have to be created
 	 * @param eds
@@ -48,8 +49,7 @@ public class EventsManager {
 		}
 	}
 	
-	
-	/**
+		/**
 	 * check in ED if new Registrations have to be done
 	 * @param ed
 	 */
@@ -65,9 +65,8 @@ public class EventsManager {
 			}
 	}
 	
-	
 	/**
-	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be done
+e	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be done
 	 * @param ed
 	 */
 	public void checkNewTransport_Nurse(ED ed){
@@ -125,8 +124,7 @@ public class EventsManager {
 		}
 		
 	}
-	
-	
+		
 	/**
 	 * check in ED if new BloodExamination have to be done
 	 * @param ed
@@ -245,8 +243,7 @@ public class EventsManager {
 	
 	
 	
-	
-	/**
+		/**
 	 * Insert a new event in the list InProgress, of events in progress. Insert it so that the list is sorted by endTime.
 	 * @param event
 	 * @see Event#getEndTime()
@@ -307,47 +304,20 @@ public class EventsManager {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public ArrayList<Event> getInProgress() {
 		return inProgress;
 	}
-	
-	
 	public ArrayList<ED> getEds() {
 		return eds;
 	}
-
-
-
 	public void setEds(ArrayList<ED> eds) {
 		this.eds = eds;
 	}
-
-
-
-
-
 	public void setInProgress(ArrayList<Event> inProgress) {
 		this.inProgress = inProgress;
 	}
 
 
-
-	public static void main(String[] args) {
-		
-		
-		
-		
-		
-	}
 	
 
 }
