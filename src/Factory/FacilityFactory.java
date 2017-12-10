@@ -9,12 +9,12 @@ import Rooms.Room;
 public class FacilityFactory extends AbstractFactory {
 
 	@Override
-	public Human getStaff(String staffType, ED ed) {
+	public Human getStaff(ED ed, String staffType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Human getStaff(String staffType, ED ed, String name, String surname, String state) {
+	public Human getStaff(ED ed, String staffType, String name, String surname, String state) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -31,12 +31,12 @@ public class FacilityFactory extends AbstractFactory {
 	}
 
 	@Override
-	public Room getRoom(String roomType, ED ed) {
+	public Room getRoom(ED ed, String roomType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Room getRoom(String roomType, ED ed, String name) {
+	public Room getRoom(ED ed, String roomType, String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -50,7 +50,7 @@ public class FacilityFactory extends AbstractFactory {
 	 * @see Stretcher#Stretcher(ED)
 	 */
 	@Override
-	public Facility getFacility(String facilityType, ED ed) {
+	public Facility getFacility(ED ed, String facilityType) {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
 			return new Stretcher(ed);
 		}
@@ -69,7 +69,7 @@ public class FacilityFactory extends AbstractFactory {
 	 * @see Stretcher#Stretcher(ED, String))
 	 */
 	@Override
-	public Facility getFacility(String facilityType, ED ed, String name) {
+	public Facility getFacility(ED ed, String facilityType, String name) {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
 			return new Stretcher(ed, name);
 		}

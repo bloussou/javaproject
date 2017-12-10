@@ -27,7 +27,7 @@ public class PeopleFactory extends AbstractFactory{
 	 */
 
 	@Override
-	public Human getStaff(String staffType, ED ed) {
+	public Human getStaff(ED ed, String staffType) {
 		if(staffType.equalsIgnoreCase("NURSE")){
 			return new Nurse(ed);
 		}
@@ -68,7 +68,7 @@ public class PeopleFactory extends AbstractFactory{
 	 * @see Transporter#setState(String)
 	 */
 	@Override
-	public Human getStaff(String staffType, ED ed, String name, String surname, String state) {
+	public Human getStaff(ED ed, String staffType, String name, String surname, String state) {
 		if(staffType.equalsIgnoreCase("NURSE")){
 			return new Nurse(ed, name, surname, state);
 		}
@@ -107,22 +107,22 @@ public class PeopleFactory extends AbstractFactory{
 	
 	
 	@Override
-	public Room getRoom(String roomType, ED ed) {
+	public Room getRoom(ED ed, String roomType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Room getRoom(String roomType, ED ed, String name){
+	public Room getRoom(ED ed, String roomType, String name){
 		return null;
 	}
 	
 	@Override
-	public Facility getFacility(String facilityType, ED ed) {
+	public Facility getFacility(ED ed, String facilityType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Facility getFacility(String facilityType, ED ed, String name) {
+	public Facility getFacility(ED ed, String facilityType, String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

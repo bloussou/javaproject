@@ -19,6 +19,7 @@ import Rooms.ShockRoom;
 import Rooms.WaitingRoom;
 
 public abstract class AbstractFactory {
+	
 	/**
 	 * Takes a string :
 	 * <li>"Nurse" to return a Nurse</li>
@@ -35,7 +36,7 @@ public abstract class AbstractFactory {
 	 * @see Nurse#setState(String)
 	 * @see Transporter#setState(String)
 	 */
-	abstract public Human getStaff(String staffType, ED ed); 
+	abstract public Human getStaff(ED ed,String staffType); 
 	/**
 	 * Takes a string :
 	 * <li>"Nurse" to return a Nurse</li>
@@ -60,7 +61,7 @@ public abstract class AbstractFactory {
 	 * @see Nurse#setState(String)
 	 * @see Transporter#setState(String)
 	 */
-	abstract public Human getStaff(String staffType, ED ed, String name, String surname, String state);
+	abstract public Human getStaff(ED ed, String staffType, String name, String surname, String state);
 	/**
 	 * Return a patient with this parameters
 	 * @param ed
@@ -100,7 +101,7 @@ public abstract class AbstractFactory {
 	 * @see RadioRoom#RadioRoom(ED)
 	 * 
 	 */
-	abstract public Room getRoom(String roomType, ED ed);
+	abstract public Room getRoom(ED ed, String roomType);
 	/**
 	 * Return the good room chosen with the string :
 	 * <li>"BoxRoom" return BoxRoom</li>
@@ -122,7 +123,7 @@ public abstract class AbstractFactory {
 	 * @see MRIRoom#MRIRoom(ED, String))
 	 * @see RadioRoom#RadioRoom(ED, String))
 	 */
-	abstract public Room getRoom(String roomType, ED ed, String name);
+	abstract public Room getRoom(ED ed, String roomType, String name);
 	/**
 	 * Return the good facility :
 	 * <li>"Stretcher" return Stretcher</li>
@@ -132,7 +133,7 @@ public abstract class AbstractFactory {
 	 * @return {@link Stretcher} or null
 	 * @see Stretcher#Stretcher(ED)
 	 */
-	abstract public Facility getFacility (String facilityType, ED ed);
+	abstract public Facility getFacility (ED ed,String facilityType);
 	/**
 	 * Return the good facility :
 	 * <li>"Stretcher" return Stretcher</li>
@@ -142,7 +143,7 @@ public abstract class AbstractFactory {
 	 * @return {@link Stretcher} or null
 	 * @see Stretcher#Stretcher(ED, String))
 	 */
-	abstract public Facility getFacility(String facilityType, ED ed, String name);
+	abstract public Facility getFacility(ED ed, String facilityType, String name);
 	
 
 }

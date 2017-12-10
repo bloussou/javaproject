@@ -9,11 +9,11 @@ import Rooms.*;
 public class RoomFactory extends AbstractFactory{
 
 	@Override
-	public Human getStaff(String staffType, ED ed) {
+	public Human getStaff(ED ed, String staffType) {
 		return null;
 	}
 	@Override
-	public Human getStaff(String staffType, ED ed, String name, String surname, String state) {
+	public Human getStaff(ED ed, String staffType, String name, String surname, String state) {
 		return null;
 	}
 	@Override
@@ -49,7 +49,7 @@ public class RoomFactory extends AbstractFactory{
 	 * 
 	 */
 	@Override
-	public Room getRoom(String roomType, ED ed) {
+	public Room getRoom(ED ed, String roomType) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
 			return new WaitingRoom(ed);
 		}
@@ -80,7 +80,7 @@ public class RoomFactory extends AbstractFactory{
 	
 	
 	@Override
-	public Room getRoom(String roomType, ED ed, String name) {
+	public Room getRoom(ED ed, String roomType, String name) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){
 			return new WaitingRoom(ed, name);
 		}
@@ -127,12 +127,12 @@ public class RoomFactory extends AbstractFactory{
 	 * @see RadioRoom#RadioRoom(ED, String))
 	 */
 	@Override
-	public Facility getFacility(String facilityType, ED ed) {
+	public Facility getFacility(ED ed, String facilityType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public Facility getFacility(String facilityType, ED ed, String name) {
+	public Facility getFacility(ED ed, String facilityType, String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
