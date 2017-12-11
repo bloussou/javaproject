@@ -65,13 +65,11 @@ public class SimErgy {
 		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		
 		
-		System.out.println(ed.getDbTransporter().isEmpty());
-		System.out.println(ed.getDbPatient().get(5));
-		System.out.println(ed.getDbMRIRoom().get(0));
-		System.out.println(ed.getDbMRIRoom().get(1));
+
 		while (time.getTime()<600000){
 			simulator.nextStep();
 		}
+		System.out.println("simulation end");
 
 		
 		

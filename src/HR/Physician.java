@@ -206,8 +206,7 @@ public class Physician extends Human  implements Observer{
 		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
-		System.out.println("affichage de la libératio du patient dans emit verdict");
-		System.out.println(patient.getHistory());
+		System.out.println(patient.getName()+" "+patient.getHistory());
 		patient.setDepartureTime(departureTime);
 		
 		//patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");

@@ -187,7 +187,6 @@ e	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be do
 		}
 		else {
 			for (Patient patient : patientTested){
-				System.out.println(patient.getPhysician());
 				if (patient.getPhysician().getState() == "idle"){
 					if(patient.getSeverityLevel().equalsIgnoreCase("L1") || patient.getSeverityLevel().equalsIgnoreCase("L2")) {
 						if(!ed.getDbBoxRoom().get(0).isEmpty()){
