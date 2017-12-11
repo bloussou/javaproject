@@ -112,7 +112,7 @@ public class EDGeneratorFromFile {
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numPhysicians + " physicians");
 				if (numPhysicians>0){
 					for (int i = 0; i < numPhysicians ; i++) {
-						this.humanFactory.getStaff("PHYSICIAN", this.edsGenerated.get(this.numED));
+						this.humanFactory.getStaff( this.edsGenerated.get(this.numED),"PHYSICIAN");
 					}
 				}
 				else {System.out.println("Problème avec le nb de physicians de " + this.edsGenerated.get(this.numED).getName());}
@@ -122,7 +122,7 @@ public class EDGeneratorFromFile {
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numNurses + " nurses");
 				if (numNurses>0){
 					for (int i = 0; i < numNurses ; i++) {
-						this.humanFactory.getStaff("NURSE", this.edsGenerated.get(this.numED));
+						this.humanFactory.getStaff( this.edsGenerated.get(this.numED), "NURSE");
 					}
 				}
 				else {System.out.println("Problème avec le nb de nurses de " + this.edsGenerated.get(this.numED).getName());}
@@ -132,7 +132,7 @@ public class EDGeneratorFromFile {
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numTransporters + " transporters");
 				if (numTransporters>0){
 					for (int i = 0; i < numTransporters ; i++) {
-						this.humanFactory.getStaff("TRANSPORTER", this.edsGenerated.get(this.numED));
+						this.humanFactory.getStaff( this.edsGenerated.get(this.numED), "TRANSPORTER");
 					}
 				}
 				else {System.out.println("Problème avec le nb de transporters de " + this.edsGenerated.get(this.numED).getName());}
@@ -143,7 +143,7 @@ public class EDGeneratorFromFile {
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numStretchers + " stretchers");
 				if (numStretchers>0){
 					for (int i = 0; i < numStretchers ; i++) {
-						this.facilityFactory.getFacility("FACILITY", this.edsGenerated.get(this.numED));
+						this.facilityFactory.getFacility(this.edsGenerated.get(this.numED), "FACILITY");
 					}
 				}
 				else {System.out.println("Problème avec le nb de stretchers de " + this.edsGenerated.get(this.numED).getName());}
@@ -153,7 +153,7 @@ public class EDGeneratorFromFile {
 				int numWR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numWR>0){
 					for (int i = 0; i < numWR ; i++) {
-						this.roomFactory.getRoom("WAITINGROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "WAITINGROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de waitingRooms de " + this.edsGenerated.get(this.numED).getName());}
@@ -162,7 +162,7 @@ public class EDGeneratorFromFile {
 				int numSR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numSR>0){
 					for (int i = 0; i < numSR ; i++) {
-						this.roomFactory.getRoom("SHOCKROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "SHOCKROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de shockRooms de " + this.edsGenerated.get(this.numED).getName());}
@@ -171,7 +171,7 @@ public class EDGeneratorFromFile {
 				int numBR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numBR>0){
 					for (int i = 0; i < numBR ; i++) {
-						this.roomFactory.getRoom("BOXROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "BOXROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de boxRooms de " + this.edsGenerated.get(this.numED).getName());}
@@ -181,7 +181,7 @@ public class EDGeneratorFromFile {
 				int numBloodR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numBloodR>0){
 					for (int i = 0; i < numBloodR ; i++) {
-						this.roomFactory.getRoom("BLOODROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "BLOODROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de bloodRooms de " + this.edsGenerated.get(this.numED).getName());}
@@ -190,7 +190,7 @@ public class EDGeneratorFromFile {
 				int numMRIR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numMRIR>0){
 					for (int i = 0; i < numMRIR ; i++) {
-						this.roomFactory.getRoom("MRIROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "MRIROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de mriRooms de " + this.edsGenerated.get(this.numED).getName());}
@@ -199,7 +199,7 @@ public class EDGeneratorFromFile {
 				int numRadioR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
 				if (numRadioR>0){
 					for (int i = 0; i < numRadioR ; i++) {
-						this.roomFactory.getRoom("RADIOROOM", this.edsGenerated.get(this.numED));
+						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "RADIOROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de radioRooms de " + this.edsGenerated.get(this.numED).getName());}

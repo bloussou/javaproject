@@ -26,7 +26,7 @@ public class BloodRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room bloodRoom = (Room) roomFactory.getRoom("BLOODROOM", ed);
+		Room bloodRoom = (Room) roomFactory.getRoom(ed, "BLOODROOM");
 		
 		//test free
 		bloodRoom.setState("free");
@@ -56,7 +56,7 @@ public class BloodRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		Room bloodRoom = (Room) roomFactory.getRoom("BLOODROOM", ed);
+		Room bloodRoom = (Room) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -77,7 +77,7 @@ public class BloodRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -98,7 +98,7 @@ public class BloodRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		Room bloodRoom = (Room) roomFactory.getRoom("BLOODROOM", ed);
+		Room bloodRoom = (Room) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -120,7 +120,7 @@ public class BloodRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		

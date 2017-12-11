@@ -25,7 +25,7 @@ public class MRIRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room mriRoom = (Room) roomFactory.getRoom("MRIROOM", ed);
+		Room mriRoom = (Room) roomFactory.getRoom(ed, "MRIROOM");
 		
 		//test free
 		mriRoom.setState("free");
@@ -55,7 +55,7 @@ public class MRIRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		Room mriRoom = (Room) roomFactory.getRoom("MRIROOM", ed);
+		Room mriRoom = (Room) roomFactory.getRoom(ed, "MRIROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -77,7 +77,7 @@ public class MRIRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -102,7 +102,7 @@ public class MRIRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -125,7 +125,7 @@ public class MRIRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -151,7 +151,7 @@ public class MRIRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		

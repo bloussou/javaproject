@@ -25,7 +25,7 @@ public class BoxRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room boxRoom = (Room) roomFactory.getRoom("BOXROOM", ed);
+		Room boxRoom = (Room) roomFactory.getRoom(ed, "BOXROOM");
 		
 		//test free
 		boxRoom.setState("free");
@@ -59,7 +59,7 @@ public class BoxRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		

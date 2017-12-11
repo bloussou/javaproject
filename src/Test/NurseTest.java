@@ -25,7 +25,7 @@ public class NurseTest {
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 		
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 
 				
 		// PROCEED
@@ -56,8 +56,8 @@ public class NurseTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom(ed, "WAITINGROOM");
 		
 		//PROCEED
 		nurse.register(patient1);
@@ -82,7 +82,7 @@ public class NurseTest {
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 		
 		//test idle
 		nurse.setState("idle");
@@ -121,8 +121,8 @@ public class NurseTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");	
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom(ed, "WAITINGROOM");
 		
 		//PROCEED
 		nurse.register(patient1);

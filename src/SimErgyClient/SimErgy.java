@@ -46,23 +46,23 @@ public class SimErgy {
 		Patient patient6 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp(25));
 		Patient patient7 = (Patient) peopleFactory.getPatient(ed, "L2" , new TimeStamp(24));
 	
-		Nurse nurse0 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse0 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse1 = (Nurse) peopleFactory.getStaff(ed,"NURSE");
 	
-		Transporter transporter0 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter1 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter0 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
+		Transporter transporter1 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		
-		Physician physician0 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician0 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 
-		WaitingRoom wRoom0 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		WaitingRoom wRoom0 = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
+		BoxRoom bRoom = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
+		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom(ed,"SHOCKROOM");
 		
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed,"MRIROOM");
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		
 		
 		System.out.println(ed.getDbTransporter().isEmpty());

@@ -27,7 +27,7 @@ public class BloodExaminationTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		bloodRoom.addOccupant(patient);
 		
@@ -54,7 +54,7 @@ public class BloodExaminationTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		bloodRoom.addOccupant(patient);
 		

@@ -31,9 +31,9 @@ public class DTDTTest {
 		Patient p3 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient p4 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 		
-		Physician phys1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician phys1 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
 		
-		BoxRoom box1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom box1 = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
 		
 		time.timeGoes(10);
 		phys1.handleNewPatient(p1, box1);
@@ -71,9 +71,9 @@ public class DTDTTest {
 		Patient p2 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient p3 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
-		Physician phys1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician phys1 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
 		
-		BoxRoom box1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom box1 = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
 		
 		time.timeGoes(10);
 		phys1.handleNewPatient(p1, box1);

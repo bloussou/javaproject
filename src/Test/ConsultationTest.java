@@ -29,8 +29,8 @@ public class ConsultationTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Physician physician = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		Physician physician = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
 
 				
 		// PROCEED
@@ -58,8 +58,8 @@ public class ConsultationTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Physician physician = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		Physician physician = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
 
 				
 		// PROCEED

@@ -84,7 +84,7 @@ public class CLI {
 					int edIndex = -1;
 					for (int i = 0; i < this.eds.size(); i++) {
 						if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
-							this.roomFactory.getRoom();
+							
 						}
 					}
 					

@@ -45,8 +45,8 @@ public class EventsManagerTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Physician physician = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		Physician physician = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		ShockRoom sRoom = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
 		
 		Consultation consultation1 = new Consultation(ed, patient, physician, sRoom);
 		Consultation consultation2 = new Consultation(ed, patient, physician, sRoom);
@@ -92,9 +92,9 @@ public class EventsManagerTest {
 		
 
 
-		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse2 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse3 = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse1 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse2 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse3 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 		
 		//test
 		simulator.checkNewRegistration(ed);
@@ -129,11 +129,11 @@ public class EventsManagerTest {
 		
 
 
-		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse2 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse3 = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse1 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse2 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse3 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 		
-		WaitingRoom wroom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		WaitingRoom wroom1 = (WaitingRoom) roomFactory.getRoom(ed, "WAITINGROOM");
 		
 		simulator.checkNewRegistration(ed);
 		//Test
@@ -166,28 +166,28 @@ public class EventsManagerTest {
 		
 
 
-		Nurse nurse1 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse2 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse3 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse4 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse5 = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		Nurse nurse6 = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse1 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse2 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse3 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse4 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse5 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
+		Nurse nurse6 = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 		
-		WaitingRoom wroom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-		ShockRoom schockroom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		ShockRoom schockroom2 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		ShockRoom schockroom3 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		ShockRoom schockroom4 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		ShockRoom schockroom5 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		WaitingRoom wroom1 = (WaitingRoom) roomFactory.getRoom(ed, "WAITINGROOM");
+		ShockRoom schockroom1 = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
+		ShockRoom schockroom2 = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
+		ShockRoom schockroom3 = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
+		ShockRoom schockroom4 = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
+		ShockRoom schockroom5 = (ShockRoom) roomFactory.getRoom(ed, "SHOCKROOM");
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
 		
 		
 		
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician3 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician4 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician5 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician3 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician4 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician5 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
 		
 		simulator.checkNewRegistration(ed);
 		//Test
@@ -236,24 +236,24 @@ public class EventsManagerTest {
 		patient5.setState("mriTested");
 		patient6.setState("radioTested");
 		
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		BoxRoom boxRoom2 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		BoxRoom boxRoom3 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed, "RADIOROOM");
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed, "WAITINGROOM");
+		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
+		BoxRoom boxRoom2 = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
+		BoxRoom boxRoom3 = (BoxRoom) roomFactory.getRoom(ed, "BOXROOM");
 		
-		Transporter transporter1 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter2 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter3 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter4 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter5 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
-		Transporter transporter6 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter1 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
+		Transporter transporter2 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
+		Transporter transporter3 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
+		Transporter transporter4 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
+		Transporter transporter5 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
+		Transporter transporter6 = (Transporter) peopleFactory.getStaff(ed, "TRANSPORTER");
 		
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician3 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
+		Physician physician3 = (Physician) peopleFactory.getStaff(ed, "PHYSICIAN");
 		
 		
 		patient4.setPhysician(physician1);
@@ -310,7 +310,7 @@ public class EventsManagerTest {
 		patient1.setState("WAITINGFORBLOODTESTt");
 		patient2.setState("waitingforbloodtestT");
 		
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed, "BLOODROOM");
 		
 
 		System.out.println(patient1.getState());
@@ -351,7 +351,7 @@ public class EventsManagerTest {
 		patient1.setState("WaitingFormriT");
 		patient2.setState("WaitingFormriT");
 		
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed, "MRIROOM");
 		
 		patient1.setLocation(mriRoom);
 		System.out.println(patient1.getState());
@@ -396,7 +396,7 @@ public class EventsManagerTest {
 		patient1.setState("waitingforradioT");
 		patient2.setState("waitingforradioT");
 		
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed, "RADIOROOM");
 		
 
 		System.out.println(patient1.getState());
