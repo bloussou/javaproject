@@ -54,7 +54,7 @@ public class CLI {
 	}
 
 	/**
-	 * Analyses weither the command entered id correct
+	 * Analyses weither the command entered is correct, and process it
 	 */
 	public void analyseCommand(){
 		if(!(this.commandLine.isEmpty())){
@@ -79,19 +79,37 @@ public class CLI {
 			 * Creation of a new waiting or consultation room
 			 */
 			else if(this.commandLine.get(0).equalsIgnoreCase("addRoom")){
-				if(this.commandLine.size()==2){
+				if(this.commandLine.size()==3){
 					String edName = this.commandLine.get(1);
+					String roomType = this.commandLine.get(2);
 					int edIndex = -1;
 					for (int i = 0; i < this.eds.size(); i++) {
 						if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
-							
+							humanFactory.getRoom(this.eds.get(i), roomType);
 						}
 					}
-					
+					if (edIndex == -1){System.out.println("ED introuvable");}
 				}
-				
-				
+				else if(this.commandLine.size()>3){
+					String edName = this.commandLine.get(1);
+					String roomType = this.commandLine.get(2);
+					String roomName = this.commandLine.get(3);
+					int edIndex = -1;
+					for (int i = 0; i < this.eds.size(); i++) {
+						if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
+							humanFactory.getRoom(this.eds.get(i), roomType, roomName);
+						}
+					}
+					if (edIndex == -1){System.out.println("ED introuvable");}
+				}
+				else {
+					System.out.println("This command requires at least 1 arguments");
+				}
 			}
+			
+			/**
+			 * Creation of a new test Room
+			 */
 				
 			
 			
