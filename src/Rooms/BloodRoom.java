@@ -44,7 +44,7 @@ public class BloodRoom extends Room{
 	 * @see BloodRoom#setDist(String)
 	 * @see BloodRoom#setDistParam(float[])
 	 */
-	public BloodRoom(ED ed, String name){
+	public BloodRoom(ED ed, String name, String distribution, float[] distParam){
 		super();
 		
 		BloodRoom.compteurBloodRoomId += 1;
@@ -53,7 +53,8 @@ public class BloodRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
-		this.setDist("Unif");
+		this.setDist(distribution);
+		this.setDistParam(distParam);
 		this.setState("free");
 		
 	}

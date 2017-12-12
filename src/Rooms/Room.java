@@ -141,7 +141,12 @@ public abstract class Room {
 	 * @param dist
 	 */
 	public void setDist(String dist) {
+		if( dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM")){
 		this.dist = dist;
+		}
+		else{
+			System.out.println("Nom de distribution non reconnue");
+		}
 	}
 	
 	/**
@@ -186,7 +191,12 @@ public abstract class Room {
 	 * @param distParam
 	 */
 	public void setDistParam(float[] distParam) {
-		this.distParam = distParam;
+		if(distParam.length == 2){
+			this.distParam = distParam;
+		}
+		else {
+			System.out.println("Expected a lenght 2 for distParam array, (even when only one arg is necessary the second one should be 0");
+		}
 	}
 	
 	/**

@@ -155,11 +155,9 @@ public class Patient extends Human{
 	public void setHealthInsurance(String healthInsurance) {
 		if( healthInsurance.equalsIgnoreCase("NOINSURANCE")|| healthInsurance.equalsIgnoreCase("SILVER") || healthInsurance.equalsIgnoreCase("GOLD")){
 			this.healthInsurance = healthInsurance;
-			System.out.println("Il y a un set de HInsurance à la valeur :" + healthInsurance);
 		}
 		else {
 			this.healthInsurance = "NOINSURANCE";
-			System.out.println("Uncorrect health insurance. Possible values : {NoInsurance, Silver, Gold}");
 		}
 	}
 	/**
