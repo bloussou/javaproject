@@ -3,6 +3,7 @@ package HR;
 import Emergency.ED;
 
 public abstract class Human {
+	
 	/**
 	 * The ED of the human
 	 * @see Human#getEd()
@@ -35,6 +36,7 @@ public abstract class Human {
 	 * @see Human#getState()
 	 */
 	protected String state;
+	
 	
 	/**
 	 * 
@@ -107,6 +109,7 @@ public abstract class Human {
 		this.state = state;
 	}
 
+	
 	/**
 	 * Return a description of the human like :
 	 * return "Human [EDname=" + ed.getName() + ", id=" + id + ", name=" + name + ", surname=" + surname + ", state=" + state + "]";

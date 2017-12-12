@@ -15,6 +15,7 @@ import Rooms.ShockRoom;
 import Rooms.WaitingRoom;
 
 public class ED {
+	
 	/**
 	 * le compteur d'ED, il permet que chaque ED ai un id unique
 	 */
@@ -284,27 +285,14 @@ public class ED {
 
 
 
-
-
-
-
-
-
-
-
-
 	/**
 	 * @return 
 	 * 		{@link ED#dbPhysician}
 	 * 
 	 */
-
 	public ArrayList<ArrayList<Physician>> getDbPhysician() {
 		return dbPhysician;
 	}
-
-
-
 
 	/**
 	 * 
@@ -312,14 +300,9 @@ public class ED {
 	 * 		{@link ED#dbTransporter}
 	 * 
 	 */
-
 	public ArrayList<ArrayList<Transporter>> getDbTransporter() {
 		return dbTransporter;
 	}
-
-
-
-
 
 	/**
 	 * 
@@ -331,34 +314,23 @@ public class ED {
 		return dbPatient;
 	}
 
-
-
-
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbStretcher}
 	 */
-
 	public ArrayList<ArrayList<Stretcher>> getDbStretcher() {
 		return dbStretcher;
 	}
-
-
-
 
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbWaitingRoom}
 	 */
-
 	public ArrayList<ArrayList<WaitingRoom>> getDbWaitingRoom() {
 		return dbWaitingRoom;
 	}
-
-
-
 
 	/**
 	 * 
@@ -366,71 +338,52 @@ public class ED {
 	 * 		{@link ED#dbBoxRoom}
 	 
 	 */
-
 	public ArrayList<ArrayList<BoxRoom>> getDbBoxRoom() {
 		return dbBoxRoom;
 	}
-
-
-
 
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbBloodRoom}
 	 */
-
 	public ArrayList<ArrayList<BloodRoom>> getDbBloodRoom() {
 		return dbBloodRoom;
 	}
-
-
-
 
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbMRIRoom}
 	 */
-
 	public ArrayList<ArrayList<MRIRoom>> getDbMRIRoom() {
 		return dbMRIRoom;
 	}
-
-
+	
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbRadioRoom}
 	 */
-
-
 	public ArrayList<ArrayList<RadioRoom>> getDbRadioRoom() {
 		return dbRadioRoom;
 	}
-
-
-
 
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#dbShockRoom}
 	 */
-
 	public ArrayList<ArrayList<ShockRoom>> getDbShockRoom() {
 		return dbShockRoom;
 	}
 
-
-
-
+	
 	/**
 	 * 
 	 * @return
 	 * 		{@link ED#compteurEDId}
 	 */
-
 	public static int getCompteurEDId() {
 		return compteurEDId;
 	}

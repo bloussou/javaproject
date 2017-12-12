@@ -12,18 +12,14 @@ public class BoxRoom extends Room{
 	 * a static int to give a unique id to each BoxRoom
 	 */
 	private static int compteurBoxRoomId;
-	
 	/**
 	 * The patient occupying this BoxRoom (all Severity-Level accepted)
 	 */
 	private Patient patient;
-	
 	/**
 	 * The physician occupying this BoxRoom
 	 */
 	private Physician physician;
-	
-
 	/**
 	 * Create a BoxRoom with those parameters
 	 * @param ed
@@ -45,6 +41,7 @@ public class BoxRoom extends Room{
 		
 		this.setState("free");
 	}
+	
 	
 	
 	/**
@@ -70,6 +67,21 @@ public class BoxRoom extends Room{
 	}
 	
 	
+
+	@Override
+	public void construct(){
+		
+	}
+	
+	
+	@Override
+	public void updatePatientCharge(Patient patient){
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+this.getCost());
+		}
+	}
+
+	
 	@Override
 	public void addOccupant(Patient patient){
 		this.patient = patient;
@@ -84,15 +96,22 @@ public class BoxRoom extends Room{
 	}
 	
 	
-	@Override
-	public void construct(){
-		
+	public static int getCompteurBoxRoomId() {
+		return compteurBoxRoomId;
 	}
-	@Override
-	public void updatePatientCharge(Patient patient){
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-		}
+	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
+		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
+	}
+
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
+	public Physician getPhysician() {
+		return physician;
+	}
+
+	public Patient getPatient() {
+		return patient;
 	}
 	
 	@Override
@@ -116,27 +135,7 @@ public class BoxRoom extends Room{
 		}
 	}
 
-	
-	
-	public static int getCompteurBoxRoomId() {
-		return compteurBoxRoomId;
-	}
-	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
-		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
-	}
 
-	public void setPhysician(Physician physician) {
-		this.physician = physician;
-	}
-	
-	public Patient getPatient() {
-		return patient;
-	}
-	public Physician getPhysician() {
-		return physician;
-	}
-
-	
 		
 	
 }

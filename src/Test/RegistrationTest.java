@@ -25,7 +25,7 @@ public class RegistrationTest {
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed,"NURSE");
 
 				
 		// PROCEED

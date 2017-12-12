@@ -8,7 +8,6 @@ import HR.Patient;
 
 public abstract class Room {
 
-	
 	/**
 	 * The ED of the Room
 	 * @see Room#getEd()
@@ -16,7 +15,6 @@ public abstract class Room {
 	 * @see ED#ED(String, String)
 	 */
 	protected ED ed;
-	
 	/**
 	 * The state of the Room
 	 * 
@@ -24,21 +22,18 @@ public abstract class Room {
 	 * @see Room#getState()
 	 */
 	protected String state;
-	
 	/**
 	 * The unique id of a room
 	 * @see Room#getId()
 	 * @see Room#setId(int)
 	 */
 	private int id;
-	
 	/**
 	 * The name of the Room
 	 * @see Room#getName()
 	 * @see Room#setName(String)
 	 */
 	private String name;
-	
 	/**
 	 * The distribution of the Room
 	 * @see Room#getName()
@@ -49,14 +44,12 @@ public abstract class Room {
 	 * @see Proba#Uniform#RandSample(double,double)
 	 */
 	private String dist;
-	
 	/**
 	 * The cost of the Room when a patient enters
 	 * @see Room#getCost()
 	 * @see Room#setCost(String)
 	 */
 	private float cost;
-	
 	/**
 	 * The distribution parameters of the Room
 	 * @see Room#getDistParam()
@@ -67,13 +60,13 @@ public abstract class Room {
 	 * @see Proba#Uniform#RandSample(double,double)
 	 */
 	private float[] distParam = {0,0};
-	
 	/**
 	 * The capacity of the Room
 	 * @see Room#getCapacity()
 	 * @see Room#setCapacity(String)
 	 */
 	private int capacity;
+	
 	
 	
 	/**
@@ -83,7 +76,6 @@ public abstract class Room {
 	public ED getEd() {
 		return ed;
 	}
-	
 	/**
 	 * Set the ed of the Room
 	 * @param ed
@@ -99,7 +91,6 @@ public abstract class Room {
 	public String getState() {
 		return state;
 	}
-	
 	/**
 	 * Set the state of the Room
 	 * @param state
@@ -115,7 +106,6 @@ public abstract class Room {
 	public int getId() {
 		return id;
 	}
-	
 	/**
 	 * Set the id of the Room
 	 * @param id
@@ -131,7 +121,6 @@ public abstract class Room {
 	public String getName() {
 		return name;
 	}
-	
 	/**
 	 * Set the name of the Room
 	 * @param name
@@ -147,7 +136,6 @@ public abstract class Room {
 	public String getDist() {
 		return dist;
 	}
-	
 	/**
 	 * Set the dist of the Room
 	 * @param dist
@@ -163,7 +151,6 @@ public abstract class Room {
 	public float getCost() {
 		return cost;
 	}
-	
 	/**
 	 * Set the cost of the Room
 	 * @param cost
@@ -179,7 +166,6 @@ public abstract class Room {
 	public int getCapacity() {
 		return capacity;
 	}
-	
 	/**
 	 * Set the capacity of the Room
 	 * @param capacity
@@ -195,7 +181,6 @@ public abstract class Room {
 	public float[] getDistParam() {
 		return distParam;
 	}
-	
 	/**
 	 * Set the parameters of the Room distribution
 	 * @param distParam
@@ -216,6 +201,7 @@ public abstract class Room {
 		return "Room [ed=" + ed + ", id=" + id + ", name=" + name + ", dist=" + dist + ", cost=" + cost
 				+ ", distParam=" + Arrays.toString(distParam) + ", capacity=" + capacity + "]";
 	}
+	
 	
 	
 	/**

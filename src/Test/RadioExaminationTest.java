@@ -29,7 +29,7 @@ public class RadioExaminationTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed,"MRIROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		mriRoom.addOccupant(patient);
 		
@@ -56,7 +56,7 @@ public class RadioExaminationTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		radioRoom.addOccupant(patient);
 		

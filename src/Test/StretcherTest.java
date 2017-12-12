@@ -20,7 +20,7 @@ public class StretcherTest {
 		
 		FacilityFactory facilityFactory  = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 				
-		Stretcher stretcher = (Stretcher) facilityFactory.getFacility("STRETCHER", ed);
+		Stretcher stretcher = (Stretcher) facilityFactory.getFacility(ed,"STRETCHER");
 		
 		//test free
 		stretcher.setState("free");
@@ -48,7 +48,7 @@ public class StretcherTest {
 		
 		FacilityFactory facilityFactory  = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 				
-		Stretcher stretcher = (Stretcher) facilityFactory.getFacility("STRETCHER", ed, "1");
+		Stretcher stretcher = (Stretcher) facilityFactory.getFacility(ed,"STRETCHER", "1");
 		
 		//TEST
 		assertTrue(stretcher.getEd().equals(ed));
@@ -66,7 +66,7 @@ public class StretcherTest {
 		
 		FacilityFactory facilityFactory  = (FacilityFactory) FactoryCreator.getFactory("FACILITY");
 				
-		Stretcher stretcher = (Stretcher) facilityFactory.getFacility("STRETCHER", ed);
+		Stretcher stretcher = (Stretcher) facilityFactory.getFacility(ed,"STRETCHER");
 		
 		//TEST
 		assertTrue(stretcher.getEd().equals(ed));

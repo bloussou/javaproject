@@ -9,6 +9,7 @@ import Factory.PeopleFactory;
 import Rooms.Room;
 
 public class Patient extends Human{
+	
 	/**
 	 * An int to give a unique id to each Patient
 	 */
@@ -55,6 +56,9 @@ public class Patient extends Human{
 	 */
 	private TimeStamp dtdtime;
 	
+	
+	
+	
 	/**
 	 * The constructor of the patient
 	 * <li>set the charges to zero</li>
@@ -84,7 +88,7 @@ public class Patient extends Human{
 		this.setName(name);
 		this.setSurname(surname);
 		
-		this.healthInsurance = healthInsurance;
+		this.setHealthInsurance(healthInsurance);
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
@@ -123,7 +127,7 @@ public class Patient extends Human{
 		this.setName("Patient" + Integer.toString(this.getId()));
 		this.setSurname("Patient" + Integer.toString(this.getId()));
 		
-		this.healthInsurance = "NO_INSURANCE";
+		this.setHealthInsurance("NOINSURANCE");
 		this.severityLevel = severityLevel;
 		
 		//set the history of the patient
@@ -134,6 +138,8 @@ public class Patient extends Human{
 		this.location = null;
 		this.charges = 0;
 	}
+	
+	
 	
 	/**
 	 * 
@@ -147,7 +153,14 @@ public class Patient extends Human{
 	 * @param healthInsurance
 	 */
 	public void setHealthInsurance(String healthInsurance) {
-		this.healthInsurance = healthInsurance;
+		if( healthInsurance.equalsIgnoreCase("NOINSURANCE")|| healthInsurance.equalsIgnoreCase("SILVER") || healthInsurance.equalsIgnoreCase("GOLD")){
+			this.healthInsurance = healthInsurance;
+			System.out.println("Il y a un set de HInsurance à la valeur :" + healthInsurance);
+		}
+		else {
+			this.healthInsurance = "NOINSURANCE";
+			System.out.println("Uncorrect health insurance. Possible values : {NoInsurance, Silver, Gold}");
+		}
 	}
 	/**
 	 * 
@@ -164,6 +177,7 @@ public class Patient extends Human{
 	public void setSeverityLevel(String severityLevel) {
 		this.severityLevel = severityLevel;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#arrivalTime}
@@ -193,7 +207,6 @@ public class Patient extends Human{
 		this.departureTime = departureTime;
 	}
 
-	
 	/**
 	 * 
 	 * @return {@link Patient#location}
@@ -208,6 +221,7 @@ public class Patient extends Human{
 	public void setLocation(Room location) {
 		this.location = location;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#history}
@@ -222,6 +236,7 @@ public class Patient extends Human{
 	public void setHistory(String historyUpdates) {
 		this.history = this.history + historyUpdates;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#charges}
@@ -236,6 +251,7 @@ public class Patient extends Human{
 	public void setCharges(float newCharges) {
 		this.charges += newCharges;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#physician}
@@ -252,10 +268,11 @@ public class Patient extends Human{
 	}
 	
 	
+	
 	@Override
-	public void create(){
-		
-	}
+	public void create(){}
+	
+	
 	
 	/**
 	 * Sets the state of the Patient and moves him/her to the good list of {@link ED#getDbPatient()}, it :

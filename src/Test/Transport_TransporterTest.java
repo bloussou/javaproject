@@ -31,13 +31,13 @@ public class Transport_TransporterTest {
 				
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		patient1.setState("waitingForMRI");
-		Transporter transporter1 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter1 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		patient2.setState("radioTested");
-		Transporter transporter2 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter2 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		
-		BloodRoom bRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BloodRoom bRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
 		
 		//PROCEED
 		Transport_Transporter transport_Transporter1 = new Transport_Transporter(ed, patient1, transporter1, bRoom);
@@ -65,13 +65,13 @@ public class Transport_TransporterTest {
 				
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		patient1.setState("waitingForMRI");
-		Transporter transporter1 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter1 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		patient2.setState("radioTested");
-		Transporter transporter2 = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter2 = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		
-		BloodRoom bRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BloodRoom bRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
 		
 		//PROCEED
 		Transport_Transporter transport_Transporter1 = new Transport_Transporter(ed, patient1, transporter1, bRoom);

@@ -8,6 +8,7 @@ import Rooms.WaitingRoom;
 
 
 public class Transporter extends Human{
+	
 	/**
 	 * Start time of the transportation
 	 */
@@ -37,6 +38,8 @@ public class Transporter extends Human{
 	 */
 	private ArrayList<Patient> patientTransported;
 
+	
+	
 	/**
 	 * The constructor of the patient
 	 * @param ed
@@ -58,6 +61,7 @@ public class Transporter extends Human{
 		
 		this.patientTransported = new ArrayList<Patient>();
 	}
+	
 	/**
 	 * The constructor of the patient. 
 	 * <li>set the state of the transporter to idle</li>
@@ -78,10 +82,14 @@ public class Transporter extends Human{
 		this.patientTransported = new ArrayList<Patient>();
 	}
 		
+	
 	@Override
 	public void create() {
 		
 	}
+	
+	
+	
 	/**
 	 * A method to transport a patient, it :
 	 * <li>set the {@link Transporter#targetRoom}</li>
@@ -115,43 +123,11 @@ public class Transporter extends Human{
 		
 		//set the start and the end of the transportation
 		this.startTime = new TimeStamp() ;
-		this.endTime = new TimeStamp(duration);
+		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + this.duration);
 		
 		patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
 	}
 	
-//	/**
-//	 * The method to transport a patient after an exam back to his physician, then the physician emit a verdict
-//	 * <li>set the {@link Transporter#targetRoom}</li>
-//	 * <li>set the {@link Transporter#lastPatientState}</li>
-//	 * <li>set the patient state to transportation</li>
-//	 * <li>set the transporter state to transportation</li>
-//	 * <li>add the patient to the list {@link Transporter#patientTransported}</li>
-//	 * <li>set the {@link Transporter#startTime}</li>
-//	 * <li>set the {@link Transporter#endTime}</li>
-//	 * @param patient
-//	 * @param targetroom
-//	 */
-//	public void backToPhysician(Patient patient, Room targetRoom){
-//		this.setState("transportation");
-//		
-//		//set the target room
-//		this.setTargetRoom(targetRoom);
-//		
-//		
-//		this.setLastPatientState(patient.getState());
-//		
-//		
-//		patient.setState("transportation");
-//		
-//		
-//		//add the patient to patient transported
-//		this.patientTransported.add(patient);
-//		
-//		//set the start and the end of the transportation
-//		startTime = new TimeStamp() ;
-//		endTime = new TimeStamp(duration);
-//	}
 	
 	/**
 	 * drop the patient in the {@link Transporter#targetRoom} and set the patient to the good state :
@@ -192,6 +168,41 @@ public class Transporter extends Human{
 		patient.setHistory("("+patient.getState() +", "+ this.getEndTime().toString() + "), ");
 	}
 	
+
+	
+	
+//	/**
+//	 * The method to transport a patient after an exam back to his physician, then the physician emit a verdict
+//	 * <li>set the {@link Transporter#targetRoom}</li>
+//	 * <li>set the {@link Transporter#lastPatientState}</li>
+//	 * <li>set the patient state to transportation</li>
+//	 * <li>set the transporter state to transportation</li>
+//	 * <li>add the patient to the list {@link Transporter#patientTransported}</li>
+//	 * <li>set the {@link Transporter#startTime}</li>
+//	 * <li>set the {@link Transporter#endTime}</li>
+//	 * @param patient
+//	 * @param targetroom
+//	 */
+//	public void backToPhysician(Patient patient, Room targetRoom){
+//		this.setState("transportation");
+//		
+//		//set the target room
+//		this.setTargetRoom(targetRoom);
+//		
+//		
+//		this.setLastPatientState(patient.getState());
+//		
+//		
+//		patient.setState("transportation");
+//		
+//		
+//		//add the patient to patient transported
+//		this.patientTransported.add(patient);
+//		
+//		//set the start and the end of the transportation
+//		startTime = new TimeStamp() ;
+//		endTime = new TimeStamp(this.getStartTime().getTimeStamp() + this.duration);
+//	}
 
 	
 	/**
@@ -243,6 +254,8 @@ public class Transporter extends Human{
 	public ArrayList<Patient> getPatientTransported() {
 		return patientTransported;
 	}
+	
+	
 	/**
 	 * Sets the state of the Transporter and moves him/her to the good list of {@link ED#getDbTransporter()}, it :
 	 * <li>removes it from its last db state</li>

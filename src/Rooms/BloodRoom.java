@@ -14,22 +14,18 @@ public class BloodRoom extends Room{
 	 * a static int to give a unique id to each BloodRoom
 	 */
 	private static int compteurBloodRoomId;
-	
 	/**
 	 * The patient currently treated in this BloodRoom
 	 */
 	private Patient patient;
-	
 	/**
 	 * The TimeStamp corresponding to the time at the beginning of the blood test
 	 */
 	private TimeStamp startTime;
-	
 	/**
 	 * The TimeStamp corresponding to the time at the end of the blood test
 	 */
 	private TimeStamp endTime;
-	
 	/** 
 	 * The duration (int) in minutes of the test
 	 */
@@ -88,6 +84,72 @@ public class BloodRoom extends Room{
 	
 	
 	
+	@Override
+	public void construct() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Update the patient's charge with the cost of this room's blood test
+	 */
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+this.getCost());
+			}
+		
+	}
+	
+	/**
+	 * Process the blood test.
+	 * <li>Save the startTime</li>
+	 * <li>Set the duration of this test to Unif.randSample(15,90) ... {@link Uniform#randSample(double, double)}</li>
+	 * <li>Set the endTime</li>
+	 * <li>Update the patient's history</li>
+	 */
+	public void bloodTesting(){
+		this.startTime = new TimeStamp() ;
+		this.setDuration(new Uniform().randSample(15,90));
+		int duree = (int)(this.getDuration());
+		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + duree);
+
+		this.getPatient().setState("testing");
+		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
+	}
+	
+	/**
+	 * End the blood test and update the patient's history
+	 */
+	public void endBloodTesting(){
+		TimeStamp time = new TimeStamp();
+		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
+		
+		this.patient.setState("bloodTested");
+		this.removeOccupant(this.getPatient());
+		
+	}
+	
+	
+
+	@Override
+	public void addOccupant(Patient patient) {
+		this.patient = patient;
+		this.patient.setLocation(this);
+		this.setState("occupied");
+		
+		
+		
+	}
+	
+	@Override
+	public void removeOccupant(Patient patient) {
+		this.patient = null;
+		this.setState("free");
+		
+	}
+	
+	
 	public TimeStamp getStartTime() {
 		return startTime;
 	}
@@ -115,69 +177,7 @@ public class BloodRoom extends Room{
 	public Patient getPatient() {
 		return patient;
 	}
-	
-	@Override
-	public void addOccupant(Patient patient) {
-		this.patient = patient;
-		this.patient.setLocation(this);
-		this.setState("occupied");
 		
-		
-		
-	}
-	
-	@Override
-	public void removeOccupant(Patient patient) {
-		this.patient = null;
-		this.setState("free");
-		
-	}
-	@Override
-	public void construct() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * Update the patient's charge with the cost of this room's blood test
-	 */
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-			}
-		
-	}
-	
-	/**
-	 * Process the blood test.
-	 * <li>Save the startTime</li>
-	 * <li>Set the duration of this test to Unif.randSample(15,90) ... {@link Uniform#randSample(double, double)}</li>
-	 * <li>Set the endTime</li>
-	 * <li>Update the patient's history</li>
-	 */
-	public void bloodTesting(){
-		this.startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(15,90));
-		int duree = (int)(this.getDuration());
-		this.endTime = new TimeStamp(duree);
-
-		this.getPatient().setState("testing");
-		this.patient.setHistory("(bloodtested, "+ this.startTime.toString() + "), ");
-	}
-	
-	/**
-	 * End the blood test and update the patient's history
-	 */
-	public void endBloodTesting(){
-		TimeStamp time = new TimeStamp();
-		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
-		
-		this.patient.setState("bloodTested");
-		this.removeOccupant(this.getPatient());
-		
-	}
-	
 	@Override
 	public void setState(String state){
 		ArrayList<ArrayList<BloodRoom>> dbBloodRoom = this.ed.getDbBloodRoom();

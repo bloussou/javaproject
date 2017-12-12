@@ -27,7 +27,7 @@ public class WaitingRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room waitingRoom = (Room) roomFactory.getRoom("WAITINGROOM", ed);
+		Room waitingRoom = (Room) roomFactory.getRoom(ed,"WAITINGROOM");
 		
 		//test available
 		waitingRoom.setState("available");
@@ -57,7 +57,7 @@ public class WaitingRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
 		ArrayList<Patient> patientList = new ArrayList<Patient>() ;
 		for (int i = 0; i<21; i++){
 			patientList.add(new Patient(ed, "L1", new TimeStamp()));
@@ -87,7 +87,7 @@ public class WaitingRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
 		ArrayList<Patient> patientList = new ArrayList<Patient>() ;
 		for (int i = 0; i<21; i++){
 			patientList.add((Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp()));

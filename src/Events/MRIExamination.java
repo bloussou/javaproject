@@ -28,10 +28,11 @@ public class MRIExamination extends Event {
 		this.setMriRoom(mriRoom);
 		
 		this.getMriRoom().addOccupant(this.patient);
+		
 		this.getMriRoom().updatePatientCharge(patient);
 		this.getMriRoom().mriTesting();
 		this.setStartTime(mriRoom.getStartTime());
-		this.setDuration((int) this.getMriRoom().getDuration());
+		this.setDuration((int) mriRoom.getDuration());
 		this.setEndTime(mriRoom.getEndTime());
 		
 	}
@@ -48,7 +49,6 @@ public class MRIExamination extends Event {
 	public Patient getPatient() {
 		return patient;
 	}
-
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
@@ -56,7 +56,6 @@ public class MRIExamination extends Event {
 	public MRIRoom getMriRoom() {
 		return mriRoom;
 	}
-
 	public void setMriRoom(MRIRoom mriRoom) {
 		this.mriRoom = mriRoom;
 	}

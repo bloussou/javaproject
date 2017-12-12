@@ -26,8 +26,8 @@ public class Transport_NurseTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed,"NURSE");
+		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
 		
 		//PROCEED
 		nurse.register(patient);
@@ -52,8 +52,8 @@ public class Transport_NurseTest {
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
-		Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
-		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		Nurse nurse = (Nurse) peopleFactory.getStaff(ed,"NURSE");
+		WaitingRoom wRoom1 = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
 		
 		//PROCEED
 		nurse.register(patient);

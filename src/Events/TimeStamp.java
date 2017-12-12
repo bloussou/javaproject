@@ -9,9 +9,8 @@ public class TimeStamp {
 		this.min = t.min;		
 	}
 	
-	public TimeStamp(int minutesLater){
-		Time t = Time.getInstanceTime();
-		this.min = t.min + minutesLater;
+	public TimeStamp(int timeStampInMinutes){
+		this.min = timeStampInMinutes;
 	}
 	
 	public int getTimeStamp(){

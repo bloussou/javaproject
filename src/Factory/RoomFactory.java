@@ -1,3 +1,4 @@
+
 package Factory;
 
 import Emergency.ED;
@@ -16,6 +17,7 @@ public class RoomFactory extends AbstractFactory{
 	public Human getStaff(ED ed, String staffType, String name, String surname, String state) {
 		return null;
 	}
+	
 	@Override
 	public Human getPatient(ED ed, String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
@@ -27,6 +29,7 @@ public class RoomFactory extends AbstractFactory{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	/**
 	 * Return the good room chosen with the string :
 	 * <li>"BoxRoom" return BoxRoom</li>
@@ -77,8 +80,6 @@ public class RoomFactory extends AbstractFactory{
 		}
 		
 	}
-	
-	
 	@Override
 	public Room getRoom(ED ed, String roomType, String name) {
 		if(roomType.equalsIgnoreCase("WAITINGROOM")){

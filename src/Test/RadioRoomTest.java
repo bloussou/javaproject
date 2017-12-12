@@ -25,7 +25,7 @@ public class RadioRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room radioRoom = (Room) roomFactory.getRoom("RADIOROOM", ed);
+		Room radioRoom = (Room) roomFactory.getRoom(ed,"RADIOROOM");
 		
 		//test free
 		radioRoom.setState("free");
@@ -55,7 +55,7 @@ public class RadioRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RadioROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RadioROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -77,7 +77,7 @@ public class RadioRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -101,7 +101,7 @@ public class RadioRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -124,7 +124,7 @@ public class RadioRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		
@@ -148,7 +148,7 @@ public class RadioRoomTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 		
 				
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		Patient patient = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
 		

@@ -9,6 +9,8 @@ public class Stretcher extends Facility{
 	 * A int to give a unique id to each stretcher
 	 */
 	private static int compteurStretcherId;
+	
+	
 	/**
 	 * Build a stretcher and set its state to "free"
 	 * @param ed
@@ -44,14 +46,6 @@ public class Stretcher extends Facility{
 
 	}
 	
-	/**
-	 * 
-	 * @return {@link Stretcher#compteurStretcherId}
-	 */
-	public static int getCompteurStretcherId() {
-		return compteurStretcherId;
-	}
-
 
 
 	/**
@@ -63,6 +57,8 @@ public class Stretcher extends Facility{
 		// TODO Auto-generated method stub
 		System.out.println("Stretcher n°"+ this.getId() +" produce");
 	}
+	
+	
 	/**
 	 * Set the state of the stretcher and put it in the good {@link ED#getDbStretcher()}
 	 * <li>state1 : free</li>
@@ -90,6 +86,13 @@ public class Stretcher extends Facility{
 			System.out.println("cet état n'existe pas");
 		}
 	}
+	/**
+	 * 
+	 * @return {@link Stretcher#compteurStretcherId}
+	 */
+	public static int getCompteurStretcherId() {
+		return compteurStretcherId;
+	}
 
-	
+
 }

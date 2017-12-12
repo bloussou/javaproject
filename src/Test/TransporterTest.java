@@ -33,9 +33,9 @@ public class TransporterTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");	
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
 		
 		//TEST
 		transporter.transport(patient1, bloodRoom);
@@ -87,7 +87,7 @@ public class TransporterTest {
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");	
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient patient3 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
@@ -95,10 +95,10 @@ public class TransporterTest {
 		Patient patient5 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		Patient patient6 = (Patient) peopleFactory.getPatient(ed, "L1", new TimeStamp());
 		
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed,"MRIROOM");
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
 		//Initialization of the patient state
 		patient1.setState("waitingForMRI");
 		patient2.setState("waitingForBloodTest");
@@ -167,7 +167,7 @@ public class TransporterTest {
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");		
 				
-		Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+		Transporter transporter = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 		
 		//test idle
 		transporter.setState("idle");

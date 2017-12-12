@@ -8,6 +8,7 @@ import Rooms.Room;
 import Rooms.WaitingRoom;
 
 public class Nurse extends Human{
+	
 	/**
 	 * a int to give a unique id to each Nurse
 	 */
@@ -38,6 +39,8 @@ public class Nurse extends Human{
 	 */
 	private Room targetRoom;
 	
+	
+	
 	/**
 	 * Create a Nurse with this parameters
 	 * @param ed
@@ -64,9 +67,8 @@ public class Nurse extends Human{
 		this.patientTransported = new ArrayList<Patient>();
 	}	
 	
-	
 	/**
-	 * Create a Nurse with only a parameters
+	 * Create a Nurse with only one parameters
 	 * @param ed
 	 * @see Human#getId()
 	 * @see Human#setId(int)
@@ -91,9 +93,8 @@ public class Nurse extends Human{
 	}
 	
 	
-	
 	/**
-	 * Display the message :
+	 * Display the creation message :
 	 * "Création d'une infirmière :\n" + this.toString()
 	 * @see Human#toString()
 	 */
@@ -121,10 +122,7 @@ public class Nurse extends Human{
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(registered, "+ this.getStartTime().toString() + "), ");
-
-		
 	}
-	
 	
 	
 	/**
@@ -151,7 +149,7 @@ public class Nurse extends Human{
 		//set the target room
 		this.setTargetRoom(targetRoom);
 		
-		//add the patient to patienttransported
+		//add the patient to patientTransported
 		this.getPatientTransported().add(patient);
 		
 		//set the state of the nurse
@@ -163,10 +161,12 @@ public class Nurse extends Human{
 		
 		//set the history of the patient
 		this.startTime = new TimeStamp();
-		this.setEndTime(new TimeStamp(2));
+		this.setEndTime(new TimeStamp(this.startTime.getTimeStamp() + 2));
 		patient.setHistory("(transporting, "+ this.getStartTime().toString() + "), ");
 		
 	}
+	
+	
 	/**
 	 * Drop the patient in the targeted waiting room,
 	 * it :
@@ -207,6 +207,7 @@ public class Nurse extends Human{
 	public static void setCompteurNurseId(int compteurNurseId) {
 		Nurse.compteurNurseId = compteurNurseId;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Nurse#patientRegistered}
@@ -221,6 +222,7 @@ public class Nurse extends Human{
 	public void addPatientRegistered(Patient patientRegistered) {
 		this.patientRegistered.add(patientRegistered);
 	}
+	
 	/**
 	 * 
 	 * @return {@link Nurse#patientTransported}
@@ -228,6 +230,7 @@ public class Nurse extends Human{
 	public ArrayList<Patient> getPatientTransported() {
 		return patientTransported;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Nurse#startTime}
@@ -256,6 +259,7 @@ public class Nurse extends Human{
 	public void setEndTime(TimeStamp endTime) {
 		this.endTime = endTime;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Nurse#targetRoom}
