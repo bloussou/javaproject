@@ -27,7 +27,7 @@ public class EventsManager {
 	 * Processes one step of simulation
 	 */
 	public void nextStep(){
-		this.checkNewEvents(eds);
+		this.checkNewEvents(this.eds);
 		this.timeGoesToNextEventEnd();
 		this.dequeueEvents();
 	}

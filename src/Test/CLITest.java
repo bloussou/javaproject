@@ -341,6 +341,46 @@ public class CLITest {
 		
 	}
 
+	@Test 
+	public void testSetInsurance(){
+		CLI cli = new CLI();
+		ArrayList<String> command = new ArrayList<String>();
+		
+		System.out.println("\n------Test SetHealthInsurance");
+		// Create an ED
+		command = new ArrayList<String>();
+		command.add("createED");
+		cli.setCommandLine(command);
+		cli.analyseCommand();
+		
+		//addPatient ED0 L2 15
+		System.out.println("addPatient ED0 L2 15");
+		command = new ArrayList<String>();
+		command.add("addPatient");
+		command.add("ED0");
+		command.add("L2");
+		command.add("15");
+		cli.setCommandLine(command);
+		cli.analyseCommand();
+		
+		//setPatientInsurance ED0 [PatientID] SILVER
+		System.out.println("setPatientInsurance ED0 [PatientID] SILVER");
+		command = new ArrayList<String>();
+		command.add("setPatientInsurance");
+		command.add("ED0");
+		String patientID = "" + cli.getEds().get(0).getDbPatient().get(0).get(0).getId();
+		command.add(patientID);
+		command.add("SILVER");
+		cli.setCommandLine(command);
+		cli.analyseCommand();
+		System.out.println("cli.getEds().get(0).getDbPatient().get(0) :" + cli.getEds().get(0).getDbPatient().get(0) );
+		System.out.println("cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance() : " + cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance());
+		assertTrue("1.0", cli.getEds().get(0).getDbPatient().get(0).size()==1);
+		assertTrue("2.0", cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance().equalsIgnoreCase("SILVER"));
+		
+		System.out.println("END------Test SetHealthInsurance\n");
+	}
+		
 	
 
 }

@@ -148,7 +148,10 @@ public class EDGeneratorFromFileTest {
 
 	}
 
-	
+	@Test
+	public void testEdsGenerating(){
+		
+	}
 	
 	
 }

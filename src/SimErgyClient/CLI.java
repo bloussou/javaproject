@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Emergency.ED;
+import Events.EventsManager;
 import Events.Time;
 import Events.TimeStamp;
 import Factory.FactoryCreator;
@@ -18,27 +19,35 @@ public class CLI {
 
 	private ArrayList<ED> eds;
 	private ArrayList<String> commandLine;
+	
 	public Time time;
 	public Factory.AbstractFactory humanFactory;
 	public Factory.AbstractFactory roomFactory;
 	public Factory.AbstractFactory facilityFactory;
-	
+	public EventsManager simulator;
+	public EDGeneratorFromFile EDGenerator;
 	
 	public CLI(){
 		this.commandLine = new ArrayList<String>();
-		this.time = Time.getInstanceTime();
 		this.eds = new ArrayList<ED>();
+		
+		this.time = Time.getInstanceTime();
 		this.humanFactory = FactoryCreator.getFactory("HUMAN");
 		this.roomFactory = FactoryCreator.getFactory("ROOM");
 		this.facilityFactory = FactoryCreator.getFactory("FACILITY");
+		this.simulator = new EventsManager(this.eds);
+		this.EDGenerator = new EDGeneratorFromFile();
 		}
+	
 	public CLI(ArrayList<ED> eds){
 		this.commandLine = new ArrayList<String>();
-		this.time = Time.getInstanceTime();
 		this.eds = eds;
+		this.time = Time.getInstanceTime();
 		this.humanFactory = FactoryCreator.getFactory("HUMAN");
 		this.roomFactory = FactoryCreator.getFactory("ROOM");
 		this.facilityFactory = FactoryCreator.getFactory("FACILITY");
+		this.simulator = new EventsManager(this.eds);
+		this.EDGenerator = new EDGeneratorFromFile();
 	}
 	
 	
@@ -47,6 +56,7 @@ public class CLI {
 	 * @return
 	 */
 	public void promptCommandLine(){
+		this.commandLine = new ArrayList<String>();
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Next command-->\t"); 
 		String line = scanner.nextLine();	
@@ -74,7 +84,12 @@ public class CLI {
 	public void analyseCommand(){
 		if(!(this.commandLine.isEmpty())){
 			
+		// ------ COMMAND : HELP
 			if(this.commandLine.get(0).equalsIgnoreCase("help")){ this.commandHelp(); }
+		
+		// ------ COMMAND : LOAD EDs FROM FILE	
+			else if(this.commandLine.get(0).equalsIgnoreCase("loadFromFile")){ this.loadFromFile(); }
+			
 		// ------ COMMAND : CREATION OF A NEW ED	
 			else if(this.commandLine.get(0).equalsIgnoreCase("createED")){ this.commandCreateED(); }
 					
@@ -125,7 +140,7 @@ public class CLI {
 	
 	
 	/**
-	 * ----PRINT CLI HELP
+	 * ---- PRINT CLI HELP
 	 */
 	public void commandHelp(){
 		for (int i = 0; i < 10; i++) {System.out.println("\n");}
@@ -143,6 +158,20 @@ public class CLI {
 		System.out.println("setPatientInsurance\t<EDname> <PatientID> <HealthInsurance>");
 		for (int i = 0; i < 3; i++) {System.out.println("\n");}
 	}
+	
+	/**
+	 * ---- LOAD EDs FROM TEXTFILE
+	 */
+	public void loadFromFile(){
+		if(this.commandLine.size()>1){
+			String fileName = this.commandLine.get(1);
+			this.EDGenerator.edsGenerating(fileName);
+		}
+		else {
+			System.out.println("This command requires at least 1 argument : filename");;
+		}
+	}
+	
 	
 	/**
 	 * ---- CREATE A NEW ED
