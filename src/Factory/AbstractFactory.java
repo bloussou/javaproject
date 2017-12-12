@@ -124,6 +124,27 @@ public abstract class AbstractFactory {
 	 * @see RadioRoom#RadioRoom(ED, String))
 	 */
 	abstract public Room getRoom(ED ed, String roomType, String name);
+	
+	/**
+	 * return the good testRoom with a chosen distribution of test duration
+	 * @param ed
+	 * @param roomType
+	 * @param distribution
+	 * @param distParam
+	 * @return
+	 */
+	abstract public Room getTestRoom(ED ed, String roomType, String distribution, float[] distParam);
+	/**
+	 * return the good testRoom with a chosen distribution of test duration
+	 * @param ed
+	 * @param roomType
+	 * @param distribution
+	 * @param distParam
+	 * @return
+	 */
+	abstract public Room getTestRoom(ED ed, String name, String roomType, String distribution, float[] distParam);
+	
+	
 	/**
 	 * Return the good facility :
 	 * <li>"Stretcher" return Stretcher</li>

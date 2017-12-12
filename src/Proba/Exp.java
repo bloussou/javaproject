@@ -12,7 +12,7 @@ public class Exp {
 	 * <li>Warning ! lambda must be >0</li>
 	 * @param lambda
 	 */
-	public static double RandSample(double lambda) {
+	public static double randSample(double lambda) {
 		if (lambda>0){
 			double x = Math.random();	
 			return Math.log(1/(1-x))*1/lambda;

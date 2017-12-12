@@ -130,7 +130,7 @@ public class CLI {
 			else if(this.commandLine.get(0).equalsIgnoreCase("resetAll")){ }	
 			
 		// ------ COMMAND : SHUT DOWN
-			else if(this.commandLine.get(0).equalsIgnoreCase("shutDown")){ }
+			else if(this.commandLine.get(0).equalsIgnoreCase("exit")){ }
 		}
 		else{
 			System.out.println("Unexpected command, please enter 'help' command to see the command list");
@@ -148,14 +148,23 @@ public class CLI {
 		System.out.println("Command lines should start with one of the command words");
 		System.out.println("Command lines parameters should be separated by whiteblancspaces\n");
 		System.out.println("--------- COMMAND WORDS ---------");
+		System.out.println("help");
+		System.out.println("loadFromFile\t\t<fileName>");
 		System.out.println("createED\t\t<EDname>");
+		
 		System.out.println("addRoom\t\t\t<EDname> <RoomType> <RoomName>");
 		System.out.println("addTestRoom\t\t<EDname> <RoomType> <DistributionType> <DistributionParameters>");
 		System.out.println("addNurse\t\t<EDname> <NurseName> <NurseSurname>");
 		System.out.println("addPhysician\t\t<EDname> <PhysicianName> <PhysicianeSurname>");
 		System.out.println("addTransporter\t\t<EDname> <TransporterName> <TransporterSurname>");
+		System.out.println("addPatient\t\t<EDname> <severityLevel> <arrivalTime>");
 		System.out.println("setNewPatientFlow\t<EDname> <severityLevel> <DistributionType> <Distribution parameters> <startTime> <endTime>");
 		System.out.println("setPatientInsurance\t<EDname> <PatientID> <HealthInsurance>");
+		System.out.println("display\t\t\t<EDname>");
+		System.out.println("runSimulation\t\t<endTime>");
+		System.out.println("runNextStep");
+		System.out.println("resetAll");
+		System.out.println("exit");
 		for (int i = 0; i < 3; i++) {System.out.println("\n");}
 	}
 	
@@ -171,7 +180,6 @@ public class CLI {
 			System.out.println("This command requires at least 1 argument : filename");;
 		}
 	}
-	
 	
 	/**
 	 * ---- CREATE A NEW ED
@@ -231,12 +239,12 @@ public class CLI {
 			String edName = this.commandLine.get(1);
 			String testRoomType = this.commandLine.get(2);
 			String distribution = this.commandLine.get(3);
-			String parameters = this.commandLine.get(4);
+			float[] parameters = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4),0);
 			int edIndex = -1;
 			for (int i = 0; i < this.eds.size(); i++) {
 				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
 					edIndex = i;
-					this.roomFactory.getRoom(this.eds.get(i), testRoomType);
+					this.roomFactory.getTestRoom(this.eds.get(i), testRoomType, distribution, parameters);
 				}
 			}
 			if (edIndex == -1){System.out.println("ED introuvable");}
@@ -382,11 +390,11 @@ public class CLI {
 					}
 					else if (distribution.equalsIgnoreCase("EXP") && distParam.size()==1){
 						int lambda = Integer.parseInt(distParam.get(0));
-						int durationBeforeNextArrival = (int) Exp.RandSample(lambda);
+						int durationBeforeNextArrival = (int) Exp.randSample(lambda);
 						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
 						while(nextArrivalTime.getTimeStamp()<=endTime){
 							this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Exp.RandSample(lambda);
+							durationBeforeNextArrival = (int) Exp.randSample(lambda);
 							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
 						}
 					}

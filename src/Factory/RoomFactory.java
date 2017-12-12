@@ -62,15 +62,6 @@ public class RoomFactory extends AbstractFactory{
 		else if(roomType.equalsIgnoreCase("SHOCKROOM")){
 			return new ShockRoom(ed);
 		}
-		else if(roomType.equalsIgnoreCase("RADIOROOM")){
-			return new RadioRoom(ed);
-		}
-		else if(roomType.equalsIgnoreCase("MRIROOM")){
-			return new MRIRoom(ed);
-		}
-		else if(roomType.equalsIgnoreCase("BLOODROOM")){
-			return new BloodRoom(ed);
-		}
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
 			return new Corridor(ed);
 		}
@@ -90,15 +81,6 @@ public class RoomFactory extends AbstractFactory{
 		}
 		else if(roomType.equalsIgnoreCase("SHOCKROOM")){
 			return new ShockRoom(ed, name);
-		}
-		else if(roomType.equalsIgnoreCase("RADIOROOM")){
-			return new RadioRoom(ed, name);
-		}
-		else if(roomType.equalsIgnoreCase("MRIROOM")){
-			return new MRIRoom(ed, name);
-		}
-		else if(roomType.equalsIgnoreCase("BLOODROOM")){
-			return new BloodRoom(ed, name);
 		}
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
 			return new Corridor(ed, name);
@@ -127,6 +109,34 @@ public class RoomFactory extends AbstractFactory{
 	 * @see MRIRoom#MRIRoom(ED, String))
 	 * @see RadioRoom#RadioRoom(ED, String))
 	 */
+	@Override
+	public Room getTestRoom(ED ed, String name, String roomType, String distribution, float[] distParam){
+		if(roomType.equalsIgnoreCase("RADIOROOM")){
+			return new RadioRoom(ed, name, distribution, distParam);
+		}
+		else if(roomType.equalsIgnoreCase("MRIROOM")){
+			return new MRIRoom(ed, name, distribution, distParam);
+		}
+		else if(roomType.equalsIgnoreCase("BLOODROOM")){
+			return new BloodRoom(ed, name, distribution, distParam);
+		}
+		return null;
+	}	
+	@Override
+	public Room getTestRoom(ED ed, String roomType, String distribution, float[] distParam){
+		if(roomType.equalsIgnoreCase("RADIOROOM")){
+			return new RadioRoom(ed, distribution, distParam);
+		}
+		else if(roomType.equalsIgnoreCase("MRIROOM")){
+			return new MRIRoom(ed, distribution, distParam);
+		}
+		else if(roomType.equalsIgnoreCase("BLOODROOM")){
+			return new BloodRoom(ed, distribution, distParam);
+		}
+		return null;
+	}
+	
+
 	@Override
 	public Facility getFacility(ED ed, String facilityType) {
 		// TODO Auto-generated method stub

@@ -141,7 +141,7 @@ public abstract class Room {
 	 * @param dist
 	 */
 	public void setDist(String dist) {
-		if( dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("UNIFORM")){
+		if( dist.equalsIgnoreCase("UNIFORM") || dist.equalsIgnoreCase("GAMMA") || dist.equalsIgnoreCase("EXP") || dist.equalsIgnoreCase("LOGNORM")){
 		this.dist = dist;
 		}
 		else{

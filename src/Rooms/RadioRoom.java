@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import Emergency.ED;
 import Events.TimeStamp;
 import HR.Patient;
+import Proba.Exp;
+import Proba.Gamma;
+import Proba.LogNorm;
 import Proba.Uniform;
 
 public class RadioRoom extends Room{
@@ -43,7 +46,7 @@ public class RadioRoom extends Room{
 	 * @see RadioRoom#setDist(String)
 	 * @see RadioRoom#setDistParam(float[])
 	 */
-	public RadioRoom(ED ed, String name){
+	public RadioRoom(ED ed, String name, String distribution, float[] distParam){
 		super();
 		
 		RadioRoom.compteurRadioRoomId += 1;
@@ -52,7 +55,8 @@ public class RadioRoom extends Room{
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
-		this.setDist("Unif");
+		this.setDist(distribution);
+		this.setDistParam(distParam);
 		
 		this.setState("free");
 	}
@@ -68,7 +72,7 @@ public class RadioRoom extends Room{
 	 * @see RadioRoom#setDist(String)
 	 * @see RadioRoom#setDistParam(float[])
 	 */
-	public RadioRoom(ED ed){
+	public RadioRoom(ED ed, String distribution, float[] distParam){
 		super();
 		
 		RadioRoom.compteurRadioRoomId += 1;
@@ -77,7 +81,8 @@ public class RadioRoom extends Room{
 		this.setEd(ed);
 		this.setName("RadioRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
-		this.setDist("Unif");
+		this.setDist(distribution);
+		this.setDistParam(distParam);
 		
 		this.setState("free");
 	}
@@ -103,8 +108,22 @@ public class RadioRoom extends Room{
 	 */
 	public void radioTesting(){
 		this.startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(10,20));
 
+		if (this.getDist().equalsIgnoreCase("UNIFORM")){
+			this.setDuration(Uniform.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("GAMMA")){
+			this.setDuration(Gamma.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("EXP")){
+			this.setDuration(Exp.randSample(this.getDistParam()[0]));
+		}
+		else if (this.getDist().equalsIgnoreCase("LOGNORM")){
+			this.setDuration(LogNorm.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else{
+			System.out.println("Unable to radio Test --> unknown distribution");
+		}
 		
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + duree);

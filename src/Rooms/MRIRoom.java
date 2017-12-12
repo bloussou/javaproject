@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import Emergency.ED;
 import Events.TimeStamp;
 import HR.Patient;
+import Proba.Exp;
+import Proba.Gamma;
+import Proba.LogNorm;
 import Proba.Uniform;
 
 public class MRIRoom extends Room {
@@ -43,7 +46,7 @@ public class MRIRoom extends Room {
 	 * @see MRIRoom#setDist(String)
 	 * @see MRIRoom#setDistParam(float[])
 	 */
-	public MRIRoom(ED ed, String name){
+	public MRIRoom(ED ed, String name, String distribution, float[] distParam){
 		super();
 		
 		MRIRoom.compteurMRIRoomId += 1;
@@ -52,9 +55,9 @@ public class MRIRoom extends Room {
 		this.setEd(ed);
 		this.setName(name);
 		this.setCapacity(1);
-		this.setDist("Unif");
-
-
+		this.setDist(distribution);
+		this.setDistParam(distParam);
+	
 		this.setState("free");
 		
 	}
@@ -69,7 +72,7 @@ public class MRIRoom extends Room {
 	 * @see MRIRoom#setDist(String)
 	 * @see MRIRoom#setDistParam(float[])
 	 */
-	public MRIRoom(ED ed){
+	public MRIRoom(ED ed, String distribution, float[] distParam){
 		super();
 		
 		MRIRoom.compteurMRIRoomId += 1;
@@ -78,7 +81,8 @@ public class MRIRoom extends Room {
 		this.setEd(ed);
 		this.setName("MRIRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
-		this.setDist("Unif");
+		this.setDist(distribution);
+		this.setDistParam(distParam);
 
 		this.setState("free");
 	}
@@ -104,7 +108,23 @@ public class MRIRoom extends Room {
 	 */
 	public void mriTesting(){
 		this.startTime = new TimeStamp() ;
-		this.setDuration(Uniform.randSample(30,70));
+		
+		if (this.getDist().equalsIgnoreCase("UNIFORM")){
+			this.setDuration(Uniform.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("GAMMA")){
+			this.setDuration(Gamma.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("EXP")){
+			this.setDuration(Exp.randSample(this.getDistParam()[0]));
+		}
+		else if (this.getDist().equalsIgnoreCase("LOGNORM")){
+			this.setDuration(LogNorm.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else{
+			System.out.println("Unable to radio Test --> unknown distribution");
+		}
+		
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + duree);
 		this.getPatient().setState("testing");

@@ -116,6 +116,20 @@ public class PeopleFactory extends AbstractFactory{
 		return null;
 	}
 	
+	
+	@Override
+	public Room getTestRoom(ED ed, String roomType, String distribution, float[] distParam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Room getTestRoom(ED ed, String name, String roomType, String distribution, float[] distParam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	@Override
 	public Facility getFacility(ED ed, String facilityType) {
 		// TODO Auto-generated method stub
@@ -126,5 +140,6 @@ public class PeopleFactory extends AbstractFactory{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 }

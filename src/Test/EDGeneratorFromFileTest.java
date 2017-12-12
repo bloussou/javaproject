@@ -11,13 +11,13 @@ public class EDGeneratorFromFileTest {
 
 	@Test
 	public void testgetNumbersFromLine() {
-		String str = "Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)\n";
+		String str = "Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2.5,5)\n";
 
 	    EDGeneratorFromFile EDG = new EDGeneratorFromFile();
 	    
-	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(0))==10);
-	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(1))==2);
-	    assertTrue(Integer.parseInt(EDG.getNumbersFromLine(str, 12).get(2))==5);
+	    assertTrue(EDG.getNumbersFromLine(str, 12).get(0)==10);
+	    assertTrue(EDG.getNumbersFromLine(str, 12).get(1)==2.5);
+	    assertTrue(EDG.getNumbersFromLine(str, 12).get(2)==5);
 	}
 	
 	

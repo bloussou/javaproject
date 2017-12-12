@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Emergency.ED;
 import Events.TimeStamp;
 import HR.Patient;
-import Proba.Uniform;
+import Proba.*;
 
 public class BloodRoom extends Room{
 
@@ -69,7 +69,7 @@ public class BloodRoom extends Room{
 	 * @see BloodRoom#setDist(String)
 	 * @see BloodRoom#setDistParam(float[])
 	 */
-	public BloodRoom(ED ed){
+	public BloodRoom(ED ed, String distribution, float[] distParam){
 		super();
 		
 		BloodRoom.compteurBloodRoomId += 1;
@@ -78,8 +78,8 @@ public class BloodRoom extends Room{
 		this.setEd(ed);
 		this.setName("BloodRoom" + Integer.toString(this.getId()));
 		this.setCapacity(1);
-		this.setDist("Unif");
-		
+		this.setDist(distribution);
+		this.setDistParam(distParam);
 		this.setState("free");
 	}
 	
@@ -111,7 +111,25 @@ public class BloodRoom extends Room{
 	 */
 	public void bloodTesting(){
 		this.startTime = new TimeStamp() ;
-		this.setDuration(new Uniform().randSample(15,90));
+		
+		
+		if (this.getDist().equalsIgnoreCase("UNIFORM")){
+			this.setDuration(Uniform.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("GAMMA")){
+			this.setDuration(Gamma.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else if (this.getDist().equalsIgnoreCase("EXP")){
+			this.setDuration(Exp.randSample(this.getDistParam()[0]));
+		}
+		else if (this.getDist().equalsIgnoreCase("LOGNORM")){
+			this.setDuration(LogNorm.randSample(this.getDistParam()[0],this.getDistParam()[1]));
+		}
+		else{
+			System.out.println("Unable to blood Test --> unknown distribution");
+		}
+		
+		
 		int duree = (int)(this.getDuration());
 		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + duree);
 
