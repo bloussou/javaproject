@@ -9,6 +9,7 @@ import Factory.PeopleFactory;
 import Rooms.Room;
 
 public class Patient extends Human{
+	
 	/**
 	 * An int to give a unique id to each Patient
 	 */
@@ -54,6 +55,9 @@ public class Patient extends Human{
 	 * the time hen the patient start the consultation
 	 */
 	private TimeStamp dtdtime;
+	
+	
+	
 	
 	/**
 	 * The constructor of the patient
@@ -135,6 +139,8 @@ public class Patient extends Human{
 		this.charges = 0;
 	}
 	
+	
+	
 	/**
 	 * 
 	 * @return {@link Patient#healthInsurance}
@@ -171,6 +177,7 @@ public class Patient extends Human{
 	public void setSeverityLevel(String severityLevel) {
 		this.severityLevel = severityLevel;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#arrivalTime}
@@ -200,7 +207,6 @@ public class Patient extends Human{
 		this.departureTime = departureTime;
 	}
 
-	
 	/**
 	 * 
 	 * @return {@link Patient#location}
@@ -215,6 +221,7 @@ public class Patient extends Human{
 	public void setLocation(Room location) {
 		this.location = location;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#history}
@@ -229,6 +236,7 @@ public class Patient extends Human{
 	public void setHistory(String historyUpdates) {
 		this.history = this.history + historyUpdates;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#charges}
@@ -243,6 +251,7 @@ public class Patient extends Human{
 	public void setCharges(float newCharges) {
 		this.charges += newCharges;
 	}
+	
 	/**
 	 * 
 	 * @return {@link Patient#physician}
@@ -259,8 +268,11 @@ public class Patient extends Human{
 	}
 	
 	
+	
 	@Override
 	public void create(){}
+	
+	
 	
 	/**
 	 * Sets the state of the Patient and moves him/her to the good list of {@link ED#getDbPatient()}, it :

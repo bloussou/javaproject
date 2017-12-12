@@ -12,16 +12,15 @@ public class Transport_Transporter extends Event {
 	 * The patient which is associated to this instance of the event Transport_Transporter
 	 */
 	private Patient patient;
-	
 	/**
 	 * The transporter which is associated to this instance of the event Transport_Transporter
 	 */
 	private Transporter transporter;
-	
 	/**
 	 * The WaitingRoom which is associated to this instance of the event Transport_Transporter
 	 */
 	private Room targetRoom;
+	
 	
 	/**
 	 * Creation of a Transport_Transporter event :
@@ -48,15 +47,12 @@ public class Transport_Transporter extends Event {
 
 		this.setStartTime(new TimeStamp());
 		this.setDuration(4);
-		this.setEndTime(new TimeStamp(this.getDuration()));
+		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
 		
 		this.transporter.transport(patient, targetRoom);
 		
 		this.targetRoom.setState("occupied");
-
 	}
-
-	
 	
 	/**
 	 * Processing the actions which have to be performed at the end of the event :

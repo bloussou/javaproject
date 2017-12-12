@@ -11,6 +11,7 @@ import MessageBox.Message;
 
 
 public class Physician extends Human  implements Observer{
+	
 	/**
 	 * An int to give a unique id to each physician
 	 */
@@ -42,6 +43,7 @@ public class Physician extends Human  implements Observer{
 	private ArrayList<ArrayList<Message>> mailBox;
 	
 	
+	
 	/**
 	 * Constructor of the physician
 	 * @param ed
@@ -67,7 +69,6 @@ public class Physician extends Human  implements Observer{
 		this.mailBox.add(new ArrayList<Message>());
 		this.mailBox.add(new ArrayList<Message>());
 	}
-	
 	
 	/**
 	 * Constructor of the physician :
@@ -96,57 +97,6 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
-	
-	
-	/**
-	 * 
-	 * @return {@link Physician#patientOverseeing}
-	 */
-	public ArrayList<Patient> getPatientOverseeing() {
-		return patientOverseeing;
-	}
-	/**
-	 * 
-	 * @return {@link Physician#patientAlreadyTreated}
-	 */
-	public ArrayList<Patient> getPatientAlreadyTreated() {
-		return patientAlreadyTreated;
-	}
-	/**
-	 * 
-	 * @return {@link Physician#startTime}
-	 */
-	public TimeStamp getStartTime() {
-		return startTime;
-	}
-	/**
-	 * 
-	 * @return {@link Physician#endTime}
-	 */
-	public TimeStamp getEndTime() {
-		return endTime;
-	}
-	/**
-	 * 
-	 * @return {@link Physician#duration}
-	 */
-	public double getDuration() {
-		return duration;
-	}
-	/**
-	 * Set the {@link Physician#duration} of the current event of the physician
-	 * @param duration
-	 */
-	public void setDuration(double duration) {
-		this.duration = duration;
-	}
-	/**
-	 * 
-	 * @return {@link Physician#mailBox}
-	 */
-	public ArrayList<ArrayList<Message>> getMailBox() {
-		return mailBox;
-	}
 	
 	
 	/**
@@ -192,6 +142,7 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
+	
 	/**
 	 * Emit the verdict a the end of the exam : 
 	 * <li>set the patient state to released</li>
@@ -220,6 +171,7 @@ public class Physician extends Human  implements Observer{
 		
 		
 	}
+	
 	
 	/**
 	 * Using the probability it gives a prescription add the end of the consultation to the patient . Set patient's state to the state to the prescription :
@@ -285,6 +237,7 @@ public class Physician extends Human  implements Observer{
 		//set the state of the room
 		consultationRoom.setState("free");
 	}
+	
 	
 	
 	/**
@@ -377,6 +330,62 @@ public class Physician extends Human  implements Observer{
 		}
 	}
 	
+	
+	
+	/**
+	 * 
+	 * @return {@link Physician#patientOverseeing}
+	 */
+	public ArrayList<Patient> getPatientOverseeing() {
+		return patientOverseeing;
+	}
+	/**
+	 * 
+	 * @return {@link Physician#patientAlreadyTreated}
+	 */
+	public ArrayList<Patient> getPatientAlreadyTreated() {
+		return patientAlreadyTreated;
+	}	
+
+	/**
+	 * 
+	 * @return {@link Physician#startTime}
+	 */
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	/**
+	 * 
+	 * @return {@link Physician#endTime}
+	 */
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	/**
+	 * 
+	 * @return {@link Physician#duration}
+	 */
+	public double getDuration() {
+		return duration;
+	}
+	/**
+	 * Set the {@link Physician#duration} of the current event of the physician
+	 * @param duration
+	 */
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+	
+	/**
+	 * 
+	 * @return {@link Physician#mailBox}
+	 */
+	public ArrayList<ArrayList<Message>> getMailBox() {
+		return mailBox;
+	}
+	
+	
+	
 	/**
 	 * Sets the state of the Physician and moves him/her to the good list of {@link ED#getDbNurse()}, it :
 	 * <li>removes it from its last db state</li>
@@ -419,6 +428,8 @@ public class Physician extends Human  implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 	
 	/**
 	 * Display the following message  :

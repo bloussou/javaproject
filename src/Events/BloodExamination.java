@@ -31,11 +31,11 @@ public class BloodExamination extends Event {
 		
 		this.getBloodRoom().updatePatientCharge(patient);
 		this.getBloodRoom().bloodTesting();
-		this.setStartTime(this.getBloodRoom().getStartTime());
-		this.setDuration((int) this.getBloodRoom().getDuration());
-		this.setEndTime(this.getBloodRoom().getEndTime());
-		
+		this.setStartTime(bloodRoom.getStartTime());
+		this.setDuration((int) bloodRoom.getDuration());
+		this.setEndTime(bloodRoom.getEndTime());
 	}
+	
 	/**
 	 * End the event blood examination
 	 * @see BloodRoom#endBloodTesting()
@@ -49,10 +49,10 @@ public class BloodExamination extends Event {
 	public Patient getPatient() {
 		return patient;
 	}
-
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
+	
 	public BloodRoom getBloodRoom() {
 		return bloodRoom;
 	}

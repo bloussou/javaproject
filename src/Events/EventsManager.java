@@ -13,6 +13,7 @@ public class EventsManager {
 	private ArrayList<ED> eds;
 	public Time time;
 	
+	
 	/**
 	 * The constructor initializes the event list InProgress, and the EDs' list
 	 */
@@ -21,6 +22,7 @@ public class EventsManager {
 		this.eds = eds;
 		this.time = Time.getInstanceTime();
 	}
+	
 	
 
 	/**
@@ -32,6 +34,7 @@ public class EventsManager {
 		this.dequeueEvents();
 	}
 
+	
 	
 	/**
 	 * For each ED in the eds' list, check if new events have to be created
@@ -66,7 +69,7 @@ public class EventsManager {
 	}
 	
 	/**
-e	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be done
+	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be done
 	 * @param ed
 	 */
 	public void checkNewTransport_Nurse(ED ed){
@@ -292,12 +295,9 @@ e	 * check in ED if new Transportation by a Nurse to a WaitingRoom have to be do
 	 */
 	public void dequeueEvents(){
 		
-		
 		while (!this.getInProgress().isEmpty() && this.getInProgress().get(0).getEndTime().getTimeStamp() <= time.getTime() ){
 			this.getInProgress().get(0).endEvent();
 			this.getInProgress().remove(0);
-				
-		
 		}
 	}
 	

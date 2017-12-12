@@ -5,6 +5,7 @@ import HR.Patient;
 import Rooms.RadioRoom;
 
 public class RadioExamination extends Event {
+	
 	/**
 	 * The {@link Patient} who suffers this event
 	 */
@@ -13,6 +14,7 @@ public class RadioExamination extends Event {
 	 * The MRIRoom of this Event
 	 */
 	private RadioRoom radioRoom;
+	
 	
 	/**
 	 * Event radio examination, it calculate end and start time
@@ -31,7 +33,7 @@ public class RadioExamination extends Event {
 		this.getRadioRoom().updatePatientCharge(patient);
 		this.getRadioRoom().radioTesting();
 		this.setStartTime(radioRoom.getStartTime());
-		this.setDuration((int) this.getRadioRoom().getDuration());
+		this.setDuration((int) radioRoom.getDuration());
 		this.setEndTime(radioRoom.getEndTime());
 		
 	}
@@ -48,11 +50,9 @@ public class RadioExamination extends Event {
 	public Patient getPatient() {
 		return patient;
 	}
-
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-
 
 	public RadioRoom getRadioRoom() {
 		return radioRoom;

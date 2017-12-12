@@ -3,6 +3,7 @@ package Facilities;
 import Emergency.ED;
 
 public abstract class Facility {
+	
 	/**
 	 * The {@link ED} of the facility
 	 */
@@ -23,6 +24,7 @@ public abstract class Facility {
 	 * the location of the facility
 	 */
 	private String location;
+	
 	
 	
 	/**
@@ -96,6 +98,7 @@ public abstract class Facility {
 		this.location = location;
 	}
 
+	
 	/**
 	 * Return a string like :
 	 * <p>"Facility [ed=" + ed + ", id=" + id + ", name=" + name + ", state=" + state + ", location="

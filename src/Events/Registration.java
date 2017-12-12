@@ -9,11 +9,11 @@ public class Registration extends Event{
 	 * The patient which is associated to this instance of the event Registration
 	 */
 	private Patient patient;
-	
 	/**
 	 * The nurse which is associated to this instance of the event Registration
 	 */
 	private Nurse nurse;
+	
 	
 	/**
 	 * Creation of a Registration :
@@ -40,7 +40,6 @@ public class Registration extends Event{
 		
 		this.nurse.register(patient);
 	}
-	
 	
 	/**
 	 * Processing the actions which have to be performed at the end of the event :

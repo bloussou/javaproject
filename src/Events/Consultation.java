@@ -11,18 +11,15 @@ public class Consultation extends Event{
 	 * The patient which is associated to this instance of the event Consultation
 	 */
 	private Patient patient;
-	
 	/**
 	 * The physician which is associated to this instance of the event Consultation
 	 */
 	private Physician physician;
-	
 	private boolean physicianAlreadyConsulted;
 	/**
 	 * The consultation room {BoxRoom, ShockRoom} which is associated to this instance of the event Consultation
 	 */
 	private Room targetRoom;
-	
 	
 	/**
 	 * Creation of a Consultation event :
@@ -61,8 +58,7 @@ public class Consultation extends Event{
 			physician.handleNewPatient(patient, targetRoom);
 		}
 		
-		this.setEndTime(new TimeStamp(this.getDuration()));
-
+		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
 	}
 	
 	/**

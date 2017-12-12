@@ -11,16 +11,15 @@ public class Transport_Nurse extends Event{
 	 * The patient which is associated to this instance of the event Transport_Nurse
 	 */
 	private Patient patient;
-	
 	/**
 	 * The nurse which is associated to this instance of the event Transport_Nurse
 	 */
 	private Nurse nurse;
-	
 	/**
 	 * The WaitingRoom which is associated to this instance of the event Transport_Nurse
 	 */
 	private Room targetRoom;
+
 	
 	/**
 	 * Creation of a Transport_Nurse event :
@@ -47,13 +46,11 @@ public class Transport_Nurse extends Event{
 
 		this.setStartTime(new TimeStamp());
 		this.setDuration(2);
-		this.setEndTime(new TimeStamp(this.getDuration()));
+		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
 		
 		this.nurse.transport(patient, targetRoom);
 		this.targetRoom.addOccupant(patient);
 	}
-
-	
 	
 	/**
 	 * Processing the actions which have to be performed at the end of the event :

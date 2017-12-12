@@ -13,11 +13,11 @@ public class WaitingRoom extends Room{
 	 * a static int to give a unique id to each WaitingRoom
 	 */
 	private static int compteurWaitingRoomId;
-	
 	/**
 	 * an array which contains the lists of patients in this WaitingRoom
 	 */
 	private ArrayList<Patient> occupants;
+	
 	
 	
 	/**
@@ -78,7 +78,7 @@ public class WaitingRoom extends Room{
 			this.setState("available");
 		}
 	}
-	
+
 
 	@Override
 	public void removeOccupant(Patient patient){
@@ -97,13 +97,24 @@ public class WaitingRoom extends Room{
 		System.out.println("Construction d'une WaitingRoom : \n" + this.toString());
 	}
 	
-
 	@Override
 	public void updatePatientCharge(Patient patient){
 		if (occupants.contains(patient)){
 		patient.setCharges(patient.getCharges()+this.getCost());
 		}
 	}
+
+	
+	public static int getCompteurWaitingRoomId() {
+		return compteurWaitingRoomId;
+	}
+	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
+		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
+	}
+	public ArrayList<Patient> getOccupants(){
+		return occupants;
+	}
+	
 	
 	@Override
 	public void setState(String state){
@@ -126,19 +137,6 @@ public class WaitingRoom extends Room{
 		}
 	}
 	
-	public static int getCompteurWaitingRoomId() {
-		return compteurWaitingRoomId;
-	}
-	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
-		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
-	}
-	
-	
-	public ArrayList<Patient> getOccupants(){
-		return occupants;
-	}
-	
-
 	
 	
 }

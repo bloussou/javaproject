@@ -13,26 +13,24 @@ public class MRIRoom extends Room {
 	 * a static int to give a unique id to each MRIdRoom
 	 */
 	private static int compteurMRIRoomId;
-	
 	/**
 	 * The patient currently treated in this MRIRoom
 	 */
 	private Patient patient;
-
 	/**
 	 * The TimeStamp corresponding to the time at the beginning of the MRI test
 	 */
 	private TimeStamp startTime;
-	
 	/**
 	 * The TimeStamp corresponding to the time at the end of the MRI test
 	 */
 	private TimeStamp endTime;
-	
 	/** 
 	 * The duration (int) in minutes of the test
 	 */
 	private double duration;
+	
+	
 	
 	/**
 	 * Create an MRIRoom with those parameters
@@ -85,6 +83,73 @@ public class MRIRoom extends Room {
 		this.setState("free");
 	}
 	
+
+	/**
+	 * Update the patient's charge with the cost of this room's MRI test
+	 */
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+this.getCost());
+			}	
+	}
+	
+	
+	/**
+	 * Process the MRI test.
+	 * <li>Save the startTime</li>
+	 * <li>Set the duration of this test to Unif.randSample(30,70) ... {@link Uniform#randSample(double, double)}</li>
+	 * <li>Set the endTime</li>
+	 * <li>Update the patient's history</li>
+	 */
+	public void mriTesting(){
+		this.startTime = new TimeStamp() ;
+		this.setDuration(Uniform.randSample(30,70));
+		int duree = (int)(this.getDuration());
+		this.endTime = new TimeStamp(this.getStartTime().getTimeStamp() + duree);
+		this.getPatient().setState("testing");
+		this.patient.setHistory("(Start Test, "+ this.startTime.toString() + "), ");
+		System.out.println(patient.getHistory());
+	}
+	
+	
+	/**
+	 * End the MRI test and update the patient's history
+	 */
+	public void endMRITesting(){
+		TimeStamp time = new TimeStamp();
+		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
+		
+		this.patient.setState("mriTested");
+		System.out.println(patient.getHistory());
+		this.removeOccupant(this.getPatient());
+		
+	}
+	
+	
+	
+
+	@Override
+	public void addOccupant(Patient patient) {
+		this.patient = patient;
+		this.patient.setLocation(this);
+		this.setState("occupied");
+		
+
+	}
+	@Override
+	public void removeOccupant(Patient patient) {
+		
+		this.setState("free");
+		this.patient = null;
+		
+	}
+	@Override
+	public void construct() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	public TimeStamp getStartTime() {
 		return startTime;
@@ -113,70 +178,7 @@ public class MRIRoom extends Room {
 	public Patient getPatient() {
 		return patient;
 	}
-
-
-	@Override
-	public void addOccupant(Patient patient) {
-		this.patient = patient;
-		this.patient.setLocation(this);
-		this.setState("occupied");
-		
-
-	}
-	@Override
-	public void removeOccupant(Patient patient) {
-		
-		this.setState("free");
-		this.patient = null;
-		
-	}
-	@Override
-	public void construct() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	/**
-	 * Update the patient's charge with the cost of this room's MRI test
-	 */
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-			}	
-	}
-	
-	
-	/**
-	 * Process the MRI test.
-	 * <li>Save the startTime</li>
-	 * <li>Set the duration of this test to Unif.randSample(30,70) ... {@link Uniform#randSample(double, double)}</li>
-	 * <li>Set the endTime</li>
-	 * <li>Update the patient's history</li>
-	 */
-	public void mriTesting(){
-		this.startTime = new TimeStamp() ;
-		this.setDuration(Uniform.randSample(30,70));
-		int duree = (int)(this.getDuration());
-		this.endTime = new TimeStamp(duree);
-		this.getPatient().setState("testing");
-		this.patient.setHistory("(Start Test, "+ this.startTime.toString() + "), ");
-		System.out.println(patient.getHistory());
-	}
-	
-	
-	/**
-	 * End the MRI test and update the patient's history
-	 */
-	public void endMRITesting(){
-		TimeStamp time = new TimeStamp();
-		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
-		
-		this.patient.setState("mriTested");
-		System.out.println(patient.getHistory());
-		this.removeOccupant(this.getPatient());
-		
-	}
 	
 	@Override
 	public void setState(String state){

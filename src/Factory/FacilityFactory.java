@@ -18,6 +18,7 @@ public class FacilityFactory extends AbstractFactory {
 		// TODO Auto-generated method stub
 		return null;
 	}
+		
 	@Override
 	public Human getPatient(ED ed, String severityLevel, TimeStamp arrivalTime) {
 		// TODO Auto-generated method stub
@@ -40,6 +41,7 @@ public class FacilityFactory extends AbstractFactory {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	/**
 	 * Return the good facility :
 	 * <li>"Stretcher" return Stretcher</li>
