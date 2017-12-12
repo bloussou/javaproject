@@ -26,15 +26,15 @@ public class PeopleFactoryTest {
 	//TEST
 	
 	//nurse
-	Nurse nurse = (Nurse) peopleFactory.getStaff("NURSE", ed);
+	Nurse nurse = (Nurse) peopleFactory.getStaff(ed, "NURSE");
 	assertTrue(ed.getDbNurse().get(0).contains(nurse));
 	
 	//physician
-	Physician physician = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+	Physician physician = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 	assertTrue(ed.getDbPhysician().get(0).contains(physician));
 	
 	//transporter
-	Transporter transporter = (Transporter) peopleFactory.getStaff("TRANSPORTER", ed);
+	Transporter transporter = (Transporter) peopleFactory.getStaff(ed,"TRANSPORTER");
 	assertTrue(ed.getDbTransporter().get(0).contains(transporter));
 	}
 

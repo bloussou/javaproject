@@ -26,9 +26,9 @@ public class PhysicianTest {
 		
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
-		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
 		
 		// TEST
 
@@ -56,9 +56,9 @@ public class PhysicianTest {
 				
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 				
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 				
-		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
+		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
 		
 		
 		
@@ -99,7 +99,7 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 						
 				
 						
@@ -130,11 +130,11 @@ public class PhysicianTest {
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 		Patient patient2 = (Patient) peopleFactory.getPatient(ed, "L3", new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 						
-		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		BoxRoom boxRoom1 = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
+		ShockRoom ShockRoom1 = (ShockRoom) roomFactory.getRoom(ed,"SHOCKROOM");
 				
 				
 				
@@ -168,7 +168,7 @@ public class PhysicianTest {
 		
 		PeopleFactory peopleFactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");		
 				
-		Physician physician = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//test idle
 		physician.setState("idle");
@@ -212,8 +212,8 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//TEST
 		physician1.writeMessage(patient1, physician2, "patient1 very sick", "he is about to die");
@@ -234,8 +234,8 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//TEST
 		physician2.readMessage();
@@ -260,8 +260,8 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//TEST
 		physician2.writeMessage(patient1, physician1, "I'm going to save him", "using my super power");
@@ -288,8 +288,8 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//TEST
 		physician2.writeMessage(patient1, physician1, "I'm going to save him", "using my super power");
@@ -317,8 +317,8 @@ public class PhysicianTest {
 						
 		Patient patient1 = (Patient) peopleFactory.getPatient(ed, "L1" , new TimeStamp());
 						
-		Physician physician1 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
-		Physician physician2 = (Physician) peopleFactory.getStaff("PHYSICIAN", ed);
+		Physician physician1 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
+		Physician physician2 = (Physician) peopleFactory.getStaff(ed,"PHYSICIAN");
 		
 		//TEST
 		physician2.writeMessage(patient1, physician1, "I'm going to save him", "using my super power");

@@ -25,7 +25,7 @@ public class ShockRoomTest {
 		
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 				
-		Room shockRoom = (Room) roomFactory.getRoom("SHOCKROOM", ed);
+		Room shockRoom = (Room) roomFactory.getRoom(ed,"SHOCKROOM");
 		
 		//test free
 		shockRoom.setState("free");
@@ -57,7 +57,7 @@ public class ShockRoomTest {
 		RoomFactory roomFactory  = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		PeopleFactory peoplefactory = (PeopleFactory) FactoryCreator.getFactory("HUMAN");
 				
-		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
+		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom(ed,"SHOCKROOM");
 		Patient patient = (Patient) peoplefactory.getPatient(ed, "L1", new TimeStamp());
 		
 		

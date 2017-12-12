@@ -18,7 +18,7 @@ public class CLI {
 
 	private ArrayList<ED> eds;
 	private ArrayList<String> commandLine;
-	Time time;
+	public Time time;
 	public Factory.AbstractFactory humanFactory;
 	public Factory.AbstractFactory roomFactory;
 	public Factory.AbstractFactory facilityFactory;
@@ -93,6 +93,9 @@ public class CLI {
 		// ------ COMMAND : CREATION OF A NEW TRANSPORTER
 			else if(this.commandLine.get(0).equalsIgnoreCase("addTransporter")){ this.commandAddTransporter(); }			
 			
+		// ------ COMMAND : CREATION OF A NEW ARRIVING PATIENT
+			else if(this.commandLine.get(0).equalsIgnoreCase("addPatient")){ this.commandAddPatient(); }
+			
 		// ------ COMMAND : CREATION OF A NEW PATIENTS FLOW
 			else if(this.commandLine.get(0).equalsIgnoreCase("setNewPatientFlow")){ this.commandSetNewPatientFlow(); }
 			
@@ -125,18 +128,20 @@ public class CLI {
 	 * ----PRINT CLI HELP
 	 */
 	public void commandHelp(){
+		for (int i = 0; i < 10; i++) {System.out.println("\n");}
+		System.out.println("<<<<<<<<<<<<<<<<HELP>>>>>>>>>>>>>>>>");
 		System.out.println("Command lines should start with one of the command words");
-		System.out.println("Command lines parameters should be separated by whiteblancspaces");
-		System.out.println("COMMAND WORDS");
-		System.out.println("createED 			<EDname>");
-		System.out.println("addRoom	 			<EDname> <RoomType> <RoomName>");
-		System.out.println("addTestRoom 		<EDname> <RoomType>	<DistributionType> <DistributionParameters>");
-		System.out.println("addNurse 			<EDname> <NurseName> <NurseSurname>");
-		System.out.println("addPhysician		<EDname> <PhysicianName> <PhysicianeSurname>");
-		System.out.println("addTransporter		<EDname> <TransporterName> <TransporterSurname>");
-		System.out.println("setNewPatientFlow	<EDname> <severityLevel> <DistributionType> <Distribution parameters> <startTime> <endTime>");
-		System.out.println("setPatientInsurance	<EDname> <PatientID> <HealthInsurance>");
-		
+		System.out.println("Command lines parameters should be separated by whiteblancspaces\n");
+		System.out.println("--------- COMMAND WORDS ---------");
+		System.out.println("createED\t\t<EDname>");
+		System.out.println("addRoom\t\t\t<EDname> <RoomType> <RoomName>");
+		System.out.println("addTestRoom\t\t<EDname> <RoomType> <DistributionType> <DistributionParameters>");
+		System.out.println("addNurse\t\t<EDname> <NurseName> <NurseSurname>");
+		System.out.println("addPhysician\t\t<EDname> <PhysicianName> <PhysicianeSurname>");
+		System.out.println("addTransporter\t\t<EDname> <TransporterName> <TransporterSurname>");
+		System.out.println("setNewPatientFlow\t<EDname> <severityLevel> <DistributionType> <Distribution parameters> <startTime> <endTime>");
+		System.out.println("setPatientInsurance\t<EDname> <PatientID> <HealthInsurance>");
+		for (int i = 0; i < 3; i++) {System.out.println("\n");}
 	}
 	
 	/**
@@ -144,7 +149,7 @@ public class CLI {
 	 */
 	public void commandCreateED(){
 		if(this.commandLine.size()==1){
-			String edName = "EmergDep" + this.eds.size();
+			String edName = "ED" + this.eds.size();
 			this.eds.add(new ED(edName,"Unknown"));
 		}
 		else if(this.commandLine.size()==2){
@@ -315,14 +320,15 @@ public class CLI {
 	 * ---- CREATE A NEW FLOW OF PATIENTS
 	 */
 	public void commandSetNewPatientFlow(){
-		if(this.commandLine.size()>7){
+
+		if(this.commandLine.size()>6){
 			String edName = this.commandLine.get(1);
 			String sevLevel = this.commandLine.get(2);
 			String distribution = this.commandLine.get(3);
 			ArrayList<String> distParam = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4), 0);
 			int startTime = Integer.parseInt(this.commandLine.get(5));
 			int endTime = Integer.parseInt(this.commandLine.get(6));
-		
+			
 			int edIndex = -1;
 			for (int i = 0; i < this.eds.size(); i++) {
 				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){edIndex = i;}
@@ -331,8 +337,9 @@ public class CLI {
 			else {
 
 				TimeStamp nextArrivalTime;
-				
+
 				if (sevLevel.equalsIgnoreCase("L1") || sevLevel.equalsIgnoreCase("L2") || sevLevel.equalsIgnoreCase("L3") || sevLevel.equalsIgnoreCase("L4") || sevLevel.equalsIgnoreCase("L5")){
+
 					if(distribution.equalsIgnoreCase("UNIFORM") && distParam.size()==2){
 						int minLap = Integer.parseInt(distParam.get(0));
 						int maxLap = Integer.parseInt(distParam.get(1));
@@ -390,6 +397,29 @@ public class CLI {
 	}
 	
 	/**
+	 * ----CREATE A NEW PATIENT AddPatient ED severityLevel arrivalTime
+	 */
+	public void commandAddPatient(){
+		if(this.commandLine.size()>3){
+			String edName = this.commandLine.get(1);
+			String sevLevel = this.commandLine.get(2);
+			int arrivalTime = Integer.parseInt(this.commandLine.get(3));
+			
+			int edIndex = -1;
+			for (int i = 0; i < this.eds.size(); i++) {
+				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
+					edIndex = i;
+					this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, new TimeStamp(arrivalTime));
+				}
+			}
+			if (edIndex == -1){System.out.println("ED introuvable");}
+		}
+		else {
+			System.out.println("This command requires at least 3 arguments : edName severityLevel arrivalTime");
+		}
+	}
+	
+	/**
 	 * ---- SET PATIENT HEALTH INSURANCE
 	 */
 	public void commandSetPatientInsurance(){
@@ -425,13 +455,13 @@ public class CLI {
 	public ArrayList<String> getCommandLine() {
 		return commandLine;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("classe CLI");
-		
-		CLI cli = new CLI();
-		cli.promptCommandLine();
-		System.out.println(cli.getCommandLine());
+	public ArrayList<ED> getEds() {
+		return eds;
 	}
+	public void setEds(ArrayList<ED> eds) {
+		this.eds = eds;
+	}
+	
 
+	
 }

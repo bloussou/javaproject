@@ -22,12 +22,12 @@ public class RoomFactoryTest {
 		
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed);
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed);
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed);
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed);
-		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed);
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed);
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM");
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM");
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed,"MRIROOM");
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM");
+		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom(ed,"SHOCKROOM");
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM");
 		
 		//TEST
 		assertTrue(ed.getDbBoxRoom().get(0).contains(boxRoom));
@@ -56,12 +56,12 @@ public class RoomFactoryTest {
 		
 		RoomFactory roomFactory = (RoomFactory) FactoryCreator.getFactory("ROOM");
 		
-		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom("BOXROOM", ed, "1");
-		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom("RADIOROOM", ed, "1");
-		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom("MRIROOM", ed, "1");
-		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom("BLOODROOM", ed, "1");
-		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom("SHOCKROOM", ed, "1");
-		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom("WAITINGROOM", ed, "1");
+		BoxRoom boxRoom = (BoxRoom) roomFactory.getRoom(ed,"BOXROOM", "1");
+		RadioRoom radioRoom = (RadioRoom) roomFactory.getRoom(ed,"RADIOROOM", "1");
+		MRIRoom mriRoom = (MRIRoom) roomFactory.getRoom(ed,"MRIROOM", "1");
+		BloodRoom bloodRoom = (BloodRoom) roomFactory.getRoom(ed,"BLOODROOM", "1");
+		ShockRoom shockRoom = (ShockRoom) roomFactory.getRoom(ed,"SHOCKROOM", "1");
+		WaitingRoom waitingRoom = (WaitingRoom) roomFactory.getRoom(ed,"WAITINGROOM", "1");
 		
 		//TEST
 		assertTrue(ed.getDbBoxRoom().get(0).contains(boxRoom));
