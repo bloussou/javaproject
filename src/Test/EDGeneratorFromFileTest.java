@@ -100,17 +100,17 @@ public class EDGeneratorFromFileTest {
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbBoxRoom().get(0).size()==2);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbBoxRoom().get(1).size()==0);
 	    
-	    String line4 = "Rooms - number of BloodTestRooms : 3";
+	    String line4 = "TestRooms - Blood test duration distribution : UNIFORM(2,5), number of BloodTestRooms : 3";
 	    EDG.generateFromLine(line4); 
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbBloodRoom().get(0).size()==3);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbBloodRoom().get(1).size()==0);
 	    
-	    String line5 = "Rooms - number of MRITestRooms : 10";
+	    String line5 = "TestRooms - MRI test duration distribution : GAMMA(1,2),  number of MRITestRooms : 10 ";
 	    EDG.generateFromLine(line5);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbMRIRoom().get(0).size()==10);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbMRIRoom().get(1).size()==0);
 	    
-	    String line6 = "Rooms - number of RadioTestRooms : 11";
+	    String line6 = "TestRooms - Radio test duration distribution : EXP(2),number of RadioTestRooms : 11";
 	    EDG.generateFromLine(line6);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbRadioRoom().get(0).size()==11);
 	    assertTrue(EDG.getEdsGenerated().get(0).getDbRadioRoom().get(1).size()==0);

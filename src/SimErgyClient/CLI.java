@@ -239,7 +239,9 @@ public class CLI {
 			String edName = this.commandLine.get(1);
 			String testRoomType = this.commandLine.get(2);
 			String distribution = this.commandLine.get(3);
-			float[] parameters = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4),0);
+			ArrayList<Double> data = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4),0);
+			if(data.size()==1){data.add(0.0);}
+			float[] parameters = {data.get(0).floatValue(), data.get(1).floatValue()};
 			int edIndex = -1;
 			for (int i = 0; i < this.eds.size(); i++) {
 				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
@@ -362,7 +364,7 @@ public class CLI {
 			String edName = this.commandLine.get(1);
 			String sevLevel = this.commandLine.get(2);
 			String distribution = this.commandLine.get(3);
-			ArrayList<String> distParam = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4), 0);
+			ArrayList<Double> distParam = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4), 0);
 			int startTime = Integer.parseInt(this.commandLine.get(5));
 			int endTime = Integer.parseInt(this.commandLine.get(6));
 			
@@ -378,8 +380,8 @@ public class CLI {
 				if (sevLevel.equalsIgnoreCase("L1") || sevLevel.equalsIgnoreCase("L2") || sevLevel.equalsIgnoreCase("L3") || sevLevel.equalsIgnoreCase("L4") || sevLevel.equalsIgnoreCase("L5")){
 
 					if(distribution.equalsIgnoreCase("UNIFORM") && distParam.size()==2){
-						int minLap = Integer.parseInt(distParam.get(0));
-						int maxLap = Integer.parseInt(distParam.get(1));
+						int minLap = distParam.get(0).intValue();
+						int maxLap = distParam.get(1).intValue();
 						int durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
 						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
 						while(nextArrivalTime.getTimeStamp()<=endTime){
@@ -389,7 +391,7 @@ public class CLI {
 						}
 					}
 					else if (distribution.equalsIgnoreCase("EXP") && distParam.size()==1){
-						int lambda = Integer.parseInt(distParam.get(0));
+						int lambda = distParam.get(0).intValue();
 						int durationBeforeNextArrival = (int) Exp.randSample(lambda);
 						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
 						while(nextArrivalTime.getTimeStamp()<=endTime){
@@ -399,8 +401,8 @@ public class CLI {
 						}
 					}
 					else if (distribution.equalsIgnoreCase("GAMMA") && distParam.size()==2){
-						int K = Integer.parseInt(distParam.get(0));
-						int T = Integer.parseInt(distParam.get(1));
+						int K = distParam.get(0).intValue();
+						int T = distParam.get(1).intValue();
 						int durationBeforeNextArrival = (int) Gamma.randSample(K, T);
 						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
 						while(nextArrivalTime.getTimeStamp()<=endTime){
@@ -410,8 +412,8 @@ public class CLI {
 						}
 					}
 					else if (distribution.equalsIgnoreCase("LOGNORM") && distParam.size()==2){
-						int E = Integer.parseInt(distParam.get(0));
-						int S = Integer.parseInt(distParam.get(1));
+						int E = distParam.get(0).intValue();
+						int S = distParam.get(1).intValue();
 						int durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
 						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
 						while(nextArrivalTime.getTimeStamp()<=endTime){

@@ -12,9 +12,10 @@ Facilities - number of stretchers 2
 Rooms - number of WaitingRooms : 2
 Rooms - number of ShockRooms : 3
 Rooms - number of BoxRooms : 2
-Rooms - number of BloodTestRooms : 3
-Rooms - number of MRITestRooms : 2
-Rooms - number of RadioTestRooms : 1
+
+TestRooms - Blood test duration distribution : UNIFORM(2,5), number of BloodTestRooms : 3
+TestRooms - MRI test duration distribution : GAMMA(1,2),  number of MRITestRooms : 2 
+TestRooms - Radio test duration distribution : EXP(2),number of RadioTestRooms : 1
 
 *Probability laws available to generate a timelaps before a new arrival : 
 *	- UNIFORM(X,Y) : Uniform law where X is the minimum time(minutes) before new arrival and Y the maximum
