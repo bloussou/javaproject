@@ -44,7 +44,7 @@ public class EDGeneratorFromFile {
 	 * @param setOff
 	 * @return
 	 */
-	public ArrayList<String> getNumbersFromLine(String str, int setOff){
+	public static ArrayList<String> getNumbersFromLine(String str, int setOff){
 		ArrayList<String> values = new ArrayList<String>();
 		String myNumbers = "";
 		boolean digitDetected = false;
@@ -70,7 +70,7 @@ public class EDGeneratorFromFile {
 	 * @param setOff
 	 * @return
 	 */
-	public String getWordFromLine(String str, int setOff){
+	public static String getWordFromLine(String str, int setOff){
 		String returnValue = "";
 		int i = setOff;
 		boolean wordFound = false;
@@ -100,15 +100,15 @@ public class EDGeneratorFromFile {
 				}
 		else if (line.startsWith("ED - name") && !this.edsGenerated.isEmpty()) {
 				System.out.println("EDGGENERATORFROMFILE --- New ed name");
-				this.edsGenerated.get(this.numED).setName(this.getWordFromLine(line, 11));
+				this.edsGenerated.get(this.numED).setName(EDGeneratorFromFile.getWordFromLine(line, 11));
 		}
 		else if (line.startsWith("ED - country") && !this.edsGenerated.isEmpty()){
 				System.out.println("EDGGENERATORFROMFILE --- New ed country");
-				this.edsGenerated.get(this.numED).setCountry(this.getWordFromLine(line, 14));
+				this.edsGenerated.get(this.numED).setCountry(EDGeneratorFromFile.getWordFromLine(line, 14));
 		}
 //--RH---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("RH - number of physicians") && !this.edsGenerated.isEmpty()){
-				int numPhysicians = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numPhysicians = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numPhysicians + " physicians");
 				if (numPhysicians>0){
 					for (int i = 0; i < numPhysicians ; i++) {
@@ -118,7 +118,7 @@ public class EDGeneratorFromFile {
 				else {System.out.println("Problème avec le nb de physicians de " + this.edsGenerated.get(this.numED).getName());}
 		}
 		else if (line.startsWith("RH - number of nurses") && !this.edsGenerated.isEmpty()){
-				int numNurses = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numNurses = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numNurses + " nurses");
 				if (numNurses>0){
 					for (int i = 0; i < numNurses ; i++) {
@@ -128,7 +128,7 @@ public class EDGeneratorFromFile {
 				else {System.out.println("Problème avec le nb de nurses de " + this.edsGenerated.get(this.numED).getName());}
 		}
 		else if (line.startsWith("RH - number of transporters") && !this.edsGenerated.isEmpty()){
-				int numTransporters = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numTransporters = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numTransporters + " transporters");
 				if (numTransporters>0){
 					for (int i = 0; i < numTransporters ; i++) {
@@ -139,7 +139,7 @@ public class EDGeneratorFromFile {
 		}
 //--FACILITIES---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Facilities - number of stretchers") && !this.edsGenerated.isEmpty()){
-				int numStretchers = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numStretchers = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numStretchers + " stretchers");
 				if (numStretchers>0){
 					for (int i = 0; i < numStretchers ; i++) {
@@ -150,7 +150,7 @@ public class EDGeneratorFromFile {
 		}
 //--WAITING AND CONSULTATION ROOMS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Rooms - number of WaitingRooms") && !this.edsGenerated.isEmpty()){
-				int numWR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numWR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numWR>0){
 					for (int i = 0; i < numWR ; i++) {
 						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "WAITINGROOM");
@@ -159,7 +159,7 @@ public class EDGeneratorFromFile {
 				else {System.out.println("Problème avec le nb de waitingRooms de " + this.edsGenerated.get(this.numED).getName());}
 		}
 		else if (line.startsWith("Rooms - number of ShockRooms") && !this.edsGenerated.isEmpty()){
-				int numSR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numSR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numSR>0){
 					for (int i = 0; i < numSR ; i++) {
 						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "SHOCKROOM");
@@ -168,7 +168,7 @@ public class EDGeneratorFromFile {
 				else {System.out.println("Problème avec le nb de shockRooms de " + this.edsGenerated.get(this.numED).getName());}
 		}
 		else if (line.startsWith("Rooms - number of BoxRooms") && !this.edsGenerated.isEmpty()){
-				int numBR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numBR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numBR>0){
 					for (int i = 0; i < numBR ; i++) {
 						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "BOXROOM");
@@ -178,16 +178,16 @@ public class EDGeneratorFromFile {
 		}
 //--TESTROOMS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Rooms - number of BloodTestRooms") && !this.edsGenerated.isEmpty()){
-				int numBloodR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numBloodR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numBloodR>0){
 					for (int i = 0; i < numBloodR ; i++) {
-						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "BLOODROOM");
+						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "BLOODROOM");
 					}
 				}
 				else {System.out.println("Problème avec le nb de bloodRooms de " + this.edsGenerated.get(this.numED).getName());}
 		}
 		else if (line.startsWith("Rooms - number of MRITestRooms") && !this.edsGenerated.isEmpty()){
-				int numMRIR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numMRIR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numMRIR>0){
 					for (int i = 0; i < numMRIR ; i++) {
 						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "MRIROOM");
@@ -196,7 +196,7 @@ public class EDGeneratorFromFile {
 				else {System.out.println("Problème avec le nb de mriRooms de " + this.edsGenerated.get(this.numED).getName());}
 		}		
 		else if (line.startsWith("Rooms - number of RadioTestRooms") && !this.edsGenerated.isEmpty()){
-				int numRadioR = Integer.parseInt(this.getNumbersFromLine(line, 0).get(0));
+				int numRadioR = Integer.parseInt(EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0));
 				if (numRadioR>0){
 					for (int i = 0; i < numRadioR ; i++) {
 						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "RADIOROOM");
@@ -207,11 +207,11 @@ public class EDGeneratorFromFile {
 //--PATIENTS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Patients") && !this.edsGenerated.isEmpty()){
 			
-				ArrayList<String> dataNum = this.getNumbersFromLine(line, 12);
-				String sevLevel = this.getWordFromLine(line, 8);
+				ArrayList<String> dataNum = EDGeneratorFromFile.getNumbersFromLine(line, 12);
+				String sevLevel = EDGeneratorFromFile.getWordFromLine(line, 8);
 				int endTime = Integer.parseInt(dataNum.get(0));
 
-				String distribution = this.getWordFromLine(line, line.indexOf("distribution")+12);
+				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				TimeStamp nextArrivalTime;
 				
 				
@@ -298,8 +298,8 @@ public class EDGeneratorFromFile {
 			if (file != null) {
 				try {file.close();} 
 				catch (IOException e) {} 
-				}			
-		return edsGenerated;
+			}			
+		return this.edsGenerated;
 		}
 		
 }

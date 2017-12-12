@@ -10,7 +10,7 @@ public class CLITest {
 	@Test
 	public void testPromptCommandLine() {
 		CLI cli = new CLI();
-		cli.getCommandLine();
+		cli.promptCommandLine();
 		
 		System.out.println(cli.getCommandLine());
 		
