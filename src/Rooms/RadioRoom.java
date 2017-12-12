@@ -168,7 +168,6 @@ public class RadioRoom extends Room{
 			
 		this.getPatient().setState("testing");
 		this.patient.setHistory("(RadioTested, "+ this.startTime.toString() + "), ");
-		System.out.println(patient.getHistory());
 	}
 	
 	/**
@@ -179,7 +178,6 @@ public class RadioRoom extends Room{
 		this.patient.setHistory("(Test End, "+ time.toString() + "), ");
 		
 		this.patient.setState("radioTested");
-		System.out.println(patient.getHistory());
 		this.removeOccupant(this.patient);
 		
 	}
