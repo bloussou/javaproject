@@ -4,7 +4,7 @@ Listes des états possibles pour les entitées de l'ED :
 Physician :
 *idle
 *visiting
-*ofDuty
+*offDuty
 
 Patient :
 *arriving 0
@@ -27,12 +27,12 @@ Patient :
 
 Transporter:
 *idle
-*ofDuty
+*offDuty
 *transportation
 
 Nurse:
 *idle
-*ofDuty
+*offDuty
 *transporting
 
 WaitingRoom :

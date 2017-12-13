@@ -292,5 +292,9 @@ public class Transporter extends Human{
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "(Transporter) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + ", patientTransported=" + this.getPatientTransported().size() + "]";
+	}
 	
 }

@@ -2,6 +2,8 @@ package HR;
 
 import java.util.*;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import Emergency.ED;
 import Events.TimeStamp;
 import Rooms.Room;
@@ -85,8 +87,6 @@ public class Nurse extends Human{
 		this.setName("Nurse" + Integer.toString(this.getId()));
 		this.setSurname("Nurse" + Integer.toString(this.getId()));
 		this.setState("idle");
-		
-		
 		
 		this.patientRegistered = new ArrayList<Patient>();
 		this.patientTransported = new ArrayList<Patient>();
@@ -309,4 +309,12 @@ public class Nurse extends Human{
 	}
 
 	
+	
+	@Override
+	public String toString() {
+		return "(Nurse) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + ", patientRegistered=" + this.getPatientRegistered().size() + ", patientTransported=" + this.getPatientTransported().size() + "]";
+	}
+
+	
+
 }

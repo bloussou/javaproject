@@ -172,19 +172,19 @@ public class ED {
 		this.setName(name);
 		this.setCountry(country);
 		
-		//add the list "idle", "transporting", "ofDuty"
+		//add the list "idle", "transporting", "offDuty"
 		this.dbNurse = new ArrayList<ArrayList<Nurse>>();
 		for (int j = 0;j < 3; j++){
 			this.dbNurse.add(new ArrayList<Nurse>());
 		}
 		
-		//add the list "idle", "transporting", "ofDuty"
+		//add the list "idle", "transporting", "offDuty"
 		this.dbPhysician = new ArrayList<ArrayList<Physician>>();
 		for (int j = 0;j < 3; j++){
 			this.dbPhysician.add(new ArrayList<Physician>());
 		}
 		
-		//add the list "idle", "transporting", "ofDuty"
+		//add the list "idle", "transporting", "offDuty"
 		this.dbTransporter = new ArrayList<ArrayList<Transporter>>();
 		for (int j = 0;j < 3; j++){
 			this.dbTransporter.add(new ArrayList<Transporter>());
@@ -283,8 +283,6 @@ public class ED {
 	}
 	*/
 
-
-
 	/**
 	 * @return 
 	 * 		{@link ED#dbPhysician}
@@ -378,6 +376,7 @@ public class ED {
 		return dbShockRoom;
 	}
 
+	
 	
 	/**
 	 * 
