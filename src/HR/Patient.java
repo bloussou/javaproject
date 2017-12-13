@@ -46,7 +46,7 @@ public class Patient extends Human{
 	/**
 	 * the total charges of the patient
 	 */
-	private float charges;
+	private double charges;
 	/**
 	 * the unique physician of this patient
 	 */
@@ -157,6 +157,7 @@ public class Patient extends Human{
 			this.healthInsurance = healthInsurance;
 		}
 		else {
+			System.out.println("This qualification of insurance is unknown. It should be among {NOINSURANCE, SILVER, GOLD}");
 			this.healthInsurance = "NOINSURANCE";
 		}
 	}
@@ -239,14 +240,14 @@ public class Patient extends Human{
 	 * 
 	 * @return {@link Patient#charges}
 	 */
-	public float getCharges() {
+	public double getCharges() {
 		return this.charges;
 	}
 	/**
 	 * Add the new charges to {@link Patient#charges}
 	 * @param charges
 	 */
-	public void setCharges(float newCharges) {
+	public void setCharges(double newCharges) {
 		this.charges += newCharges;
 	}
 	

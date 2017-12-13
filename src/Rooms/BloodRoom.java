@@ -85,23 +85,6 @@ public class BloodRoom extends Room{
 	
 	
 	
-	@Override
-	public void construct() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Update the patient's charge with the cost of this room's blood test
-	 */
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-			}
-		
-	}
-	
 	/**
 	 * Process the blood test.
 	 * <li>Save the startTime</li>
@@ -150,15 +133,12 @@ public class BloodRoom extends Room{
 	}
 	
 	
-
 	@Override
 	public void addOccupant(Patient patient) {
 		this.patient = patient;
 		this.patient.setLocation(this);
+		this.updatePatientCharge(patient);
 		this.setState("occupied");
-		
-		
-		
 	}
 	
 	@Override
@@ -167,6 +147,49 @@ public class BloodRoom extends Room{
 		this.setState("free");
 		
 	}
+	
+	@Override
+	public void construct() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Update the patient's charge with the cost of this room's blood test
+	 */
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
+		}
+	}
+
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<BloodRoom>> dbBloodRoom = this.ed.getDbBloodRoom();
+		
+		for (int i = 0; i<dbBloodRoom.size(); i++){
+			dbBloodRoom.get(i).remove(this);
+		}
+		//add the bloodroom to the state nurse db
+		if (state.equals("free")){
+			this.ed.getDbBloodRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbBloodRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
+	}
+	
 	
 	
 	public TimeStamp getStartTime() {
@@ -197,26 +220,4 @@ public class BloodRoom extends Room{
 		return patient;
 	}
 		
-	@Override
-	public void setState(String state){
-		ArrayList<ArrayList<BloodRoom>> dbBloodRoom = this.ed.getDbBloodRoom();
-		
-		for (int i = 0; i<dbBloodRoom.size(); i++){
-			dbBloodRoom.get(i).remove(this);
-		}
-		//add the bloodroom to the state nurse db
-		if (state.equals("free")){
-			this.ed.getDbBloodRoom().get(0).add(this);
-			this.state = state;
-		}
-		else if (state.equals("occupied")){
-			this.ed.getDbBloodRoom().get(1).add(this);
-			this.state = state;
-		}
-		else{
-			System.out.println("cet état n'existe pas");
-		}
-	}
-	
-	
 }

@@ -88,17 +88,7 @@ public class RadioRoom extends Room{
 	}
 	
 
-	/**
-	 * Update the patient's charge with the cost of this room's Radio test
-	 */
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-			}
-		
-	}
-	
+
 	/**
 	 * Process the Radio test.
 	 * <li>Save the startTime</li>
@@ -151,55 +141,36 @@ public class RadioRoom extends Room{
 	public void addOccupant(Patient patient) {
 		this.patient = patient;
 		this.patient.setLocation(this);
+		this.updatePatientCharge(patient);
 		this.setState("occupied");
-		
-		
 	}
+	
 	@Override
 	public void removeOccupant(Patient patient) {
-		
 		this.setState("free");
 		this.patient = null;
-		
 	}
-	
-	
+
 	@Override
 	public void construct() {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	
-	public TimeStamp getStartTime() {
-		return startTime;
+	/**
+	 * Update the patient's charge with the cost of this room's Radio test
+	 */
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
+		}
 	}
-	public void setStartTime(TimeStamp startTime) {
-		this.startTime = startTime;
-	}
-	public TimeStamp getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(TimeStamp endTime) {
-		this.endTime = endTime;
-	}
-	public double getDuration() {
-		return duration;
-	}
-	public void setDuration(double duration) {
-		this.duration = duration;
-	}
-	
-	public static int getCompteurRadioRoomId() {
-		return compteurRadioRoomId;
-	}
-	public static void setCompteurRadioRoomId(int compteurRadioRoomId) {
-		RadioRoom.compteurRadioRoomId = compteurRadioRoomId;
-	}
-	public Patient getPatient() {
-		return patient;
-	}
-	
 	
 	@Override
 	public void setState(String state){
@@ -222,4 +193,34 @@ public class RadioRoom extends Room{
 		}
 	}
 
+	
+	
+	public TimeStamp getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(TimeStamp startTime) {
+		this.startTime = startTime;
+	}
+	public TimeStamp getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(TimeStamp endTime) {
+		this.endTime = endTime;
+	}
+	public double getDuration() {
+		return duration;
+	}
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+	public static int getCompteurRadioRoomId() {
+		return compteurRadioRoomId;
+	}
+	public static void setCompteurRadioRoomId(int compteurRadioRoomId) {
+		RadioRoom.compteurRadioRoomId = compteurRadioRoomId;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	
 }

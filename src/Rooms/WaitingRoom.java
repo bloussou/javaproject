@@ -71,6 +71,7 @@ public class WaitingRoom extends Room{
 		patient.setLocation(this);
 		occupants.remove(patient);
 		occupants.add(patient);
+		this.updatePatientCharge(patient);
 		if (occupants.size() == this.getCapacity()){
 			this.setState("full");
 		}
@@ -78,7 +79,6 @@ public class WaitingRoom extends Room{
 			this.setState("available");
 		}
 	}
-
 
 	@Override
 	public void removeOccupant(Patient patient){
@@ -99,23 +99,16 @@ public class WaitingRoom extends Room{
 	
 	@Override
 	public void updatePatientCharge(Patient patient){
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
 		if (occupants.contains(patient)){
-		patient.setCharges(patient.getCharges()+this.getCost());
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
 		}
 	}
 
-	
-	public static int getCompteurWaitingRoomId() {
-		return compteurWaitingRoomId;
-	}
-	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
-		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
-	}
-	public ArrayList<Patient> getOccupants(){
-		return occupants;
-	}
-	
-	
 	@Override
 	public void setState(String state){
 		ArrayList<ArrayList<WaitingRoom>> dbWaitingRoom = this.ed.getDbWaitingRoom();
@@ -137,6 +130,17 @@ public class WaitingRoom extends Room{
 		}
 	}
 	
+	
+	
+	public static int getCompteurWaitingRoomId() {
+		return compteurWaitingRoomId;
+	}
+	public static void setCompteurWaitingRoomId(int compteurWaitingRoomId) {
+		WaitingRoom.compteurWaitingRoomId = compteurWaitingRoomId;
+	}
+	public ArrayList<Patient> getOccupants(){
+		return occupants;
+	}
 	
 	
 }

@@ -20,6 +20,9 @@ public class BoxRoom extends Room{
 	 * The physician occupying this BoxRoom
 	 */
 	private Physician physician;
+	
+	
+	
 	/**
 	 * Create a BoxRoom with those parameters
 	 * @param ed
@@ -41,9 +44,7 @@ public class BoxRoom extends Room{
 		
 		this.setState("free");
 	}
-	
-	
-	
+		
 	/**
 	 * Create a BoxRoom named 'BoxRoom N' with those parameters
 	 * @param ed
@@ -67,25 +68,12 @@ public class BoxRoom extends Room{
 	}
 	
 	
-
-	@Override
-	public void construct(){
-		
-	}
-	
-	
-	@Override
-	public void updatePatientCharge(Patient patient){
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-		}
-	}
-
 	
 	@Override
 	public void addOccupant(Patient patient){
 		this.patient = patient;
 		patient.setLocation(this);
+		this.updatePatientCharge(patient);
 		this.setState("occupied");
 	}
 	
@@ -94,26 +82,24 @@ public class BoxRoom extends Room{
 		this.patient = null;
 		this.setState("free");
 	}
-	
-	
-	public static int getCompteurBoxRoomId() {
-		return compteurBoxRoomId;
+
+	@Override
+	public void construct(){
+		
 	}
-	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
-		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
+	
+	@Override
+	public void updatePatientCharge(Patient patient){
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
+		}
 	}
 
-	public void setPhysician(Physician physician) {
-		this.physician = physician;
-	}
-	public Physician getPhysician() {
-		return physician;
-	}
-
-	public Patient getPatient() {
-		return patient;
-	}
-	
 	@Override
 	public void setState(String state){
 		ArrayList<ArrayList<BoxRoom>> dbBoxRoom = this.ed.getDbBoxRoom();
@@ -135,7 +121,22 @@ public class BoxRoom extends Room{
 		}
 	}
 
-
-		
+	
+	
+	public static int getCompteurBoxRoomId() {
+		return compteurBoxRoomId;
+	}
+	public static void setCompteurBoxRoomId(int compteurBoxRoomId) {
+		BoxRoom.compteurBoxRoomId = compteurBoxRoomId;
+	}
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
+	public Physician getPhysician() {
+		return physician;
+	}
+	public Patient getPatient() {
+		return patient;
+	}	
 	
 }

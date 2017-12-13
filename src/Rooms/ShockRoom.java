@@ -66,26 +66,13 @@ public class ShockRoom extends Room{
 		this.setState("free");
 	}
 	
+	
 
-	@Override
-	public void construct() {
-		System.out.println("Construction d'une ShockRoom : \n" + this.toString());
-		
-	}
-	
-	
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-		patient.setCharges(patient.getCharges()+this.getCost());
-		}
-	}
-
-	
 	@Override	
 	public void addOccupant(Patient patient) {
 		this.patient = patient;		
 		patient.setLocation(this);
+		this.updatePatientCharge(patient);
 		this.setState("occupied");	
 	}
 	
@@ -94,25 +81,25 @@ public class ShockRoom extends Room{
 		this.patient = null;
 		this.setState("free");
 	}
-	
-	
-	public static int getCompteurShockRoomId() {
-		return compteurShockRoomId;
-	}
-	public static void setCompteurShockRoomId(int compteurShockRoomId) {
-		ShockRoom.compteurShockRoomId = compteurShockRoomId;
-	}
-	public Patient getPatient() {
-		return patient;
-	}
-	public Physician getPhysician() {
-		return physician;
-	}
-	public void setPhysician(Physician physician) {
-		this.physician = physician;
+
+	@Override
+	public void construct() {
+		System.out.println("Construction d'une ShockRoom : \n" + this.toString());
+		
 	}
 	
-	
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
+		}
+	}
+
 	@Override
 	public void setState(String state){
 		ArrayList<ArrayList<ShockRoom>> dbShockRoom = this.ed.getDbShockRoom();
@@ -135,5 +122,21 @@ public class ShockRoom extends Room{
 	}
 	
 	
+	
+	public static int getCompteurShockRoomId() {
+		return compteurShockRoomId;
+	}
+	public static void setCompteurShockRoomId(int compteurShockRoomId) {
+		ShockRoom.compteurShockRoomId = compteurShockRoomId;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public Physician getPhysician() {
+		return physician;
+	}
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
 	
 }

@@ -88,17 +88,7 @@ public class MRIRoom extends Room {
 	}
 	
 
-	/**
-	 * Update the patient's charge with the cost of this room's MRI test
-	 */
-	@Override
-	public void updatePatientCharge(Patient patient) {
-		if (this.patient == patient){
-			patient.setCharges(patient.getCharges()+this.getCost());
-			}	
-	}
-	
-	
+
 	/**
 	 * Process the MRI test.
 	 * <li>Save the startTime</li>
@@ -146,17 +136,16 @@ public class MRIRoom extends Room {
 		
 	}
 	
-	
-	
+
 
 	@Override
 	public void addOccupant(Patient patient) {
 		this.patient = patient;
 		this.patient.setLocation(this);
+		this.updatePatientCharge(patient);
 		this.setState("occupied");
-		
-
 	}
+	
 	@Override
 	public void removeOccupant(Patient patient) {
 		
@@ -164,11 +153,49 @@ public class MRIRoom extends Room {
 		this.patient = null;
 		
 	}
+	
 	@Override
 	public void construct() {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Update the patient's charge with the cost of this room's MRI test
+	 */
+	@Override
+	public void updatePatientCharge(Patient patient) {
+		Double discount;
+		if (patient.getHealthInsurance().equalsIgnoreCase("SILVER")){discount = 0.5;}
+		else if (patient.getHealthInsurance().equalsIgnoreCase("GOLD")){discount = 0.8;}
+		else {discount = 0.0;}
+		
+		if (this.patient == patient){
+			patient.setCharges(patient.getCharges()+(1-discount)*this.getCost());
+		}
+	}
+	
+	@Override
+	public void setState(String state){
+		ArrayList<ArrayList<MRIRoom>> dbMRIRoom = this.ed.getDbMRIRoom();
+		
+		for (int i = 0; i<dbMRIRoom.size(); i++){
+			dbMRIRoom.get(i).remove(this);
+		}
+		//add the MRIROOM to the state MRIROOM db
+		if (state.equals("free")){
+			this.ed.getDbMRIRoom().get(0).add(this);
+			this.state = state;
+		}
+		else if (state.equals("occupied")){
+			this.ed.getDbMRIRoom().get(1).add(this);
+			this.state = state;
+		}
+		else{
+			System.out.println("cet état n'existe pas");
+		}
+	}
+	
 	
 	
 	public TimeStamp getStartTime() {
@@ -198,29 +225,6 @@ public class MRIRoom extends Room {
 	public Patient getPatient() {
 		return patient;
 	}
-	
-	
-	@Override
-	public void setState(String state){
-		ArrayList<ArrayList<MRIRoom>> dbMRIRoom = this.ed.getDbMRIRoom();
-		
-		for (int i = 0; i<dbMRIRoom.size(); i++){
-			dbMRIRoom.get(i).remove(this);
-		}
-		//add the MRIROOM to the state MRIROOM db
-		if (state.equals("free")){
-			this.ed.getDbMRIRoom().get(0).add(this);
-			this.state = state;
-		}
-		else if (state.equals("occupied")){
-			this.ed.getDbMRIRoom().get(1).add(this);
-			this.state = state;
-		}
-		else{
-			System.out.println("cet état n'existe pas");
-		}
-	}
-	
 	
 }
 
