@@ -7,7 +7,6 @@ import java.lang.Math;
  * This class has the sample method for a uniform distribution of probability between [l,h]
  * Uniform.sample(l,h)
  */
-
 public class Uniform {
 	
 	public Uniform(){}

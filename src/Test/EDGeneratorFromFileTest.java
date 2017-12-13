@@ -127,16 +127,16 @@ public class EDGeneratorFromFileTest {
 	    String line0 = "NEW ED";
 	    EDG.generateFromLine(line0);
 	    
-	    String line1 = "Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)";
+	    String line1 = "Patients L1 - 15 people arriving from Time=5min, arrivals distribution : UNIFORM(5,10)";
 	    EDG.generateFromLine(line1);
 	    
-	    String line2 = "Patients L2 - arriving until Time=10min, arrivals probability distribution : EXP(1)";
+	    String line2 = "Patients L2 - 15 people arriving from Time=5min, arrivals distribution : EXP(0.2)";
 	    EDG.generateFromLine(line2);
 	    
-	    String line3 = "Patients L3 - arriving until Time=10min, arrivals probability distribution : LOGNORM(3,1)";
+	    String line3 = "Patients L3 - 15 people arriving from Time=5min, arrivals distribution : LOGNORM(2,1.5)";
 	    EDG.generateFromLine(line3);
 	    
-	    String line4 = "Patients L4 - arriving until Time=10min, arrivals probability distribution : GAMMA(1,2)";
+	    String line4 = "Patients L4 - 15 people arriving from Time=5min, arrivals distribution : GAMMA(25,0.2)";
 	    EDG.generateFromLine(line4);
 	    
 	    System.out.println(EDG.getEdsGenerated().get(0).getDbPatient());

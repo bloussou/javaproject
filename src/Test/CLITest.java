@@ -322,22 +322,25 @@ public class CLITest {
 		
 		
 		//setNewPatientFlow ED0 L2 UNIFORM (2,5) 5 153
-		System.out.println("\n\nsetNewPatientFlow ED0 L2 UNIFORM (2,5) 5 153");
+		System.out.println("\n\nsetNewPatientFlow ED0 L2 25people 5min UNIFORM (5,15.5)");
 		command = new ArrayList<String>();
 		command.add("setNewPatientFlow");
 		command.add("ED0");
 		command.add("L2");
+		command.add("25people");
+		command.add("(5min)");
 		command.add("UNIFORM");
-		command.add("(2,5)");
-		command.add("5");
-		command.add("153");
+		command.add("(5,15.5)");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
 		assertFalse(cli.getEds().get(0).getDbPatient().get(0).isEmpty());
 		for (Patient patient : cli.getEds().get(0).getDbPatient().get(0)){
-			assertTrue(patient.getArrivalTime().getTimeStamp()>4 && patient.getArrivalTime().getTimeStamp()<154);
+			System.out.println("patient.getArrivalTime().toString() : " + patient.getArrivalTime().toString());
 		}
-		System.out.println("END ----- setNewPatientFlow L2 UNIFORM (2,5) 5 153\n\n");
+		for (Patient patient : cli.getEds().get(0).getDbPatient().get(0)){
+			assertTrue(patient.getArrivalTime().getTimeStamp()>4 && patient.getArrivalTime().getTimeStamp()<16);
+		}
+		System.out.println("END ----- setNewPatientFlow ED0 L2 25people 5min UNIFORM (5,15.5)\n\n");
 		
 	}
 

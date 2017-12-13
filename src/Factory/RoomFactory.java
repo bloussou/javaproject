@@ -65,11 +65,10 @@ public class RoomFactory extends AbstractFactory{
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
 			return new Corridor(ed);
 		}
-		else{
-			System.out.println("Problème dans Room Factory : le type de room a créer n'est pas bien valide");
-			return null;
+		else { 
+			System.out.println("Unable to create new Waiting or Consultation room --> roomType unknown");
 		}
-		
+		return null;
 	}
 	@Override
 	public Room getRoom(ED ed, String roomType, String name) {
@@ -84,6 +83,9 @@ public class RoomFactory extends AbstractFactory{
 		}
 		else if(roomType.equalsIgnoreCase("CORRIDOR")){
 			return new Corridor(ed, name);
+		}
+		else { 
+			System.out.println("Unable to create new Waiting or Consultation room --> roomType unknown");
 		}
 		return null;
 	}
@@ -120,6 +122,9 @@ public class RoomFactory extends AbstractFactory{
 		else if(roomType.equalsIgnoreCase("BLOODROOM")){
 			return new BloodRoom(ed, name, distribution, distParam);
 		}
+		else { 
+			System.out.println("Unable to create new test room --> roomType unknown");
+		}
 		return null;
 	}	
 	@Override
@@ -132,6 +137,9 @@ public class RoomFactory extends AbstractFactory{
 		}
 		else if(roomType.equalsIgnoreCase("BLOODROOM")){
 			return new BloodRoom(ed, distribution, distParam);
+		}
+		else { 
+			System.out.println("Unable to create new test room --> roomType unknown");
 		}
 		return null;
 	}

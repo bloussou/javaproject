@@ -68,10 +68,10 @@ public class FacilityFactory extends AbstractFactory {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
 			return new Stretcher(ed);
 		}
-		else {
-			System.out.println("Problème dans Facility Factory : le type de facility entré n'est pas valide");
-			return null;
+		else { 
+			System.out.println("Unable to create new facility unit --> facilityType unknown");
 		}
+		return null;
 	}
 	/**
 	 * Return the good facility :
@@ -86,6 +86,9 @@ public class FacilityFactory extends AbstractFactory {
 	public Facility getFacility(ED ed, String facilityType, String name) {
 		if(facilityType.equalsIgnoreCase("STRETCHER")){
 			return new Stretcher(ed, name);
+		}
+		else { 
+			System.out.println("Unable to create new facility unit --> facilityType unknown");
 		}
 		return null;
 	}

@@ -117,7 +117,7 @@ public class CLI {
 		// ------ COMMAND : SET PATIENT INSURANCE
 			else if(this.commandLine.get(0).equalsIgnoreCase("setPatientInsurance")){ this.commandSetPatientInsurance(); }
 						
-		// ------ COMMAND : DISPLAY ED 
+		// ------ COMMAND : DISPLAY AN ED STATE
 			else if(this.commandLine.get(0).equalsIgnoreCase("display")){ }
 			
 		// ------ COMMAND : RUN SIMULATION UNTIL T=?
@@ -158,7 +158,7 @@ public class CLI {
 		System.out.println("addPhysician\t\t<EDname> <PhysicianName> <PhysicianeSurname>");
 		System.out.println("addTransporter\t\t<EDname> <TransporterName> <TransporterSurname>");
 		System.out.println("addPatient\t\t<EDname> <severityLevel> <arrivalTime>");
-		System.out.println("setNewPatientFlow\t<EDname> <severityLevel> <DistributionType> <Distribution parameters> <startTime> <endTime>");
+		System.out.println("setNewPatientFlow\t<EDname> <severityLevel> <nbPeople> <startTime> <DistributionType> <Distribution parameters>");
 		System.out.println("setPatientInsurance\t<EDname> <PatientID> <HealthInsurance>");
 		System.out.println("display\t\t\t<EDname>");
 		System.out.println("runSimulation\t\t<endTime>");
@@ -363,11 +363,11 @@ public class CLI {
 		if(this.commandLine.size()>6){
 			String edName = this.commandLine.get(1);
 			String sevLevel = this.commandLine.get(2);
-			String distribution = this.commandLine.get(3);
-			ArrayList<Double> distParam = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4), 0);
-			int startTime = Integer.parseInt(this.commandLine.get(5));
-			int endTime = Integer.parseInt(this.commandLine.get(6));
-			
+			int numPeople = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(3),0).get(0).intValue();
+			int startTime = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(4),0).get(0).intValue();
+			String distribution = this.commandLine.get(5);
+			ArrayList<Double> distParam = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(6), 0);
+
 			int edIndex = -1;
 			for (int i = 0; i < this.eds.size(); i++) {
 				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){edIndex = i;}
@@ -380,47 +380,36 @@ public class CLI {
 				if (sevLevel.equalsIgnoreCase("L1") || sevLevel.equalsIgnoreCase("L2") || sevLevel.equalsIgnoreCase("L3") || sevLevel.equalsIgnoreCase("L4") || sevLevel.equalsIgnoreCase("L5")){
 
 					if(distribution.equalsIgnoreCase("UNIFORM") && distParam.size()==2){
-						int minLap = distParam.get(0).intValue();
-						int maxLap = distParam.get(1).intValue();
-						int durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
-						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
-							this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						double tMin = distParam.get(0);
+						double tMax = distParam.get(1);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp((int) Uniform.randSample(tMin, tMax));
+							System.out.println("Nouvelle arrivée de niveau " + sevLevel + " à : " + nextArrivalTime.toString());
+							this.humanFactory.getPatient(this.getEds().get(edIndex), sevLevel, nextArrivalTime);
 						}
 					}
 					else if (distribution.equalsIgnoreCase("EXP") && distParam.size()==1){
-						int lambda = distParam.get(0).intValue();
-						int durationBeforeNextArrival = (int) Exp.randSample(lambda);
-						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
-							this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Exp.randSample(lambda);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						double lambda = distParam.get(0);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)Exp.randSample(lambda));
+							this.humanFactory.getPatient(this.getEds().get(edIndex), sevLevel, nextArrivalTime);
 						}
 					}
 					else if (distribution.equalsIgnoreCase("GAMMA") && distParam.size()==2){
-						int K = distParam.get(0).intValue();
-						int T = distParam.get(1).intValue();
-						int durationBeforeNextArrival = (int) Gamma.randSample(K, T);
-						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
-							this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Gamma.randSample(K, T);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
+						double K = distParam.get(0);
+						double T = distParam.get(1);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)Gamma.randSample(K, T));
+							this.humanFactory.getPatient(this.getEds().get(edIndex), sevLevel, nextArrivalTime);
 						}
 					}
 					else if (distribution.equalsIgnoreCase("LOGNORM") && distParam.size()==2){
-						int E = distParam.get(0).intValue();
-						int S = distParam.get(1).intValue();
-						int durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
-						nextArrivalTime = new TimeStamp(startTime + durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
-							this.humanFactory.getPatient(this.eds.get(edIndex), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
-						}
+						double U = distParam.get(0);
+						double S = distParam.get(1);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)LogNorm.randSample(U, S));
+							this.humanFactory.getPatient(this.getEds().get(edIndex), sevLevel, nextArrivalTime);
+						}	
 					}
 					else{
 						System.out.println("La loi de distribution ou son paramétrage n'est pas valide");

@@ -7,6 +7,7 @@ import HR.*;
 import Rooms.Room;
 
 public class PeopleFactory extends AbstractFactory{
+	
 	/**
 	 * Takes a string :
 	 * <li>"Nurse" to return a Nurse</li>
@@ -25,7 +26,6 @@ public class PeopleFactory extends AbstractFactory{
 	 * @see Nurse#setState(String)
 	 * @see Transporter#setState(String)
 	 */
-
 	@Override
 	public Human getStaff(ED ed, String staffType) {
 		if(staffType.equalsIgnoreCase("NURSE")){
@@ -37,12 +37,11 @@ public class PeopleFactory extends AbstractFactory{
 		else if(staffType.equalsIgnoreCase("TRANSPORTER")){
 			return new Transporter(ed);
 		}
-		else {
-			System.out.println("Problème dans People Factory : le type de people a créer n'est pas bien valide");
-			return null;
+		else { 
+			System.out.println("Unable to create new staff member --> StaffType unknown");
 		}
+		return null;
 	}
-	
 	/**
 	 * Takes a string :
 	 * <li>"Nurse" to return a Nurse</li>
@@ -77,6 +76,9 @@ public class PeopleFactory extends AbstractFactory{
 		}
 		else if(staffType.equalsIgnoreCase("TRANSPORTER")){
 			return new Transporter(ed, name, surname, state);
+		}
+		else { 
+			System.out.println("Unable to create new staff member --> StaffType unknown");
 		}
 		return null;
 	}

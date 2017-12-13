@@ -18,15 +18,15 @@ TestRooms - MRI test duration distribution : GAMMA(1,2),  number of MRITestRooms
 TestRooms - Radio test duration distribution : EXP(2),number of RadioTestRooms : 1
 
 *Probability laws available to generate a timelaps before a new arrival : 
-*	- UNIFORM(X,Y) : Uniform law where X is the minimum time(minutes) before new arrival and Y the maximum
-*	- EXP(L) : Exponential law where L is the parameter 
-* 	- LOGNORM(U,S) : LogNormal law where u is the esperance, and S is the variance
-*	- GAMMA(K,T) : 
-Patients L1 - arriving until Time=10min, arrivals probability distribution : UNIFORM(2,5)
-Patients L2 - arriving until Time=10min, arrivals probability distribution : EXP(5)
-Patients L3 - arriving until Time=10min, arrivals probability distribution : LOGNORM(2,3)
-Patients L4 - arriving until Time=10min, arrivals probability distribution : GAMMA(1,2)
-Patients L5 - arriving until Time=10min, arrivals probability distribution : UNIFORM(1,3)
+*	- UNIFORM(X,Y) : Uniform law where X is the minimum arrival time(minutes) and Y the maximum arrivalTime (!!startTime==UNIFORM[0]!!)
+*	- EXP(L) : Exponential law where L is the exp parameter (E[x] = 1/L , V[x] = 1/L)
+* 	- LOGNORM(U,S) : LogNormal law attached to an alea variable X~log(N(u,s)) ( E[x]=exp(u+s²/2), V[x]=(exp(s²)-1)*exp(2u+s²) )  
+*	- GAMMA(K,T) : Gamma law ( E[x]=K*T, V[x]=K*T² )
+Patients L1 - 15 people arriving from Time=5min, arrivals distribution : UNIFORM(5,10)
+Patients L2 - 15 people arriving from Time=5min, arrivals distribution : EXP(0.2)
+Patients L3 - 15 people arriving from Time=5min, arrivals distribution : LOGNORM(2,1.5)
+Patients L4 - 15 people arriving from Time=5min, arrivals distribution : GAMMA(25,0.2)
+Patients L5 - 15 people arriving from Time=5min, arrivals distribution : UNIFORM(5,15)
 
 
 NEW ED

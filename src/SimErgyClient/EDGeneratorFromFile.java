@@ -180,7 +180,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - Blood test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numBloodR = lineData.get(lineData.size()-1).intValue();
-				String distribution = EDGeneratorFromFile.getWordFromLine(line, 44);
+				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numBloodR>0){
 					for (int i = 0; i < numBloodR ; i++) {
@@ -192,7 +192,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - MRI test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numMRIR = lineData.get(lineData.size()-1).intValue();
-				String distribution = EDGeneratorFromFile.getWordFromLine(line, 44);
+				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numMRIR>0){
 					for (int i = 0; i < numMRIR ; i++) {
@@ -204,7 +204,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - Radio test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numRadioR = lineData.get(lineData.size()-1).intValue();
-				String distribution = EDGeneratorFromFile.getWordFromLine(line, 44);
+				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numRadioR>0){
 					for (int i = 0; i < numRadioR ; i++) {
@@ -216,57 +216,46 @@ public class EDGeneratorFromFile {
 //--PATIENTS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Patients") && !this.edsGenerated.isEmpty()){
 			
-				ArrayList<Double> dataNum = EDGeneratorFromFile.getNumbersFromLine(line, 12);
+				ArrayList<Double> dataNum = EDGeneratorFromFile.getNumbersFromLine(line, 13);
 				String sevLevel = EDGeneratorFromFile.getWordFromLine(line, 8);
-				int endTime = dataNum.get(0).intValue();
+				int numPeople = dataNum.get(0).intValue();
+				int startTime = dataNum.get(1).intValue();
 
 				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				TimeStamp nextArrivalTime;
 				
 				
 				if (sevLevel.equalsIgnoreCase("L1") || sevLevel.equalsIgnoreCase("L2") || sevLevel.equalsIgnoreCase("L3") || sevLevel.equalsIgnoreCase("L4") || sevLevel.equalsIgnoreCase("L5")){
-					if(distribution.equalsIgnoreCase("UNIFORM") && dataNum.size()==3){
-						int minLap = dataNum.get(1).intValue();
-						int maxLap = dataNum.get(2).intValue();
-						int durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
-						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
+					if(distribution.equalsIgnoreCase("UNIFORM") && dataNum.size()==4){
+						double tMin = dataNum.get(2);
+						double tMax = dataNum.get(3);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp((int) Uniform.randSample(tMin, tMax));
 							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Uniform.randSample(minLap, maxLap);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
 						}
 					}
-					else if (distribution.equalsIgnoreCase("EXP") && dataNum.size()==2){
-						int lambda = dataNum.get(1).intValue();
-						int durationBeforeNextArrival = (int) Exp.randSample(lambda);
-						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
+					else if (distribution.equalsIgnoreCase("EXP") && dataNum.size()==3){
+						double lambda = dataNum.get(2);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)Exp.randSample(lambda));
 							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Exp.randSample(lambda);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
 						}
 					}
-					else if (distribution.equalsIgnoreCase("GAMMA") && dataNum.size()==3){
-						int K = dataNum.get(1).intValue();
-						int T = dataNum.get(2).intValue();
-						int durationBeforeNextArrival = (int) Gamma.randSample(K, T);
-						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
+					else if (distribution.equalsIgnoreCase("GAMMA") && dataNum.size()==4){
+						double K = dataNum.get(2);
+						double T = dataNum.get(3);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)Gamma.randSample(K, T));
 							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) Gamma.randSample(K, T);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
-						}
+						}						
 					}
-					else if (distribution.equalsIgnoreCase("LOGNORM") && dataNum.size()==3){
-						int E = dataNum.get(1).intValue();
-						int S = dataNum.get(2).intValue();
-						int durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
-						nextArrivalTime = new TimeStamp(durationBeforeNextArrival);
-						while(nextArrivalTime.getTimeStamp()<=endTime){
+					else if (distribution.equalsIgnoreCase("LOGNORM") && dataNum.size()==4){
+						double U = dataNum.get(2);
+						double S = dataNum.get(3);
+						for (int i = 0; i < numPeople; i++) {
+							nextArrivalTime = new TimeStamp(startTime + (int)LogNorm.randSample(U, S));
 							this.humanFactory.getPatient(this.getEdsGenerated().get(this.numED), sevLevel, nextArrivalTime);
-							durationBeforeNextArrival = (int) LogNorm.randSample(E, S);
-							nextArrivalTime = new TimeStamp(nextArrivalTime.getTimeStamp() + durationBeforeNextArrival);
-						}
+						}	
 					}
 					else{
 						System.out.println("La loi de distribution ou son paramétrage n'est pas valide");
@@ -320,19 +309,7 @@ public class EDGeneratorFromFile {
 	public void setEdsGenerated(ArrayList<ED> edsGenerated) {
 		this.edsGenerated = edsGenerated;
 	}
-	
-	public static void main(String[] args) {
-		String line = "TestRooms - Blood test duration distribution : UNIFORM(2,5), number of BloodTestRooms : 3";
-		ArrayList<Double> lineData = new ArrayList<Double>();
-		lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
-		System.out.println("lineData : " + lineData);
-		int numBloodR = lineData.get(lineData.size()-1).intValue();
-		String distribution = EDGeneratorFromFile.getWordFromLine(line, 44);
-		
-		
-		System.out.println("numBloodR : " + numBloodR);
-		System.out.println("distribution : " + distribution);
-	}
+
 
 }
 			
