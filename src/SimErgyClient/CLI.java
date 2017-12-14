@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Emergency.ED;
+import Emergency.EDDisplayer;
 import Events.EventsManager;
 import Events.Time;
 import Events.TimeStamp;
@@ -118,7 +119,7 @@ public class CLI {
 			else if(this.commandLine.get(0).equalsIgnoreCase("setPatientInsurance")){ this.commandSetPatientInsurance(); }
 						
 		// ------ COMMAND : DISPLAY AN ED STATE
-			else if(this.commandLine.get(0).equalsIgnoreCase("display")){ }
+			else if(this.commandLine.get(0).equalsIgnoreCase("display")){ this.commandDisplay(); }
 			
 		// ------ COMMAND : RUN SIMULATION UNTIL T=?
 			else if(this.commandLine.get(0).equalsIgnoreCase("runSimulation")){ }
@@ -425,7 +426,7 @@ public class CLI {
 	}
 	
 	/**
-	 * ----CREATE A NEW PATIENT AddPatient ED severityLevel arrivalTime
+	 * ---- CREATE A NEW PATIENT AddPatient ED severityLevel arrivalTime
 	 */
 	public void commandAddPatient(){
 		if(this.commandLine.size()>3){
@@ -473,6 +474,26 @@ public class CLI {
 		}
 		else {
 			System.out.println("This command requires only edName or at least 3 arguments : edName patientId healthInsurance");
+		}
+	}
+	
+	/**
+	 * ---- DISPLAY AN ED
+	 */
+	public void commandDisplay(){
+		if(this.commandLine.size()>1){
+			String edName = this.commandLine.get(1);
+			int edIndex = -1;
+			for (int i = 0; i < this.eds.size(); i++) {
+				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
+					edIndex = i;
+				}
+			}
+			if (edIndex == -1){System.out.println("ED introuvable");}
+			else { EDDisplayer.displayED(this.getEds().get(edIndex)); }
+		}
+		else {
+			System.out.println("This command requires only edName or at least 1 argument : edName");
 		}
 	}
 	

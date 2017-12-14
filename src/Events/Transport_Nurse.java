@@ -50,6 +50,8 @@ public class Transport_Nurse extends Event{
 		
 		this.nurse.transport(patient, targetRoom);
 		this.targetRoom.addOccupant(patient);
+		
+		System.out.println("Transport to WaitingRoom --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Nurse : " + this.getNurse().getName());
 	}
 	
 	/**
@@ -62,5 +64,31 @@ public class Transport_Nurse extends Event{
 		
 		this.nurse.dropPatient(patient);
 	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Nurse getNurse() {
+		return nurse;
+	}
+
+	public void setNurse(Nurse nurse) {
+		this.nurse = nurse;
+	}
+
+	public Room getTargetRoom() {
+		return targetRoom;
+	}
+
+	public void setTargetRoom(Room targetRoom) {
+		this.targetRoom = targetRoom;
+	}
+	
+	
 	
 }

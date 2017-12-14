@@ -39,6 +39,8 @@ public class Registration extends Event{
 		this.setEndTime(new TimeStamp());
 		
 		this.nurse.register(patient);
+		
+		System.out.println("Registration processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Nurse : " + this.getNurse().getName());
 	}
 	
 	/**
@@ -49,6 +51,24 @@ public class Registration extends Event{
 	public void endEvent() {
 		//nothing happens at the end of these events
 		
+	}
+
+	
+	
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Nurse getNurse() {
+		return nurse;
+	}
+
+	public void setNurse(Nurse nurse) {
+		this.nurse = nurse;
 	}
 	
 }

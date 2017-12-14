@@ -59,6 +59,7 @@ public class Consultation extends Event{
 		}
 		
 		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
+		System.out.println("Consultation processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName());
 	}
 	
 	/**
@@ -75,4 +76,37 @@ public class Consultation extends Event{
 		}
 	}
 
+	
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Physician getPhysician() {
+		return physician;
+	}
+
+	public void setPhysician(Physician physician) {
+		this.physician = physician;
+	}
+
+	public boolean isPhysicianAlreadyConsulted() {
+		return physicianAlreadyConsulted;
+	}
+
+	public void setPhysicianAlreadyConsulted(boolean physicianAlreadyConsulted) {
+		this.physicianAlreadyConsulted = physicianAlreadyConsulted;
+	}
+
+	public Room getTargetRoom() {
+		return targetRoom;
+	}
+
+	public void setTargetRoom(Room targetRoom) {
+		this.targetRoom = targetRoom;
+	}
 }

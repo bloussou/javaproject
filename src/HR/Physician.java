@@ -142,7 +142,6 @@ public class Physician extends Human  implements Observer{
 		
 	}
 	
-	
 	/**
 	 * Emit the verdict a the end of the exam : 
 	 * <li>set the patient state to released</li>
@@ -171,7 +170,6 @@ public class Physician extends Human  implements Observer{
 		
 		
 	}
-	
 	
 	/**
 	 * Using the probability it gives a prescription add the end of the consultation to the patient . Set patient's state to the state to the prescription :
@@ -251,7 +249,6 @@ public class Physician extends Human  implements Observer{
 	public void writeMessage(Patient patient, Physician physician, String obj, String content){
 		new Message(patient, physician, obj, content);
 	}
-	
 	
 	/**
 	 * Read all the unread message of the physician and display "the mail box is empty !" if there is no message unread
@@ -346,7 +343,6 @@ public class Physician extends Human  implements Observer{
 	public ArrayList<Patient> getPatientAlreadyTreated() {
 		return patientAlreadyTreated;
 	}	
-
 	/**
 	 * 
 	 * @return {@link Physician#startTime}
@@ -375,7 +371,6 @@ public class Physician extends Human  implements Observer{
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
-	
 	/**
 	 * 
 	 * @return {@link Physician#mailBox}
@@ -422,6 +417,13 @@ public class Physician extends Human  implements Observer{
 			System.out.println("cet état n'existe pas");
 		}
 	}
+	
+	@Override
+	public String toString(){
+		
+		return "(Physician) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + ", patientsOverseen=" + this.getPatientOverseeing().size() + ", patientAlreadyTreated=" + this.getPatientAlreadyTreated().size() + "]";
+	}
+	
 	
 	@Override
 	public void displayMsgBox() {

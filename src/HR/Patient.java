@@ -394,6 +394,10 @@ public class Patient extends Human{
 		}		
 	}
 	
+	@Override
+	public String toString(){
+		return "(Patient) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + "\nhistory : " + this.getHistory();
+	}
 	
 	/**
 	 * 

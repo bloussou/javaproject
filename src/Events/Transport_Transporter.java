@@ -52,6 +52,8 @@ public class Transport_Transporter extends Event {
 		this.transporter.transport(patient, targetRoom);
 		
 		this.targetRoom.setState("occupied");
+		
+		System.out.println("Transporting to TestRoom --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Transporter : " + this.getTransporter().getName());
 	}
 	
 	/**
@@ -63,6 +65,31 @@ public class Transport_Transporter extends Event {
 	public void endEvent() {
 		
 		this.transporter.dropPatient(patient);
+	}
+
+	
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Transporter getTransporter() {
+		return transporter;
+	}
+
+	public void setTransporter(Transporter transporter) {
+		this.transporter = transporter;
+	}
+
+	public Room getTargetRoom() {
+		return targetRoom;
+	}
+
+	public void setTargetRoom(Room targetRoom) {
+		this.targetRoom = targetRoom;
 	}
 
 
