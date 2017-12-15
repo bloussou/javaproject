@@ -12,7 +12,7 @@ public class EDwriter {
 	
 	public EDwriter(ED ed) throws IOException{
 		this.ed = ed;
-		this.file = new File("SimErgy_"+ed.getName()+".txt");
+		this.file = new File("SimErgy_Save_"+ed.getName()+"_"+ed.getCountry() + ".txt");
 		// creates the file
 		file.createNewFile();
 		// create a file 

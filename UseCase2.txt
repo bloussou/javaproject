@@ -1,6 +1,6 @@
 NEW ED
 
-ED - name : Hospital Psychiatric
+ED - name : Hospital1
 ED - country : France
 
 RH - number of physicians 2

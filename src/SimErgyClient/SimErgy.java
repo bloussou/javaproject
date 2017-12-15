@@ -27,6 +27,9 @@ public class SimErgy {
 
 	public static void main(String[] args) throws IOException {
 		
+		System.out.println("\n\n\n\n\n\n ----------------- Bienvenue sur SimErgy !!! -----------------");
+		System.out.println("\n Pour obtenir la liste des commandes entrez 'HELP'\n\n");
+		
 		CLI cli = new CLI();
 		
 		while (!cli.exit){

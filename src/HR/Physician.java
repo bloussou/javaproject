@@ -158,7 +158,7 @@ public class Physician extends Human{
 		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
-		System.out.println("PATIENT RELEASED : " + patient.getName()+ " " + patient.getSurname() + " :" + patient.getHistory());
+		System.out.println("\nPATIENT RELEASED --- ED :" + this.getEd().getName() + " " + patient.getName()+ " " + patient.getSurname() + " :" + patient.getHistory());
 		patient.setDepartureTime(departureTime);
 		
 		//patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");

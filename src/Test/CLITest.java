@@ -17,6 +17,7 @@ public class CLITest {
 		cli.promptCommandLine();
 		
 		System.out.println("Prompted command line : " + cli.getCommandLine());
+
 	}
 
 	@Test
@@ -38,8 +39,8 @@ public class CLITest {
 		command.add("createED");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getName().equalsIgnoreCase("ED0"));
-		assertTrue("1.0", cli.getEds().get(0).getCountry().equalsIgnoreCase("Unknown"));
+		assertTrue("1.0", cli.simulator.getEds().get(0).getName().equalsIgnoreCase("ED0"));
+		assertTrue("1.0", cli.simulator.getEds().get(0).getCountry().equalsIgnoreCase("Unknown"));
 		
 		//'createED EDTEST'
 		command = new ArrayList<String>();
@@ -47,8 +48,8 @@ public class CLITest {
 		command.add("EDTEST");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("2.0", cli.getEds().get(1).getName().equalsIgnoreCase("EDTEST"));
-		assertTrue("2.0", cli.getEds().get(1).getCountry().equalsIgnoreCase("Unknown"));
+		assertTrue("2.0", cli.simulator.getEds().get(1).getName().equalsIgnoreCase("EDTEST"));
+		assertTrue("2.0", cli.simulator.getEds().get(1).getCountry().equalsIgnoreCase("Unknown"));
 		
 		//'createED EDTEST France'
 		command = new ArrayList<String>();
@@ -57,8 +58,8 @@ public class CLITest {
 		command.add("France");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("3.0", cli.getEds().get(2).getName().equalsIgnoreCase("EDTEST"));
-		assertTrue("3.0", cli.getEds().get(2).getCountry().equalsIgnoreCase("France"));
+		assertTrue("3.0", cli.simulator.getEds().get(2).getName().equalsIgnoreCase("EDTEST"));
+		assertTrue("3.0", cli.simulator.getEds().get(2).getCountry().equalsIgnoreCase("France"));
 	}
 		
 	@Test 
@@ -96,7 +97,7 @@ public class CLITest {
 		cli.setCommandLine(command);
 		System.out.println("cli.getCommandLine() : " + cli.getCommandLine());
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbWaitingRoom().get(0).size()==1);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbWaitingRoom().get(0).size()==1);
 	}
 	
 	@Test
@@ -136,7 +137,7 @@ public class CLITest {
 		command.add("(1.5,6)");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbBloodRoom().get(0).size()==1);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbBloodRoom().get(0).size()==1);
 	}
 
 	@Test
@@ -172,7 +173,7 @@ public class CLITest {
 		command.add("ED0");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbNurse().get(0).size()==1);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbNurse().get(0).size()==1);
 		
 		//addNurse ED0 Simone Chantere
 		System.out.println("addNurse ED0 Simone Chantere");
@@ -183,7 +184,7 @@ public class CLITest {
 		command.add("Chantere");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("2.0", cli.getEds().get(0).getDbNurse().get(0).size()==2);
+		assertTrue("2.0", cli.simulator.getEds().get(0).getDbNurse().get(0).size()==2);
 	}
 
 	@Test
@@ -219,7 +220,7 @@ public class CLITest {
 		command.add("ED0");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbPhysician().get(0).size()==1);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbPhysician().get(0).size()==1);
 		
 		//addPhysician ED0 Simone Chantere
 		System.out.println("addPhysician ED0 Simone Chantere");
@@ -230,7 +231,7 @@ public class CLITest {
 		command.add("Chantere");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("2.0", cli.getEds().get(0).getDbPhysician().get(0).size()==2);
+		assertTrue("2.0", cli.simulator.getEds().get(0).getDbPhysician().get(0).size()==2);
 	}
 	
 	@Test
@@ -266,7 +267,7 @@ public class CLITest {
 		command.add("ED0");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbTransporter().get(0).size()==1);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbTransporter().get(0).size()==1);
 		
 		//addTransporter ED0 Simone Chantere
 		System.out.println("addTransporter ED0 Simone Chantere");
@@ -277,7 +278,7 @@ public class CLITest {
 		command.add("Chantere");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("2.0", cli.getEds().get(0).getDbTransporter().get(0).size()==2);
+		assertTrue("2.0", cli.simulator.getEds().get(0).getDbTransporter().get(0).size()==2);
 	}
 
 	public void testAddPatient()throws IOException{
@@ -306,9 +307,9 @@ public class CLITest {
 		command.add("15");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertTrue("1.0", cli.getEds().get(0).getDbPatient().get(0).size()==1);
-		assertTrue("2.0", cli.getEds().get(0).getDbPatient().get(0).get(0).getSeverityLevel().equalsIgnoreCase("L2"));
-		assertTrue("3.0", cli.getEds().get(0).getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp()==15);
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbPatient().get(0).size()==1);
+		assertTrue("2.0", cli.simulator.getEds().get(0).getDbPatient().get(0).get(0).getSeverityLevel().equalsIgnoreCase("L2"));
+		assertTrue("3.0", cli.simulator.getEds().get(0).getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp()==15);
 	}
 	
 	@Test 
@@ -335,11 +336,11 @@ public class CLITest {
 		command.add("(5,15.5)");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		assertFalse(cli.getEds().get(0).getDbPatient().get(0).isEmpty());
-		for (Patient patient : cli.getEds().get(0).getDbPatient().get(0)){
+		assertFalse(cli.simulator.getEds().get(0).getDbPatient().get(0).isEmpty());
+		for (Patient patient : cli.simulator.getEds().get(0).getDbPatient().get(0)){
 			System.out.println("patient.getArrivalTime().toString() : " + patient.getArrivalTime().toString());
 		}
-		for (Patient patient : cli.getEds().get(0).getDbPatient().get(0)){
+		for (Patient patient : cli.simulator.getEds().get(0).getDbPatient().get(0)){
 			assertTrue(patient.getArrivalTime().getTimeStamp()>4 && patient.getArrivalTime().getTimeStamp()<16);
 		}
 		System.out.println("END ----- setNewPatientFlow ED0 L2 25people 5min UNIFORM (5,15.5)\n\n");
@@ -373,15 +374,15 @@ public class CLITest {
 		command = new ArrayList<String>();
 		command.add("setPatientInsurance");
 		command.add("ED0");
-		String patientID = "" + cli.getEds().get(0).getDbPatient().get(0).get(0).getId();
+		String patientID = "" + cli.simulator.getEds().get(0).getDbPatient().get(0).get(0).getId();
 		command.add(patientID);
 		command.add("SILVER");
 		cli.setCommandLine(command);
 		cli.analyseCommand();
-		System.out.println("cli.getEds().get(0).getDbPatient().get(0) :" + cli.getEds().get(0).getDbPatient().get(0) );
-		System.out.println("cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance() : " + cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance());
-		assertTrue("1.0", cli.getEds().get(0).getDbPatient().get(0).size()==1);
-		assertTrue("2.0", cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance().equalsIgnoreCase("SILVER"));
+		System.out.println("cli.getEds().get(0).getDbPatient().get(0) :" + cli.simulator.getEds().get(0).getDbPatient().get(0) );
+		System.out.println("cli.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance() : " + cli.simulator.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance());
+		assertTrue("1.0", cli.simulator.getEds().get(0).getDbPatient().get(0).size()==1);
+		assertTrue("2.0", cli.simulator.getEds().get(0).getDbPatient().get(0).get(0).getHealthInsurance().equalsIgnoreCase("SILVER"));
 		
 		System.out.println("END------Test SetHealthInsurance\n");
 	}

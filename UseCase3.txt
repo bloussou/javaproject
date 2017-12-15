@@ -1,6 +1,6 @@
 NEW ED
 
-ED - name : Hospital Psychiatric
+ED - name : Hospital3
 ED - country : France
 
 RH - number of physicians 30
