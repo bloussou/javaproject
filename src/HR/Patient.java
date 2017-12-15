@@ -54,7 +54,7 @@ public class Patient extends Human{
 	/**
 	 * the time hen the patient start the consultation
 	 */
-	private TimeStamp dtdtime;
+	private TimeStamp firstConsultationTime;
 	
 	
 	
@@ -310,7 +310,20 @@ public class Patient extends Human{
 			this.state = state;
 		}
 		else if (state.equalsIgnoreCase("registered")){
-			this.ed.getDbPatient().get(1).add(this);
+			int insertionIndex = 0;
+			boolean indexFound = false;
+			
+			while(indexFound == false && insertionIndex < this.getEd().getDbPatient().get(1).size()){
+				Patient comparedFeature = this.getEd().getDbPatient().get(1).get(insertionIndex);
+				if((int) comparedFeature.getSeverityLevel().charAt(1) <= (int)this.getSeverityLevel().charAt(1) ){
+					insertionIndex += 1;
+				}
+				else {
+					indexFound = true;
+				}
+			}
+			
+			this.getEd().getDbPatient().get(1).add(insertionIndex, this);
 			this.state = state;
 		}
 		else if (state.equalsIgnoreCase("transporting")){
@@ -396,23 +409,18 @@ public class Patient extends Human{
 	
 	@Override
 	public String toString(){
-		return "(Patient) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + "\nhistory : " + this.getHistory();
+		return "(Patient) [id=" + this.getId() + "]"; //+ ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + ", sevLevel=" + this.getSeverityLevel();
+	}
+
+	public TimeStamp getFirstConsultationTime() {
+		return firstConsultationTime;
+	}
+
+	public void setFirstConsultationTime(TimeStamp firstConsultationTime) {
+		this.firstConsultationTime = firstConsultationTime;
 	}
 	
-	/**
-	 * 
-	 * @return {@link Patient#dtdtime}
-	 */
-	public TimeStamp getDtdtime() {
-		return dtdtime;
-	}
-	/**
-	 * Set the {@link Patient#dtdtime}
-	 * @param dtdtime
-	 */
-	public void setDtdtime(TimeStamp dtdtime) {
-		this.dtdtime = dtdtime;
-	}
+
 
 	
 		

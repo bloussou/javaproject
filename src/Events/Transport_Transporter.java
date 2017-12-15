@@ -5,6 +5,7 @@ import HR.Nurse;
 import HR.Patient;
 import HR.Transporter;
 import Rooms.Room;
+import Rooms.WaitingRoom;
 
 public class Transport_Transporter extends Event {
 
@@ -49,11 +50,12 @@ public class Transport_Transporter extends Event {
 		this.setDuration(4);
 		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
 		
+		
 		this.transporter.transport(patient, targetRoom);
 		
 		this.targetRoom.setState("occupied");
 		
-		System.out.println("Transporting to TestRoom --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Transporter : " + this.getTransporter().getName());
+		System.out.println("\nEVENT : Transporting to Room --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Transporter : " + this.getTransporter().getName() + "  targetRoom : " + this.getTargetRoom().getName());
 	}
 	
 	/**
@@ -63,7 +65,7 @@ public class Transport_Transporter extends Event {
 	 */
 	@Override
 	public void endEvent() {
-		
+		System.out.println("\nEVENT END : Transporting to Room --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Transporter : " + this.getTransporter().getName() + "  targetRoom : " + this.getTargetRoom().getName());
 		this.transporter.dropPatient(patient);
 	}
 

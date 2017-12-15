@@ -40,7 +40,7 @@ public class Registration extends Event{
 		
 		this.nurse.register(patient);
 		
-		System.out.println("Registration processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Nurse : " + this.getNurse().getName());
+		System.out.println("\nEVENT : Registration --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Nurse : " + this.getNurse().getName());
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class Registration extends Event{
 	@Override
 	public void endEvent() {
 		//nothing happens at the end of these events
-		
+		System.out.println("\nEVENT END : Registration --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Nurse : " + this.getNurse().getName());
 	}
 
 	

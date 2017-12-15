@@ -1,0 +1,28 @@
+NEW ED
+
+ED - name : Hospital Psychiatric
+ED - country : France
+
+RH - number of physicians 2
+RH - number of nurses 1
+RH - number of transporters 1
+
+Facilities - number of stretchers 10
+
+Rooms - number of WaitingRooms : 1
+Rooms - number of ShockRooms : 1
+Rooms - number of BoxRooms : 1
+
+TestRooms - Blood test duration distribution : UNIFORM(15,90), number of BloodTestRooms : 1
+TestRooms - MRI test duration distribution : UNIFORM(30,70),  number of MRITestRooms : 1 
+TestRooms - Radio test duration distribution : UNIFORM(10,20),number of RadioTestRooms : 1
+
+*Probability laws available to generate a timelaps before a new arrival : 
+*	- UNIFORM(X,Y) : Uniform law where X is the minimum arrival time(minutes) and Y the maximum arrivalTime (!!startTime==UNIFORM[0]!!)
+*	- EXP(L) : Exponential law where L is the exp parameter (E[x] = 1/L , V[x] = 1/L)
+* 	- LOGNORM(U,S) : LogNormal law attached to an alea variable X~log(N(u,s)) ( E[x]=exp(u+s²/2), V[x]=(exp(s²)-1)*exp(2u+s²) )  
+*	- GAMMA(K,T) : Gamma law ( E[x]=K*T, V[x]=K*T² )
+
+Patients L1 - 1 people arriving from Time=0min, arrivals distribution : UNIFORM(0,1)
+Patients L2 - 2 people arriving from Time=0min, arrivals distribution : UNIFORM(0,1)
+Patients L5 - 3 people arriving from Time=0min, arrivals distribution : UNIFORM(0,1)

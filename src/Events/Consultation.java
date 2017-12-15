@@ -46,20 +46,21 @@ public class Consultation extends Event{
 		this.targetRoom = targetRoom;
 		
 		this.setStartTime(new TimeStamp());
+		this.patient.getLocation().removeOccupant(this.patient);
 		
 		this.physicianAlreadyConsulted = (patient.getPhysician()== this.physician);
 		
-		
-		
+
 		if(this.physicianAlreadyConsulted){
+			System.out.println("\nEVENT : Final Consultation --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName() + "  Room : " + this.getTargetRoom().getName());
 			this.setDuration(2);
 		}else {
+			System.out.println("\nEVENT : Consultation --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName() + "  Room : " + this.getTargetRoom().getName());
 			this.setDuration((int) Uniform.randSample(5, 20));
 			physician.handleNewPatient(patient, targetRoom);
 		}
 		
 		this.setEndTime(new TimeStamp(this.getStartTime().getTimeStamp() + this.getDuration()));
-		System.out.println("Consultation processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName());
 	}
 	
 	/**
@@ -68,12 +69,15 @@ public class Consultation extends Event{
 	 */
 	@Override
 	public void endEvent() {
-		
 		if(this.physicianAlreadyConsulted){
+			System.out.println("\nEVENT END : Final Consultation --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName() + "  Room : " + this.getTargetRoom().getName());
 			this.physician.emitVerdict(this.patient);
 		}else {
+			System.out.println("\nEVENT END : Consultation --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Physician : " + this.getPhysician().getName() + "  Room : " + this.getTargetRoom().getName());
 			this.physician.prescribe(this.patient, this.targetRoom);
 		}
+		//get patient out of the room
+		this.targetRoom.removeOccupant(this.patient);
 	}
 
 	

@@ -132,7 +132,6 @@ public class RadioRoom extends Room{
 		
 		this.patient.setState("radioTested");
 		this.removeOccupant(this.patient);
-		
 	}
 	
 	

@@ -39,19 +39,12 @@ public class LOSTest {
 		p4.setState("released");
 		
 		
-		LOS losL1 = new LOS(ed,"L1");
-		System.out.println(losL1.toString());
-		assertTrue(losL1.calculate() == 30);
+		assertTrue(LOS.calculate(ed, "L1") == 30);
 		
-		LOS losL2 = new LOS(ed,"L2");
-		assertTrue(losL2.calculate() == -1);
+		assertTrue(LOS.calculate(ed, "L2") == -1);
 		
-		LOS losL3 = new LOS(ed,"L3");
-		assertTrue(losL3.calculate() == 100);
-		
-		
-		
-		
+		assertTrue(LOS.calculate(ed, "L3") == 100);
+
 	}
 
 

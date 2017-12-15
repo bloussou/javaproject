@@ -6,11 +6,13 @@ import Rooms.BloodRoom;
 import Rooms.MRIRoom;
 import Rooms.RadioRoom;
 import Emergency.ED;
+import Emergency.EDDisplayer;
 
 public class EventsManager {
 
 	private ArrayList<Event> inProgress;
 	private ArrayList<ED> eds;
+	private boolean simulationEnd;
 	public Time time;
 	
 	
@@ -18,24 +20,28 @@ public class EventsManager {
 	 * The constructor initializes the event list InProgress, and the EDs' list
 	 */
 	public EventsManager(ArrayList<ED> eds) {
+		this.simulationEnd = false;
 		this.inProgress = new ArrayList<Event>();
 		this.eds = eds;
 		this.time = Time.getInstanceTime();
 	}
 	
 	
-
+	public void runUntilEnd(){
+		while(this.simulationEnd==false){
+			this.nextStep();
+		}
+	}
+	
 	/**
 	 * Processes one step of simulation
 	 */
 	public void nextStep(){
+		this.dequeueEvents();
 		this.checkNewEvents(this.eds);
 		this.timeGoesToNextEventEnd();
-		this.dequeueEvents();
 	}
 
-	
-	
 	/**
 	 * For each ED in the eds' list, check if new events have to be created
 	 * @param eds
@@ -91,10 +97,14 @@ public class EventsManager {
 		
 		//extract the lists of "waitingforConsultation" patients : the first filled with shockRoom Severity level, and the other the rest
 		ArrayList<Patient> shockRoomPatientList = new ArrayList<Patient>();
-		ArrayList<Patient> boxRoomPatientList = new ArrayList<Patient>();		
-		
+		ArrayList<Patient> boxRoomPatientList = new ArrayList<Patient>();
+		ArrayList<Patient> testedPatientList = new ArrayList<Patient>();
+
 		for (Patient patient : ed.getDbPatient().get(3)) {
-			if (patient.getSeverityLevel() == "L2" || patient.getSeverityLevel() == "L1"){
+			if(patient.getPhysician()!=null){
+				testedPatientList.add(patient);
+			}
+			else if (patient.getSeverityLevel().equalsIgnoreCase("L2") || patient.getSeverityLevel().equalsIgnoreCase("L1")){
 				shockRoomPatientList.add(patient);
 			}
 			else {
@@ -102,17 +112,27 @@ public class EventsManager {
 			}
 		} 		
 		
+		//Final Consultation for patients already tested, who are waiting for a verdict emmitted by the physician they have met at their first consultation
+		//They have already been drop in a Room by the transporter
+		for (Patient patient : testedPatientList){
+			if(patient.getPhysician().getState().equalsIgnoreCase("Idle")){
+				Consultation newConsultation = new Consultation(ed, patient, patient.getPhysician(), patient.getLocation());
+				this.insertNewEvent(newConsultation);
+			}
+		}
+		
+		
 		//New Consultation for high level of severity Patients
 		while(!ed.getDbPhysician().get(0).isEmpty() && !shockRoomPatientList.isEmpty() && (!ed.getDbShockRoom().get(0).isEmpty() || !ed.getDbBoxRoom().get(0).isEmpty())){
 			
 			Consultation newConsultation;
-			
-			if(!ed.getDbShockRoom().get(0).isEmpty()){
-				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbShockRoom().get(0).get(0));
+			if(!ed.getDbBoxRoom().get(0).isEmpty()){
+				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbBoxRoom().get(0).get(0));
 				shockRoomPatientList.remove(0);
 			}
 			else {
-				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbBoxRoom().get(0).get(0));
+				newConsultation = new Consultation(ed, shockRoomPatientList.get(0), ed.getDbPhysician().get(0).get(0), ed.getDbShockRoom().get(0).get(0));
+				shockRoomPatientList.remove(0);
 			}
 			
 			this.insertNewEvent(newConsultation);
@@ -185,17 +205,21 @@ public class EventsManager {
 			patientTested.add(patient);
 		}
 		
-		if (patientTested.isEmpty() || ed.getDbTransporter().get(0).isEmpty()){	
+		if (patientTested.isEmpty()){	
 			
 		}
 		else {
 			for (Patient patient : patientTested){
-				if (patient.getPhysician().getState() == "idle"){
+				if (patient.getPhysician().getState().equalsIgnoreCase("idle")){
 					if(patient.getSeverityLevel().equalsIgnoreCase("L1") || patient.getSeverityLevel().equalsIgnoreCase("L2")) {
-						if(!ed.getDbBoxRoom().get(0).isEmpty()){
+						if(!ed.getDbBoxRoom().get(0).isEmpty() && !ed.getDbTransporter().get(0).isEmpty()){
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
 						}
-						else if(!ed.getDbShockRoom().get(0).isEmpty()){
+						else if(!ed.getDbShockRoom().get(0).isEmpty() && !ed.getDbTransporter().get(0).isEmpty()){
+							System.out.println("Affichage avant bug !!");
+							EDDisplayer.displayED(ed);
+							System.out.println("ed.getDbTransporter().get(0) : " + ed.getDbTransporter().get(0));
+							System.out.println("ed.getDbShockRoom().get(0) : " + ed.getDbShockRoom().get(0));
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbShockRoom().get(0).get(0)));
 						}
 						else {
@@ -204,7 +228,7 @@ public class EventsManager {
 						
 					}
 					else {
-						if(!ed.getDbBoxRoom().get(0).isEmpty()){
+						if(!ed.getDbBoxRoom().get(0).isEmpty() && !ed.getDbTransporter().get(0).isEmpty()){
 							this.insertNewEvent(new Transport_Transporter(ed, patient, ed.getDbTransporter().get(0).get(0), ed.getDbBoxRoom().get(0).get(0)));
 						}
 						else {
@@ -273,21 +297,24 @@ public class EventsManager {
 	 */
 	public void timeGoesToNextEventEnd(){
 		
+		this.simulationEnd = true;
 		int nextArrivalTime = 100000000;
 		for (ED ed : eds) {
 			if(!ed.getDbPatient().get(0).isEmpty()){
-				if(ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp() < nextArrivalTime){
-					nextArrivalTime = ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp();
-				}
+				nextArrivalTime = ed.getDbPatient().get(0).get(0).getArrivalTime().getTimeStamp();
+				this.simulationEnd = false;
 			}
 		}
 		
 		int nextEventEndTime = 100000000;
 		if (!this.getInProgress().isEmpty()){
 			nextEventEndTime = this.getInProgress().get(0).getEndTime().getTimeStamp();
+			this.simulationEnd = false;
 		}
-
-		this.time.timeGoes(Math.min(nextArrivalTime, nextEventEndTime)-time.getTime());
+		
+		if (this.simulationEnd == false){
+			this.time.timeGoes(Math.min(nextArrivalTime, nextEventEndTime)-time.getTime());
+		}
 	}
 	
 	/**
@@ -301,7 +328,7 @@ public class EventsManager {
 		}
 	}
 	
-	
+
 	
 	public ArrayList<Event> getInProgress() {
 		return inProgress;
@@ -316,6 +343,18 @@ public class EventsManager {
 		this.inProgress = inProgress;
 	}
 
+
+
+	public boolean isSimulationEnd() {
+		return simulationEnd;
+	}
+
+
+
+	public void setSimulationEnd(boolean simulationEnd) {
+		this.simulationEnd = simulationEnd;
+	}
+	
 
 	
 

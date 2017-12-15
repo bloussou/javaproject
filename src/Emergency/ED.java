@@ -2,6 +2,7 @@ package Emergency;
 
 import java.util.ArrayList;
 
+import Events.Time;
 import Facilities.Stretcher;
 import HR.Nurse;
 import HR.Patient;
@@ -137,6 +138,7 @@ public class ED {
 	 */
 	private ArrayList<ArrayList<RadioRoom>> dbRadioRoom; 
 
+	public Time time;
 	
 	
 	/**
@@ -168,6 +170,8 @@ public class ED {
 		
 		ED.compteurEDId += 1;
 		this.setId(ED.compteurEDId);
+		
+		this.time = Time.getInstanceTime();
 		
 		this.setName(name);
 		this.setCountry(country);

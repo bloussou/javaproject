@@ -1,6 +1,9 @@
 package SimErgyClient;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import Emergency.ED;
@@ -20,6 +23,8 @@ public class CLI {
 
 	private ArrayList<ED> eds;
 	private ArrayList<String> commandLine;
+	public boolean exit;
+	public Scanner scanner;
 	
 	public Time time;
 	public Factory.AbstractFactory humanFactory;
@@ -28,9 +33,12 @@ public class CLI {
 	public EventsManager simulator;
 	public EDGeneratorFromFile EDGenerator;
 	
+	
 	public CLI(){
 		this.commandLine = new ArrayList<String>();
 		this.eds = new ArrayList<ED>();
+		this.exit = false;
+		this.scanner = new Scanner(System.in);
 		
 		this.time = Time.getInstanceTime();
 		this.humanFactory = FactoryCreator.getFactory("HUMAN");
@@ -43,6 +51,9 @@ public class CLI {
 	public CLI(ArrayList<ED> eds){
 		this.commandLine = new ArrayList<String>();
 		this.eds = eds;
+		this.exit = false;
+		this.scanner = new Scanner(System.in);
+		
 		this.time = Time.getInstanceTime();
 		this.humanFactory = FactoryCreator.getFactory("HUMAN");
 		this.roomFactory = FactoryCreator.getFactory("ROOM");
@@ -57,11 +68,10 @@ public class CLI {
 	 * @return
 	 */
 	public void promptCommandLine(){
+		System.out.print("Next command-->\n"); 
+		String line = this.scanner.nextLine();		
+		
 		this.commandLine = new ArrayList<String>();
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Next command-->\t"); 
-		String line = scanner.nextLine();	
-		scanner.close();
 		String[] temp = {};
 		String word = "";
 		boolean spaceDetected = false;
@@ -75,14 +85,16 @@ public class CLI {
 				word = "";
 				spaceDetected = true;	
 			}
+			
 		}
 		if(!spaceDetected){this.commandLine.add(word);}
 	}
 
 	/**
 	 * Analyses weither the command entered is correct, and process it
+	 * @throws IOException 
 	 */
-	public void analyseCommand(){
+	public void analyseCommand() throws IOException{
 		if(!(this.commandLine.isEmpty())){
 			
 		// ------ COMMAND : HELP
@@ -121,23 +133,28 @@ public class CLI {
 		// ------ COMMAND : DISPLAY AN ED STATE
 			else if(this.commandLine.get(0).equalsIgnoreCase("display")){ this.commandDisplay(); }
 			
-		// ------ COMMAND : RUN SIMULATION UNTIL T=?
-			else if(this.commandLine.get(0).equalsIgnoreCase("runSimulation")){ }
-			
 		// ------ COMMAND : RUN NEXT STEP OF SIMULATION
-			else if(this.commandLine.get(0).equalsIgnoreCase("runNextStep")){ }
+			else if(this.commandLine.get(0).equalsIgnoreCase("runNextStep")){ this.commandRunNextStep(); }
+			
+		// ------ COMMAND : RUN SIMULATION UNTIL T=?
+			else if(this.commandLine.get(0).equalsIgnoreCase("runSimulation")){ this.commandRunSimulation(); }
+			
+		// ------ COMMAND : SAVE AN ED SIMULATION
+			else if(this.commandLine.get(0).equalsIgnoreCase("saveEdSimulation")){ this.commandSaveEdSimulation(); }
 			
 		// ------ COMMAND : RESET SIMULATION
-			else if(this.commandLine.get(0).equalsIgnoreCase("resetAll")){ }	
+			else if(this.commandLine.get(0).equalsIgnoreCase("resetAll")){  this.commandResetAll(); }	
 			
 		// ------ COMMAND : SHUT DOWN
-			else if(this.commandLine.get(0).equalsIgnoreCase("exit")){ }
+			else if(this.commandLine.get(0).equalsIgnoreCase("exit")){ this.commandExit(); }
+			
+		// ------ WRONG COMMAND
+			else{System.out.println("Unexpected command, enter 'help' to see the command list");}
 		}
 		else{
-			System.out.println("Unexpected command, please enter 'help' command to see the command list");
+			System.out.println("No commmand entered");
 		}
 	}
-	
 	
 	
 	/**
@@ -162,8 +179,9 @@ public class CLI {
 		System.out.println("setNewPatientFlow\t<EDname> <severityLevel> <nbPeople> <startTime> <DistributionType> <Distribution parameters>");
 		System.out.println("setPatientInsurance\t<EDname> <PatientID> <HealthInsurance>");
 		System.out.println("display\t\t\t<EDname>");
-		System.out.println("runSimulation\t\t<endTime>");
 		System.out.println("runNextStep");
+		System.out.println("runSimulation\t\t<endTime>");
+		System.out.println("saveEdSimulation\t<EDname>");
 		System.out.println("resetAll");
 		System.out.println("exit");
 		for (int i = 0; i < 3; i++) {System.out.println("\n");}
@@ -175,7 +193,10 @@ public class CLI {
 	public void loadFromFile(){
 		if(this.commandLine.size()>1){
 			String fileName = this.commandLine.get(1);
-			this.EDGenerator.edsGenerating(fileName);
+			for (ED ed : this.EDGenerator.edsGenerating(fileName)){
+				this.eds.add(ed);
+			};
+			
 		}
 		else {
 			System.out.println("This command requires at least 1 argument : filename");;
@@ -490,11 +511,95 @@ public class CLI {
 				}
 			}
 			if (edIndex == -1){System.out.println("ED introuvable");}
-			else { EDDisplayer.displayED(this.getEds().get(edIndex)); }
+			else { 		System.out.println(EDDisplayer.displayED(this.getEds().get(edIndex))); }
 		}
 		else {
 			System.out.println("This command requires only edName or at least 1 argument : edName");
 		}
+	}
+	
+	/**
+	 * ---- RUN THE NEXT SIMULATION STEP
+	 */
+	public void commandRunNextStep(){
+		this.simulator = new EventsManager(this.eds);
+		this.simulator.nextStep();
+	}
+	
+	/**
+	 * ---- RUN THE SIMULATION UNTIL THE END OR UNTIL T=?
+	 */
+	public void commandRunSimulation(){
+		if(this.commandLine.size()==1){
+			this.simulator = new EventsManager(this.eds);
+			System.out.println("ON EST BIEN LA");
+			while (!this.simulator.isSimulationEnd()){
+				this.simulator.nextStep();
+			}
+			for ( ED ed : this.eds){
+				System.out.println(EDDisplayer.displayED(ed));
+			}
+		}
+		else {
+			this.simulator = new EventsManager(this.eds);
+			int endTime = EDGeneratorFromFile.getNumbersFromLine(this.commandLine.get(1), 0).get(0).intValue();
+			while (!this.simulator.isSimulationEnd() && time.getTime()<endTime){
+				this.simulator.nextStep();
+			}
+			for ( ED ed : this.eds){
+				System.out.println(EDDisplayer.displayED(ed));
+			}
+		}
+	}
+	
+	/**
+	 * ---- WRITE THE ED STATE IN A TEXT FILE
+	 * @throws IOException
+	 */
+	public void commandSaveEdSimulation() throws IOException{
+		if(this.commandLine.size()>1){
+			String edName = this.commandLine.get(1);
+			
+			int edIndex = -1;
+			for (int i = 0; i < this.eds.size(); i++) {
+				if(this.eds.get(i).getName().equalsIgnoreCase(edName)){
+					edIndex = i;
+					ED ed = this.eds.get(edIndex);
+					EDwriter writer = new EDwriter(ed);
+					writer.writeInfo(EDDisplayer.displayED(ed));
+					writer.writeInfo("\n\nPATIENTS HISTORY : \n");
+					for (ArrayList<Patient> patientList : ed.getDbPatient()){
+						for (Patient patient : patientList){
+							writer.writeInfo(patient.getName() + " " + patient.getSurname() + " " + patient.getSeverityLevel() + "-->" + patient.getHistory() + "\n");
+						}
+					}
+				}
+			}
+			if (edIndex == -1){System.out.println("ED introuvable");}
+			
+		}
+		else {
+			System.out.println("This command requires at least 1 argument : edName");
+		}
+	}
+	/**
+	 * ---- RESET THE EDs LIST
+	 */
+	public void commandResetAll(){
+		this.eds = new ArrayList<ED>();
+		for (int i = 0; i < 20; i++) {
+			System.out.println("\n");
+		}
+		System.out.println("Remise à zéro du système SimErgy, veuillez créer de nouveaux EDs.");
+	}
+	
+	/**
+	 * ---- EXIT THE PROGRAMME
+	 */
+	public void commandExit(){
+		System.out.println("\n\n--------------- EXINCTION DU SIMULATEUR ---------------");
+		this.exit = true;
+		this.scanner.close();
 	}
 	
 	
@@ -510,7 +615,5 @@ public class CLI {
 	public void setEds(ArrayList<ED> eds) {
 		this.eds = eds;
 	}
-	
-
 	
 }

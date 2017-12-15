@@ -105,7 +105,7 @@ public class Transporter extends Human{
 	 * @see Transporter#setState(String)
 	 */
 	public void transport(Patient patient, Room targetRoom){
-		//set the target room
+		//set the target room and get the patient out of his previous waitingRoom
 		this.setTargetRoom(targetRoom);
 		
 		//memorize the patient state

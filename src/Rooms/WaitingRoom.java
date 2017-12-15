@@ -84,7 +84,6 @@ public class WaitingRoom extends Room{
 	public void removeOccupant(Patient patient){
 		occupants.remove(patient);
 		this.setState("available");
-		
 	}
 	
 	/**

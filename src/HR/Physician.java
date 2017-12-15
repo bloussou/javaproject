@@ -10,7 +10,7 @@ import MessageBox.Message;
 
 
 
-public class Physician extends Human  implements Observer{
+public class Physician extends Human{
 	
 	/**
 	 * An int to give a unique id to each physician
@@ -83,7 +83,7 @@ public class Physician extends Human  implements Observer{
 		this.setId(Physician.compteurPhysicianId);
 		
 		this.setEd(ed);
-		this.setName("Phisician" + Integer.toString(this.getId()));
+		this.setName("Physician" + Integer.toString(this.getId()));
 		this.setSurname("Physician" + Integer.toString(this.getId()));
 		this.setState("idle");
 		
@@ -120,25 +120,27 @@ public class Physician extends Human  implements Observer{
 		//set the state of the physician
 		this.setState("visiting");
 		
+		//set the state of the physician
+		consultationRoom.addOccupant(patient);
+		
 		//add the patient to the list patientOverseeing
 		this.patientOverseeing.add(patient);
 		
 		//set the state of the patient
 		patient.setState("inConsultation");
 		
-		//set the state of the room
-		consultationRoom.setState("occupied");
-		
-		
-		//set the physician of the patient
-		patient.setPhysician(this);
 		
 		//set the history of the patient
 		this.startTime = new TimeStamp();
 		patient.setHistory("(visited, "+ this.getStartTime().toString() + "), ");
 		
-		//set the dtdt time of the patient
-		patient.setDtdtime(new TimeStamp());
+		if(patient.getPhysician()==null){
+			//set the dtdt time of the patient
+			patient.setFirstConsultationTime(new TimeStamp());
+		}
+		
+		//set the physician of the patient
+		patient.setPhysician(this);
 		
 	}
 	
@@ -156,7 +158,7 @@ public class Physician extends Human  implements Observer{
 		patient.setState("released");
 		
 		patient.setHistory("(released, "+ departureTime.toString() + "), ");
-		System.out.println(patient.getName()+" "+patient.getHistory());
+		System.out.println("PATIENT RELEASED : " + patient.getName()+ " " + patient.getSurname() + " :" + patient.getHistory());
 		patient.setDepartureTime(departureTime);
 		
 		//patient.setHistory("("+patient.getState() +", "+ this.getStartTime().toString() + "), ");
@@ -166,9 +168,7 @@ public class Physician extends Human  implements Observer{
 		
 		
 		//add the patient to the array patientTreated
-		this.patientAlreadyTreated.add(patient);
-		
-		
+		this.patientAlreadyTreated.add(patient);		
 	}
 	
 	/**
@@ -233,7 +233,7 @@ public class Physician extends Human  implements Observer{
 
 
 		//set the state of the room
-		consultationRoom.setState("free");
+		consultationRoom.removeOccupant(patient);
 	}
 	
 	
@@ -424,12 +424,6 @@ public class Physician extends Human  implements Observer{
 		return "(Physician) [id=" + this.getId() + ", name=" + this.getName() + ", surname=" + this.getSurname() + ", ED=" + this.ed.getName() + ", state=" + this.getState() + ", patientsOverseen=" + this.getPatientOverseeing().size() + ", patientAlreadyTreated=" + this.getPatientAlreadyTreated().size() + "]";
 	}
 	
-	
-	@Override
-	public void displayMsgBox() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	

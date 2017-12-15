@@ -35,7 +35,7 @@ public class BloodExamination extends Event {
 		this.setDuration((int) bloodRoom.getDuration());
 		this.setEndTime(bloodRoom.getEndTime());
 		
-		System.out.println("Blood Test processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName());
+		System.out.println("\nEVENT : Blood Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getBloodRoom().getName());
 	}
 	
 	/**
@@ -44,6 +44,7 @@ public class BloodExamination extends Event {
 	 */
 	@Override
 	public void endEvent() {
+		System.out.println("\nEVENT END : Blood Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getBloodRoom().getName());
 		this.getBloodRoom().endBloodTesting();
 	}
 	

@@ -143,7 +143,7 @@ public class EDGeneratorFromFile {
 				System.out.println("EDGGENERATORFROMFILE --- creating " + numStretchers + " stretchers");
 				if (numStretchers>0){
 					for (int i = 0; i < numStretchers ; i++) {
-						this.facilityFactory.getFacility(this.edsGenerated.get(this.numED), "FACILITY");
+						this.facilityFactory.getFacility(this.edsGenerated.get(this.numED), "STRETCHER");
 					}
 				}
 				else {System.out.println("Problème avec le nb de stretchers de " + this.edsGenerated.get(this.numED).getName());}
@@ -151,6 +151,7 @@ public class EDGeneratorFromFile {
 //--WAITING AND CONSULTATION ROOMS---------------------------------------------------------------------------------------------- 
 		else if (line.startsWith("Rooms - number of WaitingRooms") && !this.edsGenerated.isEmpty()){
 				int numWR = EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numWR + " WaitingRooms");
 				if (numWR>0){
 					for (int i = 0; i < numWR ; i++) {
 						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "WAITINGROOM");
@@ -160,6 +161,7 @@ public class EDGeneratorFromFile {
 		}
 		else if (line.startsWith("Rooms - number of ShockRooms") && !this.edsGenerated.isEmpty()){
 				int numSR = EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numSR + " ShockRooms");
 				if (numSR>0){
 					for (int i = 0; i < numSR ; i++) {
 						this.roomFactory.getRoom( this.edsGenerated.get(this.numED), "SHOCKROOM");
@@ -169,6 +171,7 @@ public class EDGeneratorFromFile {
 		}
 		else if (line.startsWith("Rooms - number of BoxRooms") && !this.edsGenerated.isEmpty()){
 				int numBR = EDGeneratorFromFile.getNumbersFromLine(line, 0).get(0).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numBR + " BoxRooms");
 				if (numBR>0){
 					for (int i = 0; i < numBR ; i++) {
 						this.roomFactory.getRoom(this.edsGenerated.get(this.numED), "BOXROOM");
@@ -180,6 +183,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - Blood test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numBloodR = lineData.get(lineData.size()-1).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numBloodR + " BloodRooms");
 				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numBloodR>0){
@@ -192,6 +196,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - MRI test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numMRIR = lineData.get(lineData.size()-1).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numMRIR + " MriRooms");
 				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numMRIR>0){
@@ -204,6 +209,7 @@ public class EDGeneratorFromFile {
 		else if (line.startsWith("TestRooms - Radio test duration") && !this.edsGenerated.isEmpty()){
 				ArrayList<Double> lineData = EDGeneratorFromFile.getNumbersFromLine(line, 0);
 				int numRadioR = lineData.get(lineData.size()-1).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numRadioR + " RadioRooms");
 				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);
 				float[] distParam = {lineData.get(0).floatValue(),lineData.get(1).floatValue()};
 				if (numRadioR>0){
@@ -219,6 +225,7 @@ public class EDGeneratorFromFile {
 				ArrayList<Double> dataNum = EDGeneratorFromFile.getNumbersFromLine(line, 13);
 				String sevLevel = EDGeneratorFromFile.getWordFromLine(line, 8);
 				int numPeople = dataNum.get(0).intValue();
+				System.out.println("EDGGENERATORFROMFILE --- creating " + numPeople + " Patients " + sevLevel);
 				int startTime = dataNum.get(1).intValue();
 
 				String distribution = EDGeneratorFromFile.getWordFromLine(line, line.indexOf("distribution")+12);

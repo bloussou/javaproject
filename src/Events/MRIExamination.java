@@ -35,7 +35,7 @@ public class MRIExamination extends Event {
 		this.setDuration((int) mriRoom.getDuration());
 		this.setEndTime(mriRoom.getEndTime());
 		
-		System.out.println("MRI Test processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName());
+		System.out.println("\nEVENT : MRI Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getMriRoom().getName());
 	}
 	/**
 	 * End the event mri examination
@@ -43,6 +43,7 @@ public class MRIExamination extends Event {
 	 */
 	@Override
 	public void endEvent() {
+		System.out.println("\nEVENT END : MRI Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getMriRoom().getName());
 		this.getMriRoom().endMRITesting();
 	}
 	

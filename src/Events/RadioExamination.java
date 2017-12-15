@@ -36,7 +36,7 @@ public class RadioExamination extends Event {
 		this.setDuration((int) radioRoom.getDuration());
 		this.setEndTime(radioRoom.getEndTime());
 		
-		System.out.println("Radio Test processing --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName());
+		System.out.println("\nEVENT : Radio Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getRadioRoom().getName());
 	}
 	/**
 	 * End the event radio examination
@@ -44,6 +44,7 @@ public class RadioExamination extends Event {
 	 */
 	@Override
 	public void endEvent() {
+		System.out.println("\nEVENT END : Radio Test --- ED : " + this.getEd().getName() + " Patient " + this.getPatient().getSeverityLevel() + " : " + this.getPatient().getName() + "  Room : " + this.getRadioRoom().getName());
 		this.getRadioRoom().endRadioTesting();
 	}
 	

@@ -1,6 +1,8 @@
 package Test;
 
 import static org.junit.Assert.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class CLITest {
 	}
 
 	@Test
-	public void testCommandHelp(){
+	public void testCommandHelp() throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		command.add("HELP");
@@ -27,7 +29,7 @@ public class CLITest {
 	}
 	
 	@Test
-	public void testCommandCreateED(){
+	public void testCommandCreateED()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -60,7 +62,7 @@ public class CLITest {
 	}
 		
 	@Test 
-	public void testAddRoom(){
+	public void testAddRoom()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -98,7 +100,7 @@ public class CLITest {
 	}
 	
 	@Test
-	public void testAddTestRoom(){
+	public void testAddTestRoom()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -138,7 +140,7 @@ public class CLITest {
 	}
 
 	@Test
-	public void testAddNurse(){
+	public void testAddNurse()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -185,7 +187,7 @@ public class CLITest {
 	}
 
 	@Test
-	public void testAddPhysician(){
+	public void testAddPhysician()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -232,7 +234,7 @@ public class CLITest {
 	}
 	
 	@Test
-	public void testAddTransporter(){
+	public void testAddTransporter()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -278,7 +280,7 @@ public class CLITest {
 		assertTrue("2.0", cli.getEds().get(0).getDbTransporter().get(0).size()==2);
 	}
 
-	public void testAddPatient(){
+	public void testAddPatient()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -310,7 +312,7 @@ public class CLITest {
 	}
 	
 	@Test 
-	public void testSetNewPatientFlow(){
+	public void testSetNewPatientFlow()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
@@ -345,7 +347,7 @@ public class CLITest {
 	}
 
 	@Test 
-	public void testSetInsurance(){
+	public void testSetInsurance()throws IOException{
 		CLI cli = new CLI();
 		ArrayList<String> command = new ArrayList<String>();
 		
