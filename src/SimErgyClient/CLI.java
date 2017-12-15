@@ -194,7 +194,7 @@ public class CLI {
 			for (ED ed : this.EDGenerator.edsGenerating(fileName)){
 				edExists = false;
 				for (ED edDejaExistant : this.simulator.getEds()){
-					if (edDejaExistant.getName().equalsIgnoreCase(ed.getName()) && edDejaExistant.getCountry().equalsIgnoreCase(ed.getCountry())){ System.out.println("Exists = true"); edExists = true; }		
+					if (edDejaExistant.getName().equalsIgnoreCase(ed.getName()) && edDejaExistant.getCountry().equalsIgnoreCase(ed.getCountry())){ edExists = true; }		
 				}
 				if(!edExists){ 
 					this.simulator.getEds().add(ed);
