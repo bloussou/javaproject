@@ -128,13 +128,13 @@ public class Nurse extends Human{
 	/**
 	 * A method to transport the patient to the good target room (here a waiting room) :
 	 * it :
-	 * <p>
+	 * 
 	 * <li>set the target room</li>
 	 * <li>set the state of the nurse to transporting</li>
 	 * <li>set the state of the patient to transporting</li>
 	 * <li>add the patient to {@link Nurse#patientTransported}</li>
 	 * <li>set the start time and the end time</li>
-	 * </p>
+	 * 
 	 * @param patient
 	 * @param targetRoom
 	 * @see Nurse#setState(String)
@@ -276,11 +276,11 @@ public class Nurse extends Human{
 	}
 	
 	/**
-	 * Sets the state of the nurse and moves him/her to the good list of {@link ED#getDbNurse()}, it :
+	 * Sets the state of the nurse and moves him/her to the good list of {@link ED#getDbNurse()}, it 
 	 * <li>removes it from its last db state</li>
 	 * <li>put it in the good db</li>
 	 * 
-	 * @param String state
+	 * @param state
 	 * @see ED#getDbNurse()
 	 */
 	@Override
