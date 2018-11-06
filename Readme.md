@@ -5,3 +5,4 @@
 ⟾ Technologies : Java
 
 You can find the report on the .odt file.
+All the documentation is also available in the JDK.
